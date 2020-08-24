@@ -6,6 +6,7 @@ Vue.use(Router);
 import IndexView from '../components/Inicio.vue';
 import Login from '../components/Login.vue';
 import Empleados from '../components/Empleados.vue';
+import Empresa from '../components/Empresa.vue';
 
 export default new Router({
     mode: 'history',
@@ -25,6 +26,12 @@ export default new Router({
             path: '/empleados',
             name: '/empleados',
             component: Empleados
+
+        },
+        {
+            path: '/empresa',
+            name: '/empresa',
+            component: Empresa
 
         },
 

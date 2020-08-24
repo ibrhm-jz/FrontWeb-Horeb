@@ -20,7 +20,9 @@
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="title">Application</v-list-item-title>
-          <v-list-item-subtitle><em>tuberia_horeb@hotmail.com</em></v-list-item-subtitle>
+          <v-list-item-subtitle>
+            <em>tuberia_horeb@hotmail.com</em>
+          </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 
@@ -36,7 +38,7 @@
             <v-list-item-title class="font-drawer">Home</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        
+
         <v-list-item link>
           <v-list-item-icon>
             <v-icon>mdi-account-box</v-icon>
@@ -96,54 +98,68 @@
     </b-sidebar>
 
     <v-container class="contenedor">
-      <span class="titulosecundario" style="color:black !important;">Tablero</span>
-      <v-spacer></v-spacer>
-
-      <span>
-        <font face="Segoe UI" size="4" color="black">Usuario : Ibraham Surisadai Jimenez Lopez.</font>
-      </span>
       <div>
-  <div>
-    <b-card-group deck>
-    </b-card-group>
-  </div>
+        <form v-for="enter in datosEmpresa" :key="enter.id">
+          <p class="h4 text-center mb-4">Datos de la Empresa.</p>
+          <br />
+          <label for="defaultFormRegisterNameEx" class="grey-text">
+            <b>Nombre de la Empresa</b>
+          </label>
+          <input
+            type="text"
+            id="defaultFormRegisterNameEx"
+            class="form-control"
+            v-model="enter.nombre"
+          />
 
-  <div class="mt-3">
-    <b-card-group deck class="mb-3">
-      <b-card 
-        header="Total de ventas"
-       
-        class="cardtrans">
-        <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-      </b-card>
+          <br />
+          <label for="defaultFormRegisterEmailEx" class="grey-text">
+            <b>Clabe interbancaria</b>
+          </label>
+          <input
+            type="text"
+            id="defaultFormRegisterEmailEx"
+            class="form-control"
+            v-model="enter.clabe_interbancaria"
+          />
+          <br />
+          <label for="defaultFormRegisterConfirmEx" class="grey-text">
+            <b>RFC</b>
+          </label>
+          <input
+            type="text"
+            id="defaultFormRegisterConfirmEx"
+            class="form-control"
+            v-model="enter.rfc"
+          />
+          <br />
+          <label for="defaultFormRegisterPasswordEx" class="grey-text">
+            <b>Correo</b>
+          </label>
+          <input
+            type="text"
+            id="defaultFormRegisterPasswordEx"
+            class="form-control"
+            v-model="enter.correo"
+          />
+          <br />
+          <label for="defaultFormRegisterPasswordEx" class="grey-text">
+            <b>Direccion</b>
+          </label>
+          <input
+            type="text"
+            id="defaultFormRegisterPasswordEx"
+            class="form-control"
+            v-model="enter.direccion"
+          />
 
-      <b-card 
-        header="Recurso"
-        class="cardtrans">
-        <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-      </b-card>
-    </b-card-group>
-  </div>
-</div>
-      <v-spacer></v-spacer>
-      <div align="left">
-        <span class="titulosecundario" style="color:black !important;">Ultimas Cotizaciones</span>
+          <div>
+            <br />
+            <b-button block variant="success">Actualizar</b-button>
+          </div>
+        </form>
       </div>
-      <v-spacer></v-spacer><hr>
-
-<div>
-  <b-card title="FERRETUBOS" >
-    <b-card-text>
-      Some quick example text to build on the <em>card title</em> and make up the bulk of the card's
-      content.
-    </b-card-text>
-    <a href="#" class="card-link" style="color:#00b686!important;">Ver mas</a>
-   
-  </b-card>
-</div>
     </v-container>
-  
-    
   </div>
 </template>
 
@@ -151,27 +167,28 @@
 <script>
 import { API } from "../Servicios/axios";
 export default {
-  name: "inicio",
+  name: "empresa",
   data() {
     return {
       drawer: false,
       group: null,
+      datosEmpresa: [],
     };
   },
-    mounted() {
-    API.get("empresa",{
- headers: {
-   Authorization: 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5ODI5ODc5MSwiZXhwIjoxNTk4MzAyMzkxLCJuYmYiOjE1OTgyOTg3OTEsImp0aSI6Ink4SHR6N0lvaEVlRGhseHIiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.FSYN3usyf0Mcb-6vUn488vOdft4JBELoHJRIhcYcgZA'//the token is a variable which holds the token
- }
-}).then(response => {
-      this.datas = response.data;
-      console.log(this.datas)
+  mounted() {
+    API.get("empresa", {
+      headers: {
+        Authorization:
+          "Bearer " +
+          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5ODMwMjgyMSwiZXhwIjoxNTk4MzA2NDIxLCJuYmYiOjE1OTgzMDI4MjEsImp0aSI6ImtsdGlNVWlScFFZTHBEdWIiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.UW0FGSm3AeKHiQImnJAD6p0dpKnJ2F9joBtpY6dQ2-0", //the token is a variable which holds the token
+      },
+    }).then((response) => {
+      this.datosEmpresa = response.data;
+      /* eslint-disable */
+      console.log(this.datas);
       // eslint-disable-next-line no-console
-      
-  
     });
   },
-
 
   watch: {
     group() {
@@ -183,7 +200,6 @@ export default {
 
 
 <style scoped>
-
 .titulos {
   font-family: "Segoe UI";
   font-weight: bold;
@@ -208,14 +224,12 @@ export default {
   margin-bottom: 10px;
   margin-top: 10px;
 }
-.cardtrans{
-    background-color: #ffffff!important;
+.cardtrans {
+  background-color: #ffffff !important;
 }
 .contenedor {
   margin-top: 60px;
-  width: 100%;
- 
- 
+  width: 40%;
 }
 .font-drawer {
   color: black;
