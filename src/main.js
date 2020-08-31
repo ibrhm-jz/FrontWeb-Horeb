@@ -6,7 +6,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import App from './App.vue'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 Vue.use(BootstrapVue)
-    // Optionally install the BootstrapVue icon components plugin
+window.convertir = require('numero-a-letras');
+// Optionally install the BootstrapVue icon compZZonents plugin
 Vue.use(IconsPlugin)
 new Vue({
     vuetify,

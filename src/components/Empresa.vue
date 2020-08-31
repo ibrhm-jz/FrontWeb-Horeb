@@ -165,7 +165,7 @@
 
 
 <script>
-import { API } from "../Servicios/axios";
+import { API, TOKEN } from "../Servicios/axios";
 export default {
   name: "empresa",
   data() {
@@ -180,8 +180,8 @@ export default {
       headers: {
         Authorization:
           "Bearer " +
-          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5ODMwMjgyMSwiZXhwIjoxNTk4MzA2NDIxLCJuYmYiOjE1OTgzMDI4MjEsImp0aSI6ImtsdGlNVWlScFFZTHBEdWIiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.UW0FGSm3AeKHiQImnJAD6p0dpKnJ2F9joBtpY6dQ2-0", //the token is a variable which holds the token
-      },
+          TOKEN
+          },
     }).then((response) => {
       this.datosEmpresa = response.data;
       /* eslint-disable */

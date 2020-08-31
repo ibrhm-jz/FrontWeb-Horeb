@@ -7,6 +7,9 @@ import IndexView from '../components/Inicio.vue';
 import Login from '../components/Login.vue';
 import Empleados from '../components/Empleados.vue';
 import Empresa from '../components/Empresa.vue';
+import Productos from '../components/Productos.vue';
+import Cotizacion from '../components/Cotizacion.vue';
+import Hello from '../components/Hello.vue';
 
 export default new Router({
     mode: 'history',
@@ -32,6 +35,24 @@ export default new Router({
             path: '/empresa',
             name: '/empresa',
             component: Empresa
+
+        },
+        {
+            path: '/productos',
+            name: '/productos',
+            component: Productos
+
+        },
+        {
+            path: '/cotizacion',
+            name: '/cotizacion',
+            component: Cotizacion
+
+        },
+        {
+            path: '/hello',
+            name: '/hello',
+            component: Hello
 
         },
 

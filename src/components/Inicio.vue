@@ -165,8 +165,9 @@ export default {
  }
 }).then(response => {
       this.datas = response.data;
+      // eslint-disable-next-line
       console.log(this.datas)
-      // eslint-disable-next-line no-console
+     
       
   
     });
