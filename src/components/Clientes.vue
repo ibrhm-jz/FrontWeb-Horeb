@@ -168,7 +168,7 @@
                     <v-spacer></v-spacer>
                     Direccion: {{clientes.direccion}}
                       <v-spacer></v-spacer>
-                      Vendedor:   {{dataUsuario.nombres}}
+                      Vendedor:   {{dataUsuario.nombres}}&nbsp;{{dataUsuario.apellidos}}
                   </v-card-text>
                 
                 </v-expansion-panel-content>
@@ -182,71 +182,68 @@
       <b-modal
         id="modal-prevent-closing"
         ref="modal"
-        title="Registrar Producto"
+        title="Registrar Cliente"
         centered
         @show="resetModal"
         @hidden="resetModal"
-        @ok="RegistrarProducto"
+        @ok="RegistrarCliente"
         ok-variant="success"
       >
         <form ref="form" @submit.stop.prevent="handleSubmit">
           <b-form-group :state="nameState" invalid-feedback="*Requerido">
             <b-form-input
-              id="name-input"
-              v-model="nombre"
+              id="nombres"
+              v-model="nombres"
               :state="nameState"
               required
-              placeholder="Nombre"
+              placeholder="Nombres"
             ></b-form-input>
             <br />
             <b-form-input
-              id="name-input"
-              v-model="tipo"
+              id="apellidos"
+              v-model="apellidos"
               :state="nameState"
               required
-              placeholder="Tipo"
+              placeholder="Apellidos"
               type="text"
             ></b-form-input>
             <br />
             <b-form-input
-              id="name-input"
-              v-model="medida"
+              id="direccion"
+              v-model="direccion"
               :state="nameState"
               required
-              placeholder="Medida"
+              placeholder="Direccion"
               type="text"
             ></b-form-input>
             <br />
             <b-form-input
-              id="name-input"
-              v-model="descripcion"
+              id="correo"
+              v-model="correo"
               :state="nameState"
               required
-              placeholder="Descripcion"
+              placeholder="Correo"
             ></b-form-input>
             <br />
             <b-form-input
-              id="name-input"
-              v-model="precio_unitario"
+              id="correo"
+              v-model="telefono"
               :state="nameState"
               required
-              placeholder="$Precio unitario"
+              placeholder="Telefono"
             ></b-form-input>
             <br />
             <b-form-input
-              id="name-input"
-              v-model="cantidad_existencia"
+              id="empresa"
+              v-model="empresa"
               :state="nameState"
               required
-              placeholder="Cantidad en Existencia"
+              placeholder="Empresa"
             ></b-form-input>
             <br />
             <div>
-              <b-form-select v-model="selected" :options="options"></b-form-select>
-              <div class="mt-3">
-                Selected:
-                <strong>{{ selected }}</strong>
-              </div>
+              <b-form-select v-model="selected" :options="dataVendedores"  value-field="id"  text-field="nombres"></b-form-select>
+
             </div>
           </b-form-group>
         </form>
@@ -273,12 +270,13 @@ export default {
       dataClientes: [],
       dataUsuario: [],
       // eslint-disable-next-line
-      nombre: "",
-      tipo: "",
-      medida: "",
-      descripcion: "",
-      precio_unitario: "",
-      cantidad_existencia: "",
+      nombres: "",
+      apellidos: "",
+      direccion: "",
+      telefono: "",
+      correo: "",
+      empresa: "",
+      users_id: "",
       categoria: "",
       selected: null,
       category: null,
@@ -288,6 +286,7 @@ export default {
         { value: "Mallas", text: "Mallas" },
         { value: "Valvulas", text: "Valvulas" },
       ],
+      dataVendedores:[]
     };
   },
   methods: {
@@ -306,31 +305,7 @@ export default {
       // Trigger submit handler
       this.handleSubmit();
     },
-    RegistrarProducto() {
-      const data = {
-        nombre: this.nombre,
-        tipo: this.tipo,
-        medida: this.medida,
-        descripcion: this.descripcion,
-        categoria: this.selected,
-        precio_unitario: this.precio_unitario,
-        cantidad_existencia: this.cantidad_existencia,
-      };
-      API.post("registro-producto", data, {
-        headers: {
-          Authorization: "Bearer " + TOKEN,
-        },
-      })
-        .then((res) => {
-          // eslint-disable-next-line
-          console.log(res.data);
-          this.getProduct();
-        })
-        .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-        });
-    },
+
     handleSubmit() {
       // Exit when the form isn't valid
       if (!this.checkFormValidity()) {
@@ -357,6 +332,33 @@ export default {
       });
     },
 
+        RegistrarCliente() {
+      const data = {
+        nombres: this.nombres,
+        apellidos: this.apellidos,
+        direccion: this.direccion,
+        telefono: this.telefono,
+        correo: this.correo,
+        empresa: this.empresa,
+        users_id: this.selected,
+      };
+      API.post("registro-cliente",data, {
+        headers: {
+          Authorization: "Bearer " + TOKEN,
+        },
+      }).then((res) => {
+          // eslint-disable-next-line
+          console.log(res.data);
+          this.getClientes();
+          window.alert("Los datos se han guardado");
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+           window.alert(error);
+        });
+    },
+
     getUser(clientes) {
       API.get("user/"+clientes.users_id, {
         headers: {
@@ -366,11 +368,21 @@ export default {
         this.dataUsuario = response.data;
 
           /* eslint-disable */
-        console.log(this.dataUsuario);
-        
-        
+        console.log(this.dataUsuario);      
+        // eslint-disable-next-line no-console
+      });
+    },
 
-      
+        getVendedores() {
+      API.get("user", {
+        headers: {
+          Authorization: "Bearer " + TOKEN,
+        },
+      }).then((response) => {
+        this.dataVendedores= response.data;
+
+        /* eslint-disable */
+      //console.log(response.data);
         // eslint-disable-next-line no-console
       });
     },
@@ -394,6 +406,7 @@ export default {
   },
   mounted() {
     this.getClientes();
+    this.getVendedores();
   
     
   },
