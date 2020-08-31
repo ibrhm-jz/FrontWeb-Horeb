@@ -112,7 +112,8 @@
       <br />
 
       <div class="row">
-        <div class="col-md-8"></div>
+        <div class="col-md-8">
+        </div>
         <div class="col-md-4">
           <div align="right">
             <b-button squared variant="success" v-b-modal.modal-prevent-closing>Añadir Clientes</b-button>
@@ -120,39 +121,47 @@
         </div>
       </div>
 
-      <br />
+    
       <div>
         <v-container fluid>
+        <font face ="Segoe UI">
           <v-row justify="center">
             <v-subheader>Lista de Clientes</v-subheader>
 
-            <v-expansion-panels popout>
+            <v-expansion-panels >
               <v-expansion-panel v-for="(clientes,i) in dataClientes" :key="i" hide-actions>
                 <v-expansion-panel-header v-on:click="getUser(clientes)">
                   <v-row align="center" class="spacer" no-gutters>
                     <v-col cols="4" sm="2" md="1">
                       <v-avatar size="36px">
-                        <v-icon > mdi-account-box-multiple</v-icon>
-                        
+                        <v-icon>mdi-account-box-multiple</v-icon>
                       </v-avatar>
                     </v-col>
 
                     <v-col class="hidden-xs-only" sm="5" md="3">
-                      <strong>{{clientes.nombres}}&nbsp;{{clientes.apellidos}}</strong>
+                     <div align ="left">
+                      <strong style="text-transform: uppercase;" >
+                      
+                      {{clientes.nombres}}&nbsp;{{clientes.apellidos}}</strong>
+                     </div>
                     </v-col>
 
-                    <v-col class="text-no-wrap" cols="5" sm="3">
+                    <v-col class="text-no-wrap" cols="6" sm="3">
+                     <div align="left">
                       <v-chip
                         color="black"
                         class="ml-0 mr-2 black--text"
                         label
                         small
                       >{{ clientes.empresa }}</v-chip>
+                      </div>
                     </v-col>
 
                     <v-col class="grey--text text-truncate hidden-sm-and-down">
+                    <div align="left">
                       TEL:
                       {{ clientes.telefono }}
+                      </div>
                     </v-col>
                   </v-row>
                 </v-expansion-panel-header>
@@ -160,24 +169,35 @@
                 <v-expansion-panel-content>
                   <v-divider></v-divider>
                   <v-card-text>
-                    Nombres: {{clientes.nombres}}&nbsp;{{clientes.apellidos}}
+                    <div style="text-transform: uppercase;">Nombres: {{clientes.nombres}}&nbsp;{{clientes.apellidos}}</div>
                     <v-spacer></v-spacer>Empresa:
                     <b>{{clientes.empresa}}</b>
                     <v-spacer></v-spacer>
                     Telefono: {{clientes.telefono}} &nbsp;&nbsp;&nbsp;&nbsp; Correo:{{clientes.correo}}
                     <v-spacer></v-spacer>
                     Direccion: {{clientes.direccion}}
-                      <v-spacer></v-spacer>
-                      Vendedor:   {{dataUsuario.nombres}}&nbsp;{{dataUsuario.apellidos}}
+                    <v-spacer></v-spacer>
+                    Vendedor: {{dataUsuario.nombres}}&nbsp;{{dataUsuario.apellidos}}
+                    <v-spacer></v-spacer>
+                    <v-btn icon color="red">
+                      <v-icon style="color: #71ccb4;" v-b-modal.modal-update>mdi-pencil</v-icon>
+                    </v-btn>
+                    &nbsp;&nbsp;&nbsp;&nbsp; 
+                    <v-btn icon color="red" @click="deleteClientes(clientes)">
+                      <v-icon style="color: #C64444;">mdi-delete</v-icon>
+                    </v-btn>
                   </v-card-text>
-                
                 </v-expansion-panel-content>
               </v-expansion-panel>
             </v-expansion-panels>
           </v-row>
+        </font>
         </v-container>
       </div>
     </v-container>
+
+
+    
     <div>
       <b-modal
         id="modal-prevent-closing"
@@ -242,8 +262,90 @@
             ></b-form-input>
             <br />
             <div>
-              <b-form-select v-model="selected" :options="dataVendedores"  value-field="id"  text-field="nombres"></b-form-select>
+              <b-form-select
+                v-model="selected"
+                :options="dataVendedores"
+                value-field="id"
+                text-field="nombres"
+              ></b-form-select>
+            </div>
+          </b-form-group>
+        </form>
+      </b-modal>
+    </div>
 
+
+
+       <div>
+      <b-modal
+        id="modal-update"
+        ref="modal"
+        title="Registrar Cliente"
+        centered
+        @show="resetModal"
+        @hidden="resetModal"
+        @ok="RegistrarCliente"
+        ok-variant="success"
+      >
+        <form ref="form" @submit.stop.prevent="handleSubmit">
+          <b-form-group :state="nameState" invalid-feedback="*Requerido">
+            <b-form-input
+              id="nombres"
+              v-model="nombres"
+              :state="nameState"
+              required
+              placeholder="Nombres"
+            ></b-form-input>
+            <br />
+            <b-form-input
+              id="apellidos"
+              v-model="apellidos"
+              :state="nameState"
+              required
+              placeholder="Apellidos"
+              type="text"
+            ></b-form-input>
+            <br />
+            <b-form-input
+              id="direccion"
+              v-model="direccion"
+              :state="nameState"
+              required
+              placeholder="Direccion"
+              type="text"
+            ></b-form-input>
+            <br />
+            <b-form-input
+              id="correo"
+              v-model="correo"
+              :state="nameState"
+              required
+              placeholder="Correo"
+            ></b-form-input>
+            <br />
+            <b-form-input
+              id="correo"
+              v-model="telefono"
+              :state="nameState"
+              required
+              placeholder="Telefono"
+            ></b-form-input>
+            <br />
+            <b-form-input
+              id="empresa"
+              v-model="empresa"
+              :state="nameState"
+              required
+              placeholder="Empresa"
+            ></b-form-input>
+            <br />
+            <div>
+              <b-form-select
+                v-model="selected"
+                :options="dataVendedores"
+                value-field="id"
+                text-field="nombres"
+              ></b-form-select>
             </div>
           </b-form-group>
         </form>
@@ -286,7 +388,7 @@ export default {
         { value: "Mallas", text: "Mallas" },
         { value: "Valvulas", text: "Valvulas" },
       ],
-      dataVendedores:[]
+      dataVendedores: [],
     };
   },
   methods: {
@@ -317,6 +419,9 @@ export default {
       this.$nextTick(() => {
         this.$bvModal.hide("modal-prevent-closing");
       });
+      this.$nextTick(() => {
+        this.$bvModal.hide("modal-update");
+      });
     },
     getClientes() {
       API.get("cliente", {
@@ -327,12 +432,12 @@ export default {
         this.dataClientes = response.data;
 
         /* eslint-disable */
-      //  console.log(this.dataClientes);
+        //  console.log(this.dataClientes);
         // eslint-disable-next-line no-console
       });
     },
 
-        RegistrarCliente() {
+    RegistrarCliente() {
       const data = {
         nombres: this.nombres,
         apellidos: this.apellidos,
@@ -342,11 +447,12 @@ export default {
         empresa: this.empresa,
         users_id: this.selected,
       };
-      API.post("registro-cliente",data, {
+      API.post("registro-cliente", data, {
         headers: {
           Authorization: "Bearer " + TOKEN,
         },
-      }).then((res) => {
+      })
+        .then((res) => {
           // eslint-disable-next-line
           console.log(res.data);
           this.getClientes();
@@ -355,45 +461,46 @@ export default {
         .catch((error) => {
           // eslint-disable-next-line
           console.error(error);
-           window.alert(error);
+          window.alert(error);
         });
     },
 
     getUser(clientes) {
-      API.get("user/"+clientes.users_id, {
+      API.get("user/" + clientes.users_id, {
         headers: {
           Authorization: "Bearer " + TOKEN,
         },
       }).then((response) => {
         this.dataUsuario = response.data;
 
-          /* eslint-disable */
-        console.log(this.dataUsuario);      
+        /* eslint-disable */
+        console.log(this.dataUsuario);
         // eslint-disable-next-line no-console
       });
     },
 
-        getVendedores() {
+    getVendedores() {
       API.get("user", {
         headers: {
           Authorization: "Bearer " + TOKEN,
         },
       }).then((response) => {
-        this.dataVendedores= response.data;
+        this.dataVendedores = response.data;
 
         /* eslint-disable */
-      //console.log(response.data);
+        //console.log(response.data);
         // eslint-disable-next-line no-console
       });
     },
-    delectClientes(result) {
-      API.delete("borrar-Clienteso/" + result.id, {
+    deleteClientes(result) {
+      API.delete("borrar-cliente/" + result.id, {
         headers: {
           Authorization: "Bearer " + TOKEN,
         },
       }).then((response) => {
         // eslint-disable-next-line
         console.log(this.result);
+        window.alert("Los datos se han guardado");
         this.getClientes();
       });
     },
@@ -407,8 +514,6 @@ export default {
   mounted() {
     this.getClientes();
     this.getVendedores();
-  
-    
   },
 };
 </script>
