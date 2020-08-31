@@ -9,6 +9,7 @@ import Empleados from '../components/Empleados.vue';
 import Empresa from '../components/Empresa.vue';
 import Productos from '../components/Productos.vue';
 import Cotizacion from '../components/Cotizacion.vue';
+import Clientes from '../components/Clientes.vue';
 import Hello from '../components/Hello.vue';
 
 export default new Router({
@@ -53,6 +54,12 @@ export default new Router({
             path: '/hello',
             name: '/hello',
             component: Hello
+
+        },
+        {
+            path: '/clientes',
+            name: '/clientes',
+            component: Clientes
 
         },
 
