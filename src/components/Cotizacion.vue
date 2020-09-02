@@ -29,64 +29,68 @@
       <v-divider></v-divider>
 
       <v-list dense nav color="blue">
-        <v-list-item link>
+        <v-list-item link to="/">
+        
           <v-list-item-icon>
             <v-icon>mdi-home</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">Home</v-list-item-title>
+            <v-list-item-title class="font-drawer"> Home</v-list-item-title>
           </v-list-item-content>
+        
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link to="/Clientes">
           <v-list-item-icon>
             <v-icon>mdi-account-box</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">Clientes</v-list-item-title>
+            <v-list-item-title class="font-drawer"> Clientes</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link to="/Empleados">
           <v-list-item-icon>
             <v-icon>mdi-account-group</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">Empleados</v-list-item-title>
+            <v-list-item-title class="font-drawer"> Empleados</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link to="/Productos">
           <v-list-item-icon>
             <v-icon>mdi-chart-ppf</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">Productos</v-list-item-title>
+            <v-list-item-title class="font-drawer">
+            Productos</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link to="/Cotizacion">
           <v-list-item-icon>
             <v-icon>mdi-file-document-multiple</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">Cotizacion</v-list-item-title>
+            <v-list-item-title class="font-drawer">
+            Cotizacion</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link to="/Empresa">
           <v-list-item-icon>
             <v-icon>mdi-briefcase-edit</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
             <v-list-item-title class="font-drawer">
-              <router-link to="/Empresa">Empresa</router-link>
+              Empresa
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -98,6 +102,7 @@
         </div>
       </template>
     </b-sidebar>
+
 
     <v-container class="contenedor">
       <div ref="content">
@@ -116,7 +121,6 @@
           label="Direccion"
           v-model="EmpresaDireccion"
         ></v-text-field>
-        <v-spacer></v-spacer>
         <v-text-field
           :rules="rules"
           append-icon="mdi-city"
@@ -254,7 +258,6 @@ import { API, TOKEN } from "../Servicios/axios";
 import "jspdf-autotable";
 import { LOGO, PIE } from "../base64/images";
 import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
 export default {
   name: "Cotizacion",
   data() {
@@ -330,6 +333,7 @@ export default {
     },
     deleteRow(index, invoice_product) {
       var idx = this.items.indexOf(invoice_product);
+       /* eslint-disable */
       console.log(idx, index);
       if (idx > -1) {
         this.items.splice(idx, 1);

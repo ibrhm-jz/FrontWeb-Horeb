@@ -29,63 +29,69 @@
       <v-divider></v-divider>
 
       <v-list dense nav color="blue">
-        <v-list-item link>
+        <v-list-item link to="/">
+        
           <v-list-item-icon>
             <v-icon>mdi-home</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">Home</v-list-item-title>
+            <v-list-item-title class="font-drawer"> Home</v-list-item-title>
           </v-list-item-content>
+        
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link to="/Clientes">
           <v-list-item-icon>
             <v-icon>mdi-account-box</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">Clientes</v-list-item-title>
+            <v-list-item-title class="font-drawer"> Clientes</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link to="/Empleados">
           <v-list-item-icon>
             <v-icon>mdi-account-group</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">Empleados</v-list-item-title>
+            <v-list-item-title class="font-drawer"> Empleados</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link to="/Productos">
           <v-list-item-icon>
             <v-icon>mdi-chart-ppf</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">Productos</v-list-item-title>
+            <v-list-item-title class="font-drawer">
+            Productos</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link to="/Cotizacion">
           <v-list-item-icon>
             <v-icon>mdi-file-document-multiple</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">Cotizacion</v-list-item-title>
+            <v-list-item-title class="font-drawer">
+            Cotizacion</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link to="/Empresa">
           <v-list-item-icon>
             <v-icon>mdi-briefcase-edit</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">Empresa</v-list-item-title>
+            <v-list-item-title class="font-drawer">
+              Empresa
+            </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -96,6 +102,7 @@
         </div>
       </template>
     </b-sidebar>
+
 
     <v-container class="contenedor">
       <span class="titulosecundario" style="color:black !important;">Productos</span>
@@ -159,16 +166,21 @@
                   </b-card-text>
                 </b-card-body>
                 <div align="left" style="margin-left:10px;">
-                  <b-button
-                    squared
-                    variant="outline-secondary"
-                    v-b-modal.modal-prevent-closing
-                  >Actualizar</b-button>&nbsp;
-                  <b-button
-                    squared
-                    variant="outline-danger"
-                     @click="delectProduct(products)"
-                  >Eliminar</b-button>
+                <v-btn icon color="red">
+                        <v-icon
+                          style="color: #71ccb4;"
+                          v-b-modal.modal-update
+                          @click="sendUser(Empleados)"
+                        >mdi-pencil</v-icon>
+                      </v-btn>
+                  &nbsp;
+                  <v-btn icon color="red">
+                        <v-icon
+                          style="color: red;"
+                          @click="delectProduct(products)"
+                        >mdi-delete</v-icon>
+                      </v-btn>
+               
                 </div>
               </b-col>
             </b-row>

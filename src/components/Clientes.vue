@@ -29,63 +29,69 @@
       <v-divider></v-divider>
 
       <v-list dense nav color="blue">
-        <v-list-item link>
+        <v-list-item link to="/">
+        
           <v-list-item-icon>
             <v-icon>mdi-home</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">Home</v-list-item-title>
+            <v-list-item-title class="font-drawer"> Home</v-list-item-title>
           </v-list-item-content>
+        
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link to="/Clientes">
           <v-list-item-icon>
             <v-icon>mdi-account-box</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">Clientes</v-list-item-title>
+            <v-list-item-title class="font-drawer"> Clientes</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link to="/Empleados">
           <v-list-item-icon>
             <v-icon>mdi-account-group</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">Empleados</v-list-item-title>
+            <v-list-item-title class="font-drawer"> Empleados</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link to="/Productos">
           <v-list-item-icon>
             <v-icon>mdi-chart-ppf</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">Productos</v-list-item-title>
+            <v-list-item-title class="font-drawer">
+            Productos</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link to="/Cotizacion">
           <v-list-item-icon>
             <v-icon>mdi-file-document-multiple</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">Cotizacion</v-list-item-title>
+            <v-list-item-title class="font-drawer">
+            Cotizacion</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link to="/Empresa">
           <v-list-item-icon>
             <v-icon>mdi-briefcase-edit</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">Empresa</v-list-item-title>
+            <v-list-item-title class="font-drawer">
+              Empresa
+            </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -180,7 +186,7 @@
                     Vendedor: {{dataUsuario.nombres}}&nbsp;{{dataUsuario.apellidos}}
                     <v-spacer></v-spacer>
                     <v-btn icon color="red">
-                      <v-icon style="color: #71ccb4;" v-b-modal.modal-update>mdi-pencil</v-icon>
+                      <v-icon style="color: #71ccb4;" v-b-modal.modal-update @click="sendUser(clientes)">mdi-pencil</v-icon>
                     </v-btn>
                     &nbsp;&nbsp;&nbsp;&nbsp; 
                     <v-btn icon color="red" @click="deleteClientes(clientes)">
@@ -284,14 +290,14 @@
         centered
         @show="resetModal"
         @hidden="resetModal"
-        @ok="RegistrarCliente"
+        @ok="ActualizarCliente"
         ok-variant="success"
       >
-        <form ref="form" @submit.stop.prevent="handleSubmit">
+        <form ref="form" @submit.stop.prevent="handleSubmit" >
           <b-form-group :state="nameState" invalid-feedback="*Requerido">
             <b-form-input
               id="nombres"
-              v-model="nombres"
+              v-model="selectedUser.nombres"
               :state="nameState"
               required
               placeholder="Nombres"
@@ -299,7 +305,7 @@
             <br />
             <b-form-input
               id="apellidos"
-              v-model="apellidos"
+              v-model="selectedUser.apellidos"
               :state="nameState"
               required
               placeholder="Apellidos"
@@ -308,7 +314,7 @@
             <br />
             <b-form-input
               id="direccion"
-              v-model="direccion"
+              v-model="selectedUser.direccion"
               :state="nameState"
               required
               placeholder="Direccion"
@@ -317,7 +323,7 @@
             <br />
             <b-form-input
               id="correo"
-              v-model="correo"
+              v-model="selectedUser.correo"
               :state="nameState"
               required
               placeholder="Correo"
@@ -325,7 +331,7 @@
             <br />
             <b-form-input
               id="correo"
-              v-model="telefono"
+              v-model="selectedUser.telefono"
               :state="nameState"
               required
               placeholder="Telefono"
@@ -333,7 +339,7 @@
             <br />
             <b-form-input
               id="empresa"
-              v-model="empresa"
+              v-model="selectedUser.empresa"
               :state="nameState"
               required
               placeholder="Empresa"
@@ -389,6 +395,7 @@ export default {
         { value: "Valvulas", text: "Valvulas" },
       ],
       dataVendedores: [],
+      selectedUser:[],
     };
   },
   methods: {
@@ -436,6 +443,14 @@ export default {
         // eslint-disable-next-line no-console
       });
     },
+    Limpiar:function() {
+          this.nombres="",
+          this.apellidos="",
+          this.direccion="",
+          this.telefono="",
+          this.correo="",
+          this.empresa=""
+    },
 
     RegistrarCliente() {
       const data = {
@@ -455,6 +470,39 @@ export default {
         .then((res) => {
           // eslint-disable-next-line
           console.log(res.data);
+          this.Limpiar();        
+          this.getClientes();
+          window.alert("Los datos se han guardado");
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+          window.alert(error);
+        });
+    },
+
+
+    
+    ActualizarCliente() {
+      const data = {
+        nombres: this.selectedUser.nombres,
+        apellidos: this.selectedUser.apellidos,
+        direccion: this.selectedUser.direccion,
+        telefono: this.selectedUser.telefono,
+        correo: this.selectedUser.correo,
+        empresa: this.selectedUser.empresa,
+        users_id: this.selected,
+      };
+      API.put("actualizar-cliente/"+this.selectedUser.id, data, {
+        headers: {
+          Authorization: "Bearer " + TOKEN,
+        },
+      })
+        .then((res) => {
+          // eslint-disable-next-line
+          console.log(res.data);
+          this.selected=[];
+          this.Limpiar();        
           this.getClientes();
           window.alert("Los datos se han guardado");
         })
@@ -477,6 +525,9 @@ export default {
         console.log(this.dataUsuario);
         // eslint-disable-next-line no-console
       });
+    },
+    sendUser(item) {
+        this.selectedUser = item;
     },
 
     getVendedores() {

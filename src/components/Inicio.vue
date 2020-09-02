@@ -20,70 +20,78 @@
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="title">Application</v-list-item-title>
-          <v-list-item-subtitle><em>tuberia_horeb@hotmail.com</em></v-list-item-subtitle>
+          <v-list-item-subtitle>
+            <em>tuberia_horeb@hotmail.com</em>
+          </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 
       <v-divider></v-divider>
 
       <v-list dense nav color="blue">
-        <v-list-item link>
+        <v-list-item link to="/">
+        
           <v-list-item-icon>
             <v-icon>mdi-home</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">Home</v-list-item-title>
+            <v-list-item-title class="font-drawer"> Home</v-list-item-title>
           </v-list-item-content>
-        </v-list-item>
         
-        <v-list-item link>
+        </v-list-item>
+
+        <v-list-item link to="/Clientes">
           <v-list-item-icon>
             <v-icon>mdi-account-box</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">Clientes</v-list-item-title>
+            <v-list-item-title class="font-drawer"> Clientes</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link to="/Empleados">
           <v-list-item-icon>
             <v-icon>mdi-account-group</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">Empleados</v-list-item-title>
+            <v-list-item-title class="font-drawer"> Empleados</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link to="/Productos">
           <v-list-item-icon>
             <v-icon>mdi-chart-ppf</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">Productos</v-list-item-title>
+            <v-list-item-title class="font-drawer">
+            Productos</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link to="/Cotizacion">
           <v-list-item-icon>
             <v-icon>mdi-file-document-multiple</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">Cotizacion</v-list-item-title>
+            <v-list-item-title class="font-drawer">
+            Cotizacion</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link to="/Empresa">
           <v-list-item-icon>
             <v-icon>mdi-briefcase-edit</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">Empresa</v-list-item-title>
+            <v-list-item-title class="font-drawer">
+              Empresa
+            </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
