@@ -163,7 +163,7 @@
               class="ma-2"
               tile
               style="background-color:#00b686; color:white;"
-              v-on:click="getProduct"
+              v-on:click="BuscarProductos"
               v-b-modal.modal-prevent-closing
             >
               <v-icon left>mdi-plus</v-icon>Añadir
@@ -216,7 +216,7 @@
         <div class="input-group md-form form-sm form-1 pl-0">
           <div class="input-group-prepend">
             <span>
-              <b-button squared variant="success">Buscar</b-button>
+              <b-button squared variant="success"  v-on:click="BuscarProductos" >Buscar</b-button>
             </span>
           </div>
           <input
@@ -224,6 +224,8 @@
             type="text"
             placeholder="Search"
             aria-label="Search"
+            v-model="searchnombre"
+            v-on:keyup.enter="BuscarProductos"
           />
         </div>
         <br />
@@ -238,6 +240,7 @@
                 <th class="text-left">Precio unitario</th>
                 <th class="text-left">Existencia</th>
                 <th class="text-left">Cantidad</th>
+                <th class="text-left">Porcentaje</th>
                 <th class="text-left">Accion</th>
               </tr>
             </thead>
@@ -254,14 +257,25 @@
                     style="width:50px;"
                     append-icon="mdi-"
                     v-model="newEntries[products.id]"
+                     placeholder="$"
                     required
                   ></v-text-field>
+                  
+                </td>
+                 <td>
+                  <v-text-field
+                    style="width:50px;"
+                    v-model="newPorcentaje[products.id]"
+                    placeholder="%"
+                    required
+                  ></v-text-field>
+                  
                 </td>
                 <td>
                   <b-button
                     variant="success"
                     class="btn-circle.btn-xl"
-                    @click="addNewRow(products,newEntries[products.id]  )"
+                    @click="addNewRow(products,newEntries[products.id])"
                   >
                     <b-icon icon="cart2" aria-label="Añadir"></b-icon>
                   </b-button>
@@ -331,12 +345,14 @@ export default {
       submittedNames: [],
       datosProductos: [],
       newEntries: [{}],
+      newPorcentaje: [{}],
       PorcentajeGanancia: 0,
       costo_flete: 0.0,
       invoice_subtotal: 0,
       invoice_total: 0,
       invoice_tax: 16,
       invoice_iva: 0,
+      searchnombre:"",
       items: [
         {
           cantidad: "",
@@ -554,6 +570,28 @@ export default {
         // eslint-disable-next-line no-console
       });
     },
+
+    BuscarProductos() {
+      const data = {
+        nombre: this.searchnombre,
+      };
+      API.post("buscar-producto", data, {
+        headers: {
+          Authorization: "Bearer " + TOKEN,
+        },
+      })
+        .then((res) => {
+          // eslint-disable-next-line
+          console.log(res.data);
+         this.datosProductos = res.data;
+          //window.alert("Los datos se han guardado");
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+          window.alert(error);
+        });
+    },
   },
 
   watch: {
@@ -565,7 +603,7 @@ export default {
   mounted() {
     this.items = [];
     this.Originalitems=[]
-    this.getProduct();
+    this.BuscarProducto();
     //console.log("Numeor"+convertir.NumerosALetras(58225))
   },
   computed: {
