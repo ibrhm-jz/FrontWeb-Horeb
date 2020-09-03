@@ -30,15 +30,13 @@
 
       <v-list dense nav color="blue">
         <v-list-item link to="/">
-        
           <v-list-item-icon>
             <v-icon>mdi-home</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer"> Home</v-list-item-title>
+            <v-list-item-title class="font-drawer">Home</v-list-item-title>
           </v-list-item-content>
-        
         </v-list-item>
 
         <v-list-item link to="/Clientes">
@@ -47,7 +45,7 @@
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer"> Clientes</v-list-item-title>
+            <v-list-item-title class="font-drawer">Clientes</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
@@ -57,7 +55,7 @@
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer"> Empleados</v-list-item-title>
+            <v-list-item-title class="font-drawer">Empleados</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
@@ -67,8 +65,7 @@
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">
-            Productos</v-list-item-title>
+            <v-list-item-title class="font-drawer">Productos</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
@@ -78,8 +75,7 @@
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">
-            Cotizacion</v-list-item-title>
+            <v-list-item-title class="font-drawer">Cotizacion</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
@@ -89,9 +85,7 @@
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">
-              Empresa
-            </v-list-item-title>
+            <v-list-item-title class="font-drawer">Empresa</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -103,33 +97,34 @@
       </template>
     </b-sidebar>
 
-
     <v-container class="contenedor">
       <div ref="content">
         <span class="titulosecundario" style="color:black !important;">Cotizacion</span>
         <v-spacer></v-spacer>
-        <v-text-field
-          :rules="rules"
-          append-icon="mdi-bag-checked"
-          label="Nombre"
-          v-model="nombreEmpresa"
-        ></v-text-field>
-        <v-spacer></v-spacer>
-        <v-text-field
-          :rules="rules"
-          append-icon="mdi-map-legend"
-          label="Direccion"
-          v-model="EmpresaDireccion"
-        ></v-text-field>
-        <v-text-field
-          :rules="rules"
-          append-icon="mdi-city"
-          label="Telefono"
-          v-model="EmpresaTelefono"
-        ></v-text-field>
-        <v-spacer></v-spacer>
-        <v-text-field :rules="rules" append-icon="mdi-city" label="Ciudad" v-model="EmpresaCiudad"></v-text-field>
-        <br />
+
+        <div class="row">
+          <div class="col-sm-6">
+            <v-text-field append-icon="mdi-bag-checked" label="Nombre" v-model="nombreEmpresa"></v-text-field>
+          </div>
+          <div class="col-sm-6">
+            <v-text-field
+              :rules="rules"
+              append-icon="mdi-map-legend"
+              label="Direccion"
+              v-model="EmpresaDireccion"
+            ></v-text-field>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:-30px; margin-bottom:-20px;">
+          <div class="col-sm-6">
+            <v-text-field append-icon="mdi-phone" label="Telefono" v-model="EmpresaTelefono"></v-text-field>
+          </div>
+          <div class="col-sm-6">
+            <v-text-field append-icon="mdi-city" label="Ciudad" v-model="EmpresaCiudad"></v-text-field>
+          </div>
+        </div>
+
         <table class="table">
           <tr>
             <th>Accion</th>
@@ -164,14 +159,43 @@
       <div class="row">
         <div class="col-md-8">
           <div align="left">
-            <b-button
-              squared
-              variant="success"
-              v-b-modal.modal-prevent-closing
+            <v-btn
+              class="ma-2"
+              tile
+              style="background-color:#00b686; color:white;"
               v-on:click="getProduct"
-            >Añadir Producto</b-button>&nbsp;
-            <b-button squared variant="success" @click="calculateGanancia">Añadir Porcentaje</b-button>&nbsp;
-            <b-button squared variant="success" @click="exportPDF">Terminar Cotizacion</b-button>
+              v-b-modal.modal-prevent-closing
+            >
+              <v-icon left>mdi-plus</v-icon>Añadir
+            </v-btn>
+&nbsp;
+            <v-btn
+              class="ma-2"
+              tile
+              style="background-color:#00b686; color:white;"
+              v-b-modal.modal-porcentaje
+            >
+              <v-icon left>mdi-cash-multiple</v-icon>Porcentaje
+            </v-btn>
+&nbsp;
+            <v-btn
+              class="ma-2"
+              tile
+              style="background-color:#00b686; color:white;"
+              @click="exportPDF"
+            >
+              <v-icon left>mdi-send</v-icon>terminar
+            </v-btn>
+&nbsp;
+            <v-btn
+              class="ma-2"
+              tile
+              style="background-color:#00b686; color:white;"
+              @click="QuitarPorcentaje"
+            >
+              <v-icon left>mdi-send</v-icon>xd
+            </v-btn>
+
           </div>
         </div>
       </div>
@@ -227,7 +251,6 @@
                 <td>{{products.cantidad_existencia}}</td>
                 <td>
                   <v-text-field
-                    :rules="rules"
                     style="width:50px;"
                     append-icon="mdi-"
                     v-model="newEntries[products.id]"
@@ -238,7 +261,7 @@
                   <b-button
                     variant="success"
                     class="btn-circle.btn-xl"
-                    @click="addNewRow(products,newEntries[products.id] )"
+                    @click="addNewRow(products,newEntries[products.id]  )"
                   >
                     <b-icon icon="cart2" aria-label="Añadir"></b-icon>
                   </b-button>
@@ -247,6 +270,36 @@
             </tbody>
           </template>
         </v-simple-table>
+      </b-modal>
+    </div>
+
+    <div>
+      <b-modal
+        id="modal-porcentaje"
+        ref="modal"
+        title="Datos adicionales"
+        centered
+        size="sm"
+        @show="resetModal"
+        @hidden="resetModal"
+        @ok="calculateGanancia"
+        ok-variant="success"
+      >
+        <input
+          class="form-control my-0 py-1"
+          type="text"
+          placeholder="Porcentaje"
+          aria-label="Porocentaje"
+          v-model="PorcentajeGanancia"
+        />
+        <br />
+        <input
+          class="form-control my-0 py-1"
+          type="text"
+          placeholder="Flete"
+          aria-label="Porocentaje"
+          v-model="costo_flete"
+        />
       </b-modal>
     </div>
   </div>
@@ -269,7 +322,7 @@ export default {
       EmpresaTelefono: "",
       EmpresaCiudad: "",
       cant_letra: "",
-      comprobacion:"",
+      comprobacion: "",
       // eslint-disable-next-line
       name: "",
       // eslint-disable-next-line
@@ -278,12 +331,22 @@ export default {
       submittedNames: [],
       datosProductos: [],
       newEntries: [{}],
-
+      PorcentajeGanancia: 0,
+      costo_flete: 0.0,
       invoice_subtotal: 0,
       invoice_total: 0,
       invoice_tax: 16,
       invoice_iva: 0,
       items: [
+        {
+          cantidad: "",
+          unidad: "",
+          concepto: "",
+          precio_u: "",
+          importe: "",
+        },
+      ],
+            Originalitems: [
         {
           cantidad: "",
           unidad: "",
@@ -309,6 +372,11 @@ export default {
       return valid;
     },
 
+    QuitarPorcentaje() {
+      this.items=this.Originalitems;
+      this.Originalitems=[];
+    },
+
     addNewRow(list, cant) {
       this.items.push({
         cantidad: cant,
@@ -317,8 +385,16 @@ export default {
         precio_u: list.precio_unitario,
         importe: cant * list.precio_unitario,
       });
-      this.comprobacion="comprobado";
+      this.Originalitems.push({
+        cantidad: cant,
+        unidad: list.medida,
+        concepto: list.nombre,
+        precio_u: list.precio_unitario,
+        importe: cant * list.precio_unitario,
+      });
+      this.comprobacion = "comprobado";
       this.newEntries = [];
+      this.$root.$emit("bv::hide::modal", "modal-prevent-closing", "#btnShow");
       this.calculateTotal();
     },
     resetModal() {
@@ -333,29 +409,46 @@ export default {
     },
     deleteRow(index, invoice_product) {
       var idx = this.items.indexOf(invoice_product);
-       /* eslint-disable */
+      /* eslint-disable */
       console.log(idx, index);
       if (idx > -1) {
         this.items.splice(idx, 1);
+        this.invoice_total = "0.00";
+        this.invoice_iva = "0.00";
+
+      }
+      
+    },
+        deleteRowORiginal(index, invoice_product) {
+      var idx = this.Originalitems.indexOf(invoice_product);
+      /* eslint-disable */
+      console.log(idx, index);
+      if (idx > -1) {
+        this.Orginalitems.splice(idx, 1);
+        this.invoice_total = "0.00";
+        this.invoice_iva = "0.00";
       }
       // this.calculateTotal();
     },
 
     exportPDF() {
-      if(this.nombreEmpresa==""||this.EmpresaDireccion=="" || this.EmpresaTelefono=="",this.EmpresaCiudad==""||
-      this.comprobacion==""){
-window.alert("Los datos no estan completos");
-      }else{
+      if (
+        (this.nombreEmpresa == "" ||
+          this.EmpresaDireccion == "" ||
+          this.EmpresaTelefono == "",
+        this.EmpresaCiudad == "" || this.comprobacion == "")
+      ) {
+        window.alert("Los datos no estan completos");
+      } else {
+        var vm = this;
 
-      var vm = this;
-
-      var columns = [
-        { title: "Cantidad", dataKey: "cantidad" },
-        { title: "Medidad", dataKey: "unidad" },
-        { title: "Descripcion", dataKey: "concepto" },
-        { title: "Precio Unitario", dataKey: "precio_u" },
-        { title: "Importe", dataKey: "importe" },
-      ];
+        var columns = [
+          { title: "Cantidad", dataKey: "cantidad" },
+          { title: "Medidad", dataKey: "unidad" },
+          { title: "Descripcion", dataKey: "concepto" },
+          { title: "Precio Unitario", dataKey: "precio_u" },
+          { title: "Importe", dataKey: "importe" },
+        ];
         var doc = new jsPDF("p", "pt");
         var width = doc.internal.pageSize.getWidth();
         var height = doc.internal.pageSize.getHeight();
@@ -366,85 +459,85 @@ window.alert("Los datos no estan completos");
         doc.setFontSize(10);
         doc.text("RFC: STH1607128M9", 40, 55);
         doc.setTextColor(255, 0, 0);
-      doc.text(
-        "CLABE INTERBANCARIA: 0021-0070-1420-7691-60    SUCURSAL:7014   CUENTA BANAMEX:207616",
-        40,
-        70
-      );
-      doc.setLineWidth(0.2);
-      doc.line(40 , 80, width-40, 80);
-      var img = new Image();
-      img.src = LOGO;
+        doc.text(
+          "CLABE INTERBANCARIA: 0021-0070-1420-7691-60    SUCURSAL:7014   CUENTA BANAMEX:207616",
+          40,
+          70
+        );
+        doc.setLineWidth(0.2);
+        doc.line(40, 80, width - 40, 80);
+        var img = new Image();
+        img.src = LOGO;
 
-      doc.addImage(img, "PNG", 40, 80, 450, 80);
+        doc.addImage(img, "PNG", 40, 80, 450, 80);
 
-      doc.setFontSize(10);
-      doc.setTextColor(0, 0, 0);
-      doc.text("NOMBRE: " + vm.nombreEmpresa.toUpperCase(), 40, 180);
-      // doc.setLineWidth(0.2);
-      // doc.line(40, 184, width-80, 184);
-      doc.setFontSize(10);
-      doc.text("DIRECCION " + vm.EmpresaDireccion.toUpperCase(), 40, 195);
-      doc.text("TELEFONO : " + vm.EmpresaTelefono.toUpperCase(), 40, 210);
-      doc.text("CIUDAD : " + vm.EmpresaCiudad.toUpperCase(), 40, 225);
-      // doc.setFontType("bold");
-      //  doc.line(20, 20, 60, 20); // horizontal line
-      // var imgData = 'data:image/png;base64,'+ Base64.encode('../assets/logo.png');
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0);
+        doc.text("NOMBRE: " + vm.nombreEmpresa.toUpperCase(), 40, 180);
+        // doc.setLineWidth(0.2);
+        // doc.line(40, 184, width-80, 184);
+        doc.setFontSize(10);
+        doc.text("DIRECCION " + vm.EmpresaDireccion.toUpperCase(), 40, 195);
+        doc.text("TELEFONO : " + vm.EmpresaTelefono.toUpperCase(), 40, 210);
+        doc.text("CIUDAD : " + vm.EmpresaCiudad.toUpperCase(), 40, 225);
+        // doc.setFontType("bold");
+        //  doc.line(20, 20, 60, 20); // horizontal line
+        // var imgData = 'data:image/png;base64,'+ Base64.encode('../assets/logo.png');
 
-      doc.autoTable(columns, vm.items, {
-        margin: { top: 240 },
-        styles: { fillColor: [113, 204, 180] },
-        didDrawPage: function (data) {
-          // Reseting top margin. The change will be reflected only after print the first page.
-          data.settings.margin.top = 40;
-        },
-      });
-      let finalY = doc.lastAutoTable.finalY; // The y position on the page
-      if (finalY + 100 > height - 45) {
-        doc.addPage();
-        doc.text(40, 40, "SUBTOTAL : " + vm.invoice_subtotal);
-        doc.text(40, 55, "IVA 16% : " + vm.invoice_iva);
-        doc.text(40, 70, "TOTAL : " + vm.invoice_total);
-        doc.text(40, 85, "CANTIDAD EN LETRAS : ");
-        doc.setFontSize(8);
-        doc.text(160, 65, vm.cant_letra.toUpperCase());
-        var imgpie = new Image();
-        imgpie.src = PIE;
-        doc.addImage(imgpie, "PNG", 40, 120, width - 80, 110, {
-          margin: { bottom: 40 },
+        doc.autoTable(columns, vm.items, {
+          margin: { top: 240 },
+          styles: { fillColor: [113, 204, 180] },
+          didDrawPage: function (data) {
+            // Reseting top margin. The change will be reflected only after print the first page.
+            data.settings.margin.top = 40;
+          },
         });
-        doc.save("cotizacion.pdf");
-      } else {
-        doc.text(40, finalY + 20, "SUBTOTAL : " + vm.invoice_subtotal);
-        doc.text(40, finalY + 35, "IVA 16% : " + vm.invoice_iva);
-        doc.text(40, finalY + 50, "TOTAL : " + vm.invoice_total);
-        doc.text(40, finalY + 65, "CANTIDAD EN LETRAS : ");
-        doc.setFontSize(8);
-        doc.text(160, finalY + 65, vm.cant_letra.toUpperCase());
-        var imgpie = new Image();
-        imgpie.src = PIE;
-        doc.addImage(imgpie, "PNG", 40, finalY + 100, width - 80, 110, {
-          margin: { bottom: 40 },
-        });
-        doc.save("cotizacion.pdf");
+        let finalY = doc.lastAutoTable.finalY; // The y position on the page
+        if (finalY + 100 > height - 45) {
+          doc.addPage();
+          doc.text(80, 40, "SUBTOTAL : " + vm.invoice_subtotal);
+          doc.text(40, 55, "IVA 16% : " + vm.invoice_iva);
+          doc.text(40, 70, "TOTAL : " + vm.invoice_total);
+          doc.text(40, 85, "CANTIDAD EN LETRAS : ");
+          doc.setFontSize(8);
+          doc.text(160, 65, vm.cant_letra.toUpperCase());
+          var imgpie = new Image();
+          imgpie.src = PIE;
+          doc.addImage(imgpie, "PNG", 40, 120, width - 80, 110, {
+            margin: { bottom: 40 },
+          });
+          doc.save("cotizacion.pdf");
+        } else {
+          doc.text(40, finalY + 20, "SUBTOTAL : " + vm.invoice_subtotal);
+          doc.text(40, finalY + 35, "IVA 16% : " + vm.invoice_iva);
+          doc.text(40, finalY + 50, "TOTAL : " + vm.invoice_total);
+          doc.text(40, finalY + 65, "CANTIDAD EN LETRAS : ");
+          doc.setFontSize(8);
+          doc.text(160, finalY + 65, vm.cant_letra.toUpperCase());
+          var imgpie = new Image();
+          imgpie.src = PIE;
+          doc.addImage(imgpie, "PNG", 40, finalY + 100, width - 80, 110, {
+            margin: { bottom: 40 },
+          });
+          doc.save("cotizacion.pdf");
+        }
       }
-    }
     },
 
-    calculateGanancia(){
-      
-      var x=0;
-      while(x<=this.items.length){
+    calculateGanancia() {
+      var x = 0;
+      while (x <= this.items.length) {
         //this.items[x].precio_u=parseFloat(this.items[x].precio_u)+1;
         this.items[x].precio_u = (
-          parseFloat(this.items[x].precio_u) * (10 / 100) +
+          parseFloat(this.items[x].precio_u) * (this.PorcentajeGanancia / 100) +
           parseFloat(this.items[x].precio_u)
         ).toFixed(2);
 
-        this.items[x].importe=(parseFloat(this.items[x].cantidad) * parseFloat(this.items[x].precio_u)).toFixed(2);
+        this.items[x].importe = (
+          parseFloat(this.items[x].cantidad) *
+          parseFloat(this.items[x].precio_u)
+        ).toFixed(2);
         x++;
-        
-
       }
     },
 
@@ -470,7 +563,8 @@ window.alert("Los datos no estan completos");
   },
 
   mounted() {
-    this.items=[]
+    this.items = [];
+    this.Originalitems=[]
     this.getProduct();
     //console.log("Numeor"+convertir.NumerosALetras(58225))
   },
@@ -530,7 +624,7 @@ window.alert("Los datos no estan completos");
 }
 .contenedor {
   margin-top: 60px;
-  width: 60%;
+  width: 65%;
 }
 .font-drawer {
   color: black;

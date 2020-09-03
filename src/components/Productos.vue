@@ -110,11 +110,11 @@
       <br />
       <div class="input-group md-form form-sm form-1 pl-0">
         <div class="input-group-prepend">
-          <span>
-            <b-button squared variant="success">Buscar</b-button>
+          <span> 
+            <b-button squared variant="success" @click="BuscarProductos">Buscar</b-button>
           </span>
         </div>
-        <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search" />
+        <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search" v-model="searchnombre" v-on:keyup.enter="BuscarProductos" />
       </div>
       <br />
 
@@ -122,7 +122,7 @@
         <div class="col-md-8">
           <div align="left">
                        <div>
-              <b-form-select v-model="category" :options="optionscategory"></b-form-select>
+              <b-form-select v-model="category" :options="optionscategory" @change="FiltroProducto()"></b-form-select>
              <div class="mt-3">
                 Seleccionado:
                 <strong>{{ category }}</strong>
@@ -158,7 +158,7 @@
                       </font>
                     </div>
                     {{products.tipo}}
-                    {{products.medida}}
+                    {{products.categoria}}
                     <v-spacer></v-spacer>
                     ${{products.precio_unitario}}
                     <v-spacer></v-spacer>
@@ -262,6 +262,11 @@
         </form>
       </b-modal>
     </div>
+
+
+
+
+    
   </div>
 </template>
 
@@ -283,6 +288,7 @@ export default {
       datosProductos: [],
       // eslint-disable-next-line
       nombre: "",
+      searchnombre: "",
       tipo: "",
       medida: "",
       descripcion: "",
@@ -299,7 +305,7 @@ export default {
       
       ],
             optionscategory: [
-        { value: null, text: "Seleccione la categoria" },
+        { value: null, text: "Todo" },
         { value: "Tuberia", text: "Tuberia" },
         { value: "Mallas", text: "Mallas" },
         { value: "Valvulas", text: "Valvulas" },
@@ -373,6 +379,56 @@ export default {
         // eslint-disable-next-line no-console
       });
     },
+
+       
+BuscarProductos() {
+      const data = {
+        nombre: this.searchnombre,
+      };
+      API.post("buscar-producto", data, {
+        headers: {
+          Authorization: "Bearer " + TOKEN,
+        },
+      })
+        .then((res) => {
+          // eslint-disable-next-line
+          console.log(res.data);
+         this.datosProductos = res.data;
+          //window.alert("Los datos se han guardado");
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+          window.alert(error);
+        });
+    },
+
+
+        FiltroProducto() {
+if(this.category==null){
+  this.getProduct();
+}else{
+        const data = {
+        categoria: this.category,
+       
+      };
+      API.post("producto-filtro-categoria", data, {
+        headers: {
+          Authorization: "Bearer " + TOKEN,
+        },
+      })
+        .then((res) => {
+            // eslint-disable-next-line
+          console.log(res.data);
+          this.datosProductos = res.data;
+          //this.getProduct();
+        })
+        .catch((error) => {
+            // eslint-disable-next-line
+          console.error(error);
+        });
+}
+    },
      delectProduct(result) {
       API.delete('borrar-producto/' + result.id,
       {
@@ -383,6 +439,7 @@ export default {
       .then(response => {
           // eslint-disable-next-line
         console.log(this.result);
+         window.alert("Se elimino");
         this.getProduct();
       });
     },
@@ -395,7 +452,7 @@ export default {
     },
   },
   mounted() {
-    this.getProduct();
+    this.BuscarProductos();
   },
 };
 </script>

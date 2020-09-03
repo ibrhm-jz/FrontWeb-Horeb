@@ -110,10 +110,10 @@
       <div class="input-group md-form form-sm form-1 pl-0">
         <div class="input-group-prepend">
           <span>
-            <b-button squared variant="success">Buscar</b-button>
+            <b-button squared variant="success" @click="BuscarClientes" >Buscar</b-button>
           </span>
         </div>
-        <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search" />
+        <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search" v-model="searchnombres" v-on:keyup.enter="BuscarClientes" />
       </div>
       <br />
 
@@ -176,7 +176,7 @@
                   <v-divider></v-divider>
                   <v-card-text>
                     <div style="text-transform: uppercase;">Nombres: {{clientes.nombres}}&nbsp;{{clientes.apellidos}}</div>
-                    <v-spacer></v-spacer>Empresa:
+                    <v-spacer></v-spacer>Razon Social:
                     <b>{{clientes.empresa}}</b>
                     <v-spacer></v-spacer>
                     Telefono: {{clientes.telefono}} &nbsp;&nbsp;&nbsp;&nbsp; Correo:{{clientes.correo}}
@@ -264,7 +264,7 @@
               v-model="empresa"
               :state="nameState"
               required
-              placeholder="Empresa"
+              placeholder="Razon Social"
             ></b-form-input>
             <br />
             <div>
@@ -342,7 +342,7 @@
               v-model="selectedUser.empresa"
               :state="nameState"
               required
-              placeholder="Empresa"
+              placeholder="Razon Social"
             ></b-form-input>
             <br />
             <div>
@@ -379,6 +379,7 @@ export default {
       dataUsuario: [],
       // eslint-disable-next-line
       nombres: "",
+      searchnombres: "",
       apellidos: "",
       direccion: "",
       telefono: "",
@@ -439,7 +440,7 @@ export default {
         this.dataClientes = response.data;
 
         /* eslint-disable */
-        //  console.log(this.dataClientes);
+      console.log(this.dataClientes);
         // eslint-disable-next-line no-console
       });
     },
@@ -473,6 +474,27 @@ export default {
           this.Limpiar();        
           this.getClientes();
           window.alert("Los datos se han guardado");
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+          window.alert(error);
+        });
+    },
+    BuscarClientes() {
+      const data = {
+        nombres: this.searchnombres,
+      };
+      API.post("buscar-cliente", data, {
+        headers: {
+          Authorization: "Bearer " + TOKEN,
+        },
+      })
+        .then((res) => {
+          // eslint-disable-next-line
+          console.log(res.data);
+          this.dataClientes = res.data;    
+          //window.alert("Los datos se han guardado");
         })
         .catch((error) => {
           // eslint-disable-next-line
@@ -563,7 +585,7 @@ export default {
     },
   },
   mounted() {
-    this.getClientes();
+    this.BuscarClientes();
     this.getVendedores();
   },
 };
