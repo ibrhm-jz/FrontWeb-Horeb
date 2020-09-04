@@ -363,14 +363,17 @@
 
 
 <script>
-import { API, TOKEN } from "../Servicios/axios";
+import { API } from "../Servicios/axios";
 export default {
+      created(){
+        this.token=localStorage.getItem('userToken')
+    },
   name: "Productos",
   data() {
     return {
       drawer: false,
       group: null,
-      // eslint-disable-next-line
+      token:"",
       name: "",
       // eslint-disable-next-line
       nameState: null,
@@ -436,7 +439,7 @@ export default {
     getEmpleados() {
       API.get("user", {
         headers: {
-          Authorization: "Bearer " + TOKEN,
+          Authorization: "Bearer " + this.token,
         },
       }).then((response) => {
         this.dataEmpleados = response.data;
@@ -466,7 +469,7 @@ export default {
       };
       API.post("registro", data, {
         headers: {
-          Authorization: "Bearer " + TOKEN,
+          Authorization: "Bearer " + this.token,
         },
       })
         .then((res) => {
@@ -494,7 +497,7 @@ export default {
       };
       API.put("actualizar-usuario", data, {
         headers: {
-          Authorization: "Bearer " + TOKEN,
+          Authorization: "Bearer " + this.token,
         },
       })
         .then((res) => {
@@ -515,7 +518,7 @@ export default {
     getUser(Empleados) {
       API.get("user/" +Empleados.users_id, {
         headers: {
-          Authorization: "Bearer " + TOKEN,
+          Authorization: "Bearer " + this.token,
         },
       }).then((response) => {
         this.dataUsuario = response.data;
@@ -534,7 +537,7 @@ export default {
     deleteEmpleados(result) {
       API.delete("borrar-empleado/" + result.id, {
         headers: {
-          Authorization: "Bearer " + TOKEN,
+          Authorization: "Bearer " + this.token,
         },
       }).then((response) => {
         // eslint-disable-next-line
@@ -550,7 +553,7 @@ BuscarEmpleado() {
       };
       API.post("buscar-empleado", data, {
         headers: {
-          Authorization: "Bearer " + TOKEN,
+          Authorization: "Bearer " + this.token,
         },
       })
         .then((res) => {

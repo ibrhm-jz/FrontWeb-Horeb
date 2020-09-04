@@ -362,8 +362,11 @@
 
 
 <script>
-import { API, TOKEN } from "../Servicios/axios";
+import { API} from "../Servicios/axios";
 export default {
+        created(){
+        this.token=localStorage.getItem('userToken')
+    },
   name: "Productos",
   data() {
     return {
@@ -371,9 +374,8 @@ export default {
       group: null,
       // eslint-disable-next-line
       name: "",
-      // eslint-disable-next-line
+      token:"",  
       nameState: null,
-      // eslint-disable-next-line
       submittedNames: [],
       dataClientes: [],
       dataUsuario: [],
@@ -434,7 +436,7 @@ export default {
     getClientes() {
       API.get("cliente", {
         headers: {
-          Authorization: "Bearer " + TOKEN,
+          Authorization: "Bearer " + this.token,
         },
       }).then((response) => {
         this.dataClientes = response.data;
@@ -465,7 +467,7 @@ export default {
       };
       API.post("registro-cliente", data, {
         headers: {
-          Authorization: "Bearer " + TOKEN,
+          Authorization: "Bearer " + this.token,
         },
       })
         .then((res) => {
@@ -487,7 +489,7 @@ export default {
       };
       API.post("buscar-cliente", data, {
         headers: {
-          Authorization: "Bearer " + TOKEN,
+          Authorization: "Bearer " + this.token,
         },
       })
         .then((res) => {
@@ -517,7 +519,7 @@ export default {
       };
       API.put("actualizar-cliente/"+this.selectedUser.id, data, {
         headers: {
-          Authorization: "Bearer " + TOKEN,
+          Authorization: "Bearer " + this.token,
         },
       })
         .then((res) => {
@@ -538,7 +540,7 @@ export default {
     getUser(clientes) {
       API.get("user/" + clientes.users_id, {
         headers: {
-          Authorization: "Bearer " + TOKEN,
+          Authorization: "Bearer " + this.token,
         },
       }).then((response) => {
         this.dataUsuario = response.data;
@@ -555,7 +557,7 @@ export default {
     getVendedores() {
       API.get("user", {
         headers: {
-          Authorization: "Bearer " + TOKEN,
+          Authorization: "Bearer " + this.token,
         },
       }).then((response) => {
         this.dataVendedores = response.data;
@@ -568,7 +570,7 @@ export default {
     deleteClientes(result) {
       API.delete("borrar-cliente/" + result.id, {
         headers: {
-          Authorization: "Bearer " + TOKEN,
+          Authorization: "Bearer " + this.token,
         },
       }).then((response) => {
         // eslint-disable-next-line

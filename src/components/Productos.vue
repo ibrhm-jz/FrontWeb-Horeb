@@ -272,14 +272,17 @@
 
 
 <script>
-import { API, TOKEN } from "../Servicios/axios";
+import { API } from "../Servicios/axios";
 export default {
+      created(){
+        this.token=localStorage.getItem('userToken')
+    },
   name: "Productos",
   data() {
     return {
       drawer: false,
       group: null,
-      // eslint-disable-next-line
+      token:"",
       name: "",
       // eslint-disable-next-line
       nameState: null,
@@ -341,7 +344,7 @@ export default {
       };
       API.post("registro-producto", data, {
         headers: {
-          Authorization: "Bearer " + TOKEN,
+          Authorization: "Bearer " + this.token,
         },
       })
         .then((res) => {
@@ -369,7 +372,7 @@ export default {
     getProduct() {
       API.get("productos", {
         headers: {
-          Authorization: "Bearer " + TOKEN,
+          Authorization: "Bearer " + this.token,
         },
       }).then((response) => {
         this.datosProductos = response.data;
@@ -387,7 +390,7 @@ BuscarProductos() {
       };
       API.post("buscar-producto", data, {
         headers: {
-          Authorization: "Bearer " + TOKEN,
+          Authorization: "Bearer " + this.token,
         },
       })
         .then((res) => {
@@ -414,7 +417,7 @@ if(this.category==null){
       };
       API.post("producto-filtro-categoria", data, {
         headers: {
-          Authorization: "Bearer " + TOKEN,
+          Authorization: "Bearer " + this.token,
         },
       })
         .then((res) => {
@@ -433,7 +436,7 @@ if(this.category==null){
       API.delete('borrar-producto/' + result.id,
       {
         headers: {
-          Authorization: "Bearer " + TOKEN,
+          Authorization: "Bearer " + this.token,
         },
       })
       .then(response => {

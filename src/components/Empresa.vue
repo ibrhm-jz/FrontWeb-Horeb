@@ -174,12 +174,16 @@
 <script>
 import { API, TOKEN } from "../Servicios/axios";
 export default {
+        created(){
+        this.token=localStorage.getItem('userToken')
+    },
   name: "empresa",
   data() {
     return {
       drawer: false,
       group: null,
       datosEmpresa: [],
+      token:""
     };
   },
   mounted() {
@@ -187,7 +191,7 @@ export default {
       headers: {
         Authorization:
           "Bearer " +
-          TOKEN
+          this.token
           },
     }).then((response) => {
       this.datosEmpresa = response.data;

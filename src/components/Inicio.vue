@@ -159,17 +159,22 @@
 <script>
 import { API } from "../Servicios/axios";
 export default {
+    created(){
+        this.token=localStorage.getItem('userToken')
+    },
   name: "inicio",
-  data() {
+    data() {
     return {
       drawer: false,
       group: null,
+      token:"",
+
     };
   },
     mounted() {
     API.get("empresa",{
  headers: {
-   Authorization: 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5ODI5ODc5MSwiZXhwIjoxNTk4MzAyMzkxLCJuYmYiOjE1OTgyOTg3OTEsImp0aSI6Ink4SHR6N0lvaEVlRGhseHIiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.FSYN3usyf0Mcb-6vUn488vOdft4JBELoHJRIhcYcgZA'//the token is a variable which holds the token
+   Authorization: 'Bearer ' + this.token
  }
 }).then(response => {
       this.datas = response.data;

@@ -321,11 +321,14 @@
 
 
 <script>
-import { API, TOKEN } from "../Servicios/axios";
+import { API } from "../Servicios/axios";
 import "jspdf-autotable";
 import { LOGO, PIE } from "../base64/images";
 import jsPDF from "jspdf";
 export default {
+      created(){
+        this.token=localStorage.getItem('userToken')
+    },
   name: "Cotizacion",
   data() {
     return {
@@ -336,8 +339,8 @@ export default {
       EmpresaTelefono: "",
       EmpresaCiudad: "",
       cant_letra: "",
-      comprobacion: "",
-      // eslint-disable-next-line
+      comprobacion: "",      
+      token:"",
       name: "",
       // eslint-disable-next-line
       nameState: null,
@@ -560,7 +563,7 @@ export default {
     getProduct() {
       API.get("productos", {
         headers: {
-          Authorization: "Bearer " + TOKEN,
+          Authorization: "Bearer " + this.token,
         },
       }).then((response) => {
         this.datosProductos = response.data;
@@ -577,7 +580,7 @@ export default {
       };
       API.post("buscar-producto", data, {
         headers: {
-          Authorization: "Bearer " + TOKEN,
+          Authorization: "Bearer " + this.token,
         },
       })
         .then((res) => {

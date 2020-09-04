@@ -25,6 +25,7 @@
                   <v-form>
                     <v-text-field
                       label="Correo"
+                      v-model="email"
                       name="correo"
                       prepend-icon="mdi-account"
                       type="text"
@@ -34,6 +35,7 @@
                       id="password"
                       label="Contraseña"
                       name="contraseña"
+                      v-model="password"
                       prepend-icon="mdi-lock"
                       type="password"
                     ></v-text-field>
@@ -41,7 +43,7 @@
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="#00b686">
+                  <v-btn color="#00b686" @click="Login">
                     <font color="white">Login</font>
                   </v-btn>
                 </v-card-actions>
@@ -59,11 +61,41 @@
 
 
 <script>
+import { API } from "../Servicios/axios";
+import router from '../router'
 export default {
   name: "Login",
   props: {
     msg: String,
   },
+  data(){
+    return{
+      email:"",
+      password:""
+    }
+
+  },
+  methods:{
+    Login() {
+      const data = {
+        email: this.email,
+        password:this.password
+      };
+      API.post("login", data)
+        .then((res) => {
+          // eslint-disable-next-line
+          window.alert("Los datos se han guardado"+res.data);
+          localStorage.setItem('userToken', res.data.token)
+          router.push({ name: 'Home' })
+          console.error(res.data);
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+          window.alert(error);
+        });
+    },
+  }
 };
 </script>
 
