@@ -98,7 +98,7 @@
       <template v-slot:footer="{ hide }">
         <div class="d-flex bg-dark text-light align-items-center px-3 py-2">
           <strong class="mr-auto">¿Salir?</strong>
-          <b-button size="sm" @click="hide">Cerar sesion</b-button>
+          <b-button size="sm" @click="hide" v-on:click="logout">Cerar sesion</b-button>
         </div>
       </template>
     </b-sidebar>
@@ -161,6 +161,9 @@ import { API } from "../Servicios/axios";
 export default {
     created(){
         this.token=localStorage.getItem('userToken')
+        if(this.token==null||this.token==""){
+        this.$router.push("/login")
+        }
     },
   name: "inicio",
     data() {
@@ -170,6 +173,12 @@ export default {
       token:"",
 
     };
+  },
+  methods:{
+    logout(){
+      localStorage.removeItem('userToken')
+      this.$router.push("/login")
+    }
   },
     mounted() {
     API.get("empresa",{
