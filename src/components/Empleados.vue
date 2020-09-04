@@ -111,10 +111,10 @@
       <div class="input-group md-form form-sm form-1 pl-0">
         <div class="input-group-prepend">
           <span>
-            <b-button squared variant="success">Buscar</b-button>
+            <b-button squared variant="success" @click="BuscarEmpleado">Buscar</b-button>
           </span>
         </div>
-        <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search" />
+        <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search" v-model="searchnombre" v-on:keyup.enter="BuscarEmpleado"/>
       </div>
       <br />
 
@@ -387,6 +387,7 @@ export default {
       password: "",
       rpassword: "",
       users_id: "",
+      searchnombre:"",
       categoria: "",
       selected: null,
       category: null,
@@ -542,6 +543,29 @@ export default {
         this.getEmpleados();
       });
     },
+
+BuscarEmpleado() {
+      const data = {
+        nombres: this.searchnombre,
+      };
+      API.post("buscar-empleado", data, {
+        headers: {
+          Authorization: "Bearer " + TOKEN,
+        },
+      })
+        .then((res) => {
+          // eslint-disable-next-line
+          console.log(res.data);
+         this.dataEmpleados = res.data;
+          //window.alert("Los datos se han guardado");
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+          window.alert(error);
+        });
+    },
+
   },
 
   watch: {
@@ -550,7 +574,7 @@ export default {
     },
   },
   mounted() {
-    this.getEmpleados();
+    this.BuscarEmpleado();
   
   },
 };
