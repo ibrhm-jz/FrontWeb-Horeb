@@ -172,7 +172,7 @@
 
 
 <script>
-import { API, TOKEN } from "../Servicios/axios";
+import { API } from "../Servicios/axios";
 export default {
         created(){
         this.token=localStorage.getItem('userToken')

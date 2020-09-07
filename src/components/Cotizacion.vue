@@ -136,7 +136,7 @@
           </tr>
           <tr v-for="(invoice_product, k) in items" :key="k.id">
             <td scope="row" class="trashIconContainer">
-              <i class="far fa-trash-alt" @click="deleteRow(k, invoice_product)"></i>
+              <i class="far fa-trash-alt" @click="deleteRow(k, invoice_product)" ></i>
             </td>
             <td v-text="invoice_product.cantidad"></td>
             <td v-text="invoice_product.unidad"></td>
@@ -182,7 +182,8 @@
               class="ma-2"
               tile
               style="background-color:#00b686; color:white;"
-              @click="exportPDF"
+               @click="exportPDF"
+               v-b-modal.modal-cotizacion
             >
               <v-icon left>mdi-send</v-icon>terminar
             </v-btn>
@@ -299,22 +300,30 @@
         @ok="calculateGanancia"
         ok-variant="success"
       >
-        <input
-          class="form-control my-0 py-1"
-          type="text"
-          placeholder="Porcentaje"
-          aria-label="Porocentaje"
-          v-model="PorcentajeGanancia"
-        />
+       <v-text-field append-icon="mdi-currency-usd"  label="Porcentaje" v-model="PorcentajeGanancia"/>
+       
         <br />
-        <input
-          class="form-control my-0 py-1"
-          type="text"
-          placeholder="Flete"
-          aria-label="Porocentaje"
-          v-model="costo_flete"
-        />
-      </b-modal>
+        <v-text-field append-icon="mdi-truck" label="Flete" v-model="costo_flete"/>
+          </b-modal>
+
+
+                <b-modal
+        id="modal-cotizacion"
+        ref="modal"
+        title="¿Finalizar?"
+        centered
+        size="sm"
+        @show="resetModal"
+        @hidden="resetModal"
+        @ok="calculateGanancia"
+        ok-variant="success"
+      >
+      <div></div>
+       <v-text-field append-icon="mdi-currency-usd"  label="Lugar de Entrega" placeholder="Lugar de entrega"/>
+       
+        <br />
+        <v-text-field append-icon="mdi-truck" label="Agregar nota" placeholder="Nota" />
+          </b-modal>
     </div>
   </div>
 </template>
@@ -398,10 +407,7 @@ export default {
       return valid;
     },
 
-    QuitarPorcentaje() {
-      this.items=this.Originalitems;
-      this.Originalitems=[];
-    },
+
 
     addNewRow(list, cant) {
       this.items.push({
@@ -411,13 +417,7 @@ export default {
         precio_u: list.precio_unitario,
         importe: cant * list.precio_unitario,
       });
-      this.Originalitems.push({
-        cantidad: cant,
-        unidad: list.medida,
-        concepto: list.nombre,
-        precio_u: list.precio_unitario,
-        importe: cant * list.precio_unitario,
-      });
+
       this.comprobacion = "comprobado";
       this.newEntries = [];
       this.$root.$emit("bv::hide::modal", "modal-prevent-closing", "#btnShow");
@@ -445,17 +445,7 @@ export default {
       }
       
     },
-        deleteRowORiginal(index, invoice_product) {
-      var idx = this.Originalitems.indexOf(invoice_product);
-      /* eslint-disable */
-      console.log(idx, index);
-      if (idx > -1) {
-        this.Orginalitems.splice(idx, 1);
-        this.invoice_total = "0.00";
-        this.invoice_iva = "0.00";
-      }
-      // this.calculateTotal();
-    },
+
 
     exportPDF() {
       if (
