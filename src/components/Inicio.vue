@@ -29,7 +29,7 @@
       <v-divider></v-divider>
 
       <v-list dense nav color="blue">
-        <v-list-item link to="/">
+        <v-list-item link to="/Home">
         
           <v-list-item-icon>
             <v-icon>mdi-home</v-icon>

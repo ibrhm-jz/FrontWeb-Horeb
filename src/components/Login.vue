@@ -83,12 +83,12 @@ export default {
       };
       API.post("login", data)
         .then((res) => {
-          // eslint-disable-next-line
           window.alert("Los datos se han guardado"+res.data);
           localStorage.setItem('userToken', res.data.token)
           router.push({ name: 'Home' })
+           // eslint-disable-next-line
           console.error(res.data);
-        })
+        })  
         .catch((error) => {
           // eslint-disable-next-line
           console.error(error);
