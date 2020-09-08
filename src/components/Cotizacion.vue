@@ -399,7 +399,7 @@ export default {
   methods: {
         logout(){
       localStorage.removeItem('userToken')
-      this.$router.push("/login")
+      this.$router.push("/")
     },
     checkFormValidity() {
       const valid = this.$refs.form.checkValidity();

@@ -111,7 +111,15 @@
       <div class="input-group md-form form-sm form-1 pl-0">
         <div class="input-group-prepend">
           <span>
-            <b-button squared variant="success" @click="BuscarEmpleado">Buscar</b-button>
+            <!-- <b-button squared variant="success" @click="BuscarEmpleado">Buscar</b-button> -->
+            <v-btn
+              class="ma-2"
+              tile
+              style="background-color:#00b686; color:white;"
+              @click="BuscarEmpleado"
+            >
+              <v-icon left>mdi-magnify</v-icon>Buscar
+            </v-btn>
           </span>
         </div>
         <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search" v-model="searchnombre" v-on:keyup.enter="BuscarEmpleado"/>
@@ -122,7 +130,16 @@
         <div class="col-md-8"></div>
         <div class="col-md-4">
           <div align="right">
-            <b-button squared variant="success" v-b-modal.modal-prevent-closing>Añadir Empleados</b-button>
+          <v-btn
+              class="ma-2"
+              tile
+              style="background-color:#00b686; color:white;"
+              v-b-modal.modal-prevent-closing
+            >
+              <v-icon left>mdi-account-multiple-plus</v-icon>Añadir Empleados
+            </v-btn>
+
+            <!-- <b-button squared variant="success" v-b-modal.modal-prevent-closing>Añadir Empleados</b-button> -->
           </div>
         </div>
       </div>
@@ -410,7 +427,7 @@ export default {
   methods: {
         logout(){
       localStorage.removeItem('userToken')
-      this.$router.push("/login")
+      this.$router.push("/")
     },
     checkFormValidity() {
       const valid = this.$refs.form.checkValidity();

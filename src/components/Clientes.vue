@@ -110,10 +110,19 @@
       <div class="input-group md-form form-sm form-1 pl-0">
         <div class="input-group-prepend">
           <span>
-            <b-button squared variant="success" @click="BuscarClientes" >Buscar</b-button>
+            <!-- <b-button squared variant="success" @click="BuscarClientes" >Buscar</b-button> -->
+
+            <v-btn
+              class="ma-2"
+              tile
+              style="background-color:#00b686; color:white;"
+              @click="BuscarClientes"
+            >
+              <v-icon left>mdi-magnify</v-icon>Buscar
+            </v-btn>
           </span>
         </div>
-        <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search" v-model="searchnombres" v-on:keyup.enter="BuscarClientes" />
+        <input class="form-control my-0 py-1" type="text" placeholder="Buscar" aria-label="Buscar" v-model="searchnombres" v-on:keyup.enter="BuscarClientes" />
       </div>
       <br />
 
@@ -122,12 +131,18 @@
         </div>
         <div class="col-md-4">
           <div align="right">
-            <b-button squared variant="success" v-b-modal.modal-prevent-closing>Añadir Clientes</b-button>
+                      <v-btn
+              class="ma-2"
+              tile
+              style="background-color:#00b686; color:white;"
+              v-b-modal.modal-prevent-closing
+            >
+              <v-icon left>mdi-account-plus</v-icon>Añadir Clientes
+            </v-btn>
+            <!-- <b-button squared variant="success" >Añadir Clientes</b-button> -->
           </div>
         </div>
       </div>
-
-    
       <div>
         <v-container fluid>
         <font face ="Segoe UI">
@@ -367,7 +382,7 @@ export default {
         created(){
         this.token=localStorage.getItem('userToken')
         if(this.token==null||this.token==""){
-        this.$router.push("/login")
+        this.$router.push("/  ")
         }
     },
   name: "Productos",

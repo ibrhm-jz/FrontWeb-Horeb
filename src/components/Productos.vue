@@ -111,15 +111,23 @@
       <div class="input-group md-form form-sm form-1 pl-0">
         <div class="input-group-prepend">
           <span> 
-            <b-button squared variant="success" @click="BuscarProductos">Buscar</b-button>
+                    <v-btn
+              class="ma-2"
+              tile
+              style="background-color:#00b686; color:white;"
+              @click="BuscarProductos"
+            >
+              <v-icon left>mdi-magnify</v-icon>Buscar
+            </v-btn>
+            <!-- <b-button squared variant="success" @click="BuscarProductos">Buscar</b-button> -->
           </span>
         </div>
-        <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search" v-model="searchnombre" v-on:keyup.enter="BuscarProductos" />
+        <input class="form-control my-0 py-1" type="text" placeholder="Buscar" aria-label="Buscar" v-model="searchnombre" v-on:keyup.enter="BuscarProductos" />
       </div>
       <br />
 
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-4">
           <div align="left">
                        <div>
               <b-form-select v-model="category" :options="optionscategory" @change="FiltroProducto()"></b-form-select>
@@ -130,9 +138,17 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-8">
           <div align="right">
-            <b-button squared variant="success" v-b-modal.modal-prevent-closing>Añadir Producto</b-button>
+           <v-btn
+              class="ma-2"
+              tile
+              style="background-color:#00b686; color:white;"
+              v-b-modal.modal-prevent-closing
+            >
+              <v-icon left>mdi-tag-plus</v-icon>Añadir Producto
+            </v-btn>
+            <!-- <b-button squared variant="success" v-b-modal.modal-prevent-closing>Añadir Producto</b-button> -->
           </div>
         </div>
       </div>
@@ -162,15 +178,15 @@
                     <v-spacer></v-spacer>
                     ${{products.precio_unitario}}
                     <v-spacer></v-spacer>
-                    {{products.descripcion}}
+                    MEDIDA : {{products.medida}}
                   </b-card-text>
                 </b-card-body>
                 <div align="left" style="margin-left:10px;">
                 <v-btn icon color="red">
                         <v-icon
                           style="color: #71ccb4;"
-                          v-b-modal.modal-update
-                          @click="sendUser(Empleados)"
+                           v-b-modal.modal-actualizar-producto
+                          @click="sendProduct(products)"
                         >mdi-pencil</v-icon>
                       </v-btn>
                   &nbsp;
@@ -261,6 +277,80 @@
           </b-form-group>
         </form>
       </b-modal>
+
+
+            <b-modal
+        id="modal-actualizar-producto"
+        ref="modal"
+        title="Actualizar Producto"
+        centered
+        @show="resetModal"
+        @hidden="resetModal"
+        @ok="ActualizarProducto"
+        ok-variant="success"
+      >
+        <form ref="form" @submit.stop.prevent="handleSubmit">
+          <b-form-group :state="nameState" invalid-feedback="*Requerido">
+            <b-form-input
+              id="name-input"
+              v-model="selectedProduct.nombre"
+              :state="nameState"
+              required
+              placeholder="Nombre"
+            ></b-form-input>
+            <br />
+            <b-form-input
+              id="name-input"
+              v-model="selectedProduct.tipo"
+              :state="nameState"
+              required
+              placeholder="Tipo"
+              type="text"
+            ></b-form-input>
+            <br />
+            <b-form-input
+              id="name-input"
+              v-model="selectedProduct.medida"
+              :state="nameState"
+              required
+              placeholder="Medida"
+              type="text"
+            ></b-form-input>
+            <br />
+            <b-form-input
+              id="name-input"
+              v-model="selectedProduct.descripcion"
+              :state="nameState"
+              required
+              placeholder="Descripcion"
+            ></b-form-input>
+            <br />
+            <b-form-input
+              id="name-input"
+              v-model="selectedProduct.precio_unitario"
+              :state="nameState"
+              required
+              placeholder="$Precio unitario"
+            ></b-form-input>
+            <br />
+            <b-form-input
+              id="name-input"
+              v-model="selectedProduct.cantidad_existencia"
+              :state="nameState"
+              required
+              placeholder="Cantidad en Existencia"
+            ></b-form-input>
+            <br />
+            <div>
+              <b-form-select v-model="selectedProduct.categoria" :options="options"></b-form-select>
+             <div class="mt-3">
+                Selected:
+                <strong>{{ selected }}</strong>
+              </div>
+            </div>
+          </b-form-group>
+        </form>
+      </b-modal>
     </div>
 
 
@@ -277,7 +367,7 @@ export default {
       created(){
         this.token=localStorage.getItem('userToken')
         if(this.token==null||this.token==""){
-        this.$router.push("/login")
+        this.$router.push("/")
         }
     },
   name: "Productos",
@@ -292,7 +382,7 @@ export default {
       // eslint-disable-next-line
       submittedNames: [],
       datosProductos: [],
-      // eslint-disable-next-line
+      selectedProduct:[],
       nombre: "",
       searchnombre: "",
       tipo: "",
@@ -325,9 +415,12 @@ export default {
       this.nameState = valid;
       return valid;
     },
+     sendProduct(item) {
+        this.selectedProduct = item;
+    },
         logout(){
       localStorage.removeItem('userToken')
-      this.$router.push("/login")
+      this.$router.push("/")
     },
     resetModal() {
       this.name = "";
@@ -374,6 +467,7 @@ export default {
       // Hide the modal manually
       this.$nextTick(() => {
         this.$bvModal.hide("modal-prevent-closing");
+        this.$bvModal.hide("modal-actualizar-producto");
       });
     },
     getProduct() {
@@ -438,6 +532,35 @@ if(this.category==null){
           console.error(error);
         });
 }
+    },
+
+        ActualizarProducto() {
+      const data = {
+        nombre: this.selectedProduct.nombre,
+        tipo: this.selectedProduct.tipo,
+        medida: this.selectedProduct.medida,
+        descripcion: this.selectedProduct.descripcion,
+        categoria: this.selectedProduct.categoria,
+        precio_unitario: this.selectedProduct.precio_unitario,
+        cantidad_existencia: this.selectedProduct.cantidad_existencia,
+      };
+      API.put("actualizar-producto/"+this.selectedProduct.id, data, {
+        headers: {
+          Authorization: "Bearer " + this.token,
+        },
+      })
+        .then((res) => {
+          // eslint-disable-next-line
+          console.log(res.data);
+          this.selected=[],  
+          this.getProduct(),
+          window.alert("Los datos se han guardado");
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+          window.alert(error);
+        });
     },
      delectProduct(result) {
       API.delete('borrar-producto/' + result.id,
