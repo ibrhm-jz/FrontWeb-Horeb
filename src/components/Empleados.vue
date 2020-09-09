@@ -385,7 +385,7 @@ export default {
       created(){
         this.token=localStorage.getItem('userToken')
         if(this.token==null||this.token==""){
-        this.$router.push("/login")
+        this.$router.push("/")
         }
     },
   name: "Productos",

@@ -382,7 +382,7 @@ export default {
         created(){
         this.token=localStorage.getItem('userToken')
         if(this.token==null||this.token==""){
-        this.$router.push("/  ")
+        this.$router.push("/")
         }
     },
   name: "Productos",
@@ -422,7 +422,7 @@ export default {
   methods: {
         logout(){
       localStorage.removeItem('userToken')
-      this.$router.push("/login")
+      this.$router.push("/")
     },
     checkFormValidity() {
       const valid = this.$refs.form.checkValidity();
