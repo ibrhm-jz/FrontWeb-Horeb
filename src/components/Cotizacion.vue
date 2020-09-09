@@ -130,8 +130,9 @@
             <th>Accion</th>
             <th>Cantidad</th>
             <th>Medida</th>
-            <th>Concepto</th>
+            <th>Descripcion</th>
             <th>Precio Unitario</th>
+            <th >Porcentaje</th>
             <th>Importe</th>
           </tr>
           <tr v-for="(invoice_product, k) in items" :key="k.id">
@@ -139,9 +140,15 @@
               <i class="far fa-trash-alt" @click="deleteRow(k, invoice_product)" ></i>
             </td>
             <td v-text="invoice_product.cantidad"></td>
-            <td v-text="invoice_product.unidad"></td>
-            <td v-text="invoice_product.concepto"></td>
-            <td v-text="invoice_product.precio_u"></td>
+            <td v-text="invoice_product.medida"></td>
+            <td v-text="invoice_product.descripcion"></td>
+            <td v-text="invoice_product.precio_unitario"></td>
+            <td ><v-text-field
+                    style="width:50px;"
+                    append-icon="mdi-"
+                     placeholder="$"
+                    required
+                  ></v-text-field></td>
             <td v-text="invoice_product.importe"></td>
           </tr>
         </table>
@@ -192,7 +199,7 @@
               class="ma-2"
               tile
               style="background-color:#00b686; color:white;"
-              @click="QuitarPorcentaje"
+              @click="LlenarDatos"
             >
               <v-icon left>mdi-send</v-icon>xd
             </v-btn>
@@ -241,7 +248,6 @@
                 <th class="text-left">Precio unitario</th>
                 <th class="text-left">Existencia</th>
                 <th class="text-left">Cantidad</th>
-                <th class="text-left">Porcentaje</th>
                 <th class="text-left">Accion</th>
               </tr>
             </thead>
@@ -256,22 +262,13 @@
                 <td>
                   <v-text-field
                     style="width:50px;"
-                    append-icon="mdi-"
                     v-model="newEntries[products.id]"
-                     placeholder="$"
+                     placeholder="Cant"
                     required
                   ></v-text-field>
                   
                 </td>
-                 <td>
-                  <v-text-field
-                    style="width:50px;"
-                    v-model="newPorcentaje[products.id]"
-                    placeholder="%"
-                    required
-                  ></v-text-field>
-                  
-                </td>
+            
                 <td>
                   <b-button
                     variant="success"
@@ -370,23 +367,19 @@ export default {
       searchnombre:"",
       items: [
         {
+          nombre:"",
+          direccion:"",
+          ciudad:"",
+          medida: "",
+          descripcion: "",
+          precio_unitario: "",
           cantidad: "",
-          unidad: "",
-          concepto: "",
-          precio_u: "",
           importe: "",
+          status: "",
+          costo_flete:"",
+          ganancia:""
         },
       ],
-            Originalitems: [
-        {
-          cantidad: "",
-          unidad: "",
-          concepto: "",
-          precio_u: "",
-          importe: "",
-        },
-      ],
-      // eslint-disable-next-line
       category: null,
       optionscategory: [
         { value: null, text: "Seleccione la categoria" },
@@ -411,17 +404,53 @@ export default {
 
     addNewRow(list, cant) {
       this.items.push({
+        nombre:"",
+        direccion:"",
+        ciudad:"",
         cantidad: cant,
-        unidad: list.medida,
-        concepto: list.nombre,
-        precio_u: list.precio_unitario,
-        importe: cant * list.precio_unitario,
+        medida: list.medida,
+        descripcion: list.nombre,
+        precio_unitario: list.precio_unitario,
+        importe:0,
+        status: "",
+        costo_flete:"",
+        ganancia:"",
+  
       });
 
       this.comprobacion = "comprobado";
       this.newEntries = [];
       this.$root.$emit("bv::hide::modal", "modal-prevent-closing", "#btnShow");
-      this.calculateTotal();
+      this.calcularImporte();
+      console.log(this.items);
+      
+    },
+    calcularImporte(){
+      var x = 0;
+      while (x <= this.items.length) {
+        //this.items[x].precio_u=parseFloat(this.items[x].precio_u)+1
+
+        this.items[x].importe = (
+          parseFloat(this.items[x].cantidad) *
+          parseFloat(this.items[x].precio_unitario)
+        ).toFixed(2);
+        x++;
+      }
+    },
+
+    LlenarDatos(){
+      var x = 0;
+      while (x <= this.items.length) {
+        //this.items[x].precio_u=parseFloat(this.items[x].precio_u)+1
+        this.items[x].nombre = this.nombreEmpresa;
+        this.items[x].direccion = this.EmpresaDireccion;
+        this.items[x].ciudad = this.EmpresaCiudad;
+        this.items[x].status = "No vendido";
+        this.items[x].costo_flete = this.costo_flete;
+        this.items[x].ganancia = this.PorcentajeGanancia;
+        x++;
+      }
+      console.log(this.items);
     },
     resetModal() {
       this.name = "";
@@ -460,9 +489,9 @@ export default {
 
         var columns = [
           { title: "Cantidad", dataKey: "cantidad" },
-          { title: "Medidad", dataKey: "unidad" },
-          { title: "Descripcion", dataKey: "concepto" },
-          { title: "Precio Unitario", dataKey: "precio_u" },
+          { title: "Medidad", dataKey: "medida" },
+          { title: "Descripcion", dataKey: "descripcion" },
+          { title: "Precio Unitario", dataKey: "precio_unitario" },
           { title: "Importe", dataKey: "importe" },
         ];
         var doc = new jsPDF("p", "pt");
@@ -545,13 +574,13 @@ export default {
       while (x <= this.items.length) {
         //this.items[x].precio_u=parseFloat(this.items[x].precio_u)+1;
         this.items[x].precio_u = (
-          parseFloat(this.items[x].precio_u) * (this.PorcentajeGanancia / 100) +
-          parseFloat(this.items[x].precio_u)
+          parseFloat(this.items[x].precio_unitario) * (this.PorcentajeGanancia / 100) +
+          parseFloat(this.items[x].precio_unitario)
         ).toFixed(2);
 
         this.items[x].importe = (
           parseFloat(this.items[x].cantidad) *
-          parseFloat(this.items[x].precio_u)
+          parseFloat(this.items[x].precio_unitario)
         ).toFixed(2);
         x++;
       }
@@ -602,7 +631,6 @@ export default {
 
   mounted() {
     this.items = [];
-    this.Originalitems=[]
     this.BuscarProducto();
     //console.log("Numeor"+convertir.NumerosALetras(58225))
   },
@@ -617,7 +645,7 @@ export default {
       var subtotal;
       return this.items.reduce((total, item) => {
         1;
-        subtotal = total + item.cantidad * item.precio_u;
+        subtotal = total + item.cantidad * item.precio_unitario;
         this.invoice_subtotal = subtotal.toFixed(2);
         this.invoice_iva = (subtotal * (this.invoice_tax / 100)).toFixed(2);
         this.invoice_total = (
