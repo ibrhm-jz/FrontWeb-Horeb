@@ -439,17 +439,25 @@ export default {
     },
 
     LlenarDatos(){
-      var x = 0;
-      while (x <= this.items.length) {
-        //this.items[x].precio_u=parseFloat(this.items[x].precio_u)+1
-        this.items[x].nombre = this.nombreEmpresa;
-        this.items[x].direccion = this.EmpresaDireccion;
-        this.items[x].ciudad = this.EmpresaCiudad;
-        this.items[x].status = "No vendido";
-        this.items[x].costo_flete = this.costo_flete;
-        this.items[x].ganancia = this.PorcentajeGanancia;
-        x++;
-      }
+      // var x = 0;
+      // while (x <= this.items.length) {
+      //   //this.items[x].precio_u=parseFloat(this.items[x].precio_u)+1
+      //   this.items[x].nombre = this.nombreEmpresa.toString();
+      //   // this.items[x].direccion = this.EmpresaDireccion;
+      //   // this.items[x].ciudad = this.EmpresaCiudad;
+      //   // this.items[x].status = "No vendido";
+      //   // this.items[x].costo_flete = this.costo_flete;
+      //   // this.items[x].ganancia = this.PorcentajeGanancia;
+      //   x++;
+      // }
+        for(var i in this.items){
+                this.$set(this.items[i], 'nombre',  this.nombreEmpresa); 
+                this.$set(this.items[i], 'direccion', this.EmpresaDireccion);
+                this.$set(this.items[i], 'ciudad', this.EmpresaCiudad);
+                this.$set(this.items[i], 'status', "No vendido");
+                this.$set(this.items[i], 'costo_flete', this.costo_flete);
+                this.$set(this.items[i], 'ganancia', this.PorcentajeGanancia);
+            }
       console.log(this.items);
     },
     resetModal() {
