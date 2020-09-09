@@ -388,7 +388,7 @@ export default {
       tipo: "",
       medida: "",
       descripcion: "",
-      precio_unitario: "",
+      precio_unitario: 0.0,
       cantidad_existencia: "",
       categoria: "",
       selected: null,

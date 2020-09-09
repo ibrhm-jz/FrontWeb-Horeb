@@ -162,7 +162,7 @@
 
           <div>
             <br />
-            <b-button block variant="success">Actualizar</b-button>
+            <b-button block variant="success" @click="ActualizarEmpresa(enter)">Actualizar</b-button>
           </div>
         </form>
       </div>
@@ -192,8 +192,33 @@ export default {
   methods:{
         logout(){
       localStorage.removeItem('userToken')
-      this.$router.push("/login")
-    }
+      this.$router.push("/")
+    },
+        ActualizarEmpresa(empresa) {
+      const data = {
+        nombre: empresa.nombre,
+        clabe_interbancaria: empresa.clabe_interbancaria,
+        rfc: empresa.rfc,
+        correo: empresa.correo,
+        direccion: empresa.direccion,
+       
+      };
+      API.put("actualizar-empresa/"+empresa.id, data, {
+        headers: {
+          Authorization: "Bearer " + this.token,
+        },
+      })
+        .then((res) => {
+          // eslint-disable-next-line
+          console.log(res.data);        
+          window.alert("Los datos se han guardado");
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+          window.alert(error);
+        });
+    },
   },
   mounted() {
     API.get("empresa", {
@@ -207,7 +232,11 @@ export default {
       /* eslint-disable */
       console.log(this.datas);
       // eslint-disable-next-line no-console
-    });
+    }) .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+          window.alert(error);
+        });
   },
 
   watch: {
