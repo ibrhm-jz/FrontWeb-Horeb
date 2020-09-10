@@ -99,7 +99,17 @@
 
     <v-container class="contenedor">
       <div ref="content">
-        <span class="titulosecundario" style="color:black !important;">Cotizacion</span>
+        <div class="row">
+          <div class="col-sm-6">
+            <span class="titulosecundario" style="color:black !important;">Cotizacion</span>
+          </div>
+          <div class="col-sm-6">
+            <span
+              class="titulosecundario"
+              style="color:red !important;"
+            >No.cotizacion:&nbsp;{{this.numero_cotizacion}}</span>
+          </div>
+        </div>
         <v-spacer></v-spacer>
 
         <div class="row">
@@ -132,23 +142,20 @@
             <th>Medida</th>
             <th>Descripcion</th>
             <th>Precio Unitario</th>
-            <th >Porcentaje</th>
+            <th>Porcentaje</th>
             <th>Importe</th>
           </tr>
           <tr v-for="(invoice_product, k) in items" :key="k.id">
             <td scope="row" class="trashIconContainer">
-              <i class="far fa-trash-alt" @click="deleteRow(k, invoice_product)" ></i>
+              <i class="far fa-trash-alt" @click="deleteRow(k, invoice_product)"></i>
             </td>
             <td v-text="invoice_product.cantidad"></td>
             <td v-text="invoice_product.medida"></td>
             <td v-text="invoice_product.descripcion"></td>
             <td v-text="invoice_product.precio_unitario"></td>
-            <td ><v-text-field
-                    style="width:50px;"
-                    append-icon="mdi-"
-                     placeholder="$"
-                    required
-                  ></v-text-field></td>
+            <td>
+              <v-text-field style="width:50px;" append-icon="mdi-" placeholder="$" required></v-text-field>
+            </td>
             <td v-text="invoice_product.importe"></td>
           </tr>
         </table>
@@ -163,6 +170,11 @@
           </font>
         </b>
       </div>
+      <div id="example">
+        <h6 v-if="boolcerrado">
+          <font color="red">*La venta ya se cerró y se guardo.</font>
+        </h6>
+      </div>
       <div class="row">
         <div class="col-md-8">
           <div align="left">
@@ -174,27 +186,24 @@
               v-b-modal.modal-prevent-closing
             >
               <v-icon left>mdi-plus</v-icon>Añadir
-            </v-btn>
-&nbsp;
+            </v-btn>&nbsp;
             <v-btn
               class="ma-2"
               tile
               style="background-color:#00b686; color:white;"
               v-b-modal.modal-porcentaje
             >
-              <v-icon left>mdi-cash-multiple</v-icon>Porcentaje
-            </v-btn>
-&nbsp;
+              <v-icon left>mdi-cash-multiple</v-icon>cerrar cotizacion
+            </v-btn>&nbsp;
             <v-btn
               class="ma-2"
               tile
               style="background-color:#00b686; color:white;"
-               @click="exportPDF"
-               v-b-modal.modal-cotizacion
+              @click="exportPDF"
+              v-b-modal.modal-cotizacion
             >
-              <v-icon left>mdi-send</v-icon>terminar
-            </v-btn>
-&nbsp;
+              <v-icon left>mdi-send</v-icon>imprimir
+            </v-btn>&nbsp;
             <v-btn
               class="ma-2"
               tile
@@ -203,7 +212,6 @@
             >
               <v-icon left>mdi-send</v-icon>xd
             </v-btn>
-
           </div>
         </div>
       </div>
@@ -224,7 +232,7 @@
         <div class="input-group md-form form-sm form-1 pl-0">
           <div class="input-group-prepend">
             <span>
-              <b-button squared variant="success"  v-on:click="BuscarProductos" >Buscar</b-button>
+              <b-button squared variant="success" v-on:click="BuscarProductos">Buscar</b-button>
             </span>
           </div>
           <input
@@ -263,12 +271,11 @@
                   <v-text-field
                     style="width:50px;"
                     v-model="newEntries[products.id]"
-                     placeholder="Cant"
+                    placeholder="Cant"
                     required
                   ></v-text-field>
-                  
                 </td>
-            
+
                 <td>
                   <b-button
                     variant="success"
@@ -297,30 +304,19 @@
         @ok="calculateGanancia"
         ok-variant="success"
       >
-       <v-text-field append-icon="mdi-currency-usd"  label="Porcentaje" v-model="PorcentajeGanancia"/>
-       
+        <v-text-field
+          append-icon="mdi-currency-usd"
+          label="Porcentaje de Ganancia"
+          v-model="PorcentajeGanancia"
+        />
         <br />
-        <v-text-field append-icon="mdi-truck" label="Flete" v-model="costo_flete"/>
+        <v-text-field append-icon="mdi-truck" label="Gastos en flete" v-model="costo_flete" />
+        <br />
+        <v-text-field append-icon="mdi-map" label="Lugar de Entrega" />
+
+        <br />
+        <v-text-field append-icon="mdi-note-plus" label="Agregar nota" />
       </b-modal>
-
-
-                <b-modal
-        id="modal-cotizacion"
-        ref="modal"
-        title="¿Finalizar?"
-        centered
-        size="sm"
-        @show="resetModal"
-        @hidden="resetModal"
-        @ok="calculateGanancia"
-        ok-variant="success"
-      >
-      <div></div>
-       <v-text-field append-icon="mdi-currency-usd"  label="Lugar de Entrega" placeholder="Lugar de entrega"/>
-       
-        <br />
-        <v-text-field append-icon="mdi-truck" label="Agregar nota" placeholder="Nota" />
-          </b-modal>
     </div>
   </div>
 </template>
@@ -332,24 +328,28 @@ import "jspdf-autotable";
 import { LOGO, PIE } from "../base64/images";
 import jsPDF from "jspdf";
 export default {
-      created(){
-        this.token=localStorage.getItem('userToken')
-        if(this.token==null||this.token==""){
-        this.$router.push("/")
-        }
-    },
+  created() {
+    this.token = localStorage.getItem("userToken");
+    if (this.token == null || this.token == "") {
+      this.$router.push("/");
+    } else {
+      this.getCotizacion();
+    }
+  },
   name: "Cotizacion",
   data() {
     return {
       drawer: false,
+      boolcerrado: false,
+      numero_cotizacion: "2",
       group: null,
       nombreEmpresa: "",
       EmpresaDireccion: "",
       EmpresaTelefono: "",
       EmpresaCiudad: "",
       cant_letra: "",
-      comprobacion: "",      
-      token:"",
+      comprobacion: "",
+      token: "",
       name: "",
       // eslint-disable-next-line
       nameState: null,
@@ -358,26 +358,27 @@ export default {
       datosProductos: [],
       newEntries: [{}],
       newPorcentaje: [{}],
-      PorcentajeGanancia: 0,
-      costo_flete: 0.0,
+      PorcentajeGanancia: "",
+      costo_flete: "",
       invoice_subtotal: 0,
       invoice_total: 0,
       invoice_tax: 16,
       invoice_iva: 0,
-      searchnombre:"",
+      searchnombre: "",
       items: [
         {
-          nombre:"",
-          direccion:"",
-          ciudad:"",
+          producto_id: "",
+          nombre: "",
+          direccion: "",
+          ciudad: "",
           medida: "",
           descripcion: "",
           precio_unitario: "",
           cantidad: "",
           importe: "",
           status: "",
-          costo_flete:"",
-          ganancia:""
+          costo_flete: "",
+          ganancia: "",
         },
       ],
       category: null,
@@ -390,9 +391,9 @@ export default {
     };
   },
   methods: {
-        logout(){
-      localStorage.removeItem('userToken')
-      this.$router.push("/")
+    logout() {
+      localStorage.removeItem("userToken");
+      this.$router.push("/");
     },
     checkFormValidity() {
       const valid = this.$refs.form.checkValidity();
@@ -400,32 +401,30 @@ export default {
       return valid;
     },
 
-
-
     addNewRow(list, cant) {
       this.items.push({
-        nombre:"",
-        direccion:"",
-        ciudad:"",
+        producto_id: list.id,
+        nombre: "",
+        direccion: "",
+        ciudad: "",
         cantidad: cant,
         medida: list.medida,
         descripcion: list.nombre,
         precio_unitario: list.precio_unitario,
-        importe:0,
+        importe: 0,
         status: "",
-        costo_flete:"",
-        ganancia:"",
-  
+        costo_flete: "",
+        ganancia: "",
       });
 
       this.comprobacion = "comprobado";
       this.newEntries = [];
       this.$root.$emit("bv::hide::modal", "modal-prevent-closing", "#btnShow");
       this.calcularImporte();
+      // eslint-disable-next-line
       console.log(this.items);
-      
     },
-    calcularImporte(){
+    calcularImporte() {
       var x = 0;
       while (x <= this.items.length) {
         this.items[x].importe = (
@@ -436,15 +435,16 @@ export default {
       }
     },
 
-    LlenarDatos(){
-        for(var i in this.items){
-                this.$set(this.items[i], 'nombre',  this.nombreEmpresa); 
-                this.$set(this.items[i], 'direccion', this.EmpresaDireccion);
-                this.$set(this.items[i], 'ciudad', this.EmpresaCiudad);
-                this.$set(this.items[i], 'status', "No vendido");
-                this.$set(this.items[i], 'costo_flete', this.costo_flete);
-                this.$set(this.items[i], 'ganancia', this.PorcentajeGanancia);
-            }
+    LlenarDatos() {
+      for (var i in this.items) {
+        this.$set(this.items[i], "nombre", this.nombreEmpresa);
+        this.$set(this.items[i], "direccion", this.EmpresaDireccion);
+        this.$set(this.items[i], "ciudad", this.EmpresaCiudad);
+        this.$set(this.items[i], "status", "No vendido");
+        this.$set(this.items[i], "costo_flete", this.costo_flete);
+        this.$set(this.items[i], "ganancia", this.PorcentajeGanancia);
+      }
+      // eslint-disable-next-line
       console.log(this.items);
     },
     resetModal() {
@@ -465,11 +465,8 @@ export default {
         this.items.splice(idx, 1);
         this.invoice_total = "0.00";
         this.invoice_iva = "0.00";
-
       }
-      
     },
-
 
     exportPDF() {
       if (
@@ -526,50 +523,101 @@ export default {
 
         doc.autoTable(columns, vm.items, {
           margin: { top: 240 },
-          styles: { fillColor: [113, 204, 180] },
+          styles: { fillColor: [113, 204, 180],halign: "left", },
           didDrawPage: function (data) {
             // Reseting top margin. The change will be reflected only after print the first page.
             data.settings.margin.top = 40;
           },
         });
-        let finalY = doc.lastAutoTable.finalY; // The y position on the page
+        let finalY = doc.lastAutoTable.finalY;
+        // The y position on the page
         if (finalY + 100 > height - 45) {
           doc.addPage();
-          doc.text(80, 40, "SUBTOTAL : " + vm.invoice_subtotal);
-          doc.text(40, 55, "IVA 16% : " + vm.invoice_iva);
-          doc.text(40, 70, "TOTAL : " + vm.invoice_total);
-          doc.text(40, 85, "CANTIDAD EN LETRAS : ");
+          var textWidth =
+            (doc.getStringUnitWidth("SUBTOTAL : " + vm.invoice_subtotal) *
+              doc.internal.getFontSize()) /
+            doc.internal.scaleFactor;
+          var columns_price = ["Conceptos", "Total"];
+          var data_price = [
+            ["SUBTOTAL", vm.invoice_subtotal],
+            ["IVA 16%", vm.invoice_iva],
+            ["TOTAL", vm.invoice_total],
+          ];
+          doc.autoTable(columns_price, data_price, {
+            showHead: "never",
+            startY: 40,
+             theme: 'plain',
+            margin: { top: 0, left: width / 2 + 70 },
+            styles: {
+              halign: "left",
+            },
+          });
+          doc.text(40, 55, "CANTIDAD EN LETRAS : ");
           doc.setFontSize(8);
-          doc.text(160, 65, vm.cant_letra.toUpperCase());
+          doc.text(40, 70, vm.cant_letra.toUpperCase());
           var imgpie = new Image();
           imgpie.src = PIE;
-          doc.addImage(imgpie, "PNG", 40, 120, width - 80, 110, {
+          doc.addImage(imgpie, "PNG", 40,  100, width - 80, 110, {
             margin: { bottom: 40 },
           });
-          doc.save("cotizacion.pdf");
+          doc.save("Cotizacion_" + this.numero_cotizacion + ".pdf");
+
+
         } else {
-          doc.text(40, finalY + 20, "SUBTOTAL : " + vm.invoice_subtotal);
-          doc.text(40, finalY + 35, "IVA 16% : " + vm.invoice_iva);
-          doc.text(40, finalY + 50, "TOTAL : " + vm.invoice_total);
-          doc.text(40, finalY + 65, "CANTIDAD EN LETRAS : ");
+          var textWidth =
+            (doc.getStringUnitWidth("SUBTOTAL : " + this.format(vm.invoice_subtotal)) *
+              doc.internal.getFontSize()) /
+            doc.internal.scaleFactor;
+          var columns_price = ["Conceptos", "Total"];
+          var data_price = [
+            ["SUBTOTAL", this.format(vm.invoice_subtotal)],
+            ["IVA 16%", this.format(vm.invoice_iva)],
+            ["TOTAL", this.format(vm.invoice_total)],
+          ];
+          doc.autoTable(columns_price, data_price, {
+            showHead: "never",
+            startY: finalY,
+             theme: 'plain',
+            margin: { top: 0, left: width / 2 + 70 },
+            styles: {
+              halign: "left",
+            },
+          });
+          //
+          // doc.text((width/2)+40+textWidth, finalY + 20, "SUBTOTAL : " + vm.invoice_subtotal);
+          // doc.text((width/2)+40+textWidth, finalY + 35, "IVA 16% :  " + vm.invoice_iva);
+          // doc.text((width/2)+40+textWidth, finalY + 50, "TOTAL :    " + vm.invoice_total);
+          doc.text(40, finalY + 35, "CANTIDAD EN LETRAS : ");
           doc.setFontSize(8);
-          doc.text(160, finalY + 65, vm.cant_letra.toUpperCase());
+          doc.text(40, finalY + 50, vm.cant_letra.toUpperCase());
           var imgpie = new Image();
           imgpie.src = PIE;
           doc.addImage(imgpie, "PNG", 40, finalY + 100, width - 80, 110, {
             margin: { bottom: 40 },
           });
-          doc.save("cotizacion.pdf");
+          doc.save("Cotizacion_" + this.numero_cotizacion + ".pdf");
         }
       }
     },
+    CentrarTexto(text, doc) {
+      var textWidth =
+        (doc.getStringUnitWidth(text) * doc.internal.getFontSize()) /
+        doc.internal.scaleFactor;
+      var textOffset = (doc.internal.pageSize.width - textWidth) / 2;
+      return textOffset;
+    },
+format(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+},
 
     calculateGanancia() {
       var x = 0;
+      this.boolcerrado = true;
       while (x <= this.items.length) {
         //this.items[x].precio_u=parseFloat(this.items[x].precio_u)+1;
         this.items[x].precio_unitario = (
-          parseFloat(this.items[x].precio_unitario) * (this.PorcentajeGanancia / 100) +
+          parseFloat(this.items[x].precio_unitario) *
+            (this.PorcentajeGanancia / 100) +
           parseFloat(this.items[x].precio_unitario)
         ).toFixed(2);
 
@@ -594,6 +642,19 @@ export default {
         // eslint-disable-next-line no-console
       });
     },
+    getCotizacion() {
+      API.get("no-cotizacion", {
+        headers: {
+          Authorization: "Bearer " + this.token,
+        },
+      }).then((response) => {
+        this.numero_cotizacion = response.data;
+
+        /* eslint-disable */
+        console.log(this.datosProductos);
+        // eslint-disable-next-line no-console
+      });
+    },
 
     BuscarProductos() {
       const data = {
@@ -607,7 +668,7 @@ export default {
         .then((res) => {
           // eslint-disable-next-line
           console.log(res.data);
-         this.datosProductos = res.data;
+          this.datosProductos = res.data;
           //window.alert("Los datos se han guardado");
         })
         .catch((error) => {
