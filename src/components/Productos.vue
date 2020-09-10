@@ -225,15 +225,7 @@
               placeholder="Nombre"
             ></b-form-input>
             <br />
-            <b-form-input
-              id="name-input"
-              v-model="tipo"
-              :state="nameState"
-              required
-              placeholder="Tipo"
-              type="text"
-            ></b-form-input>
-            <br />
+
             <b-form-input
               id="name-input"
               v-model="medida"
@@ -241,14 +233,6 @@
               required
               placeholder="Medida"
               type="text"
-            ></b-form-input>
-            <br />
-            <b-form-input
-              id="name-input"
-              v-model="descripcion"
-              :state="nameState"
-              required
-              placeholder="Descripcion"
             ></b-form-input>
             <br />
             <b-form-input
@@ -299,15 +283,8 @@
               placeholder="Nombre"
             ></b-form-input>
             <br />
-            <b-form-input
-              id="name-input"
-              v-model="selectedProduct.tipo"
-              :state="nameState"
-              required
-              placeholder="Tipo"
-              type="text"
-            ></b-form-input>
-            <br />
+
+           
             <b-form-input
               id="name-input"
               v-model="selectedProduct.medida"
@@ -317,14 +294,8 @@
               type="text"
             ></b-form-input>
             <br />
-            <b-form-input
-              id="name-input"
-              v-model="selectedProduct.descripcion"
-              :state="nameState"
-              required
-              placeholder="Descripcion"
-            ></b-form-input>
-            <br />
+  
+         
             <b-form-input
               id="name-input"
               v-model="selectedProduct.precio_unitario"
@@ -435,9 +406,7 @@ export default {
     RegistrarProducto() {
       const data = {
         nombre: this.nombre,
-        tipo: this.tipo,
         medida: this.medida,
-        descripcion: this.descripcion,
         categoria: this.selected,
         precio_unitario: this.precio_unitario,
         cantidad_existencia: this.cantidad_existencia,
@@ -537,9 +506,7 @@ if(this.category==null){
         ActualizarProducto() {
       const data = {
         nombre: this.selectedProduct.nombre,
-        tipo: this.selectedProduct.tipo,
         medida: this.selectedProduct.medida,
-        descripcion: this.selectedProduct.descripcion,
         categoria: this.selectedProduct.categoria,
         precio_unitario: this.selectedProduct.precio_unitario,
         cantidad_existencia: this.selectedProduct.cantidad_existencia,

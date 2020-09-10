@@ -301,7 +301,7 @@
        
         <br />
         <v-text-field append-icon="mdi-truck" label="Flete" v-model="costo_flete"/>
-          </b-modal>
+      </b-modal>
 
 
                 <b-modal
@@ -428,8 +428,6 @@ export default {
     calcularImporte(){
       var x = 0;
       while (x <= this.items.length) {
-        //this.items[x].precio_u=parseFloat(this.items[x].precio_u)+1
-
         this.items[x].importe = (
           parseFloat(this.items[x].cantidad) *
           parseFloat(this.items[x].precio_unitario)
@@ -439,17 +437,6 @@ export default {
     },
 
     LlenarDatos(){
-      // var x = 0;
-      // while (x <= this.items.length) {
-      //   //this.items[x].precio_u=parseFloat(this.items[x].precio_u)+1
-      //   this.items[x].nombre = this.nombreEmpresa.toString();
-      //   // this.items[x].direccion = this.EmpresaDireccion;
-      //   // this.items[x].ciudad = this.EmpresaCiudad;
-      //   // this.items[x].status = "No vendido";
-      //   // this.items[x].costo_flete = this.costo_flete;
-      //   // this.items[x].ganancia = this.PorcentajeGanancia;
-      //   x++;
-      // }
         for(var i in this.items){
                 this.$set(this.items[i], 'nombre',  this.nombreEmpresa); 
                 this.$set(this.items[i], 'direccion', this.EmpresaDireccion);
@@ -581,7 +568,7 @@ export default {
       var x = 0;
       while (x <= this.items.length) {
         //this.items[x].precio_u=parseFloat(this.items[x].precio_u)+1;
-        this.items[x].precio_u = (
+        this.items[x].precio_unitario = (
           parseFloat(this.items[x].precio_unitario) * (this.PorcentajeGanancia / 100) +
           parseFloat(this.items[x].precio_unitario)
         ).toFixed(2);
