@@ -104,10 +104,12 @@
             <span class="titulosecundario" style="color:black !important;">Cotizacion</span>
           </div>
           <div class="col-sm-6">
-            <span
-              class="titulosecundario"
-              style="color:red !important;"
-            >No.cotizacion:&nbsp;{{this.numero_cotizacion}}</span>
+            <div align="right">
+              <span
+                class="titulosecundario"
+                style="color:red !important;"
+              >No.cotizacion:&nbsp;{{this.numero_cotizacion}}</span>
+            </div>
           </div>
         </div>
         <v-spacer></v-spacer>
@@ -172,7 +174,7 @@
       </div>
       <div id="example">
         <h6 v-if="boolcerrado">
-          <font color="red">*La venta ya se cerró y se guardo.</font>
+          <font color="red">*La venta se cerró y se guardo.</font>
         </h6>
       </div>
       <div class="row">
@@ -208,9 +210,9 @@
               class="ma-2"
               tile
               style="background-color:#00b686; color:white;"
-              @click="LlenarDatos"
+              @click="RestaurarDatos"
             >
-              <v-icon left>mdi-send</v-icon>xd
+              <v-icon left>mdi-send</v-icon>Resataurar 
             </v-btn>
           </div>
         </div>
@@ -341,7 +343,7 @@ export default {
     return {
       drawer: false,
       boolcerrado: false,
-      numero_cotizacion: "2",
+      numero_cotizacion: 0,
       group: null,
       nombreEmpresa: "",
       EmpresaDireccion: "",
@@ -366,6 +368,22 @@ export default {
       invoice_iva: 0,
       searchnombre: "",
       items: [
+        {
+          producto_id: "",
+          nombre: "",
+          direccion: "",
+          ciudad: "",
+          medida: "",
+          descripcion: "",
+          precio_unitario: "",
+          cantidad: "",
+          importe: "",
+          status: "",
+          costo_flete: "",
+          ganancia: "",
+        },
+      ],
+            itemsR: [
         {
           producto_id: "",
           nombre: "",
@@ -523,7 +541,7 @@ export default {
 
         doc.autoTable(columns, vm.items, {
           margin: { top: 240 },
-          styles: { fillColor: [113, 204, 180],halign: "left", },
+          styles: { fillColor: [113, 204, 180], halign: "left",fontSize: 9, },
           didDrawPage: function (data) {
             // Reseting top margin. The change will be reflected only after print the first page.
             data.settings.margin.top = 40;
@@ -546,26 +564,29 @@ export default {
           doc.autoTable(columns_price, data_price, {
             showHead: "never",
             startY: 40,
-             theme: 'plain',
-            margin: { top: 0, left: width / 2 + 70 },
+            
+            theme: "plain",
+            margin: { top: 0, left: width / 2 + 80 },
             styles: {
               halign: "left",
+              fontSize: 9,
             },
           });
+          doc.setFontSize(9);
           doc.text(40, 55, "CANTIDAD EN LETRAS : ");
-          doc.setFontSize(8);
+          doc.setFontSize(7);
           doc.text(40, 70, vm.cant_letra.toUpperCase());
           var imgpie = new Image();
           imgpie.src = PIE;
-          doc.addImage(imgpie, "PNG", 40,  100, width - 80, 110, {
+          doc.addImage(imgpie, "PNG", 40, 100, width - 80, 110, {
             margin: { bottom: 40 },
           });
           doc.save("Cotizacion_" + this.numero_cotizacion + ".pdf");
-
-
         } else {
           var textWidth =
-            (doc.getStringUnitWidth("SUBTOTAL : " + this.format(vm.invoice_subtotal)) *
+            (doc.getStringUnitWidth(
+              "SUBTOTAL : " + this.format(vm.invoice_subtotal)
+            ) *
               doc.internal.getFontSize()) /
             doc.internal.scaleFactor;
           var columns_price = ["Conceptos", "Total"];
@@ -577,19 +598,21 @@ export default {
           doc.autoTable(columns_price, data_price, {
             showHead: "never",
             startY: finalY,
-             theme: 'plain',
-            margin: { top: 0, left: width / 2 + 70 },
+            theme: "plain",
+            margin: { top: 0, left: width / 2 + 80 },
             styles: {
               halign: "left",
+               fontSize: 9,
             },
           });
           //
           // doc.text((width/2)+40+textWidth, finalY + 20, "SUBTOTAL : " + vm.invoice_subtotal);
           // doc.text((width/2)+40+textWidth, finalY + 35, "IVA 16% :  " + vm.invoice_iva);
           // doc.text((width/2)+40+textWidth, finalY + 50, "TOTAL :    " + vm.invoice_total);
-          doc.text(40, finalY + 35, "CANTIDAD EN LETRAS : ");
-          doc.setFontSize(8);
-          doc.text(40, finalY + 50, vm.cant_letra.toUpperCase());
+          doc.setFontSize(9);
+          doc.text(40, finalY + 55, "CANTIDAD EN LETRAS : ");
+          doc.setFontSize(7);
+          doc.text(40, finalY + 70, vm.cant_letra.toUpperCase());
           var imgpie = new Image();
           imgpie.src = PIE;
           doc.addImage(imgpie, "PNG", 40, finalY + 100, width - 80, 110, {
@@ -606,9 +629,43 @@ export default {
       var textOffset = (doc.internal.pageSize.width - textWidth) / 2;
       return textOffset;
     },
-format(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-},
+    format(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+
+    RestaurarDatos(){
+      for (var i in this.items) {
+
+        API.get("productos/"+this.items[i].producto_id, {
+        headers: {
+          Authorization: "Bearer " + this.token,
+        },
+      }).then((response) => {
+        this.itemsR.push({
+        producto_id: response.data.id,
+        nombre: "",
+        direccion: "",
+        ciudad: "",
+        cantidad: "",
+        medida: response.data.medida,
+        descripcion: response.data.nombre,
+        precio_unitario: response.data.precio_unitario,
+        importe: 0,
+        status: "",
+        costo_flete: "",
+        ganancia: "",
+      });
+
+        /* eslint-disable */
+        console.log(response.data.nombre);
+        // eslint-disable-next-line no-console
+      });
+      
+      }
+ /* eslint-disable */
+        console.log(this.itemsR);
+
+    },
 
     calculateGanancia() {
       var x = 0;
@@ -648,10 +705,11 @@ format(x) {
           Authorization: "Bearer " + this.token,
         },
       }).then((response) => {
-        this.numero_cotizacion = response.data;
+        this.numero_cotizacion = response.data.nocotizacion;
+        this.numero_cotizacion=parseInt(this.numero_cotizacion)+1;
 
         /* eslint-disable */
-        console.log(this.datosProductos);
+       // console.log("ESTE ES EL RESPONSE"+response[0]);
         // eslint-disable-next-line no-console
       });
     },
