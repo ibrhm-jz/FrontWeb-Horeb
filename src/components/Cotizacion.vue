@@ -212,7 +212,7 @@
               style="background-color:#00b686; color:white;"
               @click="RestaurarDatos"
             >
-              <v-icon left>mdi-send</v-icon>Resataurar 
+              <v-icon left>mdi-send</v-icon>Resataurar
             </v-btn>
           </div>
         </div>
@@ -376,14 +376,14 @@ export default {
           medida: "",
           descripcion: "",
           precio_unitario: "",
-          cantidad: "",
+          cantidad: 0,
           importe: "",
           status: "",
           costo_flete: "",
           ganancia: "",
         },
       ],
-            itemsR: [
+      itemsR: [
         {
           producto_id: "",
           nombre: "",
@@ -392,7 +392,7 @@ export default {
           medida: "",
           descripcion: "",
           precio_unitario: "",
-          cantidad: "",
+          cantidad: 0,
           importe: "",
           status: "",
           costo_flete: "",
@@ -440,7 +440,6 @@ export default {
       this.$root.$emit("bv::hide::modal", "modal-prevent-closing", "#btnShow");
       this.calcularImporte();
       // eslint-disable-next-line
-      console.log(this.items);
     },
     calcularImporte() {
       var x = 0;
@@ -451,6 +450,17 @@ export default {
         ).toFixed(2);
         x++;
       }
+    },
+    importex() {
+      for (var i in this.items) {
+        var xd = (
+          parseFloat(this.items[this.invoice_total].cantidad) *
+          parseFloat(this.items[this.invoice_total].precio_unitario)
+        ).toFixed(2);
+        this.$set(this.items[i], "importe", xd);
+      }
+      // eslint-disable-next-line
+      console.log(this.items);
     },
 
     LlenarDatos() {
@@ -496,10 +506,9 @@ export default {
         window.alert("Los datos no estan completos");
       } else {
         var vm = this;
-
         var columns = [
           { title: "Cantidad", dataKey: "cantidad" },
-          { title: "Medidad", dataKey: "medida" },
+          { title: "Unidad", dataKey: "medida" },
           { title: "Descripcion", dataKey: "descripcion" },
           { title: "Precio Unitario", dataKey: "precio_unitario" },
           { title: "Importe", dataKey: "importe" },
@@ -538,10 +547,9 @@ export default {
         // doc.setFontType("bold");
         //  doc.line(20, 20, 60, 20); // horizontal line
         // var imgData = 'data:image/png;base64,'+ Base64.encode('../assets/logo.png');
-
         doc.autoTable(columns, vm.items, {
           margin: { top: 240 },
-          styles: { fillColor: [113, 204, 180], halign: "left",fontSize: 9, },
+          styles: { fillColor: [113, 204, 180], halign: "left", fontSize: 9 },
           didDrawPage: function (data) {
             // Reseting top margin. The change will be reflected only after print the first page.
             data.settings.margin.top = 40;
@@ -564,7 +572,6 @@ export default {
           doc.autoTable(columns_price, data_price, {
             showHead: "never",
             startY: 40,
-            
             theme: "plain",
             margin: { top: 0, left: width / 2 + 80 },
             styles: {
@@ -602,7 +609,7 @@ export default {
             margin: { top: 0, left: width / 2 + 80 },
             styles: {
               halign: "left",
-               fontSize: 9,
+              fontSize: 9,
             },
           });
           //
@@ -633,38 +640,38 @@ export default {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
 
-    RestaurarDatos(){
+    RestaurarDatos() {
+      this.itemsR = [];
       for (var i in this.items) {
+        API.get("productos/" + this.items[i].producto_id, {
+          headers: {
+            Authorization: "Bearer " + this.token,
+          },
+        }).then((response) => {
+          this.itemsR.push({
+            producto_id: response.data.id,
+            nombre: "",
+            direccion: "",
+            ciudad: "",
+            cantidad: parseInt(this.items[i].cantidad),
+            medida: response.data.medida,
+            descripcion: response.data.nombre,
+            precio_unitario: response.data.precio_unitario,
+            importe: 0,
+            status: "",
+            costo_flete: "",
+            ganancia: "",
+          });
 
-        API.get("productos/"+this.items[i].producto_id, {
-        headers: {
-          Authorization: "Bearer " + this.token,
-        },
-      }).then((response) => {
-        this.itemsR.push({
-        producto_id: response.data.id,
-        nombre: "",
-        direccion: "",
-        ciudad: "",
-        cantidad: "",
-        medida: response.data.medida,
-        descripcion: response.data.nombre,
-        precio_unitario: response.data.precio_unitario,
-        importe: 0,
-        status: "",
-        costo_flete: "",
-        ganancia: "",
-      });
-
-        /* eslint-disable */
-        console.log(response.data.nombre);
-        // eslint-disable-next-line no-console
-      });
-      
+          /* eslint-disable */
+          console.log(response.data.nombre);
+          // eslint-disable-next-line no-console
+        });
       }
- /* eslint-disable */
-        console.log(this.itemsR);
-
+      /* eslint-disable */
+      this.items = [];
+      this.items = this.itemsR;
+      //this.calcularImporte();
     },
 
     calculateGanancia() {
@@ -706,10 +713,10 @@ export default {
         },
       }).then((response) => {
         this.numero_cotizacion = response.data.nocotizacion;
-        this.numero_cotizacion=parseInt(this.numero_cotizacion)+1;
+        this.numero_cotizacion = parseInt(this.numero_cotizacion) + 1;
 
         /* eslint-disable */
-       // console.log("ESTE ES EL RESPONSE"+response[0]);
+        // console.log("ESTE ES EL RESPONSE"+response[0]);
         // eslint-disable-next-line no-console
       });
     },
@@ -745,6 +752,7 @@ export default {
 
   mounted() {
     this.items = [];
+
     this.BuscarProducto();
     //console.log("Numeor"+convertir.NumerosALetras(58225))
   },

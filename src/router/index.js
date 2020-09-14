@@ -11,7 +11,7 @@ import Productos from '../components/Productos.vue';
 import Cotizacion from '../components/Cotizacion.vue';
 import Clientes from '../components/Clientes.vue';
 import Hello from '../components/Hello.vue';
-
+import Start from '../components/Start.vue';
 export default new Router({
     mode: 'history',
     routes: [{
@@ -60,6 +60,11 @@ export default new Router({
             path: '/clientes',
             name: '/clientes',
             component: Clientes
+        },
+        {
+            path: '/start',
+            name: '/start',
+            component: Start
 
         },
 
