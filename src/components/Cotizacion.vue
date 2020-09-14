@@ -333,7 +333,7 @@ export default {
   created() {
     this.token = localStorage.getItem("userToken");
     if (this.token == null || this.token == "") {
-      this.$router.push("/");
+      this.$router.push("/login");
     } else {
       this.getCotizacion();
     }

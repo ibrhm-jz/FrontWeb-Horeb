@@ -391,7 +391,7 @@ export default {
     },
         logout(){
       localStorage.removeItem('userToken')
-      this.$router.push("/")
+      this.$router.push("/login")
     },
     resetModal() {
       this.name = "";

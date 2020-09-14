@@ -1,37 +1,41 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarTogglerDemo01"
-        aria-controls="navbarTogglerDemo01"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="#">Hidden brand</a>
+        <a class="navbar-brand" href="#">
+          <img src="../assets/logo-nuevo.png" alt width="180" height="60" />
+        </a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item active">
             <a class="nav-link" href="#">
-              Home
+              Inicio
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="#">Productos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
+            <a class="nav-link" href="#">Servicios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Nosotros</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Iniciar Sesion</button>
+          <router-link link to="/login">
+            <button class="btn btn-light" type="submit">Iniciar Sesion <b-icon icon="lock-fill" aria-hidden="true"></b-icon></button>
+          </router-link>
         </form>
       </div>
     </nav>
   </div>
 </template>
+<style  scoped>
+.btn-green {
+  color: #333;
+  background-color: #ffffff !important;
+  border-color: #00b686 !important;
+  padding: 8px;
+}
+</style>
