@@ -5,15 +5,16 @@
         <v-container class="margen">
           <v-row align="center" justify="center">
             <v-col cols="12" sm="8" md="6">
+            <div align ="center">  <img src="../assets/logo-nuevo.png" alt width="200" height="75" /></div>
               <div align="left">
-                <font color="black" size="8">Inicio</font>
+                <font color="black" size="6">Inicio</font>
               </div>
               <v-spacer></v-spacer>
               <div align="left">
                 <font color="grey">Por favor inicia sesión para continuar</font>
               </div>
               <v-spacer></v-spacer>
-              <v-card class="elevation-12">
+              <v-card class="elevation-4">
                 <v-toolbar color="#00b686" dark flat>
                   <v-toolbar-title>Inicio de Sesion</v-toolbar-title>
                   <v-spacer></v-spacer>
@@ -43,16 +44,13 @@
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="#00b686" @click="Login">
-                    <font color="white">Login</font>
-                  </v-btn>
+                      <b-button class="btn btn-green" type="submit" @click="Login">Iniciar Sesion </b-button>
+                  
                 </v-card-actions>
               </v-card>
             </v-col>
           </v-row>
         </v-container>
-
-        <div align="center">¿No tienes una cuenta? Contacta con el administrador.</div>
       </v-main>
     </v-app>
   </div>
@@ -107,7 +105,7 @@ export default {
 }
 .margen {
   margin-bottom: 2%;
-  margin-top: 5%;
+  margin-top: 2%;
 }
 
 #header-content {
@@ -121,6 +119,10 @@ export default {
   /* IMPORTANTE */
   text-align: center;
 }
-.alinear-centro {
+.btn-green {
+  color: #ffffff;
+  background-color: #00b686 !important;
+  border-color: #00b686 !important;
+  padding: 8px;
 }
 </style>

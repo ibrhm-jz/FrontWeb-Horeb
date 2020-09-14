@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <a class="navbar-brand" href="#">
-          <img src="../assets/logo-nuevo.png" alt width="180" height="60" />
+          <img src="../assets/logo-nuevo.png" alt width="160" height="55" />
         </a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item active">
@@ -33,8 +33,8 @@
 </template>
 <style  scoped>
 .btn-green {
-  color: #333;
-  background-color: #ffffff !important;
+  color: #ffffff;
+  background-color: #00b686 !important;
   border-color: #00b686 !important;
   padding: 8px;
 }

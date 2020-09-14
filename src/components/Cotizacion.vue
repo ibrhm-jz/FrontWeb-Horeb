@@ -156,7 +156,7 @@
             <td v-text="invoice_product.descripcion"></td>
             <td v-text="invoice_product.precio_unitario"></td>
             <td>
-              <v-text-field style="width:50px;" append-icon="mdi-" placeholder="$" required></v-text-field>
+              <v-text-field style="width:70px;"  placeholder="%" required v-model="newPorcentaje[k]" @input="importex(newPorcentaje[k])"></v-text-field>
             </td>
             <td v-text="invoice_product.importe"></td>
           </tr>
@@ -336,6 +336,7 @@ export default {
       this.$router.push("/login");
     } else {
       this.getCotizacion();
+       this.newPorcentaje = [];
     }
   },
   name: "Cotizacion",
@@ -451,17 +452,7 @@ export default {
         x++;
       }
     },
-    importex() {
-      for (var i in this.items) {
-        var xd = (
-          parseFloat(this.items[this.invoice_total].cantidad) *
-          parseFloat(this.items[this.invoice_total].precio_unitario)
-        ).toFixed(2);
-        this.$set(this.items[i], "importe", xd);
-      }
-      // eslint-disable-next-line
-      console.log(this.items);
-    },
+
 
     LlenarDatos() {
       for (var i in this.items) {
@@ -757,6 +748,10 @@ export default {
     //console.log("Numeor"+convertir.NumerosALetras(58225))
   },
   computed: {
+       importex() {
+ 
+      console.log("FUNCIONO");
+    },
     cantletra() {
       var cantidad;
       cantidad = convertir.NumerosALetras(this.invoice_total);
@@ -777,6 +772,7 @@ export default {
         return subtotal;
       }, 0);
     },
+    
   },
 };
 </script>

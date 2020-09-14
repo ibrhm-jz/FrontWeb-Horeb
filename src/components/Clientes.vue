@@ -19,7 +19,6 @@
     <b-sidebar v-model="drawer" shadow bg-variant="white">
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title class="title">Application</v-list-item-title>
           <v-list-item-subtitle>
             <em>tuberia_horeb@hotmail.com</em>
           </v-list-item-subtitle>
@@ -110,8 +109,7 @@
       <div class="input-group md-form form-sm form-1 pl-0">
         <div class="input-group-prepend">
           <span>
-            <!-- <b-button squared variant="success" @click="BuscarClientes" >Buscar</b-button> -->
-
+ 
             <v-btn
               class="ma-2"
               tile
