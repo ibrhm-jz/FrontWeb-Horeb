@@ -748,7 +748,21 @@ export default {
     //console.log("Numeor"+convertir.NumerosALetras(58225))
   },
   computed: {
-       importex() {
+       importex(porcentaje) {
+      var x = 0;
+      while (x <= this.items.length) {
+        this.items[x].precio_unitario = (
+          parseFloat(this.items[x].precio_unitario) *
+            (parseFloat(porcentaje) / 100) +
+          parseFloat(this.items[x].precio_unitario)
+        ).toFixed(2);
+
+        this.items[x].importe = (
+          parseFloat(this.items[x].cantidad) *
+          parseFloat(this.items[x].precio_unitario)
+        ).toFixed(2);
+        x++;
+      }
  
       console.log("FUNCIONO");
     },
