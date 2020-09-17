@@ -1,37 +1,37 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="#">
-          <img src="../assets/logo-nuevo.png" alt width="160" height="55" />
-        </a>
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">
-              Inicio
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Productos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Servicios</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Nosotros</a>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
+
+  <div>
+  <b-navbar toggleable="lg" type="dark" variant="light" fixed="top">
+    <b-navbar-brand href="#"><img src="../assets/logo-nuevo.png" alt width="160" height="55" /></b-navbar-brand>
+
+    <b-collapse id="nav-collapse" is-nav>
+      <b-navbar-nav>
+        <b-nav-item href="#" color=blue><font color="black">Home</font></b-nav-item>
+       <b-nav-item href="#" color=blue ><font color="black">Productos</font></b-nav-item>
+       <b-nav-item href="#" color=blue><font color="black">Servicios</font></b-nav-item>
+       <b-nav-item href="#" color=blue><font color="black">Nosotros</font></b-nav-item>
+      </b-navbar-nav>
+
+      <!-- Right aligned nav items -->
+      <b-navbar-nav class="ml-auto">
+
+
+      
           <router-link link to="/login">
-            <button class="btn btn-light" type="submit">
+            <button class="btn btn-light" type="submit" right>
               Iniciar Sesion
               <b-icon icon="lock-fill" aria-hidden="true"></b-icon>
             </button>
           </router-link>
-        </form>
-      </div>
-    </nav>
+       
+      </b-navbar-nav>
+    </b-collapse>
+
+  </b-navbar>
+</div>
+
+
     <div>
       <v-carousel :show-arrows="false" cycle="true">
         <v-carousel-item
@@ -51,10 +51,10 @@
         <div class="col-sm-4">
           <div>
             <b-card
-              title="Card Title"
+              title="Alcantarillado"
               :img-src="url1"
               img-alt="Image"
-              img-height="200"
+              img-height="300"
               img-top
               tag="article"
               style="max-width: 20rem; "
@@ -62,7 +62,7 @@
             >
               <b-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</b-card-text>
 
-              <b-button href="#" variant="primary">Go somewhere</b-button>
+              <b-button href="#" class="btn-green">Conocer mas</b-button>
             </b-card>
           </div>
         </div>
@@ -70,10 +70,10 @@
         <div class="col-sm-4">
           <div>
             <b-card
-              title="Card Title"
+              title="Pasto sintetico"
               :img-src="url2"
               img-alt="Image"
-                            img-height="200"
+                            img-height="300"
               img-top
               tag="article"
               style="max-width: 20rem;"
@@ -82,7 +82,7 @@
             
               <b-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</b-card-text>
 
-              <b-button href="#" variant="primary">Go somewhere</b-button>
+              <b-button href="#" class="btn-green">Conocer mas</b-button>
             </b-card>
           </div>
         </div>
@@ -90,10 +90,11 @@
         <div class="col-sm-4">
           <div>
             <b-card
-              title="Card Title"
-              img-src="https://picsum.photos/600/300/?image=25"
+              title="Valvulas"
+             :img-src="url3"
               img-alt="Image"
-              img-height="200"
+              
+              img-height="300"
               img-top
               tag="article"
               style="max-width: 20rem;"
@@ -101,11 +102,78 @@
             >
               <b-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</b-card-text>
 
-              <b-button href="#" variant="primary">Go somewhere</b-button>
+              <b-button href="#" class="btn-green">Conocer mas</b-button>
             </b-card>
           </div>
         </div>
       </div>
+    </div>
+    <br>
+        <div class="contenedor" >
+      <div align="center" class="row">
+        <div class="col-sm-4">
+          <div>
+            <b-card
+              title="Geomembrana"
+              :img-src="url4"
+              img-alt="Image"
+              img-height="300"
+              img-top
+              tag="article"
+              style="max-width: 20rem; "
+              class="mb-2"
+            >
+              <b-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</b-card-text>
+
+              <b-button href="#" class="btn-green" >Conocer mas</b-button>
+            </b-card>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div>
+            <b-card
+              title="Tuberia potable"
+              :img-src="url5"
+              img-alt="Image"
+                            img-height="300"
+              img-top
+              tag="article"
+              style="max-width: 20rem;"
+              class="mb-2"
+            >
+            
+              <b-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</b-card-text>
+
+              <b-button href="#" class="btn-green">Conocer mas</b-button>
+            </b-card>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div>
+            <b-card
+              title="Plantas de tratamiento"
+             :img-src="url6"
+              img-alt="Image"
+              
+              img-height="300"
+              img-top
+              tag="article"
+              style="max-width: 20rem;"
+              class="mb-2"
+            >
+              <b-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</b-card-text>
+
+              <b-button href="#" class="btn-green">Conocer mas</b-button>
+            </b-card>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="contenedor-play">
+
     </div>
   </div>
 </template>
@@ -134,6 +202,10 @@ export default {
       ],
       url1: require("../assets/1-p.png"),
       url2: require("../assets/pasto.jpg"),
+      url3: require("../assets/2-p.png"),
+      url4: require("../assets/3-p.png"),
+      url5: require("../assets/4-p.png"),
+      url6: require("../assets/5-p.jpg"),
     };
   },
 };
@@ -148,8 +220,11 @@ export default {
   padding: 8px;
 }
 .contenedor {
-  width: 90%;
-  margin-left: 5%;
-  margin-right: 5%;
+  width: 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+.contenedor-play{
+
 }
 </style>
