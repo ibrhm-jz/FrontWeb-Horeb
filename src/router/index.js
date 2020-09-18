@@ -11,6 +11,7 @@ import Productos from '../components/Productos.vue';
 import Cotizacion from '../components/Cotizacion.vue';
 import Clientes from '../components/Clientes.vue';
 import Start from '../components/Start.vue';
+import Productosweb from '../components/productos-web.vue';
 export default new Router({
     mode: 'history',
     routes: [{
@@ -53,6 +54,12 @@ export default new Router({
             path: '/clientes',
             name: '/clientes',
             component: Clientes
+        },
+        {
+            path: '/productos-web',
+            name: '/productos-web',
+            component: Productosweb
+
         },
         {
             path: '/',

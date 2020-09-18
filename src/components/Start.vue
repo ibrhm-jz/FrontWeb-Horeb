@@ -33,7 +33,7 @@
         </b-collapse>
       </b-navbar>
     </div>
-
+<br><br>
     <div>
       <v-carousel :show-arrows="false" cycle="true">
         <v-carousel-item
@@ -137,8 +137,6 @@
     <br />
     <br />
     <div class="contenedor-middle">
-      <br />
-
       <div align="left" class="contenedor">
         <div class="row">
           <div class="footer" style="width:25%;">
@@ -200,12 +198,22 @@
             <br>
             Contactanos, y podremos ayudarte.
             <br /> <br />
-              <b-button class="btn-green">Conoce mas</b-button>
+                 <b-button
+      :class="visible ? null : 'collapsed'"
+      :aria-expanded="visible ? 'true' : 'false'"
+      aria-controls="collapse-4"
+      @click="visible = !visible"
+    >
+     Contactanos
+    </b-button>
           </div>
         </div>
-        <br />
       </div>
-    <br />
+     <div class="contenedor">
+     <b-collapse id="collapse-4" v-model="visible" class="mt-2">
+      <b-card>I should start open!</b-card>
+    </b-collapse>
+    </div>
     <br />
     <div class="contenedor-play">
       <br />
@@ -258,6 +266,7 @@ export default {
     return {
       modalShow: false,
       show: false,
+      visible: true,
       items: [
         {
           src: require("../assets/tapas.jpg"),
