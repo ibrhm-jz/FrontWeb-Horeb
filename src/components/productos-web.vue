@@ -11,6 +11,7 @@
             <b-nav-item href="#" color="blue">
               <font color="black">Inicio</font>
             </b-nav-item>
+            
             <b-nav-item href="#" color="blue">
               <font color="black">Productos</font>
             </b-nav-item>
@@ -441,6 +442,87 @@
         </v-card>
       </div>
     </div>
+    <br/>
+    
+        <div class="row">
+      <div>
+        <v-card max-width="344" class="mx-auto card-home" style="margin-right:20px!important; ">
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title class="headline">PIEZAS ESPECIALES EN PVC</v-list-item-title>
+              <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-img :src="url16" height="194"></v-img>
+
+          <v-card-text>Visit ten places on our planet that are undergoing the biggest changes today.</v-card-text>
+
+          <v-card-actions>
+            <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
+            <v-spacer></v-spacer>
+            <v-btn icon>
+              <v-icon>mdi-heart</v-icon>
+            </v-btn>
+
+          </v-card-actions>
+        </v-card>
+      </div>
+
+      <div>
+        <v-card max-width="344" class="mx-auto" style="margin-right:20px!important;">
+          <v-list-item>
+         
+            <v-list-item-content>
+              <v-list-item-title class="headline">POSTES Y REGISTROS DE CONCRETO MURETES PARA
+BAJA TENSION ELECTRICA.</v-list-item-title>
+              <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-img :src="url17" height="194"></v-img>
+
+          <v-card-text>Visit ten places on our planet that are undergoing the biggest changes today.</v-card-text>
+
+          <v-card-actions>
+            <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
+            <v-spacer></v-spacer>
+            <v-btn icon>
+              <v-icon>mdi-heart</v-icon>
+            </v-btn>
+
+          </v-card-actions>
+        </v-card>
+      </div>
+
+            <div>
+        <v-card max-width="344" class="mx-auto">
+          <v-list-item>
+         
+            <v-list-item-content>
+              <v-list-item-title class="headline">LAVADEROS
+
+</v-list-item-title>
+              <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-img :src="url18" height="194"></v-img>
+
+          <v-card-text>Visit ten places on our planet that are undergoing the biggest changes today.</v-card-text>
+
+          <v-card-actions>
+            <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
+            <v-spacer></v-spacer>
+            <v-btn icon>
+              <v-icon>mdi-heart</v-icon>
+            </v-btn>
+
+          </v-card-actions>
+        </v-card>
+      </div>
+    </div>
+
 
 
 
@@ -465,8 +547,11 @@ export default {
       url11: require("../assets-products/gaviones.jpg"),
       url12: require("../assets-products/geotextil.png"),
       url13: require("../assets-products/valvulas.jpg"),
-      url14: require("../assets-products/gaviones.jpg"),
-      url15: require("../assets-products/geotextil.png"),
+      url14: require("../assets-products/alcantarilla-metalica.jpg"),
+      url15: require("../assets-products/tinaco.jpg"),
+      url16: require("../assets-products/piezas-especiales.jpeg"),
+      url17: require("../assets-products/postes.jpg"),
+      url18: require("../assets-products/lavaderos.jpg"),
 
 
       pensative: require("../assets/pensative.png"),
@@ -505,5 +590,14 @@ export default {
   background-color: #c6c6c6;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: white;
+}
+vr {
+       display: block;
+       width:10px;
+       background-color:#000;
+       position:absolute;
+       top:0;
+       bottom:0;
+       left:150px;
 }
 </style>
