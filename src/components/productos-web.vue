@@ -522,12 +522,51 @@ BAJA TENSION ELECTRICA.</v-list-item-title>
         </v-card>
       </div>
     </div>
-
-
-
-
   </div>
+    <br />
+  
+          <div class="contenedor-play">
+      <br />
+      <br />
+      <h4 style="margin-left:13%">
+        <b-icon icon="arrow-right-short"></b-icon>Contactanos
+      </h4>
+      <div align="center" class="contenedorfooter">
+        <div class="row">
+          <div class="footer" style="width:25%;">
+            <br />
+            <h5>Direccion:</h5>
+            <hr color="white" />2a. Ote.Nte #682-B entre 5a y 6a norte, Col.Centro Tuxtla Gutiérrez,Chis.
+            <br />
+            <br />
+          </div>
+
+          <div class="footer" style="width:25%; ">
+            <br />
+            <h5>Datos de contacto:</h5>
+            <hr color="white" />Ofic.(961) 118 85 80 / Cel.961 196 30 20
+            <v-spacer></v-spacer>Tuberia_horeb@hotmail.com
+            <br />
+            <br />
+          </div>
+
+          <div class="footer" style="width:25%; ">
+            <br />
+            <h5>Redes Sociales:</h5>
+            <hr color="white" />2a. Ote.Nte #682-B entre 5a y 6a norte, Col.Centro Tuxtla Gutiérrez,Chis.
+            <br />
+            <br />
+          </div>
+        </div>
+        <br />
+        <font size="2">Copyright 2020 Suministros en Tuberia Horeb, S.A. de C.V.</font>
+        <br />
+        <br />
+      </div>
+    </div>
+  
   </div>
+  
 </template>
 
 <script>
@@ -571,6 +610,10 @@ export default {
   width: 100%;
   
   margin: 1em 10%!important;
+
+}
+.contenedorfooter {
+  width: 100%;
 
 }
 .contenedor-play {

@@ -218,59 +218,27 @@
     v-model="valid"
     lazy-validation
   >
-    <v-text-field
-      v-model="name"
-      :counter="10"
-      :rules="nameRules"
-      label="Name"
-      required
-    ></v-text-field>
-
-    <v-text-field
+      <v-text-field
       v-model="email"
       :rules="emailRules"
       label="E-mail"
       required
     ></v-text-field>
 
-    <v-select
-      v-model="select"
-      :items="items"
-      :rules="[v => !!v || 'Item is required']"
-      label="Item"
+    <v-text-field
+      v-model="name"
+      label="Nombre"
       required
-    ></v-select>
+    ></v-text-field>
 
-    <v-checkbox
-      v-model="checkbox"
-      :rules="[v => !!v || 'You must agree to continue!']"
-      label="Do you agree?"
+        <v-text-field
+      v-model="asunto"
+      label="Asunto"
       required
-    ></v-checkbox>
+    ></v-text-field>
 
-    <v-btn
-      :disabled="!valid"
-      color="success"
-      class="mr-4"
-      @click="validate"
-    >
-      Validate
-    </v-btn>
+   <b-button class="btn-green" @click="sendEmail">Enviar Email</b-button>
 
-    <v-btn
-      color="error"
-      class="mr-4"
-      @click="reset"
-    >
-      Reset Form
-    </v-btn>
-
-    <v-btn
-      color="warning"
-      @click="resetValidation"
-    >
-      Reset Validation
-    </v-btn>
   </v-form></b-card>
     </b-collapse>
     </div>
@@ -321,12 +289,16 @@
   </div>
 </template>
 <script>
+import { API } from "../Servicios/axios";
 export default {
   data() {
     return {
       modalShow: false,
       show: false,
       visible: false,
+      name:"",
+      email:"",
+      asunto:"",
       items: [
         {
           src: require("../assets/tapas.jpg"),
@@ -357,6 +329,32 @@ export default {
       pensative: require("../assets/pensative.png"),
     };
   },
+  methods:{
+        sendEmail() {
+      const data = {
+        correo: this.email,
+        mensaje: this.asunto,
+        nombre: this.name,
+        
+      };
+      API.post("email", data)
+        .then((res) => {
+          this.email="";
+          this.asunto="";
+          this.name="";
+           
+          window.alert("El email se ha enviado");
+             // eslint-disable-next-line
+          console.log(res.data);
+         
+        })
+        .catch((error) => {
+            // eslint-disable-next-line
+          console.error(error);
+        });
+    },
+
+  }
 };
 </script>>
 
