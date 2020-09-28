@@ -49,54 +49,101 @@
     </div>
     <br />
     <div class="contenedor">
-      <v-card color="basil">
-        <v-card-title class="text-center justify-center py-6">
-          <h5 class="font-weight-bold display-5 basil--text">
-            Suministro e Instalacion de Cercado Perimetral
-          </h5>
-        </v-card-title>
+<div>
+      <b-row>
+          <b-col><div align="center">Enmallado Perimetral</div>
+          <br/>
+          Contamos con el personal, para suministrar e instalar pasto cintetico</b-col>
+          <b-col><div align="right"><v-img src="../assets-services/s1.png" width="500"
+          
+          ></v-img></div></b-col>
+        </b-row>
+  <v-row>
+    <v-col
+      cols="6"
+      sm="4"
+    >
+      <v-img
+       :src="url1"
+           gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
+        max-width="400"
+          height="150"
+      ></v-img>
+    </v-col>
 
-        <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
-          <v-tab v-for="item in items" :key="item">
-            <v-icon>mdi-image</v-icon>
-          </v-tab>
-        </v-tabs>
+    <v-col
+      cols="6"
+      sm="4"
+    >
+      <v-img  :src="url2"
+        gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
+        max-width="400"
+          height="150">
+      </v-img>
+    </v-col>
 
-        <v-tabs-items v-model="tab">
-          <v-tab-item v-for="(item, i) in items" :key="i">
-            <v-card color="basil" flat>
-              <div align="center">
-                <v-img :src="images[i]" aspect-ratio="2" width="60%"></v-img>
-              </div>
-            </v-card>
-          </v-tab-item>
-        </v-tabs-items>
-      </v-card>
-      <br />
+    <v-col
+      cols="6"
+      sm="4"
+    >
+      <v-img :src="url3"
+           gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.2)"
+        max-width="400"
+        height="150">
+      </v-img>
+    </v-col>
+  </v-row>
+</div>
 
-      <v-card color="basil">
-        <v-card-title class="text-center justify-center py-6">
-          <h5 class="font-weight-bold display-5 basil--text">
-            Suministro e Instalacion de Concertina
-          </h5>
-        </v-card-title>
 
-        <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
-          <v-tab v-for="item in items" :key="item">
-            <v-icon>mdi-image</v-icon>
-          </v-tab>
-        </v-tabs>
+<br/>
+<div>
+      <b-row>
+          <b-col>
+          <div align="left"><v-img src="../assets-services/s1.png" width="500"
+          
+          ></v-img></div>
+         
+          <br/>
+          </b-col>
+          <b-col><div align="lefy"> <div align="center">Enmallado Perimetral</div></div></b-col>
+        </b-row>
+  <v-row>
+    <v-col
+      cols="6"
+      sm="4"
+    >
+      <v-img
+       :src="url1"
+           gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
+        max-width="400"
+          height="150"
+      ></v-img>
+    </v-col>
 
-        <v-tabs-items v-model="tab">
-          <v-tab-item v-for="(item, i) in items" :key="i">
-            <v-card color="basil" flat>
-              <div align="center">
-                <v-img :src="images[i]" aspect-ratio="2" width="60%"></v-img>
-              </div>
-            </v-card>
-          </v-tab-item>
-        </v-tabs-items>
-      </v-card>
+    <v-col
+      cols="6"
+      sm="4"
+    >
+      <v-img  :src="url2"
+        gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
+        max-width="400"
+          height="150">
+      </v-img>
+    </v-col>
+
+    <v-col
+      cols="6"
+      sm="4"
+    >
+      <v-img :src="url3"
+           gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.2)"
+        max-width="400"
+        height="150">
+      </v-img>
+    </v-col>
+  </v-row>
+</div>
     </div>
     <br />
     <v-spacer></v-spacer>
@@ -139,33 +186,15 @@
 export default {
   data() {
     return {
-      tab: null,
-      items: ["Appetizers", "Entrees", "Deserts"],
-      text:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      images: [
+     images: [
         require("../assets-products/tuberia-hidraulica.jpg"),
         require("../assets-products/tuberia-polietileno.jpg"),
       ],
       icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
-      url1: require("../assets-products/tuberia-hidraulica.jpg"),
-      url2: require("../assets-products/tuberia-polietileno.jpg"),
-      url3: require("../assets-products/tuberia-conduit.jpg"),
-      url4: require("../assets-products/tuberia-alcantarillada.png"),
-      url5: require("../assets-products/tuberia-galvanizada.jpg"),
-      url6: require("../assets-products/tuberia-acero-soldable.jpg"),
-      url7: require("../assets-products/tuberia-canastilla.png"),
-      url8: require("../assets-products/brocales.png"),
-      url9: require("../assets-products/brocales.png"),
-      url10: require("../assets-products/valvulas.jpg"),
-      url11: require("../assets-products/gaviones.jpg"),
-      url12: require("../assets-products/geotextil.png"),
-      url13: require("../assets-products/valvulas.jpg"),
-      url14: require("../assets-products/alcantarilla-metalica.jpg"),
-      url15: require("../assets-products/tinaco.jpg"),
-      url16: require("../assets-products/piezas-especiales.jpeg"),
-      url17: require("../assets-products/postes.jpg"),
-      url18: require("../assets-products/lavaderos.jpg"),
+      url1: require("../assets-services/pasto-1.jpg"),
+      url2: require("../assets-services/pasto-2.jpg"),
+      url3: require("../assets-services/pasto-3.jpg"),
+      
     };
   },
 };

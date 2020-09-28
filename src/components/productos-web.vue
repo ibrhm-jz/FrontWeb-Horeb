@@ -531,45 +531,38 @@ BAJA TENSION ELECTRICA.</v-list-item-title>
   </div>
     <br />
   
-          <div class="contenedor-play">
-      <br />
-      <br />
-      <h4 style="margin-left:13%">
-        <b-icon icon="arrow-right-short"></b-icon>Contactanos
-      </h4>
-      <div align="center" class="contenedorfooter">
-        <div class="row">
-          <div class="footer" style="width:25%;">
+             <v-footer dark padless>
+      <v-card
+        class="flex"
+        flat
+        tile
+        style="background-color: #00b686 !important"
+      >
+        <v-card-title>
+          <font face="Segoe UI" size="2">
+            <v-icon size="20px"> mdi-home </v-icon> &nbsp;Direccion: 2a. Ote.Nte
+            #682-B entre 5a y 6a norte, Col.Centro Tuxtla Gutiérrez,Chis.
             <br />
-            <h5>Direccion:</h5>
-            <hr color="white" />2a. Ote.Nte #682-B entre 5a y 6a norte, Col.Centro Tuxtla Gutiérrez,Chis.
-            <br />
-            <br />
-          </div>
+            <v-icon size="20px"> mdi-phone </v-icon> &nbsp;Tel: Ofic.(961) 118
+            85 80 / Cel.961 196 30 20 &nbsp;&nbsp;&nbsp; Email:
+            Tuberia_horeb@hotmail.com</font
+          >
+          <v-spacer></v-spacer>
 
-          <div class="footer" style="width:25%; ">
-            <br />
-            <h5>Datos de contacto:</h5>
-            <hr color="white" />Ofic.(961) 118 85 80 / Cel.961 196 30 20
-            <v-spacer></v-spacer>Tuberia_horeb@hotmail.com
-            <br />
-            <br />
-          </div>
+          <v-btn v-for="icon in icons" :key="icon" class="mx-4" dark icon>
+            <v-icon size="24px">
+              {{ icon }}
+            </v-icon>
+          </v-btn>
+        </v-card-title>
 
-          <div class="footer" style="width:25%; ">
-            <br />
-            <h5>Redes Sociales:</h5>
-            <hr color="white" />2a. Ote.Nte #682-B entre 5a y 6a norte, Col.Centro Tuxtla Gutiérrez,Chis.
-            <br />
-            <br />
-          </div>
-        </div>
-        <br />
-        <font size="2">Copyright 2020 Suministros en Tuberia Horeb, S.A. de C.V.</font>
-        <br />
-        <br />
-      </div>
-    </div>
+        <v-card-text class="py-2 white--text text-center">
+          <strong>Suministros en Tuberia Horeb S.A de C.V</strong>-{{
+            new Date().getFullYear()
+          }}
+        </v-card-text>
+      </v-card>
+    </v-footer>
   
   </div>
   
@@ -579,6 +572,7 @@ BAJA TENSION ELECTRICA.</v-list-item-title>
 export default {
   data() {
     return {
+      icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
       url1: require("../assets-products/tuberia-hidraulica.jpg"),
       url2: require("../assets-products/tuberia-polietileno.jpg"),
       url3: require("../assets-products/tuberia-conduit.jpg"),
