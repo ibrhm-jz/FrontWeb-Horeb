@@ -1,6 +1,6 @@
 <template>
+  <div>
     <div>
-        <div>
       <b-navbar toggleable="lg" type="dark" variant="light" fixed="top">
         <b-navbar-brand href="#">
           <img src="../assets/logo-nuevo.png" alt width="160" height="55" />
@@ -9,17 +9,17 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
             <b-nav-item href="#" color="blue">
-              <font color="black">Inicio    |</font>
+              <font color="black">Inicio <font color="grey"> |</font></font>
             </b-nav-item>
-            
+
             <b-nav-item href="#" color="blue">
-              <font color="black">Productos |</font>
-            </b-nav-item>
-            <b-nav-item href="#" color="blue">
-              <font color="black">Servicios |</font>
+              <font color="black">Productos <font color="grey"> |</font></font>
             </b-nav-item>
             <b-nav-item href="#" color="blue">
-              <font color="black">Nosotros  |</font>
+              <font color="black">Servicios <font color="grey"> |</font></font>
+            </b-nav-item>
+            <b-nav-item href="#" color="blue">
+              <font color="black">Nosotros <font color="grey"> |</font></font>
             </b-nav-item>
           </b-navbar-nav>
           <!-- Right aligned nav items -->
@@ -40,95 +40,114 @@
     <br />
     <br />
     <br />
-    ¿Qué servicios ofrecemos a nuestros clientes?
+
+    <div align="center">
+      <b>
+        <font color="black" size="5">Nuestros</font>
+        <font color="#00b686" size="5">&nbsp;Servicios</font>
+      </b>
+    </div>
+    <br />
     <div class="contenedor">
-  <v-card class="d-inline-block mx-auto">
-    <v-container>
-      <v-row justify="space-between">
+      <v-card color="basil">
+        <v-card-title class="text-center justify-center py-6">
+          <h5 class="font-weight-bold display-5 basil--text">
+            Suministro e Instalacion de Cercado Perimetral
+          </h5>
+        </v-card-title>
 
-        <v-col
-          cols="auto"
-          class="text-center pl-0"
-        >
-          <v-row
-            class="flex-column ma-0 fill-height"
-            justify="center"
+        <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
+          <v-tab v-for="item in items" :key="item">
+            <v-icon>mdi-image</v-icon>
+          </v-tab>
+        </v-tabs>
+
+        <v-tabs-items v-model="tab">
+          <v-tab-item v-for="(item, i) in items" :key="i">
+            <v-card color="basil" flat>
+              <div align="center">
+                <v-img :src="images[i]" aspect-ratio="2" width="60%"></v-img>
+              </div>
+            </v-card>
+          </v-tab-item>
+        </v-tabs-items>
+      </v-card>
+      <br />
+
+      <v-card color="basil">
+        <v-card-title class="text-center justify-center py-6">
+          <h5 class="font-weight-bold display-5 basil--text">
+            Suministro e Instalacion de Concertina
+          </h5>
+        </v-card-title>
+
+        <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
+          <v-tab v-for="item in items" :key="item">
+            <v-icon>mdi-image</v-icon>
+          </v-tab>
+        </v-tabs>
+
+        <v-tabs-items v-model="tab">
+          <v-tab-item v-for="(item, i) in items" :key="i">
+            <v-card color="basil" flat>
+              <div align="center">
+                <v-img :src="images[i]" aspect-ratio="2" width="60%"></v-img>
+              </div>
+            </v-card>
+          </v-tab-item>
+        </v-tabs-items>
+      </v-card>
+    </div>
+    <br />
+    <v-spacer></v-spacer>
+    <v-footer dark padless>
+      <v-card
+        class="flex"
+        flat
+        tile
+        style="background-color: #00b686 !important"
+      >
+        <v-card-title>
+          <font face="Segoe UI" size="2">
+            <v-icon size="20px"> mdi-home </v-icon> &nbsp;Direccion: 2a. Ote.Nte
+            #682-B entre 5a y 6a norte, Col.Centro Tuxtla Gutiérrez,Chis.
+            <br />
+            <v-icon size="20px"> mdi-phone </v-icon> &nbsp;Tel: Ofic.(961) 118
+            85 80 / Cel.961 196 30 20 &nbsp;&nbsp;&nbsp; Email:
+            Tuberia_horeb@hotmail.com</font
           >
-            <v-col class="px-4">
-             <v-card-text> <p class="display-4 text--primary">
-        Cercado Perimetral
-      </p></v-card-text>
-            </v-col>
+          <v-spacer></v-spacer>
 
-            <v-col class="px-4">
-              <v-btn icon>
-                <v-icon>mdi-share-variant</v-icon>
-              </v-btn>
-            </v-col>
-          </v-row>
-        </v-col>
-                <v-col cols="auto">
-          <v-img
-            height="400"
-            width="400"
-            src="https://cdn.vuetifyjs.com/images/cards/store.jpg"
-          ></v-img>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-card>
+          <v-btn v-for="icon in icons" :key="icon" class="mx-4" dark icon>
+            <v-icon size="24px">
+              {{ icon }}
+            </v-icon>
+          </v-btn>
+        </v-card-title>
+
+        <v-card-text class="py-2 white--text text-center">
+          <strong>Suministros en Tuberia Horeb S.A de C.V</strong>-{{
+            new Date().getFullYear()
+          }}
+        </v-card-text>
+      </v-card>
+    </v-footer>
   </div>
-  <v-spacer></v-spacer>
-          <div class="contenedor-play">
-      <br />
-      <br />
-      <h4 style="margin-left:13%">
-        <b-icon icon="arrow-right-short"></b-icon>Contactanos
-      </h4>
-      <div align="center" class="contenedor">
-        <div class="row">
-          <div class="footer" style="width:25%;">
-            <br />
-            <h5>Direccion:</h5>
-            <hr color="white" />2a. Ote.Nte #682-B entre 5a y 6a norte, Col.Centro Tuxtla Gutiérrez,Chis.
-            <br />
-            <br />
-          </div>
-
-          <div class="footer" style="width:25%; ">
-            <br />
-            <h5>Datos de contacto:</h5>
-            <hr color="white" />Ofic.(961) 118 85 80 / Cel.961 196 30 20
-            <v-spacer></v-spacer>Tuberia_horeb@hotmail.com
-            <br />
-            <br />
-          </div>
-
-          <div class="footer" style="width:25%; ">
-            <br />
-            <h5>Redes Sociales:</h5>
-            <hr color="white" />2a. Ote.Nte #682-B entre 5a y 6a norte, Col.Centro Tuxtla Gutiérrez,Chis.
-            <br />
-            <br />
-          </div>
-        </div>
-        <br />
-        <font size="2">Copyright 2020 Suministros en Tuberia Horeb, S.A. de C.V.</font>
-        <br />
-        <br />
-      </div>
-
-      <div>
-        <b-modal v-model="modalShow">Hello From Modal!</b-modal>
-      </div>
-    </div>
-    </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
+      tab: null,
+      items: ["Appetizers", "Entrees", "Deserts"],
+      text:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      images: [
+        require("../assets-products/tuberia-hidraulica.jpg"),
+        require("../assets-products/tuberia-polietileno.jpg"),
+      ],
+      icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
       url1: require("../assets-products/tuberia-hidraulica.jpg"),
       url2: require("../assets-products/tuberia-polietileno.jpg"),
       url3: require("../assets-products/tuberia-conduit.jpg"),
@@ -147,7 +166,6 @@ export default {
       url16: require("../assets-products/piezas-especiales.jpeg"),
       url17: require("../assets-products/postes.jpg"),
       url18: require("../assets-products/lavaderos.jpg"),
-
     };
   },
 };
@@ -179,6 +197,12 @@ export default {
 .footer {
   margin-left: 5%;
   margin-right: 2%;
+}
+.basil {
+  background-color: #ffffff !important;
+}
+.basil--text {
+  color: #00b686 !important;
 }
 
 .contenedor-middle {

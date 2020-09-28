@@ -40,7 +40,13 @@
     <br />
     <br />
     <br />
-    <div align="center"><font face="Segoe UI"><h3>Nuestros Productos</h3></font></div>
+       <div align="center">
+      <b>
+        <font color="black" size="5">Nuestros</font>
+        <font color="#00b686" size="5">&nbsp;Productos</font>
+      </b>
+      <hr style="width: 90%" />
+    </div>
       <br />
     <div class="contenedor"> 
     <div class="row">
