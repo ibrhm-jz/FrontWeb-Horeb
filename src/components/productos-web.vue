@@ -265,7 +265,7 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-img :src="url6" height="194"></v-img>
+          <v-img :src="url9" height="194"></v-img>
 
           <v-card-text>Visit ten places on our planet that are undergoing the biggest changes today.</v-card-text>
 
@@ -581,11 +581,11 @@ export default {
       url6: require("../assets-products/tuberia-acero-soldable.jpg"),
       url7: require("../assets-products/tuberia-canastilla.png"),
       url8: require("../assets-products/brocales.png"),
-      url9: require("../assets-products/brocales.png"),
+      url9: require("../assets-products/marcos.jpg"),
       url10: require("../assets-products/valvulas.jpg"),
       url11: require("../assets-products/gaviones.jpg"),
       url12: require("../assets-products/geotextil.png"),
-      url13: require("../assets-products/valvulas.jpg"),
+      url13: require("../assets-products/cloracion.jpg"),
       url14: require("../assets-products/alcantarilla-metalica.jpg"),
       url15: require("../assets-products/tinaco.jpg"),
       url16: require("../assets-products/piezas-especiales.jpeg"),
@@ -613,7 +613,10 @@ export default {
 
 }
 .contenedorfooter {
-  width: 100%;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  
 
 }
 .contenedor-play {

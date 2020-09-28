@@ -33,11 +33,11 @@
         </b-collapse>
       </b-navbar>
     </div>
-<br><br>
+    <br /><br />
     <div>
       <v-carousel :show-arrows="false" cycle="true">
         <v-carousel-item
-          v-for="(item,i) in items"
+          v-for="(item, i) in items"
           :key="i"
           :src="item.src"
           reverse-transition="fade-transition"
@@ -52,7 +52,7 @@
         <font color="black" size="5">Productos</font>
         <font color="#00b686" size="5">&nbsp;Destacados</font>
       </b>
-      <hr style="width:90%;" />
+      <hr style="width: 90%" />
     </div>
     <br />
     <div class="contenedor">
@@ -139,35 +139,37 @@
     <div class="contenedor-middle">
       <div align="left" class="contenedor">
         <div class="row">
-          <div class="footer" style="width:25%;">
+          <div class="footer" style="width: 25%">
             <br />
             <h4>
-              <b-icon icon="file-earmark-plus-fill" color="white"></b-icon>&nbsp;Certificaciones
+              <b-icon icon="file-earmark-plus-fill" color="white"></b-icon
+              >&nbsp;Certificaciones
             </h4>
-            <br />Contamos con certificaciones avaladas para los respectivos tubos.
+            <br />Contamos con certificaciones avaladas para los respectivos
+            tubos.
             <br />
           </div>
 
-          <div class="footer" style="width:25%;">
+          <div class="footer" style="width: 25%">
             <br />
             <h4>
               <b-icon icon="hammer" color="white"></b-icon>&nbsp;Servicios
             </h4>
-            <br />Instalacion de Enmallado Perimetral
-            <br />Instalacion en Pasto cintetico
-            <br />Instalacion de Concertina
-            <br />Instalacion de Geomembrana
+            <br />Instalacion de Enmallado Perimetral <br />Instalacion en Pasto
+            cintetico <br />Instalacion de Concertina <br />Instalacion de
+            Geomembrana
             <br />
             <br />
             <b-button class="btn-green">Conoce mas</b-button>
           </div>
 
-          <div class="footer" style="width:25%;">
+          <div class="footer" style="width: 25%">
             <br />
             <h4>
               <b-icon icon="headset" color="white"></b-icon>&nbsp;Asesoria
             </h4>
-            <br />Contamos con vendedores especializados para asesorlos con nuestros productos.
+            <br />Contamos con vendedores especializados para asesorlos con
+            nuestros productos.
             <br />
           </div>
         </div>
@@ -179,105 +181,105 @@
       </div>
     </div>
 
-    <br>
-          <div align="left" class="contenedor">
-        <div class="row">
-          <div class="footer" style="width:30%;">
-            <br />
-            <v-img :src="pensative" width="250"></v-img>
-            <br />
-          </div>
+    <br />
+    <div align="left" class="contenedor">
+      <div class="row">
+        <div class="footer" style="width: 30%">
+          <br />
+          <v-img :src="pensative" width="250"></v-img>
+          <br />
+        </div>
 
-
-          <div align="center" class="footer" style="width:30%;">
-            <br />
-            <br />
-            <h3>
-             ¿Tienes dudas?
-            </h3>
-            <br>
-            Contactanos, y podremos ayudarte.
-            <br /> <br />
-                 <b-button
-      :class="visible ? null : 'collapsed'"
-      :aria-expanded="visible ? 'true' : 'false'"
-      aria-controls="collapse-4"
-      @click="visible = !visible"
-    >
-     Contactanos
-    </b-button>
-          </div>
+        <div align="center" class="footer" style="width: 30%">
+          <br />
+          <br />
+          <h3>¿Tienes dudas?</h3>
+          <br />
+          Contactanos, y podremos ayudarte.
+          <br />
+          <br />
+          <b-button
+            :class="visible ? null : 'collapsed'"
+            :aria-expanded="visible ? 'true' : 'false'"
+            aria-controls="collapse-4"
+            @click="visible = !visible"
+          >
+            Contactanos
+          </b-button>
         </div>
       </div>
-     <div class="contenedor">
-     <b-collapse id="collapse-4" v-model="visible" class="mt-2">
-      <b-card>Envianos un email
-      <v-spacer></v-spacer>
-        <v-form
-    ref="form"
-    v-model="valid"
-    lazy-validation
-  >
-      <v-text-field
-      v-model="email"
-      :rules="emailRules"
-      label="E-mail"
-      required
-    ></v-text-field>
+    </div>
+    <div class="contenedor">
+      <b-collapse id="collapse-4" v-model="visible" class="mt-2">
+        <b-card
+          >Envianos un email
+          <v-spacer></v-spacer>
+          <v-form ref="form" v-model="valid" lazy-validation>
+            <v-text-field
+              v-model="email"
+              :rules="emailRules"
+              label="E-mail"
+              required
+            ></v-text-field>
 
-    <v-text-field
-      v-model="name"
-      label="Nombre"
-      required
-    ></v-text-field>
+            <v-text-field v-model="name" label="Nombre" required></v-text-field>
 
-        <v-text-field
-      v-model="asunto"
-      label="Asunto"
-      required
-    ></v-text-field>
+            <v-text-field
+              v-model="asunto"
+              label="Asunto"
+              required
+            ></v-text-field>
 
-   <b-button class="btn-green" @click="sendEmail">Enviar Email</b-button>
-
-  </v-form></b-card>
-    </b-collapse>
+            <b-button class="btn-green" v-on:click="sendEmail"
+              >Enviar Email</b-button
+            >
+          </v-form></b-card
+        >
+      </b-collapse>
     </div>
     <br />
     <div class="contenedor-play">
       <br />
       <br />
-      <h4 style="margin-left:13%">
+      <h4 style="margin-left: 13%">
         <b-icon icon="arrow-right-short"></b-icon>Contactanos
       </h4>
       <div align="center" class="contenedor">
         <div class="row">
-          <div class="footer" style="width:25%;">
+          <div class="footer" style="width: 25%">
             <br />
             <h5>Direccion:</h5>
-            <hr color="white" />2a. Ote.Nte #682-B entre 5a y 6a norte, Col.Centro Tuxtla Gutiérrez,Chis.
+            <hr color="white" />
+            2a. Ote.Nte #682-B entre 5a y 6a norte, Col.Centro Tuxtla
+            Gutiérrez,Chis.
             <br />
             <br />
           </div>
 
-          <div class="footer" style="width:25%; ">
+          <div class="footer" style="width: 25%">
             <br />
             <h5>Datos de contacto:</h5>
-            <hr color="white" />Ofic.(961) 118 85 80 / Cel.961 196 30 20
+            <hr color="white" />
+            Ofic.(961) 118 85 80 / Cel.961 196 30 20
             <v-spacer></v-spacer>Tuberia_horeb@hotmail.com
             <br />
             <br />
           </div>
 
-          <div class="footer" style="width:25%; ">
+          <div class="footer" style="width: 25%">
             <br />
             <h5>Redes Sociales:</h5>
-            <hr color="white" />2a. Ote.Nte #682-B entre 5a y 6a norte, Col.Centro Tuxtla Gutiérrez,Chis.
+            <hr color="white" />
+            2a. Ote.Nte #682-B entre 5a y 6a norte, Col.Centro Tuxtla
+            Gutiérrez,Chis.
             <br />
             <br />
           </div>
         </div>
         <br />
-        <font size="2">Copyright 2020 Suministros en Tuberia Horeb, S.A. de C.V.</font>
+        <font size="2"
+          >Copyright 2020 Suministros en Tuberia Horeb, S.A. de C.V.</font
+        >
         <br />
         <br />
       </div>
@@ -286,6 +288,16 @@
         <b-modal v-model="modalShow">Hello From Modal!</b-modal>
       </div>
     </div>
+
+    <v-snackbar v-model="snackbar">
+      {{ text }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn color="pink" text v-bind="attrs" @click="snackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 <script>
@@ -293,12 +305,14 @@ import { API } from "../Servicios/axios";
 export default {
   data() {
     return {
+      snackbar: false,
+      text: "El correo se ha enviado,en un momento le atenderemos",
       modalShow: false,
       show: false,
       visible: false,
-      name:"",
-      email:"",
-      asunto:"",
+      name: "",
+      email: "",
+      asunto: "",
       items: [
         {
           src: require("../assets/tapas.jpg"),
@@ -329,32 +343,33 @@ export default {
       pensative: require("../assets/pensative.png"),
     };
   },
-  methods:{
-        sendEmail() {
-      const data = {
-        correo: this.email,
-        mensaje: this.asunto,
-        nombre: this.name,
-        
-      };
-      API.post("email", data)
-        .then((res) => {
-          this.email="";
-          this.asunto="";
-          this.name="";
-           
-          window.alert("El email se ha enviado");
-             // eslint-disable-next-line
-          console.log(res.data);
-         
-        })
-        .catch((error) => {
-            // eslint-disable-next-line
-          console.error(error);
-        });
-    },
+  methods: {
+    sendEmail() {
+      if (this.email == "" || (this.asunto == "") | (this.name == "")) {
+        window.alert("Datos incompletos para enviar Email.")
+      } else {
+        const data = {
+          correo: this.email,
+          mensaje: this.asunto,
+          nombre: this.name,
+        };
+        API.post("email", data)
+          .then((res) => {
+            this.email = "";
+            this.asunto = "";
+            this.name = "";
 
-  }
+            this.snackbar = true;
+            // eslint-disable-next-line
+            console.log(res.data);
+          })
+          .catch((error) => {
+            // eslint-disable-next-line
+            console.error(error);
+          });
+      }
+    },
+  },
 };
 </script>>
 
