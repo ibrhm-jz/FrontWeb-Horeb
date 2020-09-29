@@ -114,7 +114,7 @@
       sm="4"
     >
       <v-img
-       :src="url1"
+       :src="url4"
            gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
         max-width="400"
           height="150"
@@ -125,7 +125,7 @@
       cols="6"
       sm="4"
     >
-      <v-img  :src="url2"
+      <v-img  :src="url5"
         gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
         max-width="400"
           height="150">
@@ -136,7 +136,7 @@
       cols="6"
       sm="4"
     >
-      <v-img :src="url3"
+      <v-img :src="url6"
            gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.2)"
         max-width="400"
         height="150">
@@ -144,6 +144,105 @@
     </v-col>
   </v-row>
 </div>
+
+<br/>
+
+<div>
+      <b-row>
+          <b-col><div align="center">Enmallado Perimetral</div>
+          <br/>
+          Contamos con el personal, para suministrar e instalar pasto cintetico</b-col>
+          <b-col><div align="right"><v-img src="../assets-services/s1.png" width="500"
+          
+          ></v-img></div></b-col>
+        </b-row>
+  <v-row>
+    <v-col
+      cols="6"
+      sm="4"
+    >
+      <v-img
+       :src="url7"
+           gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
+        max-width="400"
+          height="150"
+      ></v-img>
+    </v-col>
+
+    <v-col
+      cols="6"
+      sm="4"
+    >
+      <v-img  :src="url8"
+        gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
+        max-width="400"
+          height="150">
+      </v-img>
+    </v-col>
+
+    <v-col
+      cols="6"
+      sm="4"
+    >
+      <v-img :src="url9"
+           gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.2)"
+        max-width="400"
+        height="150">
+      </v-img>
+    </v-col>
+  </v-row>
+</div>
+
+
+<br/>
+<div>
+      <b-row>
+          <b-col>
+          <div align="left"><v-img src="../assets-services/herreria-0.jpg" width="300"
+          
+          ></v-img></div>
+         
+          <br/>
+          </b-col>
+          <b-col><div align="left"> <div align="center">Trabajos en Herreria</div></div></b-col>
+        </b-row>
+  <v-row>
+    <v-col
+      cols="6"
+      sm="4"
+    >
+      <v-img
+       :src="url10"
+           gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
+        max-width="400"
+          height="150"
+      ></v-img>
+    </v-col>
+
+    <v-col
+      cols="6"
+      sm="4"
+    >
+      <v-img  :src="url11"
+        gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
+        max-width="400"
+          height="150">
+      </v-img>
+    </v-col>
+
+    <v-col
+      cols="6"
+      sm="4"
+    >
+      <v-img :src="url12"
+           gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.2)"
+        max-width="400"
+        height="150">
+      </v-img>
+    </v-col>
+  </v-row>
+</div>
+
     </div>
     <br />
     <v-spacer></v-spacer>
@@ -194,6 +293,15 @@ export default {
       url1: require("../assets-services/pasto-1.jpg"),
       url2: require("../assets-services/pasto-2.jpg"),
       url3: require("../assets-services/pasto-3.jpg"),
+      url4: require("../assets-services/enmallado-1.jpg"),
+      url5: require("../assets-services/enmallado-2.jpg"),
+      url6: require("../assets-services/enmallado-3.jpg"),
+      url7: require("../assets-services/concertina-1.jpg"),
+      url8: require("../assets-services/concertina-2.jpg"),
+      url9: require("../assets-services/concertina-3.jpg"),
+      url10: require("../assets-services/herreria-1.jpg"),
+      url11: require("../assets-services/herreria-2.jpg"),
+      url12: require("../assets-services/herreria-3.jpg"),
       
     };
   },
