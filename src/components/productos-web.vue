@@ -8,17 +8,16 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item href="#" color="blue">
+            <b-nav-item link to="/" color="blue">
               <font color="black">Inicio</font>
             </b-nav-item>
-            
-            <b-nav-item href="#" color="blue">
+            <b-nav-item link to="/productos-web" color="blue">
               <font color="black">Productos</font>
             </b-nav-item>
-            <b-nav-item href="#" color="blue">
+            <b-nav-item link to="/Servicios" color="blue">
               <font color="black">Servicios</font>
             </b-nav-item>
-            <b-nav-item href="#" color="blue">
+            <b-nav-item link to="/Nosotros" color="blue">
               <font color="black">Nosotros</font>
             </b-nav-item>
           </b-navbar-nav>
@@ -40,498 +39,536 @@
     <br />
     <br />
     <br />
-       <div align="center">
+    <div align="center">
       <b>
         <font color="black" size="6">Nuestros</font>
         <font color="#00b686" size="6">&nbsp;Productos</font>
       </b>
-    
     </div>
-      <br />
-    <div class="contenedor"> 
-    <div class="row">
-      <div>
-        <v-card max-width="344" class="mx-auto card-home" style="margin-right:20px!important; ">
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title class="headline">TUBERIA PVC HIDRAULICO S.I.S.M</v-list-item-title>
-              <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-img :src="url1" height="194"></v-img>
-
-          <v-card-text>Visit ten places on our planet that are undergoing the biggest changes today.</v-card-text>
-
-          <v-card-actions>
-            <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-
-          </v-card-actions>
-        </v-card>
-      </div>
-
-      <div>
-        <v-card max-width="344" class="mx-auto" style="margin-right:20px!important;">
-          <v-list-item>
-         
-            <v-list-item-content>
-              <v-list-item-title class="headline">TUBERIA DE POLIETILENO DE ALTA DENSIDAD</v-list-item-title>
-              <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-img :src="url2" height="194"></v-img>
-
-          <v-card-text>Visit ten places on our planet that are undergoing the biggest changes today.</v-card-text>
-
-          <v-card-actions>
-            <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-
-          </v-card-actions>
-        </v-card>
-      </div>
-
-            <div>
-        <v-card max-width="344" class="mx-auto">
-          <v-list-item>
-         
-            <v-list-item-content>
-              <v-list-item-title class="headline">TUBERIA CONDUIT DE PVC Y POLIETILENO
-</v-list-item-title>
-              <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-img :src="url3" height="194"></v-img>
-
-          <v-card-text>Visit ten places on our planet that are undergoing the biggest changes today.</v-card-text>
-
-          <v-card-actions>
-            <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-
-          </v-card-actions>
-        </v-card>
-      </div>
-    </div>
-
-
-    <br/>
-
-
-        <div class="row">
-      <div>
-        <v-card max-width="344" class="mx-auto card-home" style="margin-right:20px!important; ">
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title class="headline">TUBERIA PVC ALC.METRICO</v-list-item-title>
-              <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-img :src="url4" height="194"></v-img>
-
-          <v-card-text>Visit ten places on our planet that are undergoing the biggest changes today.</v-card-text>
-
-          <v-card-actions>
-            <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-
-          </v-card-actions>
-        </v-card>
-      </div>
-
-      <div>
-        <v-card max-width="344" class="mx-auto" style="margin-right:20px!important;">
-          <v-list-item>
-         
-            <v-list-item-content>
-              <v-list-item-title class="headline">TUBERIA DE FIERRO GALVANIZADO</v-list-item-title>
-              <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-img :src="url5" height="194"></v-img>
-
-          <v-card-text>Visit ten places on our planet that are undergoing the biggest changes today.</v-card-text>
-
-          <v-card-actions>
-            <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-
-          </v-card-actions>
-        </v-card>
-      </div>
-
-            <div>
-        <v-card max-width="344" class="mx-auto">
-          <v-list-item>
-         
-            <v-list-item-content>
-              <v-list-item-title class="headline">TUBERIA DE ACERO SOLDABLE
-</v-list-item-title>
-              <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-img :src="url6" height="194"></v-img>
-
-          <v-card-text>Visit ten places on our planet that are undergoing the biggest changes today.</v-card-text>
-
-          <v-card-actions>
-            <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-
-          </v-card-actions>
-        </v-card>
-      </div>
-    </div>
-    <br/>
-
-
-    
-        <div class="row">
-      <div>
-        <v-card max-width="344" class="mx-auto card-home" style="margin-right:20px!important; ">
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title class="headline">TUBO CEDAZO TIPO CANASTILLA</v-list-item-title>
-              <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-img :src="url7" height="194"></v-img>
-
-          <v-card-text>Visit ten places on our planet that are undergoing the biggest changes today.</v-card-text>
-
-          <v-card-actions>
-            <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-
-          </v-card-actions>
-        </v-card>
-      </div>
-
-      <div>
-        <v-card max-width="344" class="mx-auto" style="margin-right:20px!important;">
-          <v-list-item>
-         
-            <v-list-item-content>
-              <v-list-item-title class="headline">BROCALES DE FIERRO FUNDIDO Y POLIETILENO</v-list-item-title>
-              <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-img :src="url8" height="194"></v-img>
-
-          <v-card-text>Visit ten places on our planet that are undergoing the biggest changes today.</v-card-text>
-
-          <v-card-actions>
-            <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-
-          </v-card-actions>
-        </v-card>
-      </div>
-
-            <div>
-        <v-card max-width="344" class="mx-auto">
-          <v-list-item>
-         
-            <v-list-item-content>
-              <v-list-item-title class="headline">MARCOS CON TAPA Y CONTRAMARCOS
-</v-list-item-title>
-              <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-img :src="url9" height="194"></v-img>
-
-          <v-card-text>Visit ten places on our planet that are undergoing the biggest changes today.</v-card-text>
-
-          <v-card-actions>
-            <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-
-          </v-card-actions>
-        </v-card>
-      </div>
-    </div>
-
-       <br/>
-
-
-    
-        <div class="row">
-      <div>
-        <v-card max-width="344" class="mx-auto card-home" style="margin-right:20px!important; ">
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title class="headline">VALVULAS DE FIERRO FUNDIDO Y BRONCE</v-list-item-title>
-              <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-img :src="url10" height="194"></v-img>
-
-          <v-card-text>Visit ten places on our planet that are undergoing the biggest changes today.</v-card-text>
-
-          <v-card-actions>
-            <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-
-          </v-card-actions>
-        </v-card>
-      </div>
-
-      <div>
-        <v-card max-width="344" class="mx-auto" style="margin-right:20px!important;">
-          <v-list-item>
-         
-            <v-list-item-content>
-              <v-list-item-title class="headline">GAVIONES TRIPLE TORCION</v-list-item-title>
-              <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-img :src="url11" height="194"></v-img>
-
-          <v-card-text>Visit ten places on our planet that are undergoing the biggest changes today.</v-card-text>
-
-          <v-card-actions>
-            <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-
-          </v-card-actions>
-        </v-card>
-      </div>
-
-            <div>
-        <v-card max-width="344" class="mx-auto">
-          <v-list-item>
-         
-            <v-list-item-content>
-              <v-list-item-title class="headline">GEOTEXTIL
-</v-list-item-title>
-              <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-img :src="url12" height="194"></v-img>
-
-          <v-card-text>Visit ten places on our planet that are undergoing the biggest changes today.</v-card-text>
-
-          <v-card-actions>
-            <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-
-          </v-card-actions>
-        </v-card>
-      </div>
-    </div>
-
-           <br/>
-
-
-    
-        <div class="row">
-      <div>
-        <v-card max-width="344" class="mx-auto card-home" style="margin-right:20px!important; ">
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title class="headline">EQUIPO DE CLORACION E HIPOCLORITO DE CALCIO</v-list-item-title>
-              <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-img :src="url13" height="194"></v-img>
-
-          <v-card-text>Visit ten places on our planet that are undergoing the biggest changes today.</v-card-text>
-
-          <v-card-actions>
-            <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-
-          </v-card-actions>
-        </v-card>
-      </div>
-
-      <div>
-        <v-card max-width="344" class="mx-auto" style="margin-right:20px!important;">
-          <v-list-item>
-         
-            <v-list-item-content>
-              <v-list-item-title class="headline">ALCANTARILLA METALICA</v-list-item-title>
-              <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-img :src="url14" height="194"></v-img>
-
-          <v-card-text>Visit ten places on our planet that are undergoing the biggest changes today.</v-card-text>
-
-          <v-card-actions>
-            <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-
-          </v-card-actions>
-        </v-card>
-      </div>
-
-            <div>
-        <v-card max-width="344" class="mx-auto">
-          <v-list-item>
-         
-            <v-list-item-content>
-              <v-list-item-title class="headline">TINACOS,CISTERNAS Y BIODIGESTORES
-</v-list-item-title>
-              <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-img :src="url15" height="194"></v-img>
-
-          <v-card-text>Visit ten places on our planet that are undergoing the biggest changes today.</v-card-text>
-
-          <v-card-actions>
-            <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-
-          </v-card-actions>
-        </v-card>
-      </div>
-    </div>
-    <br/>
-    
-        <div class="row">
-      <div>
-        <v-card max-width="344" class="mx-auto card-home" style="margin-right:20px!important; ">
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title class="headline">PIEZAS ESPECIALES EN PVC</v-list-item-title>
-              <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-img :src="url16" height="194"></v-img>
-
-          <v-card-text>Visit ten places on our planet that are undergoing the biggest changes today.</v-card-text>
-
-          <v-card-actions>
-            <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-
-          </v-card-actions>
-        </v-card>
-      </div>
-
-      <div>
-        <v-card max-width="344" class="mx-auto" style="margin-right:20px!important;">
-          <v-list-item>
-         
-            <v-list-item-content>
-              <v-list-item-title class="headline">POSTES Y REGISTROS DE CONCRETO MURETES PARA
-BAJA TENSION ELECTRICA.</v-list-item-title>
-              <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-img :src="url17" height="194"></v-img>
-
-          <v-card-text>Visit ten places on our planet that are undergoing the biggest changes today.</v-card-text>
-
-          <v-card-actions>
-            <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-
-          </v-card-actions>
-        </v-card>
-      </div>
-
-            <div>
-        <v-card max-width="344" class="mx-auto">
-          <v-list-item>
-         
-            <v-list-item-content>
-              <v-list-item-title class="headline">LAVADEROS
-
-</v-list-item-title>
-              <v-list-item-subtitle>by Kurt Wagner</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-img :src="url18" height="194"></v-img>
-
-          <v-card-text>Visit ten places on our planet that are undergoing the biggest changes today.</v-card-text>
-
-          <v-card-actions>
-            <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-
-          </v-card-actions>
-        </v-card>
-      </div>
-    </div>
-  </div>
     <br />
-  
-             <v-footer dark padless>
+    <div class="contenedor">
+      <div class="row">
+        <div>
+          <v-card
+            max-width="344"
+            class="mx-auto card-home"
+            style="margin-right: 20px !important"
+          >
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="headline"
+                  >TUBERIA PVC HIDRAULICO S.I.S.M</v-list-item-title
+                >
+                <v-list-item-subtitle></v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-img :src="url1" height="194"></v-img>
+
+            <v-card-text
+              >Uso en alcantarillado para conduccion de aguas
+              negras.</v-card-text
+            >
+
+            <v-card-actions>
+              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </div>
+
+        <div>
+          <v-card
+            max-width="344"
+            class="mx-auto"
+            style="margin-right: 20px !important"
+          >
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="headline"
+                  >TUBERIA DE POLIETILENO ALTA DENSIDAD</v-list-item-title
+                >
+                <v-list-item-subtitle></v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-img :src="url2" height="194"></v-img>
+
+            <v-card-text
+              >Uso en alcantarillado para conduccion de aguas negras cuenta con
+              campana y espiga.</v-card-text
+            >
+
+            <v-card-actions>
+              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </div>
+
+        <div>
+          <v-card max-width="344" class="mx-auto">
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="headline"
+                  >TUBERIA CONDUIT DE PVC Y POLIETILENO
+                </v-list-item-title>
+                <v-list-item-subtitle></v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-img :src="url3" height="194"></v-img>
+
+            <v-card-text
+              >Se utiliza para proteger y enrutar el cableado
+              eléctrico.</v-card-text
+            >
+
+            <v-card-actions>
+              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="row">
+        <div>
+          <v-card
+            max-width="344"
+            class="mx-auto card-home"
+            style="margin-right: 20px !important"
+          >
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="headline"
+                  >TUBERIA PVC ALC.METRICO</v-list-item-title
+                >
+                <v-list-item-subtitle></v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-img :src="url4" height="194"></v-img>
+
+            <v-card-text
+              >Visit ten places on our planet that are undergoing the biggest
+              changes today.</v-card-text
+            >
+
+            <v-card-actions>
+              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </div>
+
+        <div>
+          <v-card
+            max-width="344"
+            class="mx-auto"
+            style="margin-right: 20px !important"
+          >
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="headline"
+                  >TUBERIA DE FIERRO GALVANIZADO</v-list-item-title
+                >
+                <v-list-item-subtitle></v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-img :src="url5" height="194"></v-img>
+
+            <v-card-text
+              >El principal uso del tubo galvanizado es llevar agua a los
+              hogares y edificios comerciales.</v-card-text
+            >
+
+            <v-card-actions>
+              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </div>
+
+        <div>
+          <v-card max-width="344" class="mx-auto">
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="headline"
+                  >TUBERIA DE ACERO SOLDABLE
+                </v-list-item-title>
+                <v-list-item-subtitle></v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-img :src="url6" height="194"></v-img>
+
+            <v-card-text
+              >Su uso comoun es el transporte de agua,aceites combustibles
+              etc.</v-card-text
+            >
+
+            <v-card-actions>
+              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </div>
+      </div>
+      <br />
+
+      <div class="row">
+        <div>
+          <v-card
+            max-width="344"
+            class="mx-auto card-home"
+            style="margin-right: 20px !important"
+          >
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="headline"
+                  >TUBO CEDAZO TIPO CANASTILLA</v-list-item-title
+                >
+                <v-list-item-subtitle></v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-img :src="url7" height="194"></v-img>
+
+            <v-card-text
+              >Se utiliza en cuando se requiere una velocidad mínima de ingreso
+              y evita la entrada de arena.</v-card-text
+            >
+
+            <v-card-actions>
+              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </div>
+
+        <div>
+          <v-card
+            max-width="344"
+            class="mx-auto"
+            style="margin-right: 20px !important"
+          >
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="headline"
+                  >BROCALES DE FIERRO FUNDIDO Y POLIETILENO</v-list-item-title
+                >
+                <v-list-item-subtitle></v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-img :src="url8" height="194"></v-img>
+
+            <v-card-text
+              >Los brocales son usados por lo general como registros de
+              drenaje.</v-card-text
+            >
+
+            <v-card-actions>
+              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </div>
+
+        <div>
+          <v-card max-width="344" class="mx-auto">
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="headline"
+                  >MARCOS CON TAPA Y CONTRAMARCOS
+                </v-list-item-title>
+                <v-list-item-subtitle></v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-img :src="url9" height="194"></v-img>
+
+            <v-card-text
+              >Visit ten places on our planet that are undergoing the biggest
+              changes today.</v-card-text
+            >
+
+            <v-card-actions>
+              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="row">
+        <div>
+          <v-card
+            max-width="344"
+            class="mx-auto card-home"
+            style="margin-right: 20px !important"
+          >
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="headline"
+                  >VALVULAS DE FIERRO FUNDIDO Y BRONCE</v-list-item-title
+                >
+                <v-list-item-subtitle></v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-img :src="url10" height="194"></v-img>
+
+            <v-card-text
+              >Las Válvulas son un instrumento de regulación y control de
+              fluidos.</v-card-text
+            >
+
+            <v-card-actions>
+              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </div>
+
+        <div>
+          <v-card
+            max-width="344"
+            class="mx-auto"
+            style="margin-right: 20px !important"
+          >
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="headline"
+                  >GAVIONES TRIPLE TORCION</v-list-item-title
+                >
+                <v-list-item-subtitle></v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-img :src="url11" height="194"></v-img>
+
+            <v-card-text
+              >Se usan para Defensas pluviales, muros de protección,encauzamientos de ríos, entre otros.</v-card-text
+            >
+
+            <v-card-actions>
+              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </div>
+
+        <div>
+          <v-card max-width="344" class="mx-auto">
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="headline"
+                  >GEOTEXTIL
+                </v-list-item-title>
+                <v-list-item-subtitle></v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-img :src="url12" height="194"></v-img>
+
+            <v-card-text
+              >Visit ten places on our planet that are undergoing the biggest
+              changes today.</v-card-text
+            >
+
+            <v-card-actions>
+              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="row">
+        <div>
+          <v-card
+            max-width="344"
+            class="mx-auto card-home"
+            style="margin-right: 20px !important"
+          >
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="headline"
+                  >EQUIPO DE CLORACION E HIPOCLORITO DE
+                  CALCIO</v-list-item-title
+                >
+                <v-list-item-subtitle></v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-img :src="url13" height="194"></v-img>
+
+            <v-card-text
+              >Visit ten places on our planet that are undergoing the biggest
+              changes today.</v-card-text
+            >
+
+            <v-card-actions>
+              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </div>
+
+        <div>
+          <v-card
+            max-width="344"
+            class="mx-auto"
+            style="margin-right: 20px !important"
+          >
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="headline"
+                  >ALCANTARILLA METALICA</v-list-item-title
+                >
+                <v-list-item-subtitle></v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-img :src="url14" height="194"></v-img>
+
+            <v-card-text
+              >Visit ten places on our planet that are undergoing the biggest
+              changes today.</v-card-text
+            >
+
+            <v-card-actions>
+              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </div>
+
+        <div>
+          <v-card max-width="344" class="mx-auto">
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="headline"
+                  >TINACOS,CISTERNAS Y BIODIGESTORES
+                </v-list-item-title>
+                <v-list-item-subtitle></v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-img :src="url15" height="194"></v-img>
+
+            <v-card-text
+              >Visit ten places on our planet that are undergoing the biggest
+              changes today.</v-card-text
+            >
+
+            <v-card-actions>
+              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </div>
+      </div>
+      <br />
+
+      <div class="row">
+        <div>
+          <v-card
+            max-width="344"
+            class="mx-auto card-home"
+            style="margin-right: 20px !important"
+          >
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="headline"
+                  >PIEZAS ESPECIALES EN PVC</v-list-item-title
+                >
+                <v-list-item-subtitle></v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-img :src="url16" height="194"></v-img>
+
+            <v-card-text
+              >Visit ten places on our planet that are undergoing the biggest
+              changes today.</v-card-text
+            >
+
+            <v-card-actions>
+              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </div>
+
+        <div>
+          <v-card
+            max-width="344"
+            class="mx-auto"
+            style="margin-right: 20px !important"
+          >
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="headline"
+                  >POSTES Y REGISTROS DE CONCRETO MURETES PARA BAJA TENSION
+                  ELECTRICA.</v-list-item-title
+                >
+                <v-list-item-subtitle></v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-img :src="url17" height="194"></v-img>
+
+            <v-card-text
+              >Visit ten places on our planet that are undergoing the biggest
+              changes today.</v-card-text
+            >
+
+            <v-card-actions>
+              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </div>
+
+        <div>
+          <v-card max-width="344" class="mx-auto">
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="headline"
+                  >LAVADEROS
+                </v-list-item-title>
+                <v-list-item-subtitle></v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-img :src="url18" height="194"></v-img>
+
+            <v-card-text
+              >Visit ten places on our planet that are undergoing the biggest
+              changes today.</v-card-text
+            >
+
+            <v-card-actions>
+              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </div>
+      </div>
+    </div>
+    <br />
+
+    <v-footer dark padless>
       <v-card
         class="flex"
         flat
@@ -563,9 +600,7 @@ BAJA TENSION ELECTRICA.</v-list-item-title>
         </v-card-text>
       </v-card>
     </v-footer>
-  
   </div>
-  
 </template>
 
 <script>
@@ -592,7 +627,6 @@ export default {
       url17: require("../assets-products/postes.jpg"),
       url18: require("../assets-products/lavaderos.jpg"),
 
-
       pensative: require("../assets/pensative.png"),
     };
   },
@@ -608,16 +642,13 @@ export default {
 }
 .contenedor {
   width: 100%;
-  
-  margin: 1em 10%!important;
 
+  margin: 1em 10% !important;
 }
 .contenedorfooter {
   width: 80%;
   margin-left: 10%;
   margin-right: 10%;
-  
-
 }
 .contenedor-play {
   background-color: #00b686;
@@ -625,7 +656,7 @@ export default {
   color: white;
 }
 .card-home {
- margin-left: 5%;
+  margin-left: 5%;
 }
 .footer {
   margin-left: 5%;
@@ -638,12 +669,12 @@ export default {
   color: white;
 }
 vr {
-       display: block;
-       width:10px;
-       background-color:#000;
-       position:absolute;
-       top:0;
-       bottom:0;
-       left:150px;
+  display: block;
+  width: 10px;
+  background-color: #000;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 150px;
 }
 </style>

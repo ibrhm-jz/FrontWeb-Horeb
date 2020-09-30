@@ -8,18 +8,17 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item href="#" color="blue">
-              <font color="black">Inicio <font color="grey"> |</font></font>
+            <b-nav-item link to="/"  color="blue">
+              <font color="black">Inicio</font>
             </b-nav-item>
-
-            <b-nav-item href="#" color="blue">
-              <font color="black">Productos <font color="grey"> |</font></font>
+            <b-nav-item  link to="/productos-web" color="blue">
+              <font color="black" >Productos</font>
             </b-nav-item>
-            <b-nav-item href="#" color="blue">
-              <font color="black">Servicios <font color="grey"> |</font></font>
+            <b-nav-item link to="/Servicios"  color="blue">
+              <font color="black">Servicios</font>
             </b-nav-item>
-            <b-nav-item href="#" color="blue">
-              <font color="black">Nosotros <font color="grey"> |</font></font>
+            <b-nav-item link to="/Nosotros" color="blue">
+              <font color="black">Nosotros</font>
             </b-nav-item>
           </b-navbar-nav>
           <!-- Right aligned nav items -->

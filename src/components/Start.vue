@@ -8,16 +8,16 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item href="#" color="blue">
+            <b-nav-item link to="/"  color="blue">
               <font color="black">Inicio</font>
             </b-nav-item>
-            <b-nav-item href="#" color="blue">
-              <font color="black">Productos</font>
+            <b-nav-item  link to="/productos-web" color="blue">
+              <font color="black" >Productos</font>
             </b-nav-item>
-            <b-nav-item href="#" color="blue">
+            <b-nav-item link to="/Servicios"  color="blue">
               <font color="black">Servicios</font>
             </b-nav-item>
-            <b-nav-item href="#" color="blue">
+            <b-nav-item link to="/Nosotros" color="blue">
               <font color="black">Nosotros</font>
             </b-nav-item>
           </b-navbar-nav>
@@ -60,7 +60,7 @@
         <v-card class="mx-auto" max-width="250">
           <v-img :src="url1" height="200px"></v-img>
           <v-card-title>Tuberia Corrugada</v-card-title>
-          <v-card-subtitle>1,000 miles of wonder</v-card-subtitle>
+         
           <v-card-actions>
             <v-btn color="orange" text>ver mas</v-btn>
           </v-card-actions>
@@ -69,7 +69,7 @@
         <v-card class="mx-auto" max-width="250">
           <v-img :src="url2" height="200px"></v-img>
           <v-card-title>Pasto Cintetico</v-card-title>
-          <v-card-subtitle>1,000 miles of wonder</v-card-subtitle>
+         
           <v-card-actions>
             <v-btn color="orange" text>ver mas</v-btn>
           </v-card-actions>
@@ -78,7 +78,7 @@
         <v-card class="mx-auto" max-width="250">
           <v-img :src="url3" height="200px"></v-img>
           <v-card-title>Valvuleria</v-card-title>
-          <v-card-subtitle>1,000 miles of wonder</v-card-subtitle>
+         
           <v-card-actions>
             <v-btn color="orange" text>ver mas</v-btn>
           </v-card-actions>
@@ -87,7 +87,7 @@
         <v-card class="mx-auto" max-width="250">
           <v-img :src="url4" height="200px"></v-img>
           <v-card-title>Geomembrana</v-card-title>
-          <v-card-subtitle>1,000 miles of wonder</v-card-subtitle>
+         
           <v-card-actions>
             <v-btn color="orange" text>ver mas</v-btn>
           </v-card-actions>
@@ -100,7 +100,7 @@
         <v-card class="mx-auto" max-width="250">
           <v-img :src="url5" height="200px"></v-img>
           <v-card-title>Tuberia de Pvc</v-card-title>
-          <v-card-subtitle>1,000 miles of wonder</v-card-subtitle>
+         
           <v-card-actions>
             <v-btn color="orange" text>ver mas</v-btn>
           </v-card-actions>
@@ -109,7 +109,7 @@
         <v-card class="mx-auto" max-width="250">
           <v-img :src="url6" height="200px"></v-img>
           <v-card-title>Plantas de Tratamiento</v-card-title>
-          <v-card-subtitle>1,000 miles of wonder</v-card-subtitle>
+         
           <v-card-actions>
             <v-btn color="orange" text>ver mas</v-btn>
           </v-card-actions>
@@ -118,7 +118,7 @@
         <v-card class="mx-auto" max-width="250">
           <v-img :src="url7" height="200px"></v-img>
           <v-card-title>Tuberia de acero</v-card-title>
-          <v-card-subtitle>1,000 miles of wonder</v-card-subtitle>
+         
           <v-card-actions>
             <v-btn color="orange" text>ver mas</v-btn>
           </v-card-actions>
@@ -127,7 +127,7 @@
         <v-card class="mx-auto" max-width="250">
           <v-img :src="url8" height="200px"></v-img>
           <v-card-title>Piezas Especiales</v-card-title>
-          <v-card-subtitle>1,000 miles of wonder</v-card-subtitle>
+         
           <v-card-actions>
             <v-btn color="orange" text>ver mas</v-btn>
           </v-card-actions>
@@ -298,10 +298,10 @@ export default {
       icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
       items: [
         {
-          src: require("../assets/tapas.jpg"),
+          src: require("../assets/aset-2.jpg"),
         },
         {
-          src: require("../assets/enmallado.jpg"),
+          src: require("../assets/aset-1.jpg"),
         },
         {
           src: require("../assets/tinaco.jpg"),

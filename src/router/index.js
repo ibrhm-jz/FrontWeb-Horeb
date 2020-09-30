@@ -13,6 +13,7 @@ import Clientes from '../components/Clientes.vue';
 import Start from '../components/Start.vue';
 import Productosweb from '../components/productos-web.vue';
 import Servicios from '../components/Servicios.vue';
+import Nosotros from '../components/Nosotros.vue';
 export default new Router({
     mode: 'history',
     routes: [{
@@ -66,6 +67,12 @@ export default new Router({
             path: '/servicios',
             name: '/servicios',
             component: Servicios
+
+        },
+        {
+            path: '/Nosotros',
+            name: '/Nosotros',
+            component: Nosotros
 
         },
         {
