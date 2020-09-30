@@ -42,10 +42,10 @@
     <br />
        <div align="center">
       <b>
-        <font color="black" size="5">Nuestros</font>
-        <font color="#00b686" size="5">&nbsp;Productos</font>
+        <font color="black" size="6">Nuestros</font>
+        <font color="#00b686" size="6">&nbsp;Productos</font>
       </b>
-      <hr style="width: 90%" />
+    
     </div>
       <br />
     <div class="contenedor"> 

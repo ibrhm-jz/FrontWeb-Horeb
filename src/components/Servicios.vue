@@ -43,206 +43,210 @@
 
     <div align="center">
       <b>
-        <font color="black" size="5">Nuestros</font>
-        <font color="#00b686" size="5">&nbsp;Servicios</font>
+        <font color="black" size="6">Nuestros</font>
+        <font color="#00b686" size="6">&nbsp;Servicios</font>
       </b>
     </div>
     <br />
     <div class="contenedor">
-<div>
-      <b-row>
-          <b-col><div align="center">Enmallado Perimetral</div>
-          <br/>
-          Contamos con el personal, para suministrar e instalar pasto cintetico</b-col>
-          <b-col><div align="right"><v-img src="../assets-services/s1.png" width="500"
-          
-          ></v-img></div></b-col>
-        </b-row>
-  <v-row>
-    <v-col
-      cols="6"
-      sm="4"
-    >
-      <v-img
-       :src="url1"
-           gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
-        max-width="400"
-          height="150"
-      ></v-img>
-    </v-col>
+      <div>
+        <div align="left"><h4>Pasto Sintetito</h4></div>
+        <v-spacer></v-spacer>
+        <font color="grey">
+          <h6>
+            Suministro e instalacion de pasto sintetico, tipo filamento,
+            monofilamente e hibrido.
+            <v-spacer></v-spacer>
+            Instalamos canchas deportivas, patios,jardines o locacines
+            decorativas
+          </h6>
+        </font>
+        <v-spacer></v-spacer>
+        Colores:
+         <v-spacer></v-spacer>
+        <v-chip style="background-color:green;" dark>Verde Militar</v-chip>&nbsp;
+        <v-chip style="background-color:#00ab06;" dark>Verde</v-chip>
 
-    <v-col
-      cols="6"
-      sm="4"
-    >
-      <v-img  :src="url2"
-        gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
-        max-width="400"
-          height="150">
-      </v-img>
-    </v-col>
+        <v-row>
+          <v-col cols="6" sm="4">
+            <v-img
+              :src="url1"
+              gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
+              max-width="400"
+              height="150"
+            ></v-img>
+          </v-col>
 
-    <v-col
-      cols="6"
-      sm="4"
-    >
-      <v-img :src="url3"
-           gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.2)"
-        max-width="400"
-        height="150">
-      </v-img>
-    </v-col>
-  </v-row>
-</div>
+          <v-col cols="6" sm="4">
+            <v-img
+              :src="url2"
+              gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
+              max-width="400"
+              height="150"
+            >
+            </v-img>
+          </v-col>
 
+          <v-col cols="6" sm="4">
+            <v-img
+              :src="url3"
+              gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.2)"
+              max-width="400"
+              height="150"
+            >
+            </v-img>
+          </v-col>
+        </v-row>
+      </div>
 
-<br/>
-<div>
-      <b-row>
-          <b-col>
-          <div align="left"><v-img src="../assets-services/s1.png" width="500"
-          
-          ></v-img></div>
-         
-          <br/>
-          </b-col>
-          <b-col><div align="lefy"> <div align="center">Enmallado Perimetral</div></div></b-col>
-        </b-row>
-  <v-row>
-    <v-col
-      cols="6"
-      sm="4"
-    >
-      <v-img
-       :src="url4"
-           gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
-        max-width="400"
-          height="150"
-      ></v-img>
-    </v-col>
+      <br />
 
-    <v-col
-      cols="6"
-      sm="4"
-    >
-      <v-img  :src="url5"
-        gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
-        max-width="400"
-          height="150">
-      </v-img>
-    </v-col>
+      <div align="lefy">
+        <div align="left"><h4>Enmallado Perimetral</h4></div>
+        <v-spacer></v-spacer>
+        <font color="grey">
+          <h6>
+            Suministro e instalacion en todo tipo de Enmallado
+            <v-spacer></v-spacer>
+            Enmallamos campos deportivos, hogares, o todo tipo de terrenos que desee cercar.
+          </h6>
+        </font>
+        <v-spacer></v-spacer>
+        Tipos de Malla:
+         <v-spacer></v-spacer>
+        <v-chip style="background-color:grey;" dark>Malla Ciclonica</v-chip>&nbsp;
+        <v-chip style="background-color:grey;" dark>Malla electrosoldada</v-chip>
 
-    <v-col
-      cols="6"
-      sm="4"
-    >
-      <v-img :src="url6"
-           gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.2)"
-        max-width="400"
-        height="150">
-      </v-img>
-    </v-col>
-  </v-row>
-</div>
+        <v-row>
+          <v-col cols="6" sm="4">
+            <v-img
+              :src="url4"
+              gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
+              max-width="400"
+              height="150"
+            ></v-img>
+          </v-col>
 
-<br/>
+          <v-col cols="6" sm="4">
+            <v-img
+              :src="url5"
+              gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
+              max-width="400"
+              height="150"
+            >
+            </v-img>
+          </v-col>
 
-<div>
-      <b-row>
-          <b-col><div align="center">Enmallado Perimetral</div>
-          <br/>
-          Contamos con el personal, para suministrar e instalar pasto cintetico</b-col>
-          <b-col><div align="right"><v-img src="../assets-services/s1.png" width="500"
-          
-          ></v-img></div></b-col>
-        </b-row>
-  <v-row>
-    <v-col
-      cols="6"
-      sm="4"
-    >
-      <v-img
-       :src="url7"
-           gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
-        max-width="400"
-          height="150"
-      ></v-img>
-    </v-col>
+          <v-col cols="6" sm="4">
+            <v-img
+              :src="url6"
+              gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.2)"
+              max-width="400"
+              height="150"
+            >
+            </v-img>
+          </v-col>
+        </v-row>
+      </div>
 
-    <v-col
-      cols="6"
-      sm="4"
-    >
-      <v-img  :src="url8"
-        gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
-        max-width="400"
-          height="150">
-      </v-img>
-    </v-col>
+      <br />
 
-    <v-col
-      cols="6"
-      sm="4"
-    >
-      <v-img :src="url9"
-           gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.2)"
-        max-width="400"
-        height="150">
-      </v-img>
-    </v-col>
-  </v-row>
-</div>
+      <div>
+        <div align="left"><h4>Concertina</h4></div>
+                <v-spacer></v-spacer>
+        <font color="grey">
+          <h6>
+            Suministramos en instalamos concertina
+            <v-spacer></v-spacer>
+            Para penales, hogares, lugares que requieran proteccion
+          </h6>
+        </font>
+        <v-spacer></v-spacer>
+        Algunos tipos de concertina:
+         <v-spacer></v-spacer>
+        <v-chip style="background-color:grey;" dark>Concertina sencilla</v-chip>&nbsp;
+        <v-chip style="background-color:grey;" dark>Concertina Industrial</v-chip>&nbsp;
+        <v-chip style="background-color:grey;" dark>Concertina Militar</v-chip>&nbsp;
+        <v-row>
+          <v-col cols="6" sm="4">
+            <v-img
+              :src="url7"
+              gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
+              max-width="400"
+              height="150"
+            ></v-img>
+          </v-col>
 
+          <v-col cols="6" sm="4">
+            <v-img
+              :src="url8"
+              gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
+              max-width="400"
+              height="150"
+            >
+            </v-img>
+          </v-col>
 
-<br/>
-<div>
-      <b-row>
-          <b-col>
-          <div align="left"><v-img src="../assets-services/herreria-0.jpg" width="300"
-          
-          ></v-img></div>
-         
-          <br/>
-          </b-col>
-          <b-col><div align="left"> <div align="center">Trabajos en Herreria</div></div></b-col>
-        </b-row>
-  <v-row>
-    <v-col
-      cols="6"
-      sm="4"
-    >
-      <v-img
-       :src="url10"
-           gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
-        max-width="400"
-          height="150"
-      ></v-img>
-    </v-col>
+          <v-col cols="6" sm="4">
+            <v-img
+              :src="url9"
+              gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.2)"
+              max-width="400"
+              height="150"
+            >
+            </v-img>
+          </v-col>
+        </v-row>
+      </div>
 
-    <v-col
-      cols="6"
-      sm="4"
-    >
-      <v-img  :src="url11"
-        gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
-        max-width="400"
-          height="150">
-      </v-img>
-    </v-col>
+      <br />
+      <div>
+        <div align="left"><h4>Trabajos en Herreria</h4></div>
+                        <v-spacer></v-spacer>
+        <font color="grey">
+          <h6>
+            Suministramos en instalamos en trabajos en herreria.
+            <v-spacer></v-spacer>
+            Hacemos todo tipo de trabajos en herreria que usted requiera.
+          </h6>
+        </font>
+        <v-spacer></v-spacer>
+        Algunos tipos de trabajo que realizamos:
+         <v-spacer></v-spacer>
+        <v-chip style="background-color:grey;" dark>Marcos</v-chip>&nbsp;
+        <v-chip style="background-color:grey;" dark>Contramarcos</v-chip>&nbsp;
+        <v-chip style="background-color:grey;" dark>Proteccion p/ventanas</v-chip>&nbsp;
+        <v-row>
+          <v-col cols="6" sm="4">
+            <v-img
+              :src="url10"
+              gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
+              max-width="400"
+              height="150"
+            ></v-img>
+          </v-col>
 
-    <v-col
-      cols="6"
-      sm="4"
-    >
-      <v-img :src="url12"
-           gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.2)"
-        max-width="400"
-        height="150">
-      </v-img>
-    </v-col>
-  </v-row>
-</div>
+          <v-col cols="6" sm="4">
+            <v-img
+              :src="url11"
+              gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.4)"
+              max-width="400"
+              height="150"
+            >
+            </v-img>
+          </v-col>
 
+          <v-col cols="6" sm="4">
+            <v-img
+              :src="url12"
+              gradient="to top right, rgba(100,115,201,.2), rgba(25,32,72,.2)"
+              max-width="400"
+              height="150"
+            >
+            </v-img>
+          </v-col>
+        </v-row>
+      </div>
     </div>
     <br />
     <v-spacer></v-spacer>
@@ -285,7 +289,7 @@
 export default {
   data() {
     return {
-     images: [
+      images: [
         require("../assets-products/tuberia-hidraulica.jpg"),
         require("../assets-products/tuberia-polietileno.jpg"),
       ],
@@ -302,7 +306,6 @@ export default {
       url10: require("../assets-services/herreria-1.jpg"),
       url11: require("../assets-services/herreria-2.jpg"),
       url12: require("../assets-services/herreria-3.jpg"),
-      
     };
   },
 };

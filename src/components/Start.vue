@@ -49,8 +49,8 @@
     <br />
     <div align="center">
       <b>
-        <font color="black" size="5">Productos</font>
-        <font color="#00b686" size="5">&nbsp;Destacados</font>
+        <font color="black" size="6">Productos</font>
+        <font color="#00b686" size="6">&nbsp;Destacados</font>
       </b>
       <hr style="width: 90%" />
     </div>
