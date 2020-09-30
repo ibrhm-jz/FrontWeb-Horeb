@@ -40,7 +40,16 @@
     <br />
     <br />
     <br />
-
+<div>
+  <b-modal id="modal-1" centered title="BootstrapVue" hide-footer>
+    <div align="center">
+     <v-img
+              :src="url1"
+              max-width="500"
+              height="250"
+            ></v-img></div>
+  </b-modal>
+</div>
     <div align="center">
       <b>
         <font color="black" size="6">Nuestros</font>
@@ -54,18 +63,19 @@
         <v-spacer></v-spacer>
         <font color="grey">
           <h6>
-            Suministro e instalacion de pasto sintetico, tipo filamento,
-            monofilamente e hibrido.
+            Suministramos e instalamos pasto sintetico,
             <v-spacer></v-spacer>
             Instalamos canchas deportivas, patios,jardines o locacines
-            decorativas
+            decorativas, en distintos colores.
           </h6>
         </font>
         <v-spacer></v-spacer>
-        Colores:
+        Tipos de pasto sintetico:
          <v-spacer></v-spacer>
-        <v-chip style="background-color:green;" dark>Verde Militar</v-chip>&nbsp;
-        <v-chip style="background-color:#00ab06;" dark>Verde</v-chip>
+        <v-chip style="background-color:grey;" dark v-b-modal.modal-1>Monofilamento</v-chip>&nbsp;
+        <v-chip style="background-color:grey;" dark>Fibrilado</v-chip> &nbsp;
+        <v-chip style="background-color:grey;" dark>Hibrido</v-chip>
+
 
         <v-row>
           <v-col cols="6" sm="4">
@@ -101,7 +111,7 @@
 
       <br />
 
-      <div align="lefy">
+      <div align="left">
         <div align="left"><h4>Enmallado Perimetral</h4></div>
         <v-spacer></v-spacer>
         <font color="grey">
