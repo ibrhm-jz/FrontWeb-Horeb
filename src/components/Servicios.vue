@@ -291,13 +291,16 @@
         </v-card-text>
       </v-card>
     </v-footer>
+
   </div>
 </template>
 
 <script>
+
 export default {
   data() {
     return {
+     
       images: [
         require("../assets-products/tuberia-hidraulica.jpg"),
         require("../assets-products/tuberia-polietileno.jpg"),
@@ -316,7 +319,9 @@ export default {
       url11: require("../assets-services/herreria-2.jpg"),
       url12: require("../assets-services/herreria-3.jpg"),
     };
+    
   },
+
 };
 </script>
 

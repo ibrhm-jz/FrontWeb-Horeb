@@ -304,7 +304,7 @@ export default {
           src: require("../assets/aset-1.jpg"),
         },
         {
-          src: require("../assets/tinaco.jpg"),
+          src: require("../assets/tubos.jpg"),
         },
         {
           src: require("../assets/pasto.jpg"),

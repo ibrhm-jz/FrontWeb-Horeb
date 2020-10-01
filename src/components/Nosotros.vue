@@ -56,8 +56,64 @@
     </div>
     <br />
     <div class="contenedor">
+     <div align="left">
+    <h3> ¿Quienes somos?</h3>
+     </div>
+    <div>
+    Somos una empresa distribuidora de tubos y conexiones para agua potable, drenaje, saneamiento y alcantarillado. Contamos con una amplia gama de productos.
+    en todo tipo de materiales para la construccion, elaboracion de todo tipo de estanques para sus diferentes usos, construccion de plantas de tratamientos de aguas residuales y suministro, servicio e instalacion para el comercio en general; tubo pvc, galvanizado, acero soldable, polietileno, gaviones, geotextil, tinacos, valvulas, alcantarillas metalicas, suministro e instalacion de Geomembrana.
+    </div>
+    <br/>
 
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3820.363205223804!2d-93.11568768550498!3d16.758595988458286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ecd931da48d3d9%3A0x9796b4b0ff47428a!2sSuministros%20en%20Tuberia%20Horeb%20S.A%20de%20C.V!5e0!3m2!1ses-419!2smx!4v1601490290833!5m2!1ses-419!2smx" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+<font >
+     <div align="left">
+   <h3> Mision </h3>
+   </div>
+Nuestra mision es otorgar un servicio y productos de calidad teniendo cpmo prioridad la satisfaccion de nuestros
+clientes, es por esto que contamos con personal altamente capacitado que  para atender
+los requerimientos que cada cliente necesita. 
+ </font>
+ <br/> <br/> 
+
+ <div align="left">
+<h3>Vision</h3>
+</div>
+Ser uno de los mas importantes distribuidores de la region, ademas de ser reconocidos
+por la calidad de nuestros servicios y productos, teniendo un precio competitivo.
+
+
+ <br /><br /><br />
+      <b-row>
+    <b-col> <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3820.363205223804!2d-93.11568768550498!3d16.758595988458286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ecd931da48d3d9%3A0x9796b4b0ff47428a!2sSuministros%20en%20Tuberia%20Horeb%20S.A%20de%20C.V!5e0!3m2!1ses-419!2smx!4v1601490290833!5m2!1ses-419!2smx" width="100%" height="425" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe></b-col>
+    <b-col>      <b-card
+    height="400"
+          >
+          <div align="center">CONTACTANOS </div>
+          <v-spacer></v-spacer>
+          <v-form ref="form" v-model="valid" lazy-validation>
+            <v-text-field
+              v-model="email"
+              :rules="emailRules"
+              label="E-mail"
+              required
+            ></v-text-field>
+
+            <v-text-field v-model="name" label="Nombre" required></v-text-field>
+
+            <v-textarea
+              v-model="asunto"
+              label="Asunto"
+              required
+            ></v-textarea>
+
+            <b-button class="btn-green" v-on:click="sendEmail"
+              >Enviar Email</b-button
+            >
+          </v-form></b-card
+        ></b-col>
+  </b-row>
+
+   
     </div>
     <br />
     <v-spacer></v-spacer>
@@ -93,13 +149,29 @@
         </v-card-text>
       </v-card>
     </v-footer>
+
+            <v-snackbar v-model="snackbar">
+      {{ text }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn color="pink" text v-bind="attrs" @click="snackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
 <script>
+import { API } from "../Servicios/axios";
 export default {
   data() {
     return {
+      name: "",
+      email: "",
+      asunto: "",
+      text: "El correo se ha enviado,en un momento le atenderemos",
+      snackbar: false,
       images: [
         require("../assets-products/tuberia-hidraulica.jpg"),
         require("../assets-products/tuberia-polietileno.jpg"),
@@ -118,6 +190,33 @@ export default {
       url11: require("../assets-services/herreria-2.jpg"),
       url12: require("../assets-services/herreria-3.jpg"),
     };
+  },
+      methods: {
+    sendEmail() {
+      if (this.email == "" || (this.asunto == "") | (this.name == "")) {
+        window.alert("Datos incompletos para enviar Email.")
+      } else {
+        const data = {
+          correo: this.email,
+          mensaje: this.asunto,
+          nombre: this.name,
+        };
+        API.post("email", data)
+          .then((res) => {
+            this.email = "";
+            this.asunto = "";
+            this.name = "";
+
+            this.snackbar = true;
+            // eslint-disable-next-line
+            console.log(res.data);
+          })
+          .catch((error) => {
+            // eslint-disable-next-line
+            console.error(error);
+          });
+      }
+    },
   },
 };
 </script>
