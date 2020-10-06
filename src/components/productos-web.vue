@@ -153,8 +153,8 @@
             <v-img :src="url4" height="194"></v-img>
 
             <v-card-text
-              >Visit ten places on our planet that are undergoing the biggest
-              changes today.</v-card-text
+              >Uso en alcantarillado para conduccion de aguas negras cuenta con
+              campana y espiga.</v-card-text
             >
 
             <v-card-actions>
@@ -293,8 +293,7 @@
             <v-img :src="url9" height="194"></v-img>
 
             <v-card-text
-              >Visit ten places on our planet that are undergoing the biggest
-              changes today.</v-card-text
+              >Se utliza para pozos y  registro de drenaje para facilitar el mantenimiento.</v-card-text
             >
 
             <v-card-actions>
@@ -379,8 +378,7 @@
             <v-img :src="url12" height="194"></v-img>
 
             <v-card-text
-              >Visit ten places on our planet that are undergoing the biggest
-              changes today.</v-card-text
+              > Los geotextiles sirven para separar tierras de diferente granulometría estabilizando el terreno.</v-card-text
             >
 
             <v-card-actions>
@@ -413,8 +411,7 @@
             <v-img :src="url13" height="194"></v-img>
 
             <v-card-text
-              >Visit ten places on our planet that are undergoing the biggest
-              changes today.</v-card-text
+              >Ideal para la desinfeccion de agua y potabilizacion de la misma.</v-card-text
             >
 
             <v-card-actions>
@@ -442,8 +439,7 @@
             <v-img :src="url14" height="194"></v-img>
 
             <v-card-text
-              >Visit ten places on our planet that are undergoing the biggest
-              changes today.</v-card-text
+              >Están diseñadas, para solucionar problemas de drenaje transversal en carreteras, vías férreas, etc.</v-card-text
             >
 
             <v-card-actions>
@@ -467,8 +463,7 @@
             <v-img :src="url15" height="194"></v-img>
 
             <v-card-text
-              >Visit ten places on our planet that are undergoing the biggest
-              changes today.</v-card-text
+              >Para almacenamiento de agua y tratatado de aguas negras.</v-card-text
             >
 
             <v-card-actions>
@@ -499,8 +494,7 @@
             <v-img :src="url16" height="194"></v-img>
 
             <v-card-text
-              >Visit ten places on our planet that are undergoing the biggest
-              changes today.</v-card-text
+              >Contamos consuministro en conexiones fabricadas en PVC para redes de agua potable.</v-card-text
             >
 
             <v-card-actions>
@@ -529,8 +523,7 @@
             <v-img :src="url17" height="194"></v-img>
 
             <v-card-text
-              >Visit ten places on our planet that are undergoing the biggest
-              changes today.</v-card-text
+              >Tambien contamos con productos en el ambito electrico.</v-card-text
             >
 
             <v-card-actions>
@@ -554,8 +547,7 @@
             <v-img :src="url18" height="194"></v-img>
 
             <v-card-text
-              >Visit ten places on our planet that are undergoing the biggest
-              changes today.</v-card-text
+              >Tambien suministramos lavaderos para ropa al mayoreo.</v-card-text
             >
 
             <v-card-actions>

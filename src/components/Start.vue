@@ -214,7 +214,7 @@
     <div class="contenedor">
       <b-collapse id="collapse-4" v-model="visible" class="mt-2">
         <b-card
-          >Envianos un email
+          >Contactanos
           <v-spacer></v-spacer>
           <v-form ref="form" v-model="valid" lazy-validation>
             <v-text-field
