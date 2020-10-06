@@ -60,8 +60,8 @@
     <h3> ¿Quienes somos?</h3>
      </div>
     <div>
-    Somos una empresa distribuidora de tubos y conexiones para agua potable, drenaje, saneamiento y alcantarillado. Contamos con una amplia gama de productos.
-    en todo tipo de materiales para la construccion, elaboracion de todo tipo de estanques para sus diferentes usos, construccion de plantas de tratamientos de aguas residuales y suministro, servicio e instalacion para el comercio en general; tubo pvc, galvanizado, acero soldable, polietileno, gaviones, geotextil, tinacos, valvulas, alcantarillas metalicas, suministro e instalacion de Geomembrana.
+    Somos una empresa distribuidora de tubos y conexiones para agua potable,saneamiento y alcantarillado. Contamos con una aporximado de 2800 productos,
+    en todo tipo de materiales para la construccion, contamos con instalacion de plantas de tratamientos de aguas residuales y suministro, servicio e instalacion para el comercio en general; tubo pvc, tubo de concreto, galvanizado, acero soldable, polietileno, gaviones, geotextil, tinacos, valvulas, alcantarillas metalicas, suministro e instalacion de Geomembrana.
     </div>
     <br/>
 
@@ -69,8 +69,9 @@
      <div align="left">
    <h3> Mision </h3>
    </div>
-Nuestra mision es otorgar un servicio y productos de calidad teniendo cpmo prioridad la satisfaccion de nuestros
-clientes, es por esto que contamos con personal altamente capacitado que  para atender
+Nuestra mision es la honestidad al  otorgar asesoria,servicio y productos de alta calidad, que cumplen las 
+normas exigidas por las dependencias para la construccion de obras publicas satisfaciendo la necesidad de nuestros
+clientes, es por ell que contamos con personal administrativo y logistico altamente capacitado que  para atender
 los requerimientos que cada cliente necesita. 
  </font>
  <br/> <br/> 

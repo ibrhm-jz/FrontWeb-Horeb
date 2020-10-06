@@ -70,10 +70,7 @@
               negras.</v-card-text
             >
 
-            <v-card-actions>
-              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-              <v-spacer></v-spacer>
-            </v-card-actions>
+
           </v-card>
         </div>
 
@@ -99,10 +96,7 @@
               campana y espiga.</v-card-text
             >
 
-            <v-card-actions>
-              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-              <v-spacer></v-spacer>
-            </v-card-actions>
+
           </v-card>
         </div>
 
@@ -124,10 +118,7 @@
               eléctrico.</v-card-text
             >
 
-            <v-card-actions>
-              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-              <v-spacer></v-spacer>
-            </v-card-actions>
+
           </v-card>
         </div>
       </div>
@@ -157,10 +148,7 @@
               campana y espiga.</v-card-text
             >
 
-            <v-card-actions>
-              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-              <v-spacer></v-spacer>
-            </v-card-actions>
+
           </v-card>
         </div>
 
@@ -186,10 +174,7 @@
               hogares y edificios comerciales.</v-card-text
             >
 
-            <v-card-actions>
-              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-              <v-spacer></v-spacer>
-            </v-card-actions>
+
           </v-card>
         </div>
 
@@ -211,10 +196,7 @@
               etc.</v-card-text
             >
 
-            <v-card-actions>
-              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-              <v-spacer></v-spacer>
-            </v-card-actions>
+
           </v-card>
         </div>
       </div>
@@ -243,10 +225,7 @@
               y evita la entrada de arena.</v-card-text
             >
 
-            <v-card-actions>
-              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-              <v-spacer></v-spacer>
-            </v-card-actions>
+
           </v-card>
         </div>
 
@@ -272,10 +251,7 @@
               drenaje.</v-card-text
             >
 
-            <v-card-actions>
-              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-              <v-spacer></v-spacer>
-            </v-card-actions>
+
           </v-card>
         </div>
 
@@ -296,10 +272,7 @@
               >Se utliza para pozos y  registro de drenaje para facilitar el mantenimiento.</v-card-text
             >
 
-            <v-card-actions>
-              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-              <v-spacer></v-spacer>
-            </v-card-actions>
+
           </v-card>
         </div>
       </div>
@@ -329,10 +302,7 @@
               fluidos.</v-card-text
             >
 
-            <v-card-actions>
-              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-              <v-spacer></v-spacer>
-            </v-card-actions>
+
           </v-card>
         </div>
 
@@ -357,10 +327,7 @@
               >Se usan para Defensas pluviales, muros de protección,encauzamientos de ríos, entre otros.</v-card-text
             >
 
-            <v-card-actions>
-              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-              <v-spacer></v-spacer>
-            </v-card-actions>
+
           </v-card>
         </div>
 
@@ -381,10 +348,7 @@
               > Los geotextiles sirven para separar tierras de diferente granulometría estabilizando el terreno.</v-card-text
             >
 
-            <v-card-actions>
-              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-              <v-spacer></v-spacer>
-            </v-card-actions>
+
           </v-card>
         </div>
       </div>
@@ -414,10 +378,7 @@
               >Ideal para la desinfeccion de agua y potabilizacion de la misma.</v-card-text
             >
 
-            <v-card-actions>
-              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-              <v-spacer></v-spacer>
-            </v-card-actions>
+
           </v-card>
         </div>
 
@@ -442,10 +403,7 @@
               >Están diseñadas, para solucionar problemas de drenaje transversal en carreteras, vías férreas, etc.</v-card-text
             >
 
-            <v-card-actions>
-              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-              <v-spacer></v-spacer>
-            </v-card-actions>
+
           </v-card>
         </div>
 
@@ -466,10 +424,7 @@
               >Para almacenamiento de agua y tratatado de aguas negras.</v-card-text
             >
 
-            <v-card-actions>
-              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-              <v-spacer></v-spacer>
-            </v-card-actions>
+
           </v-card>
         </div>
       </div>
@@ -497,10 +452,7 @@
               >Contamos consuministro en conexiones fabricadas en PVC para redes de agua potable.</v-card-text
             >
 
-            <v-card-actions>
-              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-              <v-spacer></v-spacer>
-            </v-card-actions>
+
           </v-card>
         </div>
 
@@ -526,10 +478,7 @@
               >Tambien contamos con productos en el ambito electrico.</v-card-text
             >
 
-            <v-card-actions>
-              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-              <v-spacer></v-spacer>
-            </v-card-actions>
+
           </v-card>
         </div>
 
@@ -550,10 +499,7 @@
               >Tambien suministramos lavaderos para ropa al mayoreo.</v-card-text
             >
 
-            <v-card-actions>
-              <v-btn text color="deep-purple accent-4">MAS INFORMACION</v-btn>
-              <v-spacer></v-spacer>
-            </v-card-actions>
+
           </v-card>
         </div>
       </div>
