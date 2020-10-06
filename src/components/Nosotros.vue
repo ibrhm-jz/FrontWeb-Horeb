@@ -61,7 +61,7 @@
      </div>
     <div>
     Somos una empresa distribuidora de tubos y conexiones para agua potable,saneamiento y alcantarillado. Contamos con una aporximado de 2800 productos,
-    en todo tipo de materiales para la construccion, contamos con instalacion de plantas de tratamientos de aguas residuales y suministro, servicio e instalacion para el comercio en general; tubo pvc, tubo de concreto, galvanizado, acero soldable, polietileno, gaviones, geotextil, tinacos, valvulas, alcantarillas metalicas, suministro e instalacion de Geomembrana.
+    en todo tipo de materiales para la construccion, contamos con instalacion de plantas de tratamientos de aguas residuales y suministro, servicio e instalacion para el comercio en general; tubo pvc, tubo de concreto, galvanizado, acero soldable, polietileno, gaviones, geotextil, tinacos, valvulas, alcantarillas metalicas,etc.
     </div>
     <br/>
 
