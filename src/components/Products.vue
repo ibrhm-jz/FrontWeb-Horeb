@@ -144,21 +144,17 @@
             <th>Medida</th>
             <th>Descripcion</th>
             <th>Precio Unitario</th>
-            <th>Porcentaje</th>
             <th>Importe</th>
           </tr>
           <tr v-for="(invoice_product, k) in items" :key="k.id">
             <td scope="row" class="trashIconContainer">
               <i class="far fa-trash-alt" @click="deleteRow(k, invoice_product)"></i>
             </td>
-            <td><v-text-field style="width:70px;"  placeholder="%" required v-model="invoice_product.cantidad" ></v-text-field></td>
-            <td ><v-text-field style="width:70px;"  placeholder="%" required v-model="invoice_product.medida" ></v-text-field></td>
-            <td ><v-text-field style="width:70px;"  placeholder="%" required v-model="invoice_product.descripcion" ></v-text-field></td>
-            <td><v-text-field style="width:70px;"  placeholder="%" required v-model="invoice_product.precio_unitario" @input="importex(newPorcentaje[k])"></v-text-field></td>
-            <td>
-              <v-text-field style="width:70px;"  placeholder="%" required v-model="newPorcentaje[k]" @input="importex(newPorcentaje[k])"></v-text-field>
-            </td>
-            <td v-text="invoice_product.importe"></td>
+            <td><v-text-field style="width:50px;"  placeholder="%" required v-model="invoice_product.cantidad" @input="calcularImporte()"></v-text-field></td>
+            <td ><v-text-field style="width:50px;"  placeholder="%" required v-model="invoice_product.medida" ></v-text-field></td>
+            <td ><v-text-field style="width:120px;"  placeholder="%" required v-model="invoice_product.descripcion" ></v-text-field></td>
+            <td><v-text-field style="width:100px;"  placeholder="%" required v-model="invoice_product.precio_unitario" @input="calcularImporte()"></v-text-field></td>
+            <td ><v-text-field style="width:100px;"  placeholder="%" required v-model="invoice_product.importe" ></v-text-field></td>
           </tr>
         </table>
 
