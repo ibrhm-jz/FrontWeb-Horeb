@@ -14,6 +14,7 @@ import Start from '../components/Start.vue';
 import Productosweb from '../components/productos-web.vue';
 import Servicios from '../components/Servicios.vue';
 import Nosotros from '../components/Nosotros.vue';
+import Products from '../components/Products.vue';
 export default new Router({
     mode: 'history',
     routes: [{
@@ -73,6 +74,12 @@ export default new Router({
             path: '/Nosotros',
             name: '/Nosotros',
             component: Nosotros
+
+        },
+        {
+            path: '/products',
+            name: '/products',
+            component: Products
 
         },
         {

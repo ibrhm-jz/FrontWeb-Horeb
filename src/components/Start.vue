@@ -8,13 +8,13 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item link to="/"  color="blue">
+            <b-nav-item link to="/" color="blue">
               <font color="black">Inicio</font>
             </b-nav-item>
-            <b-nav-item  link to="/productos-web" color="blue">
-              <font color="black" >Productos</font>
+            <b-nav-item link to="/productos-web" color="blue">
+              <font color="black">Productos</font>
             </b-nav-item>
-            <b-nav-item link to="/Servicios"  color="blue">
+            <b-nav-item link to="/Servicios" color="blue">
               <font color="black">Servicios</font>
             </b-nav-item>
             <b-nav-item link to="/Nosotros" color="blue">
@@ -60,36 +60,36 @@
         <v-card class="mx-auto" max-width="250">
           <v-img :src="url1" height="200px"></v-img>
           <v-card-title>Tuberia Corrugada</v-card-title>
-         
+
           <v-card-actions>
-            <v-btn color="orange" text>ver mas</v-btn>
+            <v-btn color="orange" text link to="/productos-web">ver mas</v-btn>
           </v-card-actions>
         </v-card>
 
         <v-card class="mx-auto" max-width="250">
           <v-img :src="url2" height="200px"></v-img>
           <v-card-title>Pasto Cintetico</v-card-title>
-         
+
           <v-card-actions>
-            <v-btn color="orange" text>ver mas</v-btn>
+            <v-btn color="orange" text link to="/productos-web">ver mas</v-btn>
           </v-card-actions>
         </v-card>
 
         <v-card class="mx-auto" max-width="250">
           <v-img :src="url3" height="200px"></v-img>
           <v-card-title>Valvuleria</v-card-title>
-         
+
           <v-card-actions>
-            <v-btn color="orange" text>ver mas</v-btn>
+            <v-btn color="orange" text link to="/productos-web">ver mas</v-btn>
           </v-card-actions>
         </v-card>
 
         <v-card class="mx-auto" max-width="250">
           <v-img :src="url4" height="200px"></v-img>
           <v-card-title>Geomembrana</v-card-title>
-         
+
           <v-card-actions>
-            <v-btn color="orange" text>ver mas</v-btn>
+            <v-btn color="orange" text link to="/productos-web">ver mas</v-btn>
           </v-card-actions>
         </v-card>
       </div>
@@ -100,36 +100,36 @@
         <v-card class="mx-auto" max-width="250">
           <v-img :src="url5" height="200px"></v-img>
           <v-card-title>Tuberia de Pvc</v-card-title>
-         
+
           <v-card-actions>
-            <v-btn color="orange" text>ver mas</v-btn>
+            <v-btn color="orange" text link to="/productos-web">ver mas</v-btn>
           </v-card-actions>
         </v-card>
 
         <v-card class="mx-auto" max-width="250">
           <v-img :src="url6" height="200px"></v-img>
           <v-card-title>Plantas de Tratamiento</v-card-title>
-         
+
           <v-card-actions>
-            <v-btn color="orange" text>ver mas</v-btn>
+            <v-btn color="orange" text link to="/productos-web">ver mas</v-btn>
           </v-card-actions>
         </v-card>
 
         <v-card class="mx-auto" max-width="250">
           <v-img :src="url7" height="200px"></v-img>
           <v-card-title>Tuberia de acero</v-card-title>
-         
+
           <v-card-actions>
-            <v-btn color="orange" text>ver mas</v-btn>
+            <v-btn color="orange" text link to="/productos-web">ver mas</v-btn>
           </v-card-actions>
         </v-card>
 
         <v-card class="mx-auto" max-width="250">
           <v-img :src="url8" height="200px"></v-img>
           <v-card-title>Piezas Especiales</v-card-title>
-         
+
           <v-card-actions>
-            <v-btn color="orange" text>ver mas</v-btn>
+            <v-btn color="orange" text link to="/productos-web">ver mas</v-btn>
           </v-card-actions>
         </v-card>
       </div>
@@ -160,7 +160,9 @@
             Geomembrana
             <br />
             <br />
-            <b-button class="btn-green">Conoce mas</b-button>
+            <b-button class="btn-green" link to="/servicios"
+              >Conoce mas</b-button
+            >
           </div>
 
           <div class="footer" style="width: 25%">
@@ -238,7 +240,7 @@
       </b-collapse>
     </div>
     <br />
-      <v-footer dark padless>
+    <v-footer dark padless>
       <v-card
         class="flex"
         flat
@@ -255,12 +257,32 @@
             Tuberia_horeb@hotmail.com</font
           >
           <v-spacer></v-spacer>
+          <v-btn
+            class="mx-4"
+            dark
+            icon
+            href="https://www.facebook.com/Suministros-en-Tuberia-HOREB-112676877152353"
+          >
+            <v-icon size="24px"> mdi-facebook </v-icon></v-btn
+          >
 
-          <v-btn v-for="icon in icons" :key="icon" class="mx-4" dark icon>
-            <v-icon size="24px">
-              {{ icon }}
-            </v-icon>
-          </v-btn>
+          <v-btn
+            class="mx-4"
+            dark
+            icon
+            href="https://www.facebook.com/Suministros-en-Tuberia-HOREB-112676877152353"
+          >
+            <v-icon size="24px"> mdi-linkedin </v-icon></v-btn
+          >
+
+          <v-btn
+            class="mx-4"
+            dark
+            icon
+            href="https://www.facebook.com/Suministros-en-Tuberia-HOREB-112676877152353"
+          >
+            <v-icon size="24px"> mdi-twitter </v-icon></v-btn
+          >
         </v-card-title>
 
         <v-card-text class="py-2 white--text text-center">
@@ -329,7 +351,7 @@ export default {
   methods: {
     sendEmail() {
       if (this.email == "" || (this.asunto == "") | (this.name == "")) {
-        window.alert("Datos incompletos para enviar Email.")
+        window.alert("Datos incompletos para enviar Email.");
       } else {
         const data = {
           correo: this.email,
