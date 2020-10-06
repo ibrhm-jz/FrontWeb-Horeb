@@ -40,7 +40,7 @@
     <br />
     <br />
 <div>
-  <b-modal id="modal-1" centered title="BootstrapVue" hide-footer>
+  <b-modal id="modal-1" centered hide-footer>
     <div align="center">
      <v-img
               :src="url1"
