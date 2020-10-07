@@ -299,7 +299,7 @@
         size="sm"
         @show="resetModal"
         @hidden="resetModal"
-        @ok="calculateGanancia"
+        @ok="GuardaCotizacion"
         ok-variant="success"
       >
         <v-text-field
@@ -313,7 +313,7 @@
         <v-text-field append-icon="mdi-map" label="Lugar de Entrega" />
 
         <br />
-        <v-text-field append-icon="mdi-note-plus" label="Agregar nota" />
+        <v-text-field append-icon="mdi-note-plus" label="Agregar nota" v-model="nota" />
       </b-modal>
     </div>
   </div>
@@ -349,6 +349,7 @@ export default {
       cant_letra: "",
       comprobacion: "",
       token: "",
+      nota:"",
       name: "",
       // eslint-disable-next-line
       nameState: null,
@@ -367,18 +368,20 @@ export default {
       searchnombre: "",
       items: [
         {
-          producto_id: "",
+          
           nombre: "",
           direccion: "",
           ciudad: "",
           medida: "",
           descripcion: "",
-          precio_unitario: "",
-          cantidad: 0,
-          importe: "",
+          producto_id: "",
           status: "",
           costo_flete: "",
           ganancia: "",
+          cantidad: 0,
+          importe: "",
+          user_id:"1",
+          precio_unitario: "",
         },
       ],
       itemsR: [
@@ -459,6 +462,8 @@ export default {
         this.$set(this.items[i], "status", "No vendido");
         this.$set(this.items[i], "costo_flete", this.costo_flete);
         this.$set(this.items[i], "ganancia", this.PorcentajeGanancia);
+        this.$set(this.items[i], "user_id", "1");
+       
       }
       // eslint-disable-next-line
       console.log(this.items);
@@ -553,9 +558,9 @@ export default {
             doc.internal.scaleFactor;
           var columns_price = ["Conceptos", "Total"];
           var data_price = [
-            ["SUBTOTAL", vm.invoice_subtotal],
-            ["IVA 16%", vm.invoice_iva],
-            ["TOTAL", vm.invoice_total],
+            ["SUBTOTAL:", "$"+this.format(vm.invoice_subtotal)],
+            ["IVA 16%:", "$"+this.format(vm.invoice_iva)],
+            ["TOTAL:", "$"+this.format(vm.invoice_total)],
           ];
           doc.autoTable(columns_price, data_price, {
             showHead: "never",
@@ -571,9 +576,10 @@ export default {
           doc.text(40, 55, "CANTIDAD EN LETRAS : ");
           doc.setFontSize(7);
           doc.text(40, 70, vm.cant_letra.toUpperCase());
+          doc.text(40, 85,"NOTA:" +vm.nota.toUpperCase());
           var imgpie = new Image();
           imgpie.src = PIE;
-          doc.addImage(imgpie, "PNG", 40, 100, width - 80, 110, {
+          doc.addImage(imgpie, "PNG", 40, 110, width - 80, 110, {
             margin: { bottom: 40 },
           });
           doc.save("Cotizacion_" + this.numero_cotizacion + ".pdf");
@@ -586,9 +592,9 @@ export default {
             doc.internal.scaleFactor;
           var columns_price = ["Conceptos", "Total"];
           var data_price = [
-            ["SUBTOTAL", this.format(vm.invoice_subtotal)],
-            ["IVA 16%", this.format(vm.invoice_iva)],
-            ["TOTAL", this.format(vm.invoice_total)],
+            ["SUBTOTAL:", "$"+this.format(vm.invoice_subtotal)],
+            ["IVA 16%:", "$"+this.format(vm.invoice_iva)],
+            ["TOTAL:", "$"+this.format(vm.invoice_total)],
           ];
           doc.autoTable(columns_price, data_price, {
             showHead: "never",
@@ -608,9 +614,10 @@ export default {
           doc.text(40, finalY + 55, "CANTIDAD EN LETRAS : ");
           doc.setFontSize(7);
           doc.text(40, finalY + 70, vm.cant_letra.toUpperCase());
+          doc.text(40, finalY + 85,"NOTA:" +vm.nota.toUpperCase());
           var imgpie = new Image();
           imgpie.src = PIE;
-          doc.addImage(imgpie, "PNG", 40, finalY + 100, width - 80, 110, {
+          doc.addImage(imgpie, "PNG", 40, finalY + 110, width - 80, 110, {
             margin: { bottom: 40 },
           });
           doc.save("Cotizacion_" + this.numero_cotizacion + ".pdf");
@@ -723,6 +730,28 @@ export default {
           console.log(res.data);
           this.datosProductos = res.data;
           //window.alert("Los datos se han guardado");
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+          window.alert(error);
+        });
+    },
+
+        GuardaCotizacion() {
+          this.LlenarDatos();
+          var dataJSON=JSON.stringify(this.items); 
+              console.log("EL dATA JSON"+dataJSON);
+      API.post("registro-ventas", dataJSON , {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: "Bearer " + this.token,
+        },
+      })
+        .then((res) => {
+          // eslint-disable-next-line
+          console.log(res.data); 
+          window.alert("Los datos se han guardado");
         })
         .catch((error) => {
           // eslint-disable-next-line
