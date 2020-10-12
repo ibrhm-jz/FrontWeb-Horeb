@@ -51,16 +51,6 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link to="/Empleados">
-          <v-list-item-icon>
-            <v-icon>mdi-account-group</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title class="font-drawer"> Empleados</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
         <v-list-item link to="/Productos">
           <v-list-item-icon>
             <v-icon>mdi-chart-ppf</v-icon>

@@ -82,17 +82,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link to="/Empresa">
-          <v-list-item-icon>
-            <v-icon>mdi-briefcase-edit</v-icon>
-          </v-list-item-icon>
 
-          <v-list-item-content>
-            <v-list-item-title class="font-drawer">
-              Empresa
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
       </v-list>
       <template v-slot:footer="{ hide }">
         <div class="d-flex bg-dark text-light align-items-center px-3 py-2">

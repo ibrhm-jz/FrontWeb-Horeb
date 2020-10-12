@@ -15,6 +15,7 @@ import Productosweb from '../components/productos-web.vue';
 import Servicios from '../components/Servicios.vue';
 import Nosotros from '../components/Nosotros.vue';
 import Products from '../components/Products.vue';
+import EditCotizacion from '../components/EditCotizacion.vue';
 export default new Router({
     mode: 'history',
     routes: [{
@@ -80,6 +81,12 @@ export default new Router({
             path: '/products',
             name: '/products',
             component: Products
+
+        },
+        {
+            path: '/editCotizacion',
+            name: '/editCotizacion',
+            component: EditCotizacion
 
         },
         {
