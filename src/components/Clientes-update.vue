@@ -74,10 +74,18 @@
           <b-input-group class="mt-3">
             <b-form-input placeholder="Buscar" v-model="searchnombres" v-on:keyup.enter="BuscarClientes"></b-form-input>
             <b-input-group-append>
+
               <b-button squared variant="info"  @click="BuscarClientes">
                 <b-icon icon="search"></b-icon
               ></b-button>
             </b-input-group-append>
+                                                            <b-form-select
+              v-model="category"
+              :options="optionscategory"
+              @change="FiltroProducto()"
+               style="margin-left: 50px"
+            ></b-form-select>
+
             <b-button
               squared
               variant="success"
@@ -326,6 +334,7 @@ export default {
       submittedNames: [],
       dataClientes: [],
       dataUsuario: [],
+      
       // eslint-disable-next-line
       nombres: "",
       searchnombres: "",
@@ -344,11 +353,41 @@ export default {
         { value: "Mallas", text: "Mallas" },
         { value: "Valvulas", text: "Valvulas" },
       ],
+        optionscategory: [
+        { value: null, text: "Todo" },
+        { value: "1", text: "Mis clientes" },
+     
+      
+      ],
       dataVendedores: [],
       selectedUser: [],
     };
   },
   methods: {
+        FiltroProducto() {
+      if (this.category == null) {
+        this.BuscarClientes();
+      } else {
+        const data = {
+          user_id: this.category,
+        };
+        API.post("mis-clientes", data, {
+          headers: {
+            Authorization: "Bearer " + this.token,
+          },
+        })
+          .then((res) => {
+            // eslint-disable-next-line
+            console.log(res.data);
+            this.dataClientes = res.data;
+            //this.getProduct();
+          })
+          .catch((error) => {
+            // eslint-disable-next-line
+            console.error(error);
+          });
+      }
+    },
     Limpiar: function () {
       (this.nombres = ""),
         (this.apellidos = ""),

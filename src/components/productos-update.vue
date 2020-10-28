@@ -110,7 +110,7 @@
                   <th class="text-left">Existencia</th>
                   <th class="text-left">Categoria</th>
                   <th class="text-left">Precio Unitario</th>
-                  <th class="text-left">Medida</th>
+                  <th class="text-left">Tipo de Medida</th>
                   <th class="text-left">Accion</th>
                 </tr>
               </thead>
@@ -178,7 +178,7 @@
                   v-model="medida"
                   :state="nameState"
                   required
-                  placeholder="Medida"
+                  placeholder="Tipo de Medida"
                   type="text"
                 ></b-form-input>
                 <br />
@@ -240,7 +240,7 @@
                   v-model="selectedProduct.medida"
                   :state="nameState"
                   required
-                  placeholder="Medida"
+                  placeholder="Tipo de Medida"
                   type="text"
                 ></b-form-input>
                 <br />
@@ -367,7 +367,7 @@ export default {
 
     FiltroProducto() {
       if (this.category == null) {
-        this.getProduct();
+        this.BuscarProductos();
       } else {
         const data = {
           categoria: this.category,

@@ -71,7 +71,7 @@
 
        <h2>Bienvenido a administracion Horeb</h2>
         <div class="line"></div>
-        <p>  “El secreto para salir adelante es empezar.”” </p>
+        <p>  “El secreto para salir adelante es empezar.”</p>
        
     </div>
     </div>
