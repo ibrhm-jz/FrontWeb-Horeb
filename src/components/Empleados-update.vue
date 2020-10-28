@@ -2,7 +2,7 @@
   <div width="100%">
     <div class="wrapper">
       <!-- Sidebar  -->
-            <nav id="sidebar">
+           <nav id="sidebar">
         <div class="sidebar-header">
           <div align="center">
             <img
@@ -15,7 +15,7 @@
 
         <ul class="list-unstyled components">
           <p>Administracion Horeb</p>
-                   <router-link to="/Inicio">
+                 <router-link to="/Inicio">
           <li>
             <a href="#">
               <b-icon icon="house-door-fill"></b-icon>&nbsp;&nbsp;Inicio</a
@@ -68,13 +68,13 @@
 
       <!-- Page Content  -->
       <div id="content">
-        <h2>Administracion de Clientes</h2>
+        <h2>Administracion de Empleados</h2>
         <div class="line"></div>
         <v-card elevation="2" tile class="padd-card">
           <b-input-group class="mt-3">
-            <b-form-input placeholder="Buscar" v-model="searchnombres" v-on:keyup.enter="BuscarClientes"></b-form-input>
+            <b-form-input placeholder="Buscar" v-model="searchnombre" v-on:keyup.enter="BuscarEmpleado"></b-form-input>
             <b-input-group-append>
-              <b-button squared variant="info"  @click="BuscarClientes">
+              <b-button squared variant="info"  @click="BuscarEmpleado">
                 <b-icon icon="search"></b-icon
               ></b-button>
             </b-input-group-append>
@@ -95,26 +95,26 @@
                 <tr>
                   <th class="text-left">Nombres</th>
                   <th class="text-left">Apellidos</th>
-                  <th class="text-left">Razon Social</th>
-                  <th class="text-left">Direccion</th>
+                  <th class="text-left">Tipo de Usuario</th>
+                  <th class="text-left">E-mail</th>
                   <th class="text-left">Telefono</th>
                   <th class="text-left">Accion</th>
                 </tr>
               </thead>
               <tbody class="text-mayus">
-                <tr v-for="(clientes, i) in dataClientes" :key="i">
-                  <td>{{ clientes.nombres }}</td>
-                  <td>{{ clientes.apellidos }}</td>
-                  <td>{{ clientes.empresa }}</td>
-                  <td>{{ clientes.direccion }}</td>
-                  <td>{{ clientes.telefono }}</td>
+                <tr v-for="(Empleados,i) in dataEmpleados" :key="i">
+                  <td>{{ Empleados.nombres }}</td>
+                  <td>{{ Empleados.apellidos }}</td>
+                  <td>{{ Empleados.tipo_usuario }}</td>
+                  <td>{{ Empleados.email }}</td>
+                  <td>{{ Empleados.telefono }}</td>
                   <td>
                     <b-button
                       squared
                       variant="info"
                       class="padd-button"
                       v-b-modal.modal-update
-                      @click="sendUser(clientes)"
+                      @click="sendUser(Empleados)"
                     >
                       <b-icon icon="pencil-square" style="color: #fff"></b-icon
                     ></b-button>
@@ -123,7 +123,7 @@
                       squared
                       variant="danger"
                       class="padd-button"
-                      @click="deleteClientes(clientes)"
+                      @click="deleteEmpleados(Empleados)"
                     >
                       <b-icon icon="trash-fill"></b-icon
                     ></b-button>
@@ -134,170 +134,165 @@
           </v-simple-table>
         </v-card>
 
-        <div>
-          <b-modal
-            id="modal-prevent-closing"
-            ref="modal"
-            title="Registrar Cliente"
-            centered
-            @show="resetModal"
-            @hidden="resetModal"
-            @ok="RegistrarCliente"
-            ok-variant="success"
-          >
-            <form ref="form" @submit.stop.prevent="handleSubmit">
-              <b-form-group :state="nameState" invalid-feedback="*Requerido">
-                <b-form-input
-                  id="nombres"
-                  v-model="nombres"
-                  :state="nameState"
-                  required
-                  placeholder="Nombres"
-                  class="text-mayus"
-                ></b-form-input>
-                <br />
-                <b-form-input
-                  id="apellidos"
-                  v-model="apellidos"
-                  :state="nameState"
-                  required
-                  placeholder="Apellidos"
-                  type="text"
-                  class="text-mayus"
-                ></b-form-input>
-                <br />
-                <b-form-input
-                  id="direccion"
-                  v-model="direccion"
-                  :state="nameState"
-                  required
-                  placeholder="Direccion"
-                  type="text"
-                  class="text-mayus"
-                ></b-form-input>
-                <br />
-                <b-form-input
-                  id="correo"
-                  v-model="correo"
-                  :state="nameState"
-                  required
-                  placeholder="Correo"
-                  class="text-mayus"
-                ></b-form-input>
-                <br />
-                <b-form-input
-                  id="correo"
-                  v-model="telefono"
-                  :state="nameState"
-                  required
-                  placeholder="Telefono"
-                  class="text-mayus"
-                ></b-form-input>
-                <br />
-                <b-form-input
-                  id="empresa"
-                  v-model="empresa"
-                  :state="nameState"
-                  required
-                  placeholder="Razon Social"
-                  class="text-mayus"
-                ></b-form-input>
-                <br />
-                <div>
-                  <b-form-select
-                    v-model="selected"
-                    :options="dataVendedores"
-                    value-field="id"
-                    text-field="nombres"
-                    class="text-mayus"
-                  ></b-form-select>
-                </div>
-              </b-form-group>
-            </form>
-          </b-modal>
-        </div>
 
-        <div>
-          <b-modal
-            id="modal-update"
-            ref="modal"
-            title="Registrar Cliente"
-            centered
-            @show="resetModal"
-            @hidden="resetModal"
-            @ok="ActualizarCliente"
-            ok-variant="success"
-          >
-            <form ref="form" @submit.stop.prevent="handleSubmit">
-              <b-form-group :state="nameState" invalid-feedback="*Requerido">
-                <b-form-input
-                  id="nombres"
-                  v-model="selectedUser.nombres"
-                  :state="nameState"
-                  required
-                  placeholder="Nombres"
-                  class="text-mayus"
-                ></b-form-input>
-                <br />
-                <b-form-input
-                  id="apellidos"
-                  v-model="selectedUser.apellidos"
-                  :state="nameState"
-                  required
-                  placeholder="Apellidos"
-                  class="text-mayus"
-                  type="text"
-                ></b-form-input>
-                <br />
-                <b-form-input
-                  id="direccion"
-                  v-model="selectedUser.direccion"
-                  :state="nameState"
-                  required
-                  placeholder="Direccion"
-                  class="text-mayus"
-                  type="text"
-                ></b-form-input>
-                <br />
-                <b-form-input
-                  id="correo"
-                  v-model="selectedUser.correo"
-                  :state="nameState"
-                  required
-                  placeholder="Correo"
-                  class="text-mayus"
-                ></b-form-input>
-                <br />
-                <b-form-input
-                  id="correo"
-                  v-model="selectedUser.telefono"
-                  :state="nameState"
-                  required
-                  placeholder="Telefono"
-                  class="text-mayus"
-                ></b-form-input>
-                <br />
-                <b-form-input
-                  id="empresa"
-                  v-model="selectedUser.empresa"
-                  :state="nameState"
-                  required
-                  placeholder="Razon Social"
-                ></b-form-input>
-                <br />
-                <div>
-                  <b-form-select
-                    v-model="selected"
-                    :options="dataVendedores"
-                    value-field="id"
-                    text-field="nombres"
-                    class="text-mayus"
-                  ></b-form-select>
-                </div>
-              </b-form-group>
-            </form>
-          </b-modal>
-        </div>
+    <div>
+      <b-modal
+        id="modal-prevent-closing"
+        ref="modal"
+        title="Registrar Empleados"
+        centered
+        @show="resetModal"
+        @hidden="resetModal"
+        @ok="RegistrarEmpleado"
+        ok-variant="success"
+      >
+        <form ref="form" @submit.stop.prevent="handleSubmit">
+          <b-form-group :state="nameState" invalid-feedback="*Requerido">
+            <b-form-input
+              id="nombres"
+              v-model="nombres"
+              :state="nameState"
+              required
+              placeholder="Nombres"
+            ></b-form-input>
+            <br />
+            <b-form-input
+              id="apellidos"
+              v-model="apellidos"
+              :state="nameState"
+              required
+              placeholder="Apellidos"
+              type="text"
+            ></b-form-input>
+            <br />
+          
+            <b-form-input
+              id="correo"
+              v-model="correo"
+              :state="nameState"
+              required
+              placeholder="Correo"
+            ></b-form-input>
+            <br />
+              <b-form-input
+              id="contraseña"
+              v-model="password"
+              :state="nameState"
+              required
+              placeholder="Contraseña"
+               type="password"
+            ></b-form-input>
+            <br />
+              <b-form-input
+              id="rcontraseña"
+              v-model="rpassword"
+              :state="nameState"
+              required
+              placeholder="Repetir contraseña"
+              type="password"
+            ></b-form-input>
+            <br />
+            <b-form-input
+              id="correo"
+              v-model="telefono"
+              :state="nameState"
+              required
+              placeholder="Telefono"
+            ></b-form-input>
+            <br />
+
+            <div>
+              <b-form-select
+                v-model="selected"
+                :options="options"
+       
+              ></b-form-select>
+            </div>
+          </b-form-group>
+        </form>
+      </b-modal>
+    </div>
+
+    <div>
+      <b-modal
+        id="modal-update"
+        ref="modal"
+        title="Registrar Cliente"
+        centered
+        @show="resetModal"
+        @hidden="resetModal"
+        @ok="ActualizarEmpleado"
+        ok-variant="success"
+      >
+         <form ref="form" @submit.stop.prevent="handleSubmit">
+          <b-form-group :state="nameState" invalid-feedback="*Requerido">
+            <b-form-input
+              id="nombres"
+              v-model="selectedUser.nombres"
+              :state="nameState"
+              required
+              placeholder="Nombres"
+            ></b-form-input>
+            <br />
+            <b-form-input
+              id="apellidos"
+              v-model="selectedUser.apellidos"
+              :state="nameState"
+              required
+              placeholder="Apellidos"
+              type="text"
+            ></b-form-input>
+            <br />
+          
+            <b-form-input
+              id="correo"
+              v-model="selectedUser.email"
+              :state="nameState"
+              required
+              placeholder="Correo"
+            ></b-form-input>
+            <br />
+              <b-form-input
+              id="contraseña"
+              v-model="selectedUser.password"
+              :state="nameState"
+              required
+              placeholder="Contraseña"
+               type="password"
+            ></b-form-input>
+            <br />
+              <b-form-input
+              id="rcontraseña"
+              v-model="selectedUser.contraseña"
+              :state="nameState"
+              required
+              placeholder="Repetir contraseña"
+              type="password"
+            ></b-form-input>
+            <br />
+            <b-form-input
+              id="correo"
+              v-model="selectedUser.telefono"
+              :state="nameState"
+              required
+              placeholder="Telefono"
+            ></b-form-input>
+            <br />
+
+            <div>
+              <b-form-select
+                v-model="selected"
+                :options="options"
+       
+              ></b-form-select>
+            </div>
+          </b-form-group>
+        </form>
+      </b-modal>
+    </div>
+
+
+
       </div>
     </div>
   </div>
@@ -312,84 +307,76 @@ export default {
     }
   },
   mounted() {
-    this.BuscarClientes();
+    this.BuscarEmpleado();
     this.getVendedores();
   },
   data() {
     return {
-      drawer: false,
+     drawer: false,
       group: null,
-      // eslint-disable-next-line
+      token:"",
       name: "",
-      token: "",
-      nameState: null,
+    checked: false,     
+      // eslint-disable-next-line
       submittedNames: [],
-      dataClientes: [],
+      dataEmpleados: [],
       dataUsuario: [],
       // eslint-disable-next-line
       nombres: "",
-      searchnombres: "",
       apellidos: "",
       direccion: "",
       telefono: "",
       correo: "",
-      empresa: "",
+      password: "",
+      rpassword: "",
       users_id: "",
+      searchnombre:"",
       categoria: "",
       selected: null,
       category: null,
       options: [
-        { value: null, text: "Seleccione la categoria" },
-        { value: "Tuberia", text: "Tuberia" },
-        { value: "Mallas", text: "Mallas" },
-        { value: "Valvulas", text: "Valvulas" },
+        { value: null, text: "Seleccione el rango." },
+        { value: "administrador", text: "Administrador" },
+        { value: "empleado", text: "Empleado" },
+    
       ],
       dataVendedores: [],
       selectedUser: [],
     };
   },
   methods: {
-    Limpiar: function () {
-      (this.nombres = ""),
-        (this.apellidos = ""),
-        (this.direccion = ""),
-        (this.telefono = ""),
-        (this.correo = ""),
-        (this.empresa = "");
-    },
-    BuscarClientes() {
-      const data = {
-        nombres: this.searchnombres,
-      };
-      API.post("buscar-cliente", data, {
+    getEmpleados() {
+      API.get("user", {
         headers: {
           Authorization: "Bearer " + this.token,
         },
-      })
-        .then((res) => {
-          // eslint-disable-next-line
-          console.log(res.data);
-          this.dataClientes = res.data;
-          //window.alert("Los datos se han guardado");
-        })
-        .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-          window.alert(error);
-        });
+      }).then((response) => {
+        this.dataEmpleados = response.data;
+
+        /* eslint-disable */
+        //  console.log(this.dataEmpleados);
+        // eslint-disable-next-line no-console
+      });
+    },
+    Limpiar: function () {
+      (this.nombres = ""),
+        (this.apellidos = ""),
+        (this.password = ""),
+        (this.telefono = ""),
+        (this.correo = "");
+        
     },
 
-    RegistrarCliente() {
+    RegistrarEmpleado() {
       const data = {
-        nombres: this.nombres,
-        apellidos: this.apellidos,
-        direccion: this.direccion,
-        telefono: this.telefono,
-        correo: this.correo,
-        empresa: this.empresa,
-        users_id: this.selected,
+        email:this.correo,
+        password:this.password,
+        tipo_usuario:this.selected,
+        nombres:this.nombres,
+        apellidos:this.apellidos,
+        telefono:this.telefono
       };
-      API.post("registro-cliente", data, {
+      API.post("registro", data, {
         headers: {
           Authorization: "Bearer " + this.token,
         },
@@ -398,7 +385,7 @@ export default {
           // eslint-disable-next-line
           console.log(res.data);
           this.Limpiar();
-          this.BuscarClientes();
+          this.getEmpleados();
           window.alert("Los datos se han guardado");
         })
         .catch((error) => {
@@ -407,29 +394,17 @@ export default {
           window.alert(error);
         });
     },
-    deleteClientes(result) {
-      API.delete("borrar-cliente/" + result.id, {
-        headers: {
-          Authorization: "Bearer " + this.token,
-        },
-      }).then((response) => {
-        // eslint-disable-next-line
-        console.log(this.result);
-        window.alert("Los datos se han guardado");
-        this.BuscarClientes();
-      });
-    },
-    ActualizarCliente() {
+
+    ActualizarEmpleado() {
       const data = {
         nombres: this.selectedUser.nombres,
         apellidos: this.selectedUser.apellidos,
-        direccion: this.selectedUser.direccion,
+        email: this.selectedUser.email,
         telefono: this.selectedUser.telefono,
-        correo: this.selectedUser.correo,
-        empresa: this.selectedUser.empresa,
-        users_id: this.selected,
+        password: this.selectedUser.password,
+        tipo_usuario: this.selected,
       };
-      API.put("actualizar-cliente/" + this.selectedUser.id, data, {
+      API.put("actualizar-usuario", data, {
         headers: {
           Authorization: "Bearer " + this.token,
         },
@@ -439,7 +414,7 @@ export default {
           console.log(res.data);
           this.selected = [];
           this.Limpiar();
-          this.getClientes();
+          this.getEmpleados();
           window.alert("Los datos se han guardado");
         })
         .catch((error) => {
@@ -448,21 +423,59 @@ export default {
           window.alert(error);
         });
     },
-    sendUser(item) {
-      this.selectedUser = item;
-    },
-    getVendedores() {
-      API.get("user", {
+
+    getUser(Empleados) {
+      API.get("user/" +Empleados.users_id, {
         headers: {
           Authorization: "Bearer " + this.token,
         },
       }).then((response) => {
-        this.dataVendedores = response.data;
+        this.dataUsuario = response.data;
 
         /* eslint-disable */
-        //console.log(response.data);
+        console.log(this.dataUsuario);
         // eslint-disable-next-line no-console
       });
+    },
+    sendUser(item) {
+      this.selectedUser = item;
+      console.log(this.selectedUser)
+    },
+
+
+    deleteEmpleados(result) {
+      API.delete("borrar-empleado/" + result.id, {
+        headers: {
+          Authorization: "Bearer " + this.token,
+        },
+      }).then((response) => {
+        // eslint-disable-next-line
+        console.log(this.result);
+        window.alert("Los datos se han guardado");
+        this.getEmpleados();
+      });
+    },
+
+BuscarEmpleado() {
+      const data = {
+        nombres: this.searchnombre,
+      };
+      API.post("buscar-empleado", data, {
+        headers: {
+          Authorization: "Bearer " + this.token,
+        },
+      })
+        .then((res) => {
+          // eslint-disable-next-line
+          console.log(res.data);
+         this.dataEmpleados = res.data;
+          //window.alert("Los datos se han guardado");
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+          window.alert(error);
+        });
     },
   },
 };

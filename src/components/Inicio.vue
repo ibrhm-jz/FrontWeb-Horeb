@@ -1,238 +1,272 @@
 <template>
-  <div>
-    <div>
-      <b-navbar type="light" variant="light" fixed="top">
-        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-
-        <b-navbar-brand href="#">
-          <img src="../assets/logo.png" class="d-inline-block align-top" width="30px" />
-          Inicio
-        </b-navbar-brand>
-        <b-collapse id="nav-text-collapse" is-nav>
-          <b-navbar-nav>
-            <b-nav-text>Empieza a administrar</b-nav-text>
-          </b-navbar-nav>
-        </b-collapse>
-      </b-navbar>
-    </div>
-
-    <b-sidebar v-model="drawer" shadow bg-variant="white">
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="title">Application</v-list-item-title>
-          <v-list-item-subtitle>
-            <em>tuberia_horeb@hotmail.com</em>
-          </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-divider></v-divider>
-
-      <v-list dense nav color="blue">
-        <v-list-item link to="/Home">
-        
-          <v-list-item-icon>
-            <v-icon>mdi-home</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title class="font-drawer"> Home</v-list-item-title>
-          </v-list-item-content>
-        
-        </v-list-item>
-
-        <v-list-item link to="/Clientes">
-          <v-list-item-icon>
-            <v-icon>mdi-account-box</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title class="font-drawer"> Clientes</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item link to="/Empleados">
-          <v-list-item-icon>
-            <v-icon>mdi-account-group</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title class="font-drawer"> Empleados</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item link to="/Productos">
-          <v-list-item-icon>
-            <v-icon>mdi-chart-ppf</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title class="font-drawer">
-            Productos</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item link to="/Cotizacion">
-          <v-list-item-icon>
-            <v-icon>mdi-file-document-multiple</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title class="font-drawer">
-            Cotizacion</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-      </v-list>
-      <template v-slot:footer="{ hide }">
-        <div class="d-flex bg-dark text-light align-items-center px-3 py-2">
-          <strong class="mr-auto">¿Salir?</strong>
-          <b-button size="sm" @click="hide" v-on:click="logout">Cerar sesion</b-button>
+  <div width="100%">
+    <div class="wrapper">
+      <!-- Sidebar  -->
+      <nav id="sidebar">
+        <div class="sidebar-header">
+          <div align="center">
+            <img
+              src="../assets/logo-nuevo.png"
+              class="d-inline-block align-top"
+              width="150px"
+            />
+          </div>
         </div>
-      </template>
-    </b-sidebar>
 
-    <v-container class="contenedor">
-      <span class="titulosecundario" style="color:black !important;">Tablero</span>
-      <v-spacer></v-spacer>
+        <ul class="list-unstyled components">
+          <p>Administracion Horeb</p>
+                   <router-link to="/Inicio">
+          <li>
+            <a href="#">
+              <b-icon icon="house-door-fill"></b-icon>&nbsp;&nbsp;Inicio</a
+            >
+          </li>
+          </router-link>
+          <router-link to="/Clientes">
+            <li>
+              <a href="#"
+                ><b-icon icon="person-lines-fill"></b-icon
+                >&nbsp;&nbsp;Clientes</a
+              >
+            </li>
+          </router-link>
+          <router-link to="/Empleados">
+            <li>
+              <a href="#"
+                ><b-icon icon="file-person-fill"></b-icon
+                >&nbsp;&nbsp;Empleados</a
+              >
+            </li>
+          </router-link>
+          <router-link to="/Productos">
+            <li>
+              <a href="#"
+                ><b-icon icon="cart-fill"></b-icon>&nbsp;&nbsp;Productos</a
+              >
+            </li>
+          </router-link>
+          <li>
+            <a href="#"
+              ><b-icon icon="file-earmark-check-fill"></b-icon
+              >&nbsp;&nbsp;Cotizacion</a
+            >
+          </li>
+        </ul>
+        <br />
+        <br />
+        <ul class="list-unstyled CTAs">
+          <li>
+            <a
+              href="https://bootstrapious.com/tutorial/files/sidebar.zip"
+              class="download"
+            >
+              <b-icon icon="door-open-fill"></b-icon>&nbsp;&nbsp;¿Salir?</a
+            >
+          </li>
+        </ul>
+      </nav>
 
-      <span>
-        <font face="Segoe UI" size="4" color="black">Usuario : Ibraham Surisadai Jimenez Lopez.</font>
-      </span>
-      <div>
-  <div>
-    <b-card-group deck>
-    </b-card-group>
-  </div>
+      <!-- Page Content  -->
+      <div id="content">
 
-  <div class="mt-3">
-    <b-card-group deck class="mb-3">
-      <b-card 
-        header="Total de ventas"
+       <h2>Bienvenido a administracion Horeb</h2>
+        <div class="line"></div>
+        <p>  “El secreto para salir adelante es empezar.”” </p>
        
-        class="cardtrans">
-        <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-      </b-card>
-
-      <b-card 
-        header="Recurso"
-        class="cardtrans">
-        <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-      </b-card>
-    </b-card-group>
-  </div>
-</div>
-      <v-spacer></v-spacer>
-      <div align="left">
-        <span class="titulosecundario" style="color:black !important;">Ultimas Cotizaciones</span>
-      </div>
-      <v-spacer></v-spacer><hr>
-
-<div>
-  <b-card title="FERRETUBOS" >
-    <b-card-text>
-      Some quick example text to build on the <em>card title</em> and make up the bulk of the card's
-      content.
-    </b-card-text>
-    <a href="#" class="card-link" style="color:#00b686!important;">Ver mas</a>
-   
-  </b-card>
-</div>
-    </v-container>
-  
-    
+    </div>
+    </div>
   </div>
 </template>
-
-
 <script>
 import { API } from "../Servicios/axios";
 export default {
-    created(){
-        this.token=localStorage.getItem('userToken')
-        if(this.token==null||this.token==""){
-        this.$router.push("/")
-        }
-    },
-  name: "inicio",
-    data() {
-    return {
-      drawer: false,
-      group: null,
-      token:"",
-
-    };
-  },
-  methods:{
-    logout(){
-      localStorage.removeItem('userToken')
-      this.$router.push("/")
+  created() {
+    this.token = localStorage.getItem("userToken");
+    if (this.token == null || this.token == "") {
+      this.$router.push("/login");
     }
   },
-    mounted() {
-    API.get("empresa",{
- headers: {
-   Authorization: 'Bearer ' + this.token
- }
-}).then(response => {
-      this.datas = response.data;
-      // eslint-disable-next-line
-      console.log(this.datas)
-     
-      
-  
-    });
+  mounted() {
+    this.BuscarProductos();
   },
-
-
-  watch: {
-    group() {
-      this.drawer = false;
-    },
+  data() {
+    return {
+      
+    };
+  },
+  methods: {
+   
   },
 };
 </script>
-
-
 <style scoped>
+/*
+    DEMO STYLE
+*/
 
-.titulos {
-  font-family: "Segoe UI";
-  font-weight: bold;
-  font-size: 30px;
-  color: black;
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+body {
+  font-family: "Poppins", sans-serif;
+  background: #fafafa;
 }
 
-.titulosecundario {
-  font-family: "Segoe UI";
-  font-weight: bold;
-  font-size: 25px;
-  color: white;
-  margin-bottom: 10px;
-  margin-top: 10px;
+p {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1em;
+  font-weight: 300;
+  line-height: 1.7em;
+  color: #999;
 }
-.cardet {
-  padding: 20px;
-  width: 400px;
-  height: 100px;
-  margin-left: 0px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  margin-top: 10px;
+
+a,
+a:hover,
+a:focus {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s;
 }
-.cardtrans{
-    background-color: #ffffff!important;
-}
-.contenedor {
-  margin-top: 60px;
+
+.line {
   width: 100%;
- 
- 
+  height: 1px;
+  border-bottom: 1px dashed #ddd;
+  margin: 40px 0;
 }
-.font-drawer {
-  color: black;
-  margin-left: 10px;
-  font-family: "Segoe UI";
-  size: 10px;
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+#sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  background: #fff;
+  color: grey;
+  transition: all 0.3s;
+}
+
+#sidebar.active {
+  margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+  padding: 20px;
+  background: #fff;
+}
+
+#sidebar ul.components {
+  padding: 20px 0;
+  border-bottom: 1px solid #fff;
+}
+
+#sidebar ul p {
+  color: grey;
+  padding: 10px;
+}
+
+#sidebar ul li a {
+  padding: 10px;
+  font-size: 0.9em;
+  display: block;
+}
+
+#sidebar ul li a:hover {
+  color: green;
+  background: #fff;
+}
+
+#sidebar ul li.active > a,
+a[aria-expanded="true"] {
+  color: #fff;
+  background: #6d7fcc;
+}
+
+a[data-toggle="collapse"] {
+  position: relative;
+}
+
+.dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+ul ul a {
+  font-size: 0.9em !important;
+  padding-left: 30px !important;
+  background: green;
+}
+
+ul.CTAs {
+  padding: 20px;
+}
+
+ul.CTAs a {
+  text-align: center;
+  font-size: 0.9em !important;
+  display: block;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+a.download {
+  background: #fff;
+  color: green;
+}
+
+a.article,
+a.article:hover {
+  background: #6d7fcc !important;
+  color: #fff !important;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+  width: 100%;
+  padding: 20px;
+  min-height: 100vh;
+  transition: all 0.3s;
+  background: #fff;
+}
+.padd-card {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.padd-button {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+.text-mayus {
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 768px) {
+  #sidebar {
+    margin-left: -250px;
+  }
+  #sidebar.active {
+    margin-left: 0;
+  }
+  #sidebarCollapse span {
+    display: none;
+  }
 }
 </style>
+

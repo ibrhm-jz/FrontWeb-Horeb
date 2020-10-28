@@ -2,7 +2,7 @@
   <div width="100%">
     <div class="wrapper">
       <!-- Sidebar  -->
-            <nav id="sidebar">
+      <nav id="sidebar">
         <div class="sidebar-header">
           <div align="center">
             <img
@@ -15,12 +15,12 @@
 
         <ul class="list-unstyled components">
           <p>Administracion Horeb</p>
-                   <router-link to="/Inicio">
-          <li>
-            <a href="#">
-              <b-icon icon="house-door-fill"></b-icon>&nbsp;&nbsp;Inicio</a
-            >
-          </li>
+          <router-link to="/Inicio">
+            <li>
+              <a href="#">
+                <b-icon icon="house-door-fill"></b-icon>&nbsp;&nbsp;Inicio</a
+              >
+            </li>
           </router-link>
           <router-link to="/Clientes">
             <li>
@@ -30,19 +30,20 @@
               >
             </li>
           </router-link>
-           <router-link to="/Empleados">
-          <li>
-            <a href="#"
-              ><b-icon icon="file-person-fill"></b-icon>&nbsp;&nbsp;Empleados</a
-            >
-          </li>
+          <router-link to="/Empleados">
+            <li>
+              <a href="#"
+                ><b-icon icon="file-person-fill"></b-icon
+                >&nbsp;&nbsp;Empleados</a
+              >
+            </li>
           </router-link>
           <router-link to="/Productos">
-          <li>
-            <a href="#"
-              ><b-icon icon="cart-fill"></b-icon>&nbsp;&nbsp;Productos</a
-            >
-          </li>
+            <li>
+              <a href="#"
+                ><b-icon icon="cart-fill"></b-icon>&nbsp;&nbsp;Productos</a
+              >
+            </li>
           </router-link>
           <li>
             <a href="#"
@@ -65,56 +66,72 @@
         </ul>
       </nav>
 
-
       <!-- Page Content  -->
       <div id="content">
-        <h2>Administracion de Clientes</h2>
+        <h2>Administracion de los Productos</h2>
         <div class="line"></div>
         <v-card elevation="2" tile class="padd-card">
           <b-input-group class="mt-3">
-            <b-form-input placeholder="Buscar" v-model="searchnombres" v-on:keyup.enter="BuscarClientes"></b-form-input>
+            <b-form-input
+              placeholder="Buscar"
+              v-model="searchnombres"
+              v-on:keyup.enter="BuscarProductos"
+            ></b-form-input>
             <b-input-group-append>
-              <b-button squared variant="info"  @click="BuscarClientes">
+              <b-button squared variant="info" @click="BuscarProductos">
                 <b-icon icon="search"></b-icon
               ></b-button>
+              
             </b-input-group-append>
-            <b-button
-              squared
-              variant="success"
-              style="margin-left: 50px"
-              v-b-modal.modal-prevent-closing
-            >
+                                    <b-form-select
+              v-model="category"
+              :options="optionscategory"
+              @change="FiltroProducto()"
+               style="margin-left: 50px"
+            ></b-form-select>
+            <b-button squared variant="success" style="margin-left: 50px"  v-b-modal.modal-prevent-closing>
               <b-icon icon="plus"></b-icon>Nuevo Registro</b-button
             >
+
           </b-input-group>
           <br />
+          <div>
 
+            <div class="mt-3">
+              Seleccionado:
+              <strong>{{ category }}</strong>
+            </div>
+          </div>
           <v-simple-table>
             <template v-slot:default>
               <thead>
                 <tr>
-                  <th class="text-left">Nombres</th>
-                  <th class="text-left">Apellidos</th>
-                  <th class="text-left">Razon Social</th>
-                  <th class="text-left">Direccion</th>
-                  <th class="text-left">Telefono</th>
+                  <th class="text-left">Nombre</th>
+                  <th class="text-left">Existencia</th>
+                  <th class="text-left">Categoria</th>
+                  <th class="text-left">Precio Unitario</th>
+                  <th class="text-left">Medida</th>
                   <th class="text-left">Accion</th>
                 </tr>
               </thead>
               <tbody class="text-mayus">
-                <tr v-for="(clientes, i) in dataClientes" :key="i">
-                  <td>{{ clientes.nombres }}</td>
-                  <td>{{ clientes.apellidos }}</td>
-                  <td>{{ clientes.empresa }}</td>
-                  <td>{{ clientes.direccion }}</td>
-                  <td>{{ clientes.telefono }}</td>
+                <tr v-for="products in datosProductos" :key="products.id">
+                  <td>{{ products.nombre }}</td>
+                  <td>{{ products.cantidad_existencia }}</td>
+                  <td>{{ products.categoria }}</td>
+                  <td>
+                    <font color="red"
+                      >$ <b>{{ products.precio_unitario }}</b></font
+                    >
+                  </td>
+                  <td>{{ products.medida }}</td>
                   <td>
                     <b-button
                       squared
                       variant="info"
                       class="padd-button"
-                      v-b-modal.modal-update
-                      @click="sendUser(clientes)"
+                      v-b-modal.modal-actualizar-producto
+                      @click="sendProduct(products)"
                     >
                       <b-icon icon="pencil-square" style="color: #fff"></b-icon
                     ></b-button>
@@ -123,7 +140,7 @@
                       squared
                       variant="danger"
                       class="padd-button"
-                      @click="deleteClientes(clientes)"
+                      v-b-modal.modal-delete
                     >
                       <b-icon icon="trash-fill"></b-icon
                     ></b-button>
@@ -138,79 +155,58 @@
           <b-modal
             id="modal-prevent-closing"
             ref="modal"
-            title="Registrar Cliente"
+            title="Registrar Producto"
             centered
             @show="resetModal"
             @hidden="resetModal"
-            @ok="RegistrarCliente"
+            @ok="RegistrarProducto"
             ok-variant="success"
           >
             <form ref="form" @submit.stop.prevent="handleSubmit">
               <b-form-group :state="nameState" invalid-feedback="*Requerido">
                 <b-form-input
-                  id="nombres"
-                  v-model="nombres"
+                  id="name-input"
+                  v-model="nombre"
                   :state="nameState"
                   required
-                  placeholder="Nombres"
-                  class="text-mayus"
+                  placeholder="Nombre"
                 ></b-form-input>
                 <br />
+
                 <b-form-input
-                  id="apellidos"
-                  v-model="apellidos"
+                  id="name-input"
+                  v-model="medida"
                   :state="nameState"
                   required
-                  placeholder="Apellidos"
+                  placeholder="Medida"
                   type="text"
-                  class="text-mayus"
                 ></b-form-input>
                 <br />
                 <b-form-input
-                  id="direccion"
-                  v-model="direccion"
+                  id="name-input"
+                  v-model="precio_unitario"
                   :state="nameState"
                   required
-                  placeholder="Direccion"
-                  type="text"
-                  class="text-mayus"
+                  placeholder="$Precio unitario"
                 ></b-form-input>
                 <br />
                 <b-form-input
-                  id="correo"
-                  v-model="correo"
+                  id="name-input"
+                  v-model="cantidad_existencia"
                   :state="nameState"
                   required
-                  placeholder="Correo"
-                  class="text-mayus"
-                ></b-form-input>
-                <br />
-                <b-form-input
-                  id="correo"
-                  v-model="telefono"
-                  :state="nameState"
-                  required
-                  placeholder="Telefono"
-                  class="text-mayus"
-                ></b-form-input>
-                <br />
-                <b-form-input
-                  id="empresa"
-                  v-model="empresa"
-                  :state="nameState"
-                  required
-                  placeholder="Razon Social"
-                  class="text-mayus"
+                  placeholder="Cantidad en Existencia"
                 ></b-form-input>
                 <br />
                 <div>
                   <b-form-select
                     v-model="selected"
-                    :options="dataVendedores"
-                    value-field="id"
-                    text-field="nombres"
-                    class="text-mayus"
+                    :options="options"
                   ></b-form-select>
+                  <div class="mt-3">
+                    Selected:
+                    <strong>{{ selected }}</strong>
+                  </div>
                 </div>
               </b-form-group>
             </form>
@@ -219,83 +215,78 @@
 
         <div>
           <b-modal
-            id="modal-update"
+            id="modal-actualizar-producto"
             ref="modal"
-            title="Registrar Cliente"
+            title="Actualizar Producto"
             centered
             @show="resetModal"
             @hidden="resetModal"
-            @ok="ActualizarCliente"
+            @ok="ActualizarProducto"
             ok-variant="success"
           >
             <form ref="form" @submit.stop.prevent="handleSubmit">
               <b-form-group :state="nameState" invalid-feedback="*Requerido">
                 <b-form-input
-                  id="nombres"
-                  v-model="selectedUser.nombres"
+                  id="name-input"
+                  v-model="selectedProduct.nombre"
                   :state="nameState"
                   required
-                  placeholder="Nombres"
-                  class="text-mayus"
+                  placeholder="Nombre"
                 ></b-form-input>
                 <br />
+
                 <b-form-input
-                  id="apellidos"
-                  v-model="selectedUser.apellidos"
+                  id="name-input"
+                  v-model="selectedProduct.medida"
                   :state="nameState"
                   required
-                  placeholder="Apellidos"
-                  class="text-mayus"
+                  placeholder="Medida"
                   type="text"
                 ></b-form-input>
                 <br />
+
                 <b-form-input
-                  id="direccion"
-                  v-model="selectedUser.direccion"
+                  id="name-input"
+                  v-model="selectedProduct.precio_unitario"
                   :state="nameState"
                   required
-                  placeholder="Direccion"
-                  class="text-mayus"
-                  type="text"
+                  placeholder="$Precio unitario"
                 ></b-form-input>
                 <br />
                 <b-form-input
-                  id="correo"
-                  v-model="selectedUser.correo"
+                  id="name-input"
+                  v-model="selectedProduct.cantidad_existencia"
                   :state="nameState"
                   required
-                  placeholder="Correo"
-                  class="text-mayus"
-                ></b-form-input>
-                <br />
-                <b-form-input
-                  id="correo"
-                  v-model="selectedUser.telefono"
-                  :state="nameState"
-                  required
-                  placeholder="Telefono"
-                  class="text-mayus"
-                ></b-form-input>
-                <br />
-                <b-form-input
-                  id="empresa"
-                  v-model="selectedUser.empresa"
-                  :state="nameState"
-                  required
-                  placeholder="Razon Social"
+                  placeholder="Cantidad en Existencia"
                 ></b-form-input>
                 <br />
                 <div>
                   <b-form-select
-                    v-model="selected"
-                    :options="dataVendedores"
-                    value-field="id"
-                    text-field="nombres"
-                    class="text-mayus"
+                    v-model="selectedProduct.categoria"
+                    :options="options"
                   ></b-form-select>
+                  <div class="mt-3">
+                    Selected:
+                    <strong>{{ selected }}</strong>
+                  </div>
                 </div>
               </b-form-group>
             </form>
+          </b-modal>
+          <b-modal
+            id="modal-delete"
+            centered
+            size="sm"
+            ok-variant="danger"
+            okTitle="SI"
+            cancelTitle="NO"
+            headerClass="p-2 border-bottom-0"
+            footerClass="p-2 border-top-0"
+          >
+            <div align="center">
+              <p class="my-4">¿Deseas continuar?</p>
+            </div>
           </b-modal>
         </div>
       </div>
@@ -312,29 +303,28 @@ export default {
     }
   },
   mounted() {
-    this.BuscarClientes();
-    this.getVendedores();
+    this.BuscarProductos();
   },
   data() {
     return {
       drawer: false,
+      boxTwo: "",
       group: null,
-      // eslint-disable-next-line
-      name: "",
       token: "",
-      nameState: null,
-      submittedNames: [],
-      dataClientes: [],
-      dataUsuario: [],
+      name: "",
       // eslint-disable-next-line
-      nombres: "",
-      searchnombres: "",
-      apellidos: "",
-      direccion: "",
-      telefono: "",
-      correo: "",
-      empresa: "",
-      users_id: "",
+      nameState: null,
+      // eslint-disable-next-line
+      submittedNames: [],
+      datosProductos: [],
+      selectedProduct: [],
+      nombre: "",
+      searchnombre: "",
+      tipo: "",
+      medida: "",
+      descripcion: "",
+      precio_unitario: 0.0,
+      cantidad_existencia: "",
       categoria: "",
       selected: null,
       category: null,
@@ -344,24 +334,20 @@ export default {
         { value: "Mallas", text: "Mallas" },
         { value: "Valvulas", text: "Valvulas" },
       ],
-      dataVendedores: [],
-      selectedUser: [],
+      optionscategory: [
+        { value: null, text: "Todo" },
+        { value: "Tuberia", text: "Tuberia" },
+        { value: "Mallas", text: "Mallas" },
+        { value: "Valvulas", text: "Valvulas" },
+      ],
     };
   },
   methods: {
-    Limpiar: function () {
-      (this.nombres = ""),
-        (this.apellidos = ""),
-        (this.direccion = ""),
-        (this.telefono = ""),
-        (this.correo = ""),
-        (this.empresa = "");
-    },
-    BuscarClientes() {
+    BuscarProductos() {
       const data = {
-        nombres: this.searchnombres,
+        nombre: this.searchnombre,
       };
-      API.post("buscar-cliente", data, {
+      API.post("buscar-producto", data, {
         headers: {
           Authorization: "Bearer " + this.token,
         },
@@ -369,7 +355,7 @@ export default {
         .then((res) => {
           // eslint-disable-next-line
           console.log(res.data);
-          this.dataClientes = res.data;
+          this.datosProductos = res.data;
           //window.alert("Los datos se han guardado");
         })
         .catch((error) => {
@@ -379,17 +365,40 @@ export default {
         });
     },
 
-    RegistrarCliente() {
+    FiltroProducto() {
+      if (this.category == null) {
+        this.getProduct();
+      } else {
+        const data = {
+          categoria: this.category,
+        };
+        API.post("producto-filtro-categoria", data, {
+          headers: {
+            Authorization: "Bearer " + this.token,
+          },
+        })
+          .then((res) => {
+            // eslint-disable-next-line
+            console.log(res.data);
+            this.datosProductos = res.data;
+            //this.getProduct();
+          })
+          .catch((error) => {
+            // eslint-disable-next-line
+            console.error(error);
+          });
+      }
+    },
+
+    ActualizarProducto() {
       const data = {
-        nombres: this.nombres,
-        apellidos: this.apellidos,
-        direccion: this.direccion,
-        telefono: this.telefono,
-        correo: this.correo,
-        empresa: this.empresa,
-        users_id: this.selected,
+        nombre: this.selectedProduct.nombre,
+        medida: this.selectedProduct.medida,
+        categoria: this.selectedProduct.categoria,
+        precio_unitario: this.selectedProduct.precio_unitario,
+        cantidad_existencia: this.selectedProduct.cantidad_existencia,
       };
-      API.post("registro-cliente", data, {
+      API.put("actualizar-producto/" + this.selectedProduct.id, data, {
         headers: {
           Authorization: "Bearer " + this.token,
         },
@@ -397,8 +406,7 @@ export default {
         .then((res) => {
           // eslint-disable-next-line
           console.log(res.data);
-          this.Limpiar();
-          this.BuscarClientes();
+          (this.selected = []), this.BuscarProductos();
           window.alert("Los datos se han guardado");
         })
         .catch((error) => {
@@ -407,29 +415,27 @@ export default {
           window.alert(error);
         });
     },
-    deleteClientes(result) {
-      API.delete("borrar-cliente/" + result.id, {
+    delectProducto(result) {
+      API.delete("borrar-producto/" + result.id, {
         headers: {
           Authorization: "Bearer " + this.token,
         },
       }).then((response) => {
         // eslint-disable-next-line
         console.log(this.result);
-        window.alert("Los datos se han guardado");
-        this.BuscarClientes();
+        window.alert("Se elimino");
+        this.BuscarProductos();
       });
     },
-    ActualizarCliente() {
+    RegistrarProducto() {
       const data = {
-        nombres: this.selectedUser.nombres,
-        apellidos: this.selectedUser.apellidos,
-        direccion: this.selectedUser.direccion,
-        telefono: this.selectedUser.telefono,
-        correo: this.selectedUser.correo,
-        empresa: this.selectedUser.empresa,
-        users_id: this.selected,
+        nombre: this.nombre,
+        medida: this.medida,
+        categoria: this.selected,
+        precio_unitario: this.precio_unitario,
+        cantidad_existencia: this.cantidad_existencia,
       };
-      API.put("actualizar-cliente/" + this.selectedUser.id, data, {
+      API.post("registro-producto", data, {
         headers: {
           Authorization: "Bearer " + this.token,
         },
@@ -437,32 +443,16 @@ export default {
         .then((res) => {
           // eslint-disable-next-line
           console.log(res.data);
-          this.selected = [];
-          this.Limpiar();
-          this.getClientes();
-          window.alert("Los datos se han guardado");
+          this.BuscarProductos();
         })
         .catch((error) => {
           // eslint-disable-next-line
           console.error(error);
-          window.alert(error);
         });
     },
-    sendUser(item) {
-      this.selectedUser = item;
-    },
-    getVendedores() {
-      API.get("user", {
-        headers: {
-          Authorization: "Bearer " + this.token,
-        },
-      }).then((response) => {
-        this.dataVendedores = response.data;
 
-        /* eslint-disable */
-        //console.log(response.data);
-        // eslint-disable-next-line no-console
-      });
+    sendProduct(item) {
+      this.selectedProduct = item;
     },
   },
 };
@@ -605,7 +595,7 @@ a.article:hover {
   padding: 20px;
   min-height: 100vh;
   transition: all 0.3s;
-  background:  #fff;
+  background: #fff;
 }
 .padd-card {
   padding-left: 20px;

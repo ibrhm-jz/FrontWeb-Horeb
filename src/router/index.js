@@ -3,11 +3,11 @@ import Router from 'vue-router';
 Vue.use(Router);
 
 
-import IndexView from '../components/Inicio.vue';
+import Inicio from '../components/Inicio.vue';
 import Login from '../components/Login.vue';
-import Empleados from '../components/Empleados.vue';
+import Empleados from '../components/Empleados-update.vue';
 import Empresa from '../components/Empresa.vue';
-import Productos from '../components/Productos.vue';
+import Productos from '../components/productos-update.vue';
 import Cotizacion from '../components/Cotizacion.vue';
 import Clientes from '../components/Clientes-update.vue';
 import Start from '../components/Start.vue';
@@ -19,9 +19,9 @@ import EditCotizacion from '../components/EditCotizacion.vue';
 export default new Router({
     mode: 'history',
     routes: [{
-            path: '/Home',
-            name: 'Home',
-            component: IndexView
+            path: '/Inicio',
+            name: 'Inicio',
+            component: Inicio
 
         },
         {
