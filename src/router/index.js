@@ -9,7 +9,7 @@ import Empleados from '../components/Empleados.vue';
 import Empresa from '../components/Empresa.vue';
 import Productos from '../components/Productos.vue';
 import Cotizacion from '../components/Cotizacion.vue';
-import Clientes from '../components/Clientes.vue';
+import Clientes from '../components/Clientes-update.vue';
 import Start from '../components/Start.vue';
 import Productosweb from '../components/productos-web.vue';
 import Servicios from '../components/Servicios.vue';

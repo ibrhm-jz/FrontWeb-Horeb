@@ -450,6 +450,7 @@ export default {
         this.$set(this.items[i], "nombre", this.nombreEmpresa);
         this.$set(this.items[i], "direccion", this.EmpresaDireccion);
         this.$set(this.items[i], "ciudad", this.EmpresaCiudad);
+         this.$set(this.items[i], "telefono", this.EmpresaTelefono);
         this.$set(this.items[i], "status", "No vendido");
         this.$set(this.items[i], "costo_flete", this.costo_flete);
         this.$set(this.items[i], "ganancia", this.PorcentajeGanancia);

@@ -257,7 +257,7 @@
               class="ma-2"
               tile
               style="background-color: #00b686; color: white"
-              @click="RestaurarDatos"
+              @click="UpdatewithFrom"
             >
               <v-icon left>mdi-send</v-icon>Resataurar
             </v-btn>
@@ -515,6 +515,7 @@ export default {
 
     LlenarDatos() {
       for (var i in this.items) {
+        this.$set(this.items[i], "no_venta", "3");
         this.$set(this.items[i], "nombre", this.nombreEmpresa);
         this.$set(this.items[i], "direccion", this.EmpresaDireccion);
         this.$set(this.items[i], "ciudad", this.EmpresaCiudad);
@@ -782,9 +783,28 @@ export default {
         });
     },
 
+UpdatewithFrom(){
+     API.delete('borrar-venta/' + "3",
+      {
+        headers: {
+          Authorization: "Bearer " + this.token,
+        },
+      })
+      .then(response => {
+          // eslint-disable-next-line
+        console.log(this.result);
+         GuardaCotizacion();
+         window.alert("Se elimino");
+        
+        this.getProduct();
+      });
+    },
+
+
+
     getCotizacion() {
       const data = {
-        no_venta: "1",
+        no_venta: "3",
       };
       API.post("buscar-venta", data, {
         headers: {
@@ -813,7 +833,7 @@ export default {
       this.LlenarDatos();
       var dataJSON = JSON.stringify(this.items);
       console.log("EL dATA JSON" + dataJSON);
-      API.post("registro-ventas", dataJSON, {
+      API.post("update", dataJSON, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + this.token,
@@ -830,6 +850,7 @@ export default {
           window.alert(error);
         });
     },
+
   },
 
   watch: {
