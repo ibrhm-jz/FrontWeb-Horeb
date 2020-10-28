@@ -1,31 +1,48 @@
 <template>
-  <div>
+  <div width="100%">
     <div class="wrapper">
       <!-- Sidebar  -->
       <nav id="sidebar">
         <div class="sidebar-header">
-          <h3>Bootstrap Sidebar</h3>
+          <div align="center">
+            <img
+              src="../assets/logo-nuevo.png"
+              class="d-inline-block align-top"
+              width="150px"
+            />
+          </div>
         </div>
 
         <ul class="list-unstyled components">
-          <p>Administracion</p>
+          <p>Administracion Horeb</p>
           <li>
-            <a href="#">Inicio</a>
+            <a href="#">
+              <b-icon icon="house-door-fill"></b-icon>&nbsp;&nbsp;Inicio</a
+            >
           </li>
           <li>
-            <a href="#">Clientes</a>
+            <a href="#"
+              ><b-icon icon="person-lines-fill"></b-icon>&nbsp;&nbsp;Clientes</a
+            >
           </li>
           <li>
-            <a href="#">Empleados</a>
+            <a href="#"
+              ><b-icon icon="file-person-fill"></b-icon>&nbsp;&nbsp;Empleados</a
+            >
           </li>
           <li>
-            <a href="#">Productos</a>
+            <a href="#"
+              ><b-icon icon="cart-fill"></b-icon>&nbsp;&nbsp;Productos</a
+            >
           </li>
           <li>
-            <a href="#">Cotizacion</a>
+            <a href="#"
+              ><b-icon icon="file-earmark-check-fill"></b-icon
+              >&nbsp;&nbsp;Cotizacion</a
+            >
           </li>
         </ul>
-
+      <br/> <br/>
         <ul class="list-unstyled CTAs">
           <li>
             <a
@@ -34,13 +51,7 @@
               >Cerrar Sesion</a
             >
           </li>
-          <li>
-            <a
-              href="https://bootstrapious.com/p/bootstrap-sidebar"
-              class="article"
-              >Back to article</a
-            >
-          </li>
+          
         </ul>
       </nav>
 
@@ -50,13 +61,18 @@
         <div class="line"></div>
         <v-card elevation="2" tile class="padd-card">
           <b-input-group class="mt-3">
-            <b-form-input placeholder="Buscar"></b-form-input>
+            <b-form-input placeholder="Buscar" v-model="searchnombres" v-on:keyup.enter="BuscarClientes"></b-form-input>
             <b-input-group-append>
-              <b-button squared variant="info">
+              <b-button squared variant="info"  @click="BuscarClientes">
                 <b-icon icon="search"></b-icon
               ></b-button>
             </b-input-group-append>
-            <b-button squared variant="success" style="margin-left: 50px">
+            <b-button
+              squared
+              variant="success"
+              style="margin-left: 50px"
+              v-b-modal.modal-prevent-closing
+            >
               <b-icon icon="plus"></b-icon>Nuevo Registro</b-button
             >
           </b-input-group>
@@ -74,7 +90,7 @@
                   <th class="text-left">Accion</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody class="text-mayus">
                 <tr v-for="(clientes, i) in dataClientes" :key="i">
                   <td>{{ clientes.nombres }}</td>
                   <td>{{ clientes.apellidos }}</td>
@@ -82,10 +98,22 @@
                   <td>{{ clientes.direccion }}</td>
                   <td>{{ clientes.telefono }}</td>
                   <td>
-                    <b-button squared variant="warning" class="padd-button">
-                      <b-icon icon="pencil-square" style=" color: #fff;"></b-icon></b-button>
+                    <b-button
+                      squared
+                      variant="primary"
+                      class="padd-button"
+                      v-b-modal.modal-update
+                      @click="sendUser(clientes)"
+                    >
+                      <b-icon icon="pencil-square" style="color: #fff"></b-icon
+                    ></b-button>
 
-                    <b-button squared variant="danger" class="padd-button">
+                    <b-button
+                      squared
+                      variant="danger"
+                      class="padd-button"
+                      @click="deleteClientes(clientes)"
+                    >
                       <b-icon icon="trash-fill"></b-icon
                     ></b-button>
                   </td>
@@ -94,6 +122,171 @@
             </template>
           </v-simple-table>
         </v-card>
+
+        <div>
+          <b-modal
+            id="modal-prevent-closing"
+            ref="modal"
+            title="Registrar Cliente"
+            centered
+            @show="resetModal"
+            @hidden="resetModal"
+            @ok="RegistrarCliente"
+            ok-variant="success"
+          >
+            <form ref="form" @submit.stop.prevent="handleSubmit">
+              <b-form-group :state="nameState" invalid-feedback="*Requerido">
+                <b-form-input
+                  id="nombres"
+                  v-model="nombres"
+                  :state="nameState"
+                  required
+                  placeholder="Nombres"
+                  class="text-mayus"
+                ></b-form-input>
+                <br />
+                <b-form-input
+                  id="apellidos"
+                  v-model="apellidos"
+                  :state="nameState"
+                  required
+                  placeholder="Apellidos"
+                  type="text"
+                  class="text-mayus"
+                ></b-form-input>
+                <br />
+                <b-form-input
+                  id="direccion"
+                  v-model="direccion"
+                  :state="nameState"
+                  required
+                  placeholder="Direccion"
+                  type="text"
+                  class="text-mayus"
+                ></b-form-input>
+                <br />
+                <b-form-input
+                  id="correo"
+                  v-model="correo"
+                  :state="nameState"
+                  required
+                  placeholder="Correo"
+                  class="text-mayus"
+                ></b-form-input>
+                <br />
+                <b-form-input
+                  id="correo"
+                  v-model="telefono"
+                  :state="nameState"
+                  required
+                  placeholder="Telefono"
+                  class="text-mayus"
+                ></b-form-input>
+                <br />
+                <b-form-input
+                  id="empresa"
+                  v-model="empresa"
+                  :state="nameState"
+                  required
+                  placeholder="Razon Social"
+                  class="text-mayus"
+                ></b-form-input>
+                <br />
+                <div>
+                  <b-form-select
+                    v-model="selected"
+                    :options="dataVendedores"
+                    value-field="id"
+                    text-field="nombres"
+                    class="text-mayus"
+                  ></b-form-select>
+                </div>
+              </b-form-group>
+            </form>
+          </b-modal>
+        </div>
+
+        <div>
+          <b-modal
+            id="modal-update"
+            ref="modal"
+            title="Registrar Cliente"
+            centered
+            @show="resetModal"
+            @hidden="resetModal"
+            @ok="ActualizarCliente"
+            ok-variant="success"
+          >
+            <form ref="form" @submit.stop.prevent="handleSubmit">
+              <b-form-group :state="nameState" invalid-feedback="*Requerido">
+                <b-form-input
+                  id="nombres"
+                  v-model="selectedUser.nombres"
+                  :state="nameState"
+                  required
+                  placeholder="Nombres"
+                  class="text-mayus"
+                ></b-form-input>
+                <br />
+                <b-form-input
+                  id="apellidos"
+                  v-model="selectedUser.apellidos"
+                  :state="nameState"
+                  required
+                  placeholder="Apellidos"
+                  class="text-mayus"
+                  type="text"
+                ></b-form-input>
+                <br />
+                <b-form-input
+                  id="direccion"
+                  v-model="selectedUser.direccion"
+                  :state="nameState"
+                  required
+                  placeholder="Direccion"
+                  class="text-mayus"
+                  type="text"
+                ></b-form-input>
+                <br />
+                <b-form-input
+                  id="correo"
+                  v-model="selectedUser.correo"
+                  :state="nameState"
+                  required
+                  placeholder="Correo"
+                  class="text-mayus"
+                ></b-form-input>
+                <br />
+                <b-form-input
+                  id="correo"
+                  v-model="selectedUser.telefono"
+                  :state="nameState"
+                  required
+                  placeholder="Telefono"
+                  class="text-mayus"
+                ></b-form-input>
+                <br />
+                <b-form-input
+                  id="empresa"
+                  v-model="selectedUser.empresa"
+                  :state="nameState"
+                  required
+                  placeholder="Razon Social"
+                ></b-form-input>
+                <br />
+                <div>
+                  <b-form-select
+                    v-model="selected"
+                    :options="dataVendedores"
+                    value-field="id"
+                    text-field="nombres"
+                    class="text-mayus"
+                  ></b-form-select>
+                </div>
+              </b-form-group>
+            </form>
+          </b-modal>
+        </div>
       </div>
     </div>
   </div>
@@ -109,11 +302,20 @@ export default {
   },
   mounted() {
     this.BuscarClientes();
+    this.getVendedores();
   },
   data() {
     return {
-      dataClientes: [],
+      drawer: false,
+      group: null,
+      // eslint-disable-next-line
+      name: "",
       token: "",
+      nameState: null,
+      submittedNames: [],
+      dataClientes: [],
+      dataUsuario: [],
+      // eslint-disable-next-line
       nombres: "",
       searchnombres: "",
       apellidos: "",
@@ -123,9 +325,27 @@ export default {
       empresa: "",
       users_id: "",
       categoria: "",
+      selected: null,
+      category: null,
+      options: [
+        { value: null, text: "Seleccione la categoria" },
+        { value: "Tuberia", text: "Tuberia" },
+        { value: "Mallas", text: "Mallas" },
+        { value: "Valvulas", text: "Valvulas" },
+      ],
+      dataVendedores: [],
+      selectedUser: [],
     };
   },
   methods: {
+    Limpiar: function () {
+      (this.nombres = ""),
+        (this.apellidos = ""),
+        (this.direccion = ""),
+        (this.telefono = ""),
+        (this.correo = ""),
+        (this.empresa = "");
+    },
     BuscarClientes() {
       const data = {
         nombres: this.searchnombres,
@@ -146,6 +366,92 @@ export default {
           console.error(error);
           window.alert(error);
         });
+    },
+
+    RegistrarCliente() {
+      const data = {
+        nombres: this.nombres,
+        apellidos: this.apellidos,
+        direccion: this.direccion,
+        telefono: this.telefono,
+        correo: this.correo,
+        empresa: this.empresa,
+        users_id: this.selected,
+      };
+      API.post("registro-cliente", data, {
+        headers: {
+          Authorization: "Bearer " + this.token,
+        },
+      })
+        .then((res) => {
+          // eslint-disable-next-line
+          console.log(res.data);
+          this.Limpiar();
+          this.BuscarClientes();
+          window.alert("Los datos se han guardado");
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+          window.alert(error);
+        });
+    },
+    deleteClientes(result) {
+      API.delete("borrar-cliente/" + result.id, {
+        headers: {
+          Authorization: "Bearer " + this.token,
+        },
+      }).then((response) => {
+        // eslint-disable-next-line
+        console.log(this.result);
+        window.alert("Los datos se han guardado");
+        this.BuscarClientes();
+      });
+    },
+    ActualizarCliente() {
+      const data = {
+        nombres: this.selectedUser.nombres,
+        apellidos: this.selectedUser.apellidos,
+        direccion: this.selectedUser.direccion,
+        telefono: this.selectedUser.telefono,
+        correo: this.selectedUser.correo,
+        empresa: this.selectedUser.empresa,
+        users_id: this.selected,
+      };
+      API.put("actualizar-cliente/" + this.selectedUser.id, data, {
+        headers: {
+          Authorization: "Bearer " + this.token,
+        },
+      })
+        .then((res) => {
+          // eslint-disable-next-line
+          console.log(res.data);
+          this.selected = [];
+          this.Limpiar();
+          this.getClientes();
+          window.alert("Los datos se han guardado");
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+          window.alert(error);
+        });
+    },
+    sendUser(item) {
+      this.selectedUser = item;
+    },
+    getVendedores() {
+      API.get("user", {
+        headers: {
+          Authorization: "Bearer " + this.token,
+        },
+      }).then((response) => {
+        this.dataVendedores = response.data;
+
+        /* eslint-disable */
+        //console.log(response.data);
+        // eslint-disable-next-line no-console
+      });
     },
   },
 };
@@ -177,21 +483,6 @@ a:focus {
   transition: all 0.3s;
 }
 
-.navbar {
-  padding: 15px 10px;
-  background: #fff;
-  border: none;
-  border-radius: 0;
-  margin-bottom: 40px;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-btn {
-  box-shadow: none;
-  outline: none !important;
-  border: none;
-}
-
 .line {
   width: 100%;
   height: 1px;
@@ -212,8 +503,8 @@ a:focus {
 #sidebar {
   min-width: 250px;
   max-width: 250px;
-  background: #7386d5;
-  color: #fff;
+  background: #fff;
+  color: grey;
   transition: all 0.3s;
 }
 
@@ -223,22 +514,22 @@ a:focus {
 
 #sidebar .sidebar-header {
   padding: 20px;
-  background: #6d7fcc;
+  background: #fff;
 }
 
 #sidebar ul.components {
   padding: 20px 0;
-  border-bottom: 1px solid #47748b;
+  border-bottom: 1px solid #fff;
 }
 
 #sidebar ul p {
-  color: #fff;
+  color: grey;
   padding: 10px;
 }
 
 #sidebar ul li a {
   padding: 10px;
-  font-size: 1.1em;
+  font-size: 0.9em;
   display: block;
 }
 
@@ -303,6 +594,7 @@ a.article:hover {
   padding: 20px;
   min-height: 100vh;
   transition: all 0.3s;
+  background:  #fff;
 }
 .padd-card {
   padding-left: 20px;
@@ -311,9 +603,11 @@ a.article:hover {
   padding-bottom: 20px;
 }
 .padd-button {
-  
   margin-left: 2px;
   margin-right: 2px;
+}
+.text-mayus {
+  text-transform: uppercase;
 }
 
 /* ---------------------------------------------------
