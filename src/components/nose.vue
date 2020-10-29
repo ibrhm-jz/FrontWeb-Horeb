@@ -5,7 +5,11 @@
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
         <b-navbar-brand href="#">
-          <img src="../assets/logo.png" class="d-inline-block align-top" width="30px" />
+          <img
+            src="../assets/logo.png"
+            class="d-inline-block align-top"
+            width="30px"
+          />
           Inicio
         </b-navbar-brand>
         <b-collapse id="nav-text-collapse" is-nav>
@@ -75,31 +79,35 @@
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="font-drawer">Cotizacion</v-list-item-title>
+            <v-list-item-title class="font-drawer"
+              >Cotizacion</v-list-item-title
+            >
           </v-list-item-content>
         </v-list-item>
-
       </v-list>
       <template v-slot:footer="{ hide }">
         <div class="d-flex bg-dark text-light align-items-center px-3 py-2">
           <strong class="mr-auto">¿Salir?</strong>
-          <b-button size="sm" @click="hide" v-on:click="logout">Cerar sesion</b-button>
+          <b-button size="sm" @click="hide" v-on:click="logout"
+            >Cerar sesion</b-button
+          >
         </div>
       </template>
     </b-sidebar>
 
     <v-container class="contenedor">
-    
+      <div ref="content">
         <div class="row">
           <div class="col-sm-6">
-            <span class="titulosecundario" style="color:black !important;">Cotizacion</span>
+            <span class="titulosecundario" style="color: black !important"
+              >Cotizacion</span
+            >
           </div>
           <div class="col-sm-6">
             <div align="right">
-              <span
-                class="titulosecundario"
-                style="color:red !important;"
-              >No.cotizacion:&nbsp;{{this.numero_cotizacion}}</span>
+              <span class="titulosecundario" style="color: red !important"
+                >No.cotizacion:&nbsp;{{ this.numero_cotizacion }}</span
+              >
             </div>
           </div>
         </div>
@@ -107,7 +115,11 @@
 
         <div class="row">
           <div class="col-sm-6">
-            <v-text-field append-icon="mdi-bag-checked" label="Nombre" v-model="nombreEmpresa"></v-text-field>
+            <v-text-field
+              append-icon="mdi-bag-checked"
+              label="Nombre"
+              v-model="nombreEmpresa"
+            ></v-text-field>
           </div>
           <div class="col-sm-6">
             <v-text-field
@@ -119,12 +131,20 @@
           </div>
         </div>
 
-        <div class="row" style="margin-top:-30px; margin-bottom:-20px;">
+        <div class="row" style="margin-top: -30px; margin-bottom: -20px">
           <div class="col-sm-6">
-            <v-text-field append-icon="mdi-phone" label="Telefono" v-model="EmpresaTelefono"></v-text-field>
+            <v-text-field
+              append-icon="mdi-phone"
+              label="Telefono"
+              v-model="EmpresaTelefono"
+            ></v-text-field>
           </div>
           <div class="col-sm-6">
-            <v-text-field append-icon="mdi-city" label="Ciudad" v-model="EmpresaCiudad"></v-text-field>
+            <v-text-field
+              append-icon="mdi-city"
+              label="Ciudad"
+              v-model="EmpresaCiudad"
+            ></v-text-field>
           </div>
         </div>
 
@@ -139,29 +159,66 @@
           </tr>
           <tr v-for="(invoice_product, k) in items" :key="k.id">
             <td scope="row" class="trashIconContainer">
-              <i class="far fa-trash-alt" @click="deleteRow(k, invoice_product)"></i>
+              <i
+                class="far fa-trash-alt"
+                @click="deleteRow(k, invoice_product)"
+              ></i>
             </td>
-            <td><v-text-field style="width:50px;"  placeholder="%" required v-model="invoice_product.cantidad" @input="calcularImporte()"></v-text-field></td>
-            <td ><v-text-field style="width:50px;"  placeholder="%" required v-model="invoice_product.medida" ></v-text-field></td>
-            <td ><v-text-field style="width:120px;"  placeholder="%" required v-model="invoice_product.descripcion" ></v-text-field></td>
-            <td><v-text-field style="width:100px;"  placeholder="%" required v-model="invoice_product.precio_unitario" @input="calcularImporte()"></v-text-field></td>
-            <td ><v-text-field style="width:100px;"  placeholder="%" required v-model="invoice_product.importe" ></v-text-field></td>
+            <td>
+              <v-text-field
+                style="width: 50px"
+                placeholder="%"
+                required
+                v-model="invoice_product.cantidad"
+                @input="calcularImporte()"
+              ></v-text-field>
+            </td>
+            <td>
+              <v-text-field
+                style="width: 50px"
+                placeholder="%"
+                required
+                v-model="invoice_product.medida"
+              ></v-text-field>
+            </td>
+            <td>
+              <v-text-field
+                style="width: 120px"
+                placeholder="%"
+                required
+                v-model="invoice_product.descripcion"
+              ></v-text-field>
+            </td>
+            <td>
+              <v-text-field
+                style="width: 100px"
+                placeholder="%"
+                required
+                v-model="invoice_product.precio_unitario"
+                @input="calcularImporte()"
+              ></v-text-field>
+            </td>
+            <td>
+              <v-text-field
+                style="width: 100px"
+                placeholder="%"
+                required
+                v-model="invoice_product.importe"
+              ></v-text-field>
+            </td>
           </tr>
         </table>
 
         <hr />
         <b>
           <font size="4" face="Segoe UI">
-            <span>Subtotal : {{total}}</span>
-            <div>IVA 16% : {{invoice_iva}}</div>
-            <div>Total : {{invoice_total}}</div>
-            <span>Cantidad en Letras : {{cantletra}}</span>
+            <span>Subtotal : {{ total }}</span>
+            <div>IVA 16% : {{ invoice_iva }}</div>
+            <div>Total : {{ invoice_total }}</div>
+            <span>Cantidad en Letras : {{ cantletra }}</span>
           </font>
         </b>
-    
-
-
-
+      </div>
       <div id="example">
         <h6 v-if="boolcerrado">
           <font color="red">*La venta se cerró y se guardo.</font>
@@ -173,43 +230,35 @@
             <v-btn
               class="ma-2"
               tile
-              style="background-color:#00b686; color:white;"
+              style="background-color: #00b686; color: white"
               v-on:click="BuscarProductos"
               v-b-modal.modal-prevent-closing
             >
-              <v-icon left>mdi-plus</v-icon>Añadir
-            </v-btn>&nbsp;
+              <v-icon left>mdi-plus</v-icon>Añadir </v-btn
+            >&nbsp;
             <v-btn
               class="ma-2"
               tile
-              style="background-color:#00b686; color:white;"
+              style="background-color: #00b686; color: white"
               v-b-modal.modal-porcentaje
             >
-              <v-icon left>mdi-cash-multiple</v-icon>cerrar cotizacion
-            </v-btn>&nbsp;
+              <v-icon left>mdi-cash-multiple</v-icon>cerrar cotizacion </v-btn
+            >&nbsp;
             <v-btn
               class="ma-2"
               tile
-              style="background-color:#00b686; color:white;"
+              style="background-color: #00b686; color: white"
               @click="exportPDF"
               v-b-modal.modal-cotizacion
             >
-              <v-icon left>mdi-send</v-icon>imprimir
-            </v-btn>&nbsp;
-            <v-btn
-              class="ma-2"
-              tile
-              style="background-color:#00b686; color:white;"
-              @click="RestaurarDatos"
-            >
-              <v-icon left>mdi-send</v-icon>Resataurar
-            </v-btn>
+              <v-icon left>mdi-send</v-icon>imprimir </v-btn
+            >&nbsp;
           </div>
         </div>
       </div>
     </v-container>
 
-    
+
 
     <div>
       <b-modal
@@ -226,7 +275,9 @@
         <div class="input-group md-form form-sm form-1 pl-0">
           <div class="input-group-prepend">
             <span>
-              <b-button squared variant="success" v-on:click="BuscarProductos">Buscar</b-button>
+              <b-button squared variant="success" v-on:click="BuscarProductos"
+                >Buscar</b-button
+              >
             </span>
           </div>
           <input
@@ -256,14 +307,14 @@
             <tbody>
               <!-- newEntries: {{ newEntries }} -->
               <tr v-for="products in datosProductos" :key="products.id">
-                <td>{{products.nombre}}</td>
-                <td>{{products.tipo}}</td>
-                <td>{{products.medida}}</td>
-                <td>${{products.precio_unitario}}</td>
-                <td>{{products.cantidad_existencia}}</td>
+                <td>{{ products.nombre }}</td>
+                <td>{{ products.tipo }}</td>
+                <td>{{ products.medida }}</td>
+                <td>${{ products.precio_unitario }}</td>
+                <td>{{ products.cantidad_existencia }}</td>
                 <td>
                   <v-text-field
-                    style="width:50px;"
+                    style="width: 50px"
                     v-model="newEntries[products.id]"
                     placeholder="Cant"
                     required
@@ -274,7 +325,7 @@
                   <b-button
                     variant="success"
                     class="btn-circle.btn-xl"
-                    @click="addNewRow(products,newEntries[products.id])"
+                    @click="addNewRow(products, newEntries[products.id])"
                   >
                     <b-icon icon="cart2" aria-label="Añadir"></b-icon>
                   </b-button>
@@ -304,12 +355,20 @@
           v-model="PorcentajeGanancia"
         />
         <br />
-        <v-text-field append-icon="mdi-truck" label="Gastos en flete" v-model="costo_flete" />
+        <v-text-field
+          append-icon="mdi-truck"
+          label="Gastos en flete"
+          v-model="costo_flete"
+        />
         <br />
         <v-text-field append-icon="mdi-map" label="Lugar de Entrega" />
 
         <br />
-        <v-text-field append-icon="mdi-note-plus" label="Agregar nota" v-model="nota" />
+        <v-text-field
+          append-icon="mdi-note-plus"
+          label="Agregar nota"
+          v-model="nota"
+        />
       </b-modal>
     </div>
   </div>
@@ -328,7 +387,7 @@ export default {
       this.$router.push("/login");
     } else {
       this.getCotizacion();
-       this.newPorcentaje = [];
+      this.newPorcentaje = [];
     }
   },
   name: "Cotizacion",
@@ -345,7 +404,7 @@ export default {
       cant_letra: "",
       comprobacion: "",
       token: "",
-      nota:"",
+      nota: "",
       name: "",
       // eslint-disable-next-line
       nameState: null,
@@ -364,7 +423,6 @@ export default {
       searchnombre: "",
       items: [
         {
-          
           nombre: "",
           direccion: "",
           ciudad: "",
@@ -376,7 +434,7 @@ export default {
           ganancia: "",
           cantidad: 0,
           importe: "",
-          user_id:"1",
+          user_id: "1",
           precio_unitario: "",
         },
       ],
@@ -449,18 +507,16 @@ export default {
       }
     },
 
-
     LlenarDatos() {
       for (var i in this.items) {
+        this.$set(this.items[i], "no_venta", "3");
         this.$set(this.items[i], "nombre", this.nombreEmpresa);
         this.$set(this.items[i], "direccion", this.EmpresaDireccion);
         this.$set(this.items[i], "ciudad", this.EmpresaCiudad);
-         this.$set(this.items[i], "telefono", this.EmpresaTelefono);
         this.$set(this.items[i], "status", "No vendido");
         this.$set(this.items[i], "costo_flete", this.costo_flete);
         this.$set(this.items[i], "ganancia", this.PorcentajeGanancia);
         this.$set(this.items[i], "user_id", "1");
-       
       }
       // eslint-disable-next-line
       console.log(this.items);
@@ -555,9 +611,9 @@ export default {
             doc.internal.scaleFactor;
           var columns_price = ["Conceptos", "Total"];
           var data_price = [
-            ["SUBTOTAL:", "$"+this.format(vm.invoice_subtotal)],
-            ["IVA 16%:", "$"+this.format(vm.invoice_iva)],
-            ["TOTAL:", "$"+this.format(vm.invoice_total)],
+            ["SUBTOTAL:", "$" + this.format(vm.invoice_subtotal)],
+            ["IVA 16%:", "$" + this.format(vm.invoice_iva)],
+            ["TOTAL:", "$" + this.format(vm.invoice_total)],
           ];
           doc.autoTable(columns_price, data_price, {
             showHead: "never",
@@ -573,7 +629,7 @@ export default {
           doc.text(40, 55, "CANTIDAD EN LETRAS : ");
           doc.setFontSize(7);
           doc.text(40, 70, vm.cant_letra.toUpperCase());
-          doc.text(40, 85,"NOTA:" +vm.nota.toUpperCase());
+          doc.text(40, 85, "NOTA:" + vm.nota.toUpperCase());
           var imgpie = new Image();
           imgpie.src = PIE;
           doc.addImage(imgpie, "PNG", 40, 110, width - 80, 110, {
@@ -589,9 +645,9 @@ export default {
             doc.internal.scaleFactor;
           var columns_price = ["Conceptos", "Total"];
           var data_price = [
-            ["SUBTOTAL:", "$"+this.format(vm.invoice_subtotal)],
-            ["IVA 16%:", "$"+this.format(vm.invoice_iva)],
-            ["TOTAL:", "$"+this.format(vm.invoice_total)],
+            ["SUBTOTAL:", "$" + this.format(vm.invoice_subtotal)],
+            ["IVA 16%:", "$" + this.format(vm.invoice_iva)],
+            ["TOTAL:", "$" + this.format(vm.invoice_total)],
           ];
           doc.autoTable(columns_price, data_price, {
             showHead: "never",
@@ -611,7 +667,7 @@ export default {
           doc.text(40, finalY + 55, "CANTIDAD EN LETRAS : ");
           doc.setFontSize(7);
           doc.text(40, finalY + 70, vm.cant_letra.toUpperCase());
-          doc.text(40, finalY + 85,"NOTA:" +vm.nota.toUpperCase());
+          doc.text(40, finalY + 85, "NOTA:" + vm.nota.toUpperCase());
           var imgpie = new Image();
           imgpie.src = PIE;
           doc.addImage(imgpie, "PNG", 40, finalY + 110, width - 80, 110, {
@@ -698,20 +754,6 @@ export default {
         // eslint-disable-next-line no-console
       });
     },
-    getCotizacion() {
-      API.get("no-cotizacion", {
-        headers: {
-          Authorization: "Bearer " + this.token,
-        },
-      }).then((response) => {
-        this.numero_cotizacion = response.data.nocotizacion;
-        this.numero_cotizacion = parseInt(this.numero_cotizacion) + 1;
-
-        /* eslint-disable */
-        // console.log("ESTE ES EL RESPONSE"+response[0]);
-        // eslint-disable-next-line no-console
-      });
-    },
 
     BuscarProductos() {
       const data = {
@@ -735,19 +777,65 @@ export default {
         });
     },
 
-        GuardaCotizacion() {
-          this.LlenarDatos();
-          var dataJSON=JSON.stringify(this.items); 
-              console.log("EL dATA JSON"+dataJSON);
-      API.post("registro-ventas", dataJSON , {
+UpdatewithFrom(){
+     API.delete('borrar-venta/' + "3",
+      {
         headers: {
-          'Content-Type': 'application/json',
+          Authorization: "Bearer " + this.token,
+        },
+      })
+      .then(response => {
+          // eslint-disable-next-line
+        console.log(this.result);
+         GuardaCotizacion();
+         window.alert("Se elimino");
+        
+        this.getProduct();
+      });
+    },
+
+
+
+    getCotizacion() {
+      const data = {
+        no_venta: "3",
+      };
+      API.post("buscar-venta", data, {
+        headers: {
           Authorization: "Bearer " + this.token,
         },
       })
         .then((res) => {
           // eslint-disable-next-line
-          console.log(res.data); 
+          this.nombreEmpresa=res.data[0].nombre;
+          this.EmpresaDireccion=res.data[0].direccion;
+          this.EmpresaCiudad=res.data[0].ciudad;
+          console.log(res.data);
+          this.items = res.data;
+          this.calcularImporte();
+
+          //window.alert("Los datos se han guardado");
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+          // window.alert(error);
+        });
+    },
+
+    GuardaCotizacion() {
+      this.LlenarDatos();
+      var dataJSON = JSON.stringify(this.items);
+      console.log("EL dATA JSON" + dataJSON);
+      API.post("update", dataJSON, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.token,
+        },
+      })
+        .then((res) => {
+          // eslint-disable-next-line
+          console.log(res.data);
           window.alert("Los datos se han guardado");
         })
         .catch((error) => {
@@ -756,6 +844,7 @@ export default {
           window.alert(error);
         });
     },
+
   },
 
   watch: {
@@ -766,8 +855,9 @@ export default {
 
   mounted() {
     this.items = [];
-
+    this.getCotizacion();
     this.BuscarProducto();
+
     //console.log("Numeor"+convertir.NumerosALetras(58225))
   },
   computed: {
@@ -801,7 +891,6 @@ export default {
         return subtotal;
       }, 0);
     },
-    
   },
 };
 </script>

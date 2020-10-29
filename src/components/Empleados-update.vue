@@ -44,20 +44,22 @@
             >
           </li>
           </router-link>
+          <router-link to="/Cotizacion">
           <li>
             <a href="#"
               ><b-icon icon="file-earmark-check-fill"></b-icon
               >&nbsp;&nbsp;Cotizacion</a
             >
           </li>
+          </router-link>
         </ul>
         <br />
         <br />
         <ul class="list-unstyled CTAs">
           <li>
             <a
-              href="https://bootstrapious.com/tutorial/files/sidebar.zip"
-              class="download"
+               @click="logout"
+                href=""
             >
               <b-icon icon="door-open-fill"></b-icon>&nbsp;&nbsp;¿Salir?</a
             >
@@ -345,6 +347,10 @@ export default {
     };
   },
   methods: {
+                  logout(){
+      localStorage.removeItem('userToken')
+      this.$router.push("/")
+    },
     getEmpleados() {
       API.get("user", {
         headers: {
@@ -477,6 +483,7 @@ BuscarEmpleado() {
           window.alert(error);
         });
     },
+
   },
 };
 </script>

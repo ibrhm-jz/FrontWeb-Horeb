@@ -83,7 +83,7 @@ export default {
         .then((res) => {
           window.alert("Los datos se han guardado"+res.data);
           localStorage.setItem('userToken', res.data.token)
-          router.push({ name: 'Home' })
+          router.push({ name: 'Inicio' })
            // eslint-disable-next-line
           console.error(res.data);
         })  

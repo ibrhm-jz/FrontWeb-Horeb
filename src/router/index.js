@@ -25,8 +25,8 @@ export default new Router({
 
         },
         {
-            path: '/login',
-            name: '/login',
+            path: '/',
+            name: '/',
             component: Login
 
         },
@@ -51,7 +51,7 @@ export default new Router({
         {
             path: '/cotizacion',
             name: '/cotizacion',
-            component: Cotizacion
+            component: EditCotizacion
 
         },
         {
@@ -89,12 +89,7 @@ export default new Router({
             component: EditCotizacion
 
         },
-        {
-            path: '/',
-            name: '/',
-            component: Start
 
-        },
 
 
     ]
