@@ -141,66 +141,67 @@
             </div>
           </div>
 
-          <table class="table">
-            <tr>
-              <th>Accion</th>
-              <th>Cantidad</th>
-              <th>Medida</th>
-              <th>Descripcion</th>
-              <th>Precio Unitario</th>
-              <th>Importe</th>
-            </tr>
-            <tr v-for="(invoice_product, k) in items" :key="k.id">
-              <td scope="row" class="trashIconContainer">
-                <i
-                  class="far fa-trash-alt"
-                  @click="deleteRow(k, invoice_product)"
-                ></i>
-              </td>
-              <td>
-                <v-text-field
-                  style="width: 50px"
-                  placeholder="%"
-                  required
-                  v-model="invoice_product.cantidad"
-                  @input="calcularImporte()"
-                ></v-text-field>
-              </td>
-              <td>
-                <v-text-field
-                  style="width: 50px"
-                  placeholder="%"
-                  required
-                  v-model="invoice_product.medida"
-                ></v-text-field>
-              </td>
-              <td>
-                <v-text-field
-                  style="width: 120px"
-                  placeholder="%"
-                  required
-                  v-model="invoice_product.descripcion"
-                ></v-text-field>
-              </td>
-              <td>
-                <v-text-field
-                  style="width: 100px"
-                  placeholder="%"
-                  required
-                  v-model="invoice_product.precio_unitario"
-                  @input="calcularImporte()"
-                ></v-text-field>
-              </td>
-              <td>
-                <v-text-field
-                  style="width: 100px"
-                  placeholder="%"
-                  required
-                  v-model="invoice_product.importe"
-                ></v-text-field>
-              </td>
-            </tr>
-          </table>
+          <v-simple-table>
+            <thead>
+              <tr>
+                <th>Accion</th>
+                <th>Cantidad</th>
+                <th>Medida</th>
+                <th>Descripcion</th>
+                <th>Precio Unitario</th>
+                <th>Importe</th>
+              </tr>
+            </thead>
+            <tbody class="text-mayus">
+              <tr v-for="(invoice_product, k) in items" :key="k.id">
+                <td scope="row" class="trashIconContainer" width="10px">
+                  <i
+                    class="far fa-trash-alt"
+                    @click="deleteRow(k, invoice_product)"
+                  ></i>
+                </td>
+                <td>
+                  <v-text-field
+                    style="width: 50px"
+                    placeholder="%"
+                    required
+                    v-model="invoice_product.cantidad"
+                    @input="calcularImporte()"
+                  ></v-text-field>
+                </td>
+                <td>
+                  <v-text-field
+                    style="width: 50px"
+                    placeholder="%"
+                    required
+                    v-model="invoice_product.medida"
+                  ></v-text-field>
+                </td>
+                <td>
+                  <v-text-field
+                    style="width: 250px"
+                    required
+                    v-model="invoice_product.descripcion"
+                  ></v-text-field>
+                </td>
+                <td>
+                  <v-text-field
+                    style="width: 100px"
+                    required
+                    v-model="invoice_product.precio_unitario"
+                    @input="calcularImporte()"
+                  ></v-text-field>
+                </td>
+                <td>
+                  <v-text-field
+                    style="width: 100px"
+                    required
+                    v-model="invoice_product.importe"
+                  ></v-text-field>
+                </td>
+              </tr>
+            </tbody>
+          </v-simple-table>
 
           <hr />
           <b>
@@ -355,12 +356,16 @@
             @ok="GuardaCotizacion"
             ok-variant="success"
           >
-            <v-text-field append-icon="mdi-map" label="Lugar de Entrega" />
+            <v-text-field
+              append-icon="mdi-map"
+              label="Lugar de Entrega"
+              v-model="lugarEntrega"
+            />
 
             <br />
             <v-text-field
               append-icon="mdi-note-plus"
-              label="Agregar nota"
+              label="Tiempo de Entrega"
               v-model="nota"
             />
           </b-modal>
@@ -377,6 +382,7 @@ import jsPDF from "jspdf";
 export default {
   created() {
     this.token = localStorage.getItem("userToken");
+     this.miUsuario = localStorage.getItem("userId");
     if (this.token == null || this.token == "") {
       this.$router.push("/login");
     } else {
@@ -393,6 +399,7 @@ export default {
       boolcerrado: false,
       numero_cotizacion: 0,
       group: null,
+      miUsuario:"",
       nombreEmpresa: "",
       EmpresaDireccion: "",
       EmpresaTelefono: "",
@@ -401,6 +408,7 @@ export default {
       comprobacion: "",
       token: "",
       nota: "",
+      lugarEntrega: "",
       name: "",
       // eslint-disable-next-line
       nameState: null,
@@ -491,8 +499,13 @@ export default {
         } else {
           this.$set(this.items[i], "costo_flete", this.costo_flete);
         }
-        this.$set(this.items[i], "ganancia", this.PorcentajeGanancia);
-        this.$set(this.items[i], "user_id", "1");
+        if (this.costo_flete == "") {
+          this.$set(this.items[i], "ganancia", "0");
+        } else {
+          this.$set(this.items[i], "ganancia", this.PorcentajeGanancia);
+        }
+
+        this.$set(this.items[i], "user_id",  this.miUsuario );
       }
       // eslint-disable-next-line
       console.log(this.items);
@@ -552,10 +565,9 @@ export default {
         var img = new Image();
         img.src = LOGO;
         doc.addImage(img, "PNG", 40, 80, 450, 80);
-        doc.setFontSize(10);
+        doc.setFontSize(9);
         doc.setTextColor(0, 0, 0);
         doc.text("NOMBRE: " + vm.nombreEmpresa.toUpperCase(), 40, 180);
-        doc.setFontSize(10);
         doc.text("DIRECCION " + vm.EmpresaDireccion.toUpperCase(), 40, 195);
         doc.text("TELEFONO : " + vm.EmpresaTelefono.toUpperCase(), 40, 210);
         doc.text("CIUDAD : " + vm.EmpresaCiudad.toUpperCase(), 40, 225);
@@ -595,12 +607,30 @@ export default {
           doc.text(40, 55, "CANTIDAD EN LETRAS : ");
           doc.setFontSize(7);
           doc.text(40, 70, vm.cant_letra.toUpperCase());
-          doc.text(40, 85, "NOTA:" + vm.nota.toUpperCase());
-          var imgpie = new Image();
-          imgpie.src = PIE;
-          doc.addImage(imgpie, "PNG", 40, 110, width - 80, 110, {
-            margin: { bottom: 40 },
-          });
+          doc.text(40, 100, "CONDICIONES");
+          doc.text(40, 110, "PRECIOS SUJETOS A CAMBIO SIN PREVIO AVISO");
+          doc.text(40, 120, "FORMA DE PAGO: CONTADO ANTICIPADO");
+          doc.text(40, 130, "TIEMPO DE ENTREGRA :" + vm.nota.toUpperCase());
+          doc.text(
+            40,
+            140,
+            "LUGAR DE ENTREGA: :" + vm.lugarEntrega.toUpperCase()
+          );
+          doc.text(
+            40,
+            150,
+            "MANIOBRAS DE DESCARGA Y RIESGO A CUENTA DEL CLIENTE"
+          );
+          doc.text(
+            40,
+            160,
+            "NO TRANSITAMOS EN LUGARES O CARRETERAS ACCIDENTADAS, UNICAMENTE LLEGAMOS HASTA DONDE LA UNIDAD TENGA ACCESO."
+          );
+          doc.text(
+            40,
+            170,
+            "UNA VEZ ENTREGADO EL MATERIAL NO SE HACEN DEVOLUCIONES."
+          );
           doc.save("Cotizacion_" + this.numero_cotizacion + ".pdf");
         } else {
           var textWidth =
@@ -629,12 +659,38 @@ export default {
           doc.text(40, finalY + 55, "CANTIDAD EN LETRAS : ");
           doc.setFontSize(7);
           doc.text(40, finalY + 70, vm.cant_letra.toUpperCase());
-          doc.text(40, finalY + 85, "NOTA:" + vm.nota.toUpperCase());
-          var imgpie = new Image();
-          imgpie.src = PIE;
-          doc.addImage(imgpie, "PNG", 40, finalY + 110, width - 80, 110, {
-            margin: { bottom: 40 },
-          });
+          doc.text(40, finalY + 100, "CONDICIONES");
+          doc.text(
+            40,
+            finalY + 110,
+            "PRECIOS SUJETOS A CAMBIO SIN PREVIO AVISO"
+          );
+          doc.text(40, finalY + 120, "FORMA DE PAGO: CONTADO ANTICIPADO");
+          doc.text(
+            40,
+            finalY + 130,
+            "TIEMPO DE ENTREGRA :" + vm.nota.toUpperCase()
+          );
+          doc.text(
+            40,
+            finalY + 140,
+            "LUGAR DE ENTREGA: :" + vm.lugarEntrega.toUpperCase()
+          );
+          doc.text(
+            40,
+            finalY + 150,
+            "MANIOBRAS DE DESCARGA Y RIESGO A CUENTA DEL CLIENTE"
+          );
+          doc.text(
+            40,
+            finalY + 160,
+            "NO TRANSITAMOS EN LUGARES O CARRETERAS ACCIDENTADAS, UNICAMENTE LLEGAMOS HASTA DONDE LA UNIDAD TENGA ACCESO."
+          );
+          doc.text(
+            40,
+            finalY + 170,
+            "UNA VEZ ENTREGADO EL MATERIAL NO SE HACEN DEVOLUCIONES."
+          );
           doc.save("Cotizacion_" + this.numero_cotizacion + ".pdf");
         }
       }

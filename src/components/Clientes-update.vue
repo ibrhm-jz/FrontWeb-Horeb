@@ -76,7 +76,6 @@
           <b-input-group class="mt-3">
             <b-form-input placeholder="Buscar" v-model="searchnombres" v-on:keyup.enter="BuscarClientes"></b-form-input>
             <b-input-group-append>
-
               <b-button squared variant="info"  @click="BuscarClientes">
                 <b-icon icon="search"></b-icon
               ></b-button>
@@ -113,11 +112,13 @@
               </thead>
               <tbody class="text-mayus">
                 <tr v-for="(clientes, i) in dataClientes" :key="i">
+               
                   <td>{{ clientes.nombres }}</td>
                   <td>{{ clientes.apellidos }}</td>
                   <td>{{ clientes.empresa }}</td>
                   <td>{{ clientes.direccion }}</td>
                   <td>{{ clientes.telefono }}</td>
+               
                   <td>
                     <b-button
                       squared
@@ -317,6 +318,7 @@ import { API } from "../Servicios/axios";
 export default {
   created() {
     this.token = localStorage.getItem("userToken");
+    this.miUsuario = localStorage.getItem("userId");
     if (this.token == null || this.token == "") {
       this.$router.push("/login");
     }
@@ -329,7 +331,7 @@ export default {
     return {
       drawer: false,
       group: null,
-      // eslint-disable-next-line
+      miUsuario:"",
       name: "",
       token: "",
       nameState: null,
@@ -371,11 +373,12 @@ export default {
       this.$router.push("/")
     },
         FiltroProducto() {
+          console.log(this.miUsuario)
       if (this.category == null) {
         this.BuscarClientes();
       } else {
         const data = {
-          user_id: this.category,
+          user_id: this.miUsuario,
         };
         API.post("mis-clientes", data, {
           headers: {
@@ -484,7 +487,7 @@ export default {
           console.log(res.data);
           this.selected = [];
           this.Limpiar();
-          this.getClientes();
+          this.BuscarClientes();
           window.alert("Los datos se han guardado");
         })
         .catch((error) => {

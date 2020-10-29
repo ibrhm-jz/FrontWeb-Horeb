@@ -15,12 +15,12 @@
 
         <ul class="list-unstyled components">
           <p>Administracion Horeb</p>
-                   <router-link to="/Inicio">
-          <li>
-            <a href="#">
-              <b-icon icon="house-door-fill"></b-icon>&nbsp;&nbsp;Inicio</a
-            >
-          </li>
+          <router-link to="/Inicio">
+            <li>
+              <a href="#">
+                <b-icon icon="house-door-fill"></b-icon>&nbsp;&nbsp;Inicio</a
+              >
+            </li>
           </router-link>
           <router-link to="/Clientes">
             <li>
@@ -45,23 +45,20 @@
               >
             </li>
           </router-link>
-            <router-link to="/Cotizacion">
-          <li>
-            <a href="#"
-              ><b-icon icon="file-earmark-check-fill"></b-icon
-              >&nbsp;&nbsp;Cotizacion</a
-            >
-          </li>
+          <router-link to="/Cotizacion">
+            <li>
+              <a href="#"
+                ><b-icon icon="file-earmark-check-fill"></b-icon
+                >&nbsp;&nbsp;Cotizacion</a
+              >
+            </li>
           </router-link>
         </ul>
         <br />
         <br />
         <ul class="list-unstyled CTAs">
           <li>
-            <a
-              @click="logout"
-               href=""
-            >
+            <a @click="logout" href="">
               <b-icon icon="door-open-fill"></b-icon>&nbsp;&nbsp;¿Salir?</a
             >
           </li>
@@ -70,12 +67,25 @@
 
       <!-- Page Content  -->
       <div id="content">
-
-       <h2>Bienvenido a administracion Horeb</h2>
+        <h2>Bienvenido a administracion Horeb</h2>
         <div class="line"></div>
-        <p>  “El secreto para salir adelante es empezar.”</p>
-       
-    </div>
+        <p>“El secreto para salir adelante es empezar.”</p>
+        <br />
+        <v-card class="padd-card">
+        <b-input-group class="mt-3">
+          <b-form-input
+            placeholder="Introduce tu numero de cotizacion"
+            v-model="searchnombres"
+            v-on:keyup.enter="BuscarClientes"
+          ></b-form-input>
+          <b-input-group-append>
+            <b-button squared variant="info" @click="BuscarClientes">
+              <b-icon icon="search"></b-icon
+            ></b-button>
+          </b-input-group-append>
+        </b-input-group>
+        </v-card>
+      </div>
     </div>
   </div>
 </template>
@@ -92,16 +102,13 @@ export default {
     this.BuscarProductos();
   },
   data() {
-    return {
-      
-    };
+    return {};
   },
   methods: {
-            logout(){
-      localStorage.removeItem('userToken')
-      this.$router.push("/")
+    logout() {
+      localStorage.removeItem("userToken");
+      this.$router.push("/");
     },
-   
   },
 };
 </script>
