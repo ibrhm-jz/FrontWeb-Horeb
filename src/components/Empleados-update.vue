@@ -156,6 +156,7 @@
               :state="nameState"
               required
               placeholder="Nombres"
+              class="text-mayus"
             ></b-form-input>
             <br />
             <b-form-input
@@ -164,6 +165,7 @@
               :state="nameState"
               required
               placeholder="Apellidos"
+              class="text-mayus"
               type="text"
             ></b-form-input>
             <br />
@@ -173,7 +175,8 @@
               v-model="correo"
               :state="nameState"
               required
-              placeholder="Correo"
+              placeholder="CORREO"
+             
             ></b-form-input>
             <br />
               <b-form-input
@@ -234,6 +237,7 @@
               :state="nameState"
               required
               placeholder="Nombres"
+               class="text-mayus"
             ></b-form-input>
             <br />
             <b-form-input
@@ -242,6 +246,7 @@
               :state="nameState"
               required
               placeholder="Apellidos"
+               class="text-mayus"
               type="text"
             ></b-form-input>
             <br />
@@ -278,6 +283,7 @@
               :state="nameState"
               required
               placeholder="Telefono"
+               class="text-mayus"
             ></b-form-input>
             <br />
 

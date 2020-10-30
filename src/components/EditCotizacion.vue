@@ -96,6 +96,7 @@
                 <b-form-input
                   type="text"
                   placeholder="Nombre"
+                  class="text-mayus"
                   v-model="nombreEmpresa"
                 ></b-form-input>
               </b-input-group>
@@ -108,6 +109,7 @@
                 <b-form-input
                   type="text"
                   placeholder="Direccion"
+                  class="text-mayus"
                   v-model="EmpresaDireccion"
                 ></b-form-input>
               </b-input-group>
@@ -123,6 +125,7 @@
                 <b-form-input
                   type="text"
                   placeholder="Telefono"
+                  class="text-mayus"
                   v-model="EmpresaTelefono"
                 ></b-form-input>
               </b-input-group>
@@ -134,6 +137,7 @@
                 </b-input-group-prepend>
                 <b-form-input
                   type="text"
+                  class="text-mayus"
                   placeholder="Ciudad"
                   v-model="EmpresaCiudad"
                 ></b-form-input>
@@ -257,16 +261,19 @@
                     squared
                     variant="success"
                     v-on:click="BuscarProductos"
+                    
                     >Buscar</b-button
                   >
                 </span>
               </div>
               <input
-                class="form-control my-0 py-1"
+                class="form-control my-0 py-1 text-mayus"
+               
                 type="text"
                 placeholder="Search"
                 aria-label="Search"
                 v-model="searchnombre"
+                
                 v-on:keyup.enter="BuscarProductos"
               />
             </div>
@@ -277,7 +284,7 @@
                 <thead>
                   <tr>
                     <th class="text-left">Nombre</th>
-                    <th class="text-left">Tipo</th>
+                   
                     <th class="text-left">Medida</th>
                     <th class="text-left">Precio unitario</th>
                     <th class="text-left">Existencia</th>
@@ -289,7 +296,7 @@
                   <!-- newEntries: {{ newEntries }} -->
                   <tr v-for="products in datosProductos" :key="products.id">
                     <td>{{ products.nombre }}</td>
-                    <td>{{ products.tipo }}</td>
+                    
                     <td>{{ products.medida }}</td>
                     <td>${{ products.precio_unitario }}</td>
                     <td>{{ products.cantidad_existencia }}</td>
@@ -334,6 +341,7 @@
               append-icon="mdi-currency-usd"
               label="Porcentaje de Ganancia"
               v-model="PorcentajeGanancia"
+              
             />
             <br />
             <v-text-field
@@ -360,6 +368,7 @@
               append-icon="mdi-map"
               label="Lugar de Entrega"
               v-model="lugarEntrega"
+              class="text-mayus"
             />
 
             <br />
@@ -367,6 +376,7 @@
               append-icon="mdi-note-plus"
               label="Tiempo de Entrega"
               v-model="nota"
+              class="text-mayus"
             />
           </b-modal>
         </div>
@@ -381,6 +391,7 @@ import { LOGO, PIE } from "../base64/images";
 import jsPDF from "jspdf";
 export default {
   created() {
+    
     this.token = localStorage.getItem("userToken");
      this.miUsuario = localStorage.getItem("userId");
     if (this.token == null || this.token == "") {
@@ -863,6 +874,8 @@ export default {
         return subtotal;
       }, 0);
     },
+
+
   },
 };
 </script>

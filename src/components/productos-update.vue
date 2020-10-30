@@ -76,7 +76,7 @@
           <b-input-group class="mt-3">
             <b-form-input
               placeholder="Buscar"
-              v-model="searchnombres"
+              v-model="searchnombre"
               v-on:keyup.enter="BuscarProductos"
             ></b-form-input>
             <b-input-group-append>
@@ -461,6 +461,29 @@ export default {
       this.selectedProduct = item;
     },
   },
+  computed:{
+        BuscarProductos() {
+      const data = {
+        nombre: this.searchnombre,
+      };
+      API.post("buscar-producto", data, {
+        headers: {
+          Authorization: "Bearer " + this.token,
+        },
+      })
+        .then((res) => {
+          // eslint-disable-next-line
+          console.log(res.data);
+          this.datosProductos = res.data;
+          //window.alert("Los datos se han guardado");
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+          window.alert(error);
+        });
+    },
+  }
 };
 </script>
 <style scoped>
