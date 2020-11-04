@@ -1,320 +1,389 @@
 <template>
-  <div>
-    <div>
-      <b-navbar type="light" variant="light" fixed="top">
-        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-
-        <b-navbar-brand href="#">
-          <img src="../assets/logo.png" class="d-inline-block align-top" width="30px" />
-          Inicio
-        </b-navbar-brand>
-        <b-collapse id="nav-text-collapse" is-nav>
-          <b-navbar-nav>
-            <b-nav-text>Empieza a administrar</b-nav-text>
-          </b-navbar-nav>
-        </b-collapse>
-      </b-navbar>
-    </div>
-
-    <b-sidebar v-model="drawer" shadow bg-variant="white">
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="title">Application</v-list-item-title>
-          <v-list-item-subtitle>
-            <em>tuberia_horeb@hotmail.com</em>
-          </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-divider></v-divider>
-
-      <v-list dense nav color="blue">
-        <v-list-item link to="/Home">
-          <v-list-item-icon>
-            <v-icon>mdi-home</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title class="font-drawer">Home</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item link to="/Clientes">
-          <v-list-item-icon>
-            <v-icon>mdi-account-box</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title class="font-drawer">Clientes</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item link to="/Empleados">
-          <v-list-item-icon>
-            <v-icon>mdi-account-group</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title class="font-drawer">Empleados</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item link to="/Productos">
-          <v-list-item-icon>
-            <v-icon>mdi-chart-ppf</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title class="font-drawer">Productos</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item link to="/Cotizacion">
-          <v-list-item-icon>
-            <v-icon>mdi-file-document-multiple</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title class="font-drawer">Cotizacion</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-      </v-list>
-      <template v-slot:footer="{ hide }">
-        <div class="d-flex bg-dark text-light align-items-center px-3 py-2">
-          <strong class="mr-auto">¿Salir?</strong>
-          <b-button size="sm" @click="hide" v-on:click="logout">Cerar sesion</b-button>
-        </div>
-      </template>
-    </b-sidebar>
-
-    <v-container class="contenedor">
-      <div ref="content">
-        <div class="row">
-          <div class="col-sm-6">
-            <span class="titulosecundario" style="color:black !important;">Cotizacion</span>
+  <div width="100%">
+    <div class="wrapper">
+      <!-- Sidebar  -->
+      <nav id="sidebar">
+        <div class="sidebar-header">
+          <div align="center">
+            <img
+              src="../assets/logo-nuevo.png"
+              class="d-inline-block align-top"
+              width="150px"
+            />
           </div>
-          <div class="col-sm-6">
-            <div align="right">
-              <span
-                class="titulosecundario"
-                style="color:red !important;"
-              >No.cotizacion:&nbsp;{{this.numero_cotizacion}}</span>
+        </div>
+
+        <ul class="list-unstyled components">
+          <p>Administracion Horeb</p>
+          <router-link to="/Inicio">
+            <li>
+              <a href="#">
+                <b-icon icon="house-door-fill"></b-icon>&nbsp;&nbsp;Inicio</a
+              >
+            </li>
+          </router-link>
+          <router-link to="/Clientes">
+            <li>
+              <a href="#"
+                ><b-icon icon="person-lines-fill"></b-icon
+                >&nbsp;&nbsp;Clientes</a
+              >
+            </li>
+          </router-link>
+          <router-link to="/Empleados">
+            <li>
+              <a href="#"
+                ><b-icon icon="file-person-fill"></b-icon
+                >&nbsp;&nbsp;Empleados</a
+              >
+            </li>
+          </router-link>
+          <router-link to="/Productos">
+            <li>
+              <a href="#"
+                ><b-icon icon="cart-fill"></b-icon>&nbsp;&nbsp;Productos</a
+              >
+            </li>
+          </router-link>
+          <router-link to="/Cotizacion">
+            <li>
+              <a href="#"
+                ><b-icon icon="file-earmark-check-fill"></b-icon
+                >&nbsp;&nbsp;Cotizacion</a
+              >
+            </li>
+          </router-link>
+        </ul>
+        <br />
+        <br />
+        <ul class="list-unstyled CTAs">
+          <li>
+            <a @click="logout" href="">
+              <b-icon icon="door-open-fill"></b-icon>&nbsp;&nbsp;¿Salir?</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Page Content  -->
+      <div id="content">
+        <h2>Cotizaciones</h2>
+        <div class="line"></div>
+        <v-card class="padd-card">
+          <div class="row">
+            <div class="col-sm-6">
+              <p>Realiza tus cotizaciones</p>
+            </div>
+            <div class="col-sm-6">
+              <div align="right">
+                <p>
+                  <span class="titulosecundario" style="color: red !important"
+                    ><b
+                      >No.cotizacion:&nbsp;{{ this.numero_cotizacion }}</b
+                    ></span
+                  >
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-        <v-spacer></v-spacer>
 
-        <div class="row">
-          <div class="col-sm-6">
-            <v-text-field append-icon="mdi-bag-checked" label="Nombre" v-model="nombreEmpresa"></v-text-field>
+          <div class="row" style="margin-top: -30px; margin-bottom: -20px">
+            <div class="col-sm-6">
+              <b-input-group class="mb-2">
+                <b-input-group-prepend is-text>
+                  <b-icon icon="person-fill"></b-icon>
+                </b-input-group-prepend>
+                <b-form-input
+                  type="text"
+                  placeholder="Nombre"
+                  class="text-mayus"
+                  v-model="nombreEmpresa"
+                ></b-form-input>
+              </b-input-group>
+            </div>
+            <div class="col-sm-6">
+              <b-input-group class="mb-2">
+                <b-input-group-prepend is-text>
+                  <b-icon icon="cursor-fill"></b-icon>
+                </b-input-group-prepend>
+                <b-form-input
+                  type="text"
+                  placeholder="Direccion"
+                  class="text-mayus"
+                  v-model="EmpresaDireccion"
+                ></b-form-input>
+              </b-input-group>
+            </div>
           </div>
-          <div class="col-sm-6">
-            <v-text-field
-              :rules="rules"
-              append-icon="mdi-map-legend"
-              label="Direccion"
-              v-model="EmpresaDireccion"
-            ></v-text-field>
-          </div>
-        </div>
 
-        <div class="row" style="margin-top:-30px; margin-bottom:-20px;">
-          <div class="col-sm-6">
-            <v-text-field append-icon="mdi-phone" label="Telefono" v-model="EmpresaTelefono"></v-text-field>
+          <div class="row" style="margin-top: -10px">
+            <div class="col-sm-6">
+              <b-input-group class="mb-2">
+                <b-input-group-prepend is-text>
+                  <b-icon icon="telephone-fill"></b-icon>
+                </b-input-group-prepend>
+                <b-form-input
+                  type="text"
+                  placeholder="Telefono"
+                  class="text-mayus"
+                  v-model="EmpresaTelefono"
+                ></b-form-input>
+              </b-input-group>
+            </div>
+            <div class="col-sm-6">
+              <b-input-group class="mb-2">
+                <b-input-group-prepend is-text>
+                  <b-icon icon="flag-fill"></b-icon>
+                </b-input-group-prepend>
+                <b-form-input
+                  type="text"
+                  class="text-mayus"
+                  placeholder="Ciudad"
+                  v-model="EmpresaCiudad"
+                ></b-form-input>
+              </b-input-group>
+            </div>
           </div>
-          <div class="col-sm-6">
-            <v-text-field append-icon="mdi-city" label="Ciudad" v-model="EmpresaCiudad"></v-text-field>
-          </div>
-        </div>
 
-        <table class="table">
-          <tr>
-            <th>Accion</th>
-            <th>Cantidad</th>
-            <th>Medida</th>
-            <th>Descripcion</th>
-            <th>Precio Unitario</th>
-            <th>Porcentaje</th>
-            <th>Importe</th>
-          </tr>
-          <tr v-for="(invoice_product, k) in items" :key="k.id">
-            <td scope="row" class="trashIconContainer">
-              <i class="far fa-trash-alt" @click="deleteRow(k, invoice_product)"></i>
-            </td>
-            <td v-text="invoice_product.cantidad"></td>
-            <td v-text="invoice_product.medida"></td>
-            <td v-text="invoice_product.descripcion"></td>
-            <td v-text="invoice_product.precio_unitario"></td>
-            <td>
-              <v-text-field style="width:70px;"  placeholder="%" required v-model="newPorcentaje[k]" @input="importex(newPorcentaje[k])"></v-text-field>
-            </td>
-            <td v-text="invoice_product.importe"></td>
-          </tr>
-        </table>
-
-        <hr />
-        <b>
-          <font size="4" face="Segoe UI">
-            <span>Subtotal : {{total}}</span>
-            <div>IVA 16% : {{invoice_iva}}</div>
-            <div>Total : {{invoice_total}}</div>
-            <span>Cantidad en Letras : {{cantletra}}</span>
-          </font>
-        </b>
-      </div>
-      <div id="example">
-        <h6 v-if="boolcerrado">
-          <font color="red">*La venta se cerró y se guardo.</font>
-        </h6>
-      </div>
-      <div class="row">
-        <div class="col-md-8">
-          <div align="left">
-            <v-btn
-              class="ma-2"
-              tile
-              style="background-color:#00b686; color:white;"
-              v-on:click="BuscarProductos"
-              v-b-modal.modal-prevent-closing
-            >
-              <v-icon left>mdi-plus</v-icon>Añadir
-            </v-btn>&nbsp;
-            <v-btn
-              class="ma-2"
-              tile
-              style="background-color:#00b686; color:white;"
-              v-b-modal.modal-porcentaje
-            >
-              <v-icon left>mdi-cash-multiple</v-icon>cerrar cotizacion
-            </v-btn>&nbsp;
-            <v-btn
-              class="ma-2"
-              tile
-              style="background-color:#00b686; color:white;"
-              @click="exportPDF"
-              v-b-modal.modal-cotizacion
-            >
-              <v-icon left>mdi-send</v-icon>imprimir
-            </v-btn>&nbsp;
-            <v-btn
-              class="ma-2"
-              tile
-              style="background-color:#00b686; color:white;"
-              @click="RestaurarDatos"
-            >
-              <v-icon left>mdi-send</v-icon>Resataurar
-            </v-btn>
-          </div>
-        </div>
-      </div>
-    </v-container>
-
-    <div>
-      <b-modal
-        id="modal-prevent-closing"
-        ref="modal"
-        title="Elije Producto"
-        centered
-        size="lg"
-        @show="resetModal"
-        @hidden="resetModal"
-        @ok="handleOk"
-        ok-variant="success"
-      >
-        <div class="input-group md-form form-sm form-1 pl-0">
-          <div class="input-group-prepend">
-            <span>
-              <b-button squared variant="success" v-on:click="BuscarProductos">Buscar</b-button>
-            </span>
-          </div>
-          <input
-            class="form-control my-0 py-1"
-            type="text"
-            placeholder="Search"
-            aria-label="Search"
-            v-model="searchnombre"
-            v-on:keyup.enter="BuscarProductos"
-          />
-        </div>
-        <br />
-
-        <v-simple-table height="300px">
-          <template v-slot:default>
+          <v-simple-table>
             <thead>
               <tr>
-                <th class="text-left">Nombre</th>
-                <th class="text-left">Tipo</th>
-                <th class="text-left">Medida</th>
-                <th class="text-left">Precio unitario</th>
-                <th class="text-left">Existencia</th>
-                <th class="text-left">Cantidad</th>
-                <th class="text-left">Accion</th>
+                <th>Accion</th>
+                <th>Cantidad</th>
+                <th>Medida</th>
+                <th>Descripcion</th>
+                <th>Precio Unitario</th>
+                <th>Importe</th>
               </tr>
             </thead>
-            <tbody>
-              <!-- newEntries: {{ newEntries }} -->
-              <tr v-for="products in datosProductos" :key="products.id">
-                <td>{{products.nombre}}</td>
-                <td>{{products.tipo}}</td>
-                <td>{{products.medida}}</td>
-                <td>${{products.precio_unitario}}</td>
-                <td>{{products.cantidad_existencia}}</td>
+            <tbody class="text-mayus">
+              <tr v-for="(invoice_product, k) in items" :key="k.id">
+                <td scope="row" class="trashIconContainer" width="10px">
+                  <i
+                    class="far fa-trash-alt"
+                    @click="deleteRow(k, invoice_product)"
+                  ></i>
+                </td>
                 <td>
                   <v-text-field
-                    style="width:50px;"
-                    v-model="newEntries[products.id]"
-                    placeholder="Cant"
+                    style="width: 50px"
+                    placeholder="%"
                     required
+                    v-model="invoice_product.cantidad"
+                    @input="calcularImporte()"
                   ></v-text-field>
                 </td>
-
                 <td>
-                  <b-button
-                    variant="success"
-                    class="btn-circle.btn-xl"
-                    @click="addNewRow(products,newEntries[products.id])"
-                  >
-                    <b-icon icon="cart2" aria-label="Añadir"></b-icon>
-                  </b-button>
+                  <v-text-field
+                    style="width: 50px"
+                    placeholder="%"
+                    required
+                    v-model="invoice_product.medida"
+                  ></v-text-field>
+                </td>
+                <td>
+                  <v-text-field
+                    style="width: 250px"
+                    required
+                    v-model="invoice_product.descripcion"
+                  ></v-text-field>
+                </td>
+                <td>
+                  <v-text-field
+                    style="width: 100px"
+                    required
+                    v-model="invoice_product.precio_unitario"
+                    @input="calcularImporte()"
+                  ></v-text-field>
+                </td>
+                <td>
+                  <v-text-field
+                    style="width: 100px"
+                    required
+                    v-model="invoice_product.importe"
+                  ></v-text-field>
                 </td>
               </tr>
             </tbody>
-          </template>
-        </v-simple-table>
-      </b-modal>
-    </div>
+          </v-simple-table>
 
-    <div>
-      <b-modal
-        id="modal-porcentaje"
-        ref="modal"
-        title="Datos adicionales"
-        centered
-        size="sm"
-        @show="resetModal"
-        @hidden="resetModal"
-        @ok="calculateGanancia"
-        ok-variant="success"
-      >
-        <v-text-field
-          append-icon="mdi-currency-usd"
-          label="Porcentaje de Ganancia"
-          v-model="PorcentajeGanancia"
-        />
-        <br />
-        <v-text-field append-icon="mdi-truck" label="Gastos en flete" v-model="costo_flete" />
-        <br />
-        <v-text-field append-icon="mdi-map" label="Lugar de Entrega" />
+          <hr />
+          <b>
+            <p>
+              <font size="4">
+                <span>Subtotal : {{ total }}</span>
+                <div>IVA 16% : {{ invoice_iva }}</div>
+                <div>Total : {{ invoice_total }}</div>
+                <span>Cantidad en Letras : {{ cantletra }}</span>
+              </font>
+            </p>
+          </b>
 
-        <br />
-        <v-text-field append-icon="mdi-note-plus" label="Agregar nota" />
-      </b-modal>
+          <div id="example">
+            <h6 v-if="boolcerrado">
+              <font color="red">*La venta se cerró y se guardo.</font>
+            </h6>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <div align="left">
+                <b-button squared variant="info" v-b-modal.modal-prevent-closing
+                  ><b-icon icon="plus"></b-icon>Añadir</b-button
+                >&nbsp;
+                <b-button squared variant="success" v-b-modal.modal-porcentaje
+                  ><b-icon icon="paperclip"></b-icon>Añadir un
+                  porcentaje</b-button
+                >&nbsp;
+                <b-button squared variant="danger" v-b-modal.modal-cerrar
+                  ><b-icon icon="download"></b-icon>Cerrar Cotizacion</b-button
+                >&nbsp;
+              </div>
+            </div>
+          </div>
+        </v-card>
+
+        <div>
+          <b-modal
+            id="modal-prevent-closing"
+            ref="modal"
+            title="Elije Producto"
+            centered
+            size="lg"
+            @show="resetModal"
+            @hidden="resetModal"
+            @ok="handleOk"
+            ok-variant="success"
+          >
+            <div class="input-group md-form form-sm form-1 pl-0">
+              <div class="input-group-prepend">
+                <span>
+                  <b-button
+                    squared
+                    variant="success"
+                    v-on:click="BuscarProductos"
+                    
+                    >Buscar</b-button
+                  >
+                </span>
+              </div>
+              <input
+                class="form-control my-0 py-1 text-mayus"
+               
+                type="text"
+                placeholder="Search"
+                aria-label="Search"
+                v-model="searchnombre"
+                
+                v-on:keyup.enter="BuscarProductos"
+              />
+            </div>
+            <br />
+
+            <v-simple-table height="300px">
+              <template v-slot:default>
+                <thead>
+                  <tr>
+                    <th class="text-left">Nombre</th>
+                   
+                    <th class="text-left">Medida</th>
+                    <th class="text-left">Precio unitario</th>
+                    <th class="text-left">Existencia</th>
+                    <th class="text-left">Cantidad</th>
+                    <th class="text-left">Accion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- newEntries: {{ newEntries }} -->
+                  <tr v-for="products in datosProductos" :key="products.id">
+                    <td>{{ products.nombre }}</td>
+                    
+                    <td>{{ products.medida }}</td>
+                    <td>${{ products.precio_unitario }}</td>
+                    <td>{{ products.cantidad_existencia }}</td>
+                    <td>
+                      <v-text-field
+                        style="width: 50px"
+                        v-model="newEntries[products.id]"
+                        placeholder="Cant"
+                        required
+                      ></v-text-field>
+                    </td>
+
+                    <td>
+                      <b-button
+                        variant="success"
+                        class="btn-circle.btn-xl"
+                        @click="addNewRow(products, newEntries[products.id])"
+                      >
+                        <b-icon icon="cart2" aria-label="Añadir"></b-icon>
+                      </b-button>
+                    </td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
+          </b-modal>
+        </div>
+        <!-- Modales -->
+        <div>
+          <b-modal
+            id="modal-porcentaje"
+            ref="modal"
+            title="Datos adicionales"
+            centered
+            size="sm"
+            @show="resetModal"
+            @hidden="resetModal"
+            @ok="calculateGanancia"
+            ok-variant="success"
+          >
+            <v-text-field
+              append-icon="mdi-currency-usd"
+              label="Porcentaje de Ganancia"
+              v-model="PorcentajeGanancia"
+              
+            />
+            <br />
+            <v-text-field
+              append-icon="mdi-truck"
+              label="Gastos en flete"
+              v-model="costo_flete"
+            />
+          </b-modal>
+        </div>
+
+        <div>
+          <b-modal
+            id="modal-cerrar"
+            ref="modal"
+            title="Datos adicionales"
+            centered
+            size="sm"
+            @show="resetModal"
+            @hidden="resetModal"
+            @ok="GuardaCotizacion"
+            ok-variant="success"
+          >
+            <v-text-field
+              append-icon="mdi-map"
+              label="Lugar de Entrega"
+              v-model="lugarEntrega"
+              class="text-mayus"
+            />
+
+            <br />
+            <v-text-field
+              append-icon="mdi-note-plus"
+              label="Tiempo de Entrega"
+              v-model="nota"
+              class="text-mayus"
+            />
+          </b-modal>
+        </div>
+      </div>
     </div>
   </div>
 </template>
-
-
 <script>
 import { API } from "../Servicios/axios";
 import "jspdf-autotable";
@@ -322,21 +391,28 @@ import { LOGO, PIE } from "../base64/images";
 import jsPDF from "jspdf";
 export default {
   created() {
+    
     this.token = localStorage.getItem("userToken");
+     this.miUsuario = localStorage.getItem("userId");
     if (this.token == null || this.token == "") {
-      this.$router.push("/login");
+      this.$router.push("/");
     } else {
       this.getCotizacion();
-       this.newPorcentaje = [];
+      this.newPorcentaje = [];
+      this.BuscarVenta();
+    
     }
   },
-  name: "Cotizacion",
+  mounted() {
+    this.BuscarProductos();
+    this.items = [];
+  },
   data() {
     return {
-      drawer: false,
       boolcerrado: false,
       numero_cotizacion: 0,
       group: null,
+      miUsuario:"",
       nombreEmpresa: "",
       EmpresaDireccion: "",
       EmpresaTelefono: "",
@@ -344,6 +420,8 @@ export default {
       cant_letra: "",
       comprobacion: "",
       token: "",
+      nota: "",
+      lugarEntrega: "",
       name: "",
       // eslint-disable-next-line
       nameState: null,
@@ -352,6 +430,7 @@ export default {
       datosProductos: [],
       newEntries: [{}],
       newPorcentaje: [{}],
+      newProducts: [{}],
       PorcentajeGanancia: "",
       costo_flete: "",
       invoice_subtotal: 0,
@@ -361,42 +440,19 @@ export default {
       searchnombre: "",
       items: [
         {
-          producto_id: "",
           nombre: "",
           direccion: "",
           ciudad: "",
           medida: "",
           descripcion: "",
-          precio_unitario: "",
-          cantidad: 0,
-          importe: "",
-          status: "",
-          costo_flete: "",
-          ganancia: "",
-        },
-      ],
-      itemsR: [
-        {
           producto_id: "",
-          nombre: "",
-          direccion: "",
-          ciudad: "",
-          medida: "",
-          descripcion: "",
-          precio_unitario: "",
-          cantidad: 0,
-          importe: "",
           status: "",
           costo_flete: "",
           ganancia: "",
+          cantidad: 0,
+          importe: "",
+          precio_unitario: "",
         },
-      ],
-      category: null,
-      optionscategory: [
-        { value: null, text: "Seleccione la categoria" },
-        { value: "Tuberia", text: "Tuberia" },
-        { value: "Mallas", text: "Mallas" },
-        { value: "Valvulas", text: "Valvulas" },
       ],
     };
   },
@@ -444,15 +500,25 @@ export default {
       }
     },
 
-
     LlenarDatos() {
       for (var i in this.items) {
         this.$set(this.items[i], "nombre", this.nombreEmpresa);
         this.$set(this.items[i], "direccion", this.EmpresaDireccion);
         this.$set(this.items[i], "ciudad", this.EmpresaCiudad);
+        this.$set(this.items[i], "telefono", this.EmpresaTelefono);
         this.$set(this.items[i], "status", "No vendido");
-        this.$set(this.items[i], "costo_flete", this.costo_flete);
-        this.$set(this.items[i], "ganancia", this.PorcentajeGanancia);
+        if (this.costo_flete == "") {
+          this.$set(this.items[i], "costo_flete", "0");
+        } else {
+          this.$set(this.items[i], "costo_flete", this.costo_flete);
+        }
+        if (this.costo_flete == "") {
+          this.$set(this.items[i], "ganancia", "0");
+        } else {
+          this.$set(this.items[i], "ganancia", this.PorcentajeGanancia);
+        }
+
+        this.$set(this.items[i], "user_id",  this.miUsuario );
       }
       // eslint-disable-next-line
       console.log(this.items);
@@ -462,9 +528,6 @@ export default {
       this.nameState = null;
     },
     handleOk() {
-      // Prevent modal from closing
-      //bvModalEvt.preventDefault();
-      // Trigger submit handler
       this.handleSubmit();
     },
     deleteRow(index, invoice_product) {
@@ -505,6 +568,9 @@ export default {
         doc.setFontSize(10);
         doc.text("RFC: STH1607128M9", 40, 55);
         doc.setTextColor(255, 0, 0);
+        doc.text("FOLIO: " +vm.numero_cotizacion, 450, 55);
+         
+        
         doc.text(
           "CLABE INTERBANCARIA: 0021-0070-1420-7691-60    SUCURSAL:7014   CUENTA BANAMEX:207616",
           40,
@@ -514,21 +580,13 @@ export default {
         doc.line(40, 80, width - 40, 80);
         var img = new Image();
         img.src = LOGO;
-
         doc.addImage(img, "PNG", 40, 80, 450, 80);
-
-        doc.setFontSize(10);
+        doc.setFontSize(9);
         doc.setTextColor(0, 0, 0);
         doc.text("NOMBRE: " + vm.nombreEmpresa.toUpperCase(), 40, 180);
-        // doc.setLineWidth(0.2);
-        // doc.line(40, 184, width-80, 184);
-        doc.setFontSize(10);
         doc.text("DIRECCION " + vm.EmpresaDireccion.toUpperCase(), 40, 195);
         doc.text("TELEFONO : " + vm.EmpresaTelefono.toUpperCase(), 40, 210);
         doc.text("CIUDAD : " + vm.EmpresaCiudad.toUpperCase(), 40, 225);
-        // doc.setFontType("bold");
-        //  doc.line(20, 20, 60, 20); // horizontal line
-        // var imgData = 'data:image/png;base64,'+ Base64.encode('../assets/logo.png');
         doc.autoTable(columns, vm.items, {
           margin: { top: 240 },
           styles: { fillColor: [113, 204, 180], halign: "left", fontSize: 9 },
@@ -547,9 +605,9 @@ export default {
             doc.internal.scaleFactor;
           var columns_price = ["Conceptos", "Total"];
           var data_price = [
-            ["SUBTOTAL", vm.invoice_subtotal],
-            ["IVA 16%", vm.invoice_iva],
-            ["TOTAL", vm.invoice_total],
+            ["SUBTOTAL:", "$" + this.format(vm.invoice_subtotal)],
+            ["IVA 16%:", "$" + this.format(vm.invoice_iva)],
+            ["TOTAL:", "$" + this.format(vm.invoice_total)],
           ];
           doc.autoTable(columns_price, data_price, {
             showHead: "never",
@@ -565,11 +623,30 @@ export default {
           doc.text(40, 55, "CANTIDAD EN LETRAS : ");
           doc.setFontSize(7);
           doc.text(40, 70, vm.cant_letra.toUpperCase());
-          var imgpie = new Image();
-          imgpie.src = PIE;
-          doc.addImage(imgpie, "PNG", 40, 100, width - 80, 110, {
-            margin: { bottom: 40 },
-          });
+          doc.text(40, 100, "CONDICIONES");
+          doc.text(40, 110, "PRECIOS SUJETOS A CAMBIO SIN PREVIO AVISO");
+          doc.text(40, 120, "FORMA DE PAGO: CONTADO ANTICIPADO");
+          doc.text(40, 130, "TIEMPO DE ENTREGRA :" + vm.nota.toUpperCase());
+          doc.text(
+            40,
+            140,
+            "LUGAR DE ENTREGA: :" + vm.lugarEntrega.toUpperCase()
+          );
+          doc.text(
+            40,
+            150,
+            "MANIOBRAS DE DESCARGA Y RIESGO A CUENTA DEL CLIENTE"
+          );
+          doc.text(
+            40,
+            160,
+            "NO TRANSITAMOS EN LUGARES O CARRETERAS ACCIDENTADAS, UNICAMENTE LLEGAMOS HASTA DONDE LA UNIDAD TENGA ACCESO."
+          );
+          doc.text(
+            40,
+            170,
+            "UNA VEZ ENTREGADO EL MATERIAL NO SE HACEN DEVOLUCIONES."
+          );
           doc.save("Cotizacion_" + this.numero_cotizacion + ".pdf");
         } else {
           var textWidth =
@@ -580,9 +657,9 @@ export default {
             doc.internal.scaleFactor;
           var columns_price = ["Conceptos", "Total"];
           var data_price = [
-            ["SUBTOTAL", this.format(vm.invoice_subtotal)],
-            ["IVA 16%", this.format(vm.invoice_iva)],
-            ["TOTAL", this.format(vm.invoice_total)],
+            ["SUBTOTAL:", "$" + this.format(vm.invoice_subtotal)],
+            ["IVA 16%:", "$" + this.format(vm.invoice_iva)],
+            ["TOTAL:", "$" + this.format(vm.invoice_total)],
           ];
           doc.autoTable(columns_price, data_price, {
             showHead: "never",
@@ -594,19 +671,42 @@ export default {
               fontSize: 9,
             },
           });
-          //
-          // doc.text((width/2)+40+textWidth, finalY + 20, "SUBTOTAL : " + vm.invoice_subtotal);
-          // doc.text((width/2)+40+textWidth, finalY + 35, "IVA 16% :  " + vm.invoice_iva);
-          // doc.text((width/2)+40+textWidth, finalY + 50, "TOTAL :    " + vm.invoice_total);
           doc.setFontSize(9);
           doc.text(40, finalY + 55, "CANTIDAD EN LETRAS : ");
           doc.setFontSize(7);
           doc.text(40, finalY + 70, vm.cant_letra.toUpperCase());
-          var imgpie = new Image();
-          imgpie.src = PIE;
-          doc.addImage(imgpie, "PNG", 40, finalY + 100, width - 80, 110, {
-            margin: { bottom: 40 },
-          });
+          doc.text(40, finalY + 100, "CONDICIONES");
+          doc.text(
+            40,
+            finalY + 110,
+            "PRECIOS SUJETOS A CAMBIO SIN PREVIO AVISO"
+          );
+          doc.text(40, finalY + 120, "FORMA DE PAGO: CONTADO ANTICIPADO");
+          doc.text(
+            40,
+            finalY + 130,
+            "TIEMPO DE ENTREGRA :" + vm.nota.toUpperCase()
+          );
+          doc.text(
+            40,
+            finalY + 140,
+            "LUGAR DE ENTREGA: :" + vm.lugarEntrega.toUpperCase()
+          );
+          doc.text(
+            40,
+            finalY + 150,
+            "MANIOBRAS DE DESCARGA Y RIESGO A CUENTA DEL CLIENTE"
+          );
+          doc.text(
+            40,
+            finalY + 160,
+            "NO TRANSITAMOS EN LUGARES O CARRETERAS ACCIDENTADAS, UNICAMENTE LLEGAMOS HASTA DONDE LA UNIDAD TENGA ACCESO."
+          );
+          doc.text(
+            40,
+            finalY + 170,
+            "UNA VEZ ENTREGADO EL MATERIAL NO SE HACEN DEVOLUCIONES."
+          );
           doc.save("Cotizacion_" + this.numero_cotizacion + ".pdf");
         }
       }
@@ -650,7 +750,6 @@ export default {
           // eslint-disable-next-line no-console
         });
       }
-      /* eslint-disable */
       this.items = [];
       this.items = this.itemsR;
       //this.calcularImporte();
@@ -658,9 +757,8 @@ export default {
 
     calculateGanancia() {
       var x = 0;
-      this.boolcerrado = true;
+
       while (x <= this.items.length) {
-        //this.items[x].precio_u=parseFloat(this.items[x].precio_u)+1;
         this.items[x].precio_unitario = (
           parseFloat(this.items[x].precio_unitario) *
             (this.PorcentajeGanancia / 100) +
@@ -697,9 +795,6 @@ export default {
         this.numero_cotizacion = response.data.nocotizacion;
         this.numero_cotizacion = parseInt(this.numero_cotizacion) + 1;
 
-        /* eslint-disable */
-        // console.log("ESTE ES EL RESPONSE"+response[0]);
-        // eslint-disable-next-line no-console
       });
     },
 
@@ -724,38 +819,70 @@ export default {
           window.alert(error);
         });
     },
-  },
 
-  watch: {
-    group() {
-      this.drawer = false;
+        BuscarVenta() {
+      const data = {
+        no_venta: "1",
+      };
+      API.post("/buscar-venta", data, {
+        headers: {
+          Authorization: "Bearer " + this.token,
+        },
+      })
+        .then((res) => {
+          // eslint-disable-next-line
+          console.log(res.data);
+          this.items = res.data;
+          this.nombreEmpresa=res.data[0].nombre;
+          this.EmpresaDireccion=res.data[0].direccion;
+          this.EmpresaCiudad=res.data[0].ciudad;
+          this.EmpresaTelefono=res.data[0].telefono;
+          this.calcularImporte();
+          //window.alert("Los datos se han guardado");
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+          //window.alert(error);
+        });
+    },
+
+
+    GuardaCotizacion() {
+      this.LlenarDatos();
+      var dataJSON = JSON.stringify(this.items);
+      console.log("EL dATA JSON" + dataJSON);
+      API.post("registro-ventas", dataJSON, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.token,
+        },
+      })
+        .then((res) => {
+          // eslint-disable-next-line
+          console.log(res.data);
+
+          this.boolcerrado = true;
+          this.exportPDF();
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+          window.alert(error);
+        });
     },
   },
 
-  mounted() {
-    this.items = [];
-
-    this.BuscarProducto();
-    //console.log("Numeor"+convertir.NumerosALetras(58225))
-  },
   computed: {
-       importex(porcentaje) {
+    calcularImporte() {
       var x = 0;
       while (x <= this.items.length) {
-        this.items[x].precio_unitario = (
-          parseFloat(this.items[x].precio_unitario) *
-            (parseFloat(porcentaje) / 100) +
-          parseFloat(this.items[x].precio_unitario)
-        ).toFixed(2);
-
         this.items[x].importe = (
           parseFloat(this.items[x].cantidad) *
           parseFloat(this.items[x].precio_unitario)
         ).toFixed(2);
         x++;
       }
- 
-      console.log("FUNCIONO");
     },
     cantletra() {
       var cantidad;
@@ -777,56 +904,179 @@ export default {
         return subtotal;
       }, 0);
     },
-    
+
+
   },
 };
 </script>
-
-
 <style scoped>
-.titulos {
-  font-family: "Segoe UI";
-  font-weight: bold;
-  font-size: 30px;
-  color: black;
+/*
+    DEMO STYLE
+*/
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+body {
+  font-family: "Poppins", sans-serif;
+  background: #fafafa;
 }
 
-.titulosecundario {
-  font-family: "Segoe UI";
-  font-weight: bold;
-  font-size: 25px;
-  color: white;
-  margin-bottom: 10px;
-  margin-top: 10px;
+p {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1em;
+  font-weight: 300;
+  line-height: 1.7em;
+  color: #999;
 }
-.cardet {
+
+a,
+a:hover,
+a:focus {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px dashed #ddd;
+  margin: 40px 0;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+#sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  background: #fff;
+  color: grey;
+  transition: all 0.3s;
+}
+
+#sidebar.active {
+  margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
   padding: 20px;
-  width: 400px;
-  height: 100px;
-  margin-left: 0px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  margin-top: 10px;
+  background: #fff;
 }
-.cardtrans {
-  background-color: #ffffff !important;
+
+#sidebar ul.components {
+  padding: 20px 0;
+  border-bottom: 1px solid #fff;
 }
-.contenedor {
-  margin-top: 60px;
-  width: 65%;
+
+#sidebar ul p {
+  color: grey;
+  padding: 10px;
 }
-.font-drawer {
-  color: black;
-  margin-left: 10px;
-  font-family: "Segoe UI";
-  size: 10px;
+
+#sidebar ul li a {
+  padding: 10px;
+  font-size: 0.9em;
+  display: block;
 }
-.btn-circle.btn-xl {
-  width: 70px;
-  height: 70px;
-  padding: 10px 16px;
-  border-radius: 35px;
-  font-size: 24px;
-  line-height: 1.33;
+
+#sidebar ul li a:hover {
+  color: green;
+  background: #fff;
+}
+
+#sidebar ul li.active > a,
+a[aria-expanded="true"] {
+  color: #fff;
+  background: #6d7fcc;
+}
+
+a[data-toggle="collapse"] {
+  position: relative;
+}
+
+.dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+ul ul a {
+  font-size: 0.9em !important;
+  padding-left: 30px !important;
+  background: green;
+}
+
+ul.CTAs {
+  padding: 20px;
+}
+
+ul.CTAs a {
+  text-align: center;
+  font-size: 0.9em !important;
+  display: block;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+a.download {
+  background: #fff;
+  color: green;
+}
+
+a.article,
+a.article:hover {
+  background: #6d7fcc !important;
+  color: #fff !important;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+  width: 100%;
+  padding: 20px;
+  min-height: 100vh;
+  transition: all 0.3s;
+  background: #fff;
+}
+.padd-card {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.padd-button {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+.text-mayus {
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 768px) {
+  #sidebar {
+    margin-left: -250px;
+  }
+  #sidebar.active {
+    margin-left: 0;
+  }
+  #sidebarCollapse span {
+    display: none;
+  }
 }
 </style>
+

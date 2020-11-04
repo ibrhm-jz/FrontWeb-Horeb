@@ -44,7 +44,8 @@
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                      <b-button class="btn btn-green" type="submit" @click="Login">Iniciar Sesion </b-button>
+                      <b-button class="btn btn-green" type="submit" v-on:click="Login" 
+                       @click="dialog = true">Iniciar Sesion </b-button>
                   
                 </v-card-actions>
               </v-card>
@@ -52,6 +53,26 @@
           </v-row>
         </v-container>
       </v-main>
+       <v-dialog
+      v-model="dialog"
+      hide-overlay
+      persistent
+      width="300"
+    >
+      <v-card
+        color="primary"
+        dark
+      >
+        <v-card-text>
+          Please stand by
+          <v-progress-linear
+            indeterminate
+            color="white"
+            class="mb-0"
+          ></v-progress-linear>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
     </v-app>
   </div>
 </template>
@@ -63,6 +84,7 @@ import { API } from "../Servicios/axios";
 import router from '../router'
 export default {
   name: "Login",
+   dialog: false,
   props: {
     msg: String,
   },
@@ -73,6 +95,13 @@ export default {
     }
 
   },
+      watch: {
+      dialog (val) {
+        if (!val) return
+
+        setTimeout(() => (this.dialog = false), 4000)
+      },
+    },
   methods:{
     Login() {
       const data = {
@@ -81,9 +110,10 @@ export default {
       };
       API.post("login", data)
         .then((res) => {
-          window.alert("Los datos se han guardado"+res.data);
+         // window.alert("Los datos se han guardado"+res.data);
           localStorage.setItem('userToken', res.data.token)
           localStorage.setItem('userId', res.data.usuario[0].id)
+          this.dialog = false;
           router.push({ name: 'Inicio' })
            // eslint-disable-next-line
           console.log(res.data.usuario[0].id);
@@ -91,7 +121,7 @@ export default {
         .catch((error) => {
           // eslint-disable-next-line
           console.error(error);
-          window.alert(error);
+        window.alert(error);
         });
     },
   }

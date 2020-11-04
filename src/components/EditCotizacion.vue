@@ -395,10 +395,11 @@ export default {
     this.token = localStorage.getItem("userToken");
      this.miUsuario = localStorage.getItem("userId");
     if (this.token == null || this.token == "") {
-      this.$router.push("/login");
+      this.$router.push("/");
     } else {
       this.getCotizacion();
       this.newPorcentaje = [];
+      
     }
   },
   mounted() {
@@ -566,6 +567,9 @@ export default {
         doc.setFontSize(10);
         doc.text("RFC: STH1607128M9", 40, 55);
         doc.setTextColor(255, 0, 0);
+        doc.text("FOLIO: " +vm.numero_cotizacion, 450, 55);
+         
+        
         doc.text(
           "CLABE INTERBANCARIA: 0021-0070-1420-7691-60    SUCURSAL:7014   CUENTA BANAMEX:207616",
           40,
@@ -790,9 +794,6 @@ export default {
         this.numero_cotizacion = response.data.nocotizacion;
         this.numero_cotizacion = parseInt(this.numero_cotizacion) + 1;
 
-        /* eslint-disable */
-        // console.log("ESTE ES EL RESPONSE"+response[0]);
-        // eslint-disable-next-line no-console
       });
     },
 

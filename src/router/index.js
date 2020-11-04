@@ -86,7 +86,7 @@ export default new Router({
         {
             path: '/editCotizacion',
             name: '/editCotizacion',
-            component: EditCotizacion
+            component: Cotizacion
 
         },
 
