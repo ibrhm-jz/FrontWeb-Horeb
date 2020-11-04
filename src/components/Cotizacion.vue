@@ -361,7 +361,7 @@
             size="sm"
             @show="resetModal"
             @hidden="resetModal"
-            @ok="GuardaCotizacion"
+            @ok="UpdatewithFrom"
             ok-variant="success"
           >
             <v-text-field
@@ -502,6 +502,7 @@ export default {
 
     LlenarDatos() {
       for (var i in this.items) {
+        this.$set(this.items[i], "no_venta", "1");
         this.$set(this.items[i], "nombre", this.nombreEmpresa);
         this.$set(this.items[i], "direccion", this.EmpresaDireccion);
         this.$set(this.items[i], "ciudad", this.EmpresaCiudad);
@@ -848,11 +849,27 @@ export default {
     },
 
 
-    GuardaCotizacion() {
+    UpdatewithFrom(){
+     API.delete('borrar-venta/' + "1",
+      {
+        headers: {
+          Authorization: "Bearer " + this.token,
+        },
+      })
+      .then(response => {
+          // eslint-disable-next-line
+        console.log(this.result);
+         this.GuardaCotizacion();
+       //  window.alert("Se elimino");
+        
+        this.getProduct();
+      });
+    },
+     GuardaCotizacion() {
       this.LlenarDatos();
       var dataJSON = JSON.stringify(this.items);
       console.log("EL dATA JSON" + dataJSON);
-      API.post("registro-ventas", dataJSON, {
+      API.post("update", dataJSON, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + this.token,
@@ -861,9 +878,7 @@ export default {
         .then((res) => {
           // eslint-disable-next-line
           console.log(res.data);
-
-          this.boolcerrado = true;
-          this.exportPDF();
+          window.alert("Los datos se han guardado");
         })
         .catch((error) => {
           // eslint-disable-next-line
@@ -871,6 +886,7 @@ export default {
           window.alert(error);
         });
     },
+
   },
 
   computed: {
