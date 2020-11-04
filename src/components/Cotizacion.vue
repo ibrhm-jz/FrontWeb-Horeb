@@ -413,10 +413,11 @@ export default {
     } else {
       this.newPorcentaje = [];
       this.BuscarVenta();
+      this.BuscarProductos();
     }
   },
   mounted() {
-    this.BuscarProductos();
+    
     this.items = [];
   },
   data() {

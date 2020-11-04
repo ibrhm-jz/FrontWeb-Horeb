@@ -382,7 +382,7 @@ export default {
 
     FiltroProducto() {
       if (this.category == null) {
-        this.BuscarProductos();
+        this.getProduct();
       } else {
         const data = {
           categoria: this.category,
@@ -421,7 +421,8 @@ export default {
         .then((res) => {
           // eslint-disable-next-line
           console.log(res.data);
-          (this.selected = []), this.BuscarProductos();
+          this.selected = [],
+          this.getProduct();
           window.alert("Los datos se han guardado");
         })
         .catch((error) => {
@@ -429,6 +430,19 @@ export default {
           console.error(error);
           window.alert(error);
         });
+    },
+        getProduct() {
+      API.get("productos", {
+        headers: {
+          Authorization: "Bearer " + this.token,
+        },
+      }).then((response) => {
+        this.datosProductos = response.data;
+
+        /* eslint-disable */
+        console.log(this.datosProductos);
+        // eslint-disable-next-line no-console
+      });
     },
     delectProducto(result) {
       API.delete("borrar-producto/" + result.id, {
