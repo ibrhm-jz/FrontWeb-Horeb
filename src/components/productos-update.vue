@@ -53,6 +53,15 @@
             >
           </li>
           </router-link>
+
+                    <router-link to="/editCotizacion">
+            <li>
+              <a href="#"
+                ><b-icon icon="file-earmark-check-fill"></b-icon
+                >&nbsp;&nbsp;Editar Cotizacion</a
+              >
+            </li>
+          </router-link>
         </ul>
         <br />
         <br />

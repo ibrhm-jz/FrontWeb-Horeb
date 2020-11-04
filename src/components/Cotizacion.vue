@@ -53,6 +53,15 @@
               >
             </li>
           </router-link>
+
+          <router-link to="/editCotizacion">
+            <li>
+              <a href="#"
+                ><b-icon icon="file-earmark-check-fill"></b-icon
+                >&nbsp;&nbsp;Editar Cotizacion</a
+              >
+            </li>
+          </router-link>
         </ul>
         <br />
         <br />
@@ -69,24 +78,22 @@
       <div id="content">
         <h2>Editar Cotizacion</h2>
         <div class="line"></div>
-
         <v-card class="padd-card">
-                  <b-input-group class="mt-3">
-          <b-form-input
-            placeholder="Introduce tu numero de cotizacion"
-            v-model="numero_cotizacion"
-          ></b-form-input>
-          <b-input-group-append>
-            <b-button squared variant="info" @click="BuscarVenta">
-              <b-icon icon="search"></b-icon
-            ></b-button>
-          </b-input-group-append>
-        </b-input-group>
+        <p>Introduce el folio a buscar :</p>
+          <b-input-group class="mt-3">
+            <b-form-input
+              placeholder="Introduce tu numero de cotizacion"
+              v-model="numero_cotizacion"
+            ></b-form-input>
+            <b-input-group-append>
+              <b-button squared variant="info" @click="BuscarVenta">
+                <b-icon icon="search"></b-icon
+              ></b-button>
+            </b-input-group-append>
+          </b-input-group>
           <div class="row">
-            <div class="col-sm-6">
-              <p>Realiza tus cotizaciones</p>
-            </div>
-            <div class="col-sm-6">
+
+            <div class="col-sm-12">
               <div align="right">
                 <p>
                   <span class="titulosecundario" style="color: red !important"
@@ -273,19 +280,16 @@
                     squared
                     variant="success"
                     v-on:click="BuscarProductos"
-                    
                     >Buscar</b-button
                   >
                 </span>
               </div>
               <input
                 class="form-control my-0 py-1 text-mayus"
-               
                 type="text"
                 placeholder="Search"
                 aria-label="Search"
                 v-model="searchnombre"
-                
                 v-on:keyup.enter="BuscarProductos"
               />
             </div>
@@ -296,7 +300,7 @@
                 <thead>
                   <tr>
                     <th class="text-left">Nombre</th>
-                   
+
                     <th class="text-left">Medida</th>
                     <th class="text-left">Precio unitario</th>
                     <th class="text-left">Existencia</th>
@@ -308,7 +312,7 @@
                   <!-- newEntries: {{ newEntries }} -->
                   <tr v-for="products in datosProductos" :key="products.id">
                     <td>{{ products.nombre }}</td>
-                    
+
                     <td>{{ products.medida }}</td>
                     <td>${{ products.precio_unitario }}</td>
                     <td>{{ products.cantidad_existencia }}</td>
@@ -353,7 +357,6 @@
               append-icon="mdi-currency-usd"
               label="Porcentaje de Ganancia"
               v-model="PorcentajeGanancia"
-              
             />
             <br />
             <v-text-field
@@ -403,16 +406,13 @@ import { LOGO, PIE } from "../base64/images";
 import jsPDF from "jspdf";
 export default {
   created() {
-    
     this.token = localStorage.getItem("userToken");
-     this.miUsuario = localStorage.getItem("userId");
+    this.miUsuario = localStorage.getItem("userId");
     if (this.token == null || this.token == "") {
       this.$router.push("/");
     } else {
-      this.getCotizacion();
       this.newPorcentaje = [];
       this.BuscarVenta();
-    
     }
   },
   mounted() {
@@ -424,7 +424,7 @@ export default {
       boolcerrado: false,
       numero_cotizacion: 0,
       group: null,
-      miUsuario:"",
+      miUsuario: "",
       nombreEmpresa: "",
       EmpresaDireccion: "",
       EmpresaTelefono: "",
@@ -531,7 +531,7 @@ export default {
           this.$set(this.items[i], "ganancia", this.PorcentajeGanancia);
         }
 
-        this.$set(this.items[i], "user_id",  this.miUsuario );
+        this.$set(this.items[i], "user_id", this.miUsuario);
       }
       // eslint-disable-next-line
       console.log(this.items);
@@ -556,10 +556,9 @@ export default {
 
     exportPDF() {
       if (
-        (
-        this.nombreEmpresa == "!" ||
-        this.EmpresaDireccion == "!" ||
-        this.EmpresaTelefono == "!",
+        (this.nombreEmpresa == "!" ||
+          this.EmpresaDireccion == "!" ||
+          this.EmpresaTelefono == "!",
         this.EmpresaCiudad == "!")
       ) {
         window.alert("Los datos no estan completos");
@@ -582,9 +581,8 @@ export default {
         doc.setFontSize(10);
         doc.text("RFC: STH1607128M9", 40, 55);
         doc.setTextColor(255, 0, 0);
-        doc.text("FOLIO: " +vm.numero_cotizacion, 450, 55);
-         
-        
+        doc.text("FOLIO: " + vm.numero_cotizacion, 450, 55);
+
         doc.text(
           "CLABE INTERBANCARIA: 0021-0070-1420-7691-60    SUCURSAL:7014   CUENTA BANAMEX:207616",
           40,
@@ -800,17 +798,6 @@ export default {
         // eslint-disable-next-line no-console
       });
     },
-    getCotizacion() {
-      API.get("no-cotizacion", {
-        headers: {
-          Authorization: "Bearer " + this.token,
-        },
-      }).then((response) => {
-        this.numero_cotizacion = response.data.nocotizacion;
-        this.numero_cotizacion = parseInt(this.numero_cotizacion) + 1;
-
-      });
-    },
 
     BuscarProductos() {
       const data = {
@@ -834,7 +821,7 @@ export default {
         });
     },
 
-        BuscarVenta() {
+    BuscarVenta() {
       const data = {
         no_venta: this.numero_cotizacion,
       };
@@ -847,10 +834,10 @@ export default {
           // eslint-disable-next-line
           console.log(res.data);
           this.items = res.data;
-          this.nombreEmpresa=res.data[0].nombre;
-          this.EmpresaDireccion=res.data[0].direccion;
-          this.EmpresaCiudad=res.data[0].ciudad;
-          this.EmpresaTelefono=res.data[0].telefono;
+          this.nombreEmpresa = res.data[0].nombre;
+          this.EmpresaDireccion = res.data[0].direccion;
+          this.EmpresaCiudad = res.data[0].ciudad;
+          this.EmpresaTelefono = res.data[0].telefono;
           this.calcularImporte();
           //window.alert("Los datos se han guardado");
         })
@@ -861,24 +848,21 @@ export default {
         });
     },
 
-
-    UpdatewithFrom(){
-     API.delete('borrar-venta/' + this.numero_cotizacion,
-      {
+    UpdatewithFrom() {
+      API.delete("borrar-venta/" + this.numero_cotizacion, {
         headers: {
           Authorization: "Bearer " + this.token,
         },
-      })
-      .then(response => {
-          // eslint-disable-next-line
+      }).then((response) => {
+        // eslint-disable-next-line
         console.log(this.result);
-         this.GuardaCotizacion();
-       //  window.alert("Se elimino");
-        
+        this.GuardaCotizacion();
+        //  window.alert("Se elimino");
+
         this.getProduct();
       });
     },
-     GuardaCotizacion() {
+    GuardaCotizacion() {
       this.LlenarDatos();
       var dataJSON = JSON.stringify(this.items);
       console.log("EL dATA JSON" + dataJSON);
@@ -892,9 +876,8 @@ export default {
           this.exportPDF();
           // eslint-disable-next-line
           console.log(res.data);
-          
-         // window.alert("Los datos se han guardado");
-          
+
+          // window.alert("Los datos se han guardado");
         })
         .catch((error) => {
           // eslint-disable-next-line
@@ -902,7 +885,6 @@ export default {
           window.alert(error);
         });
     },
-
   },
 
   computed: {
@@ -936,8 +918,6 @@ export default {
         return subtotal;
       }, 0);
     },
-
-
   },
 };
 </script>

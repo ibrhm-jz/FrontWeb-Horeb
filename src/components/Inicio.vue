@@ -53,6 +53,15 @@
               >
             </li>
           </router-link>
+
+          <router-link to="/editCotizacion">
+            <li>
+              <a href="#"
+                ><b-icon icon="file-earmark-check-fill"></b-icon
+                >&nbsp;&nbsp;Editar Cotizacion</a
+              >
+            </li>
+          </router-link>
         </ul>
         <br />
         <br />
@@ -72,18 +81,18 @@
         <p>“El secreto para salir adelante es empezar.”</p>
         <br />
         <v-card class="padd-card">
-        <b-input-group class="mt-3">
-          <b-form-input
-            placeholder="Introduce tu numero de cotizacion"
-            v-model="searchnombres"
-            v-on:keyup.enter="BuscarClientes"
-          ></b-form-input>
-          <b-input-group-append>
-            <b-button squared variant="info" @click="BuscarClientes">
-              <b-icon icon="search"></b-icon
-            ></b-button>
-          </b-input-group-append>
-        </b-input-group>
+          <b-input-group class="mt-3">
+            <b-form-input
+              placeholder="Introduce tu numero de cotizacion"
+              v-model="searchnombres"
+              v-on:keyup.enter="BuscarClientes"
+            ></b-form-input>
+            <b-input-group-append>
+              <b-button squared variant="info" @click="BuscarClientes">
+                <b-icon icon="search"></b-icon
+              ></b-button>
+            </b-input-group-append>
+          </b-input-group>
         </v-card>
       </div>
     </div>
