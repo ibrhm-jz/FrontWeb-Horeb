@@ -67,9 +67,21 @@
 
       <!-- Page Content  -->
       <div id="content">
-        <h2>Cotizaciones</h2>
+        <h2>Editar Cotizacion</h2>
         <div class="line"></div>
+
         <v-card class="padd-card">
+                  <b-input-group class="mt-3">
+          <b-form-input
+            placeholder="Introduce tu numero de cotizacion"
+            v-model="numero_cotizacion"
+          ></b-form-input>
+          <b-input-group-append>
+            <b-button squared variant="info" @click="BuscarVenta">
+              <b-icon icon="search"></b-icon
+            ></b-button>
+          </b-input-group-append>
+        </b-input-group>
           <div class="row">
             <div class="col-sm-6">
               <p>Realiza tus cotizaciones</p>
@@ -502,7 +514,7 @@ export default {
 
     LlenarDatos() {
       for (var i in this.items) {
-        this.$set(this.items[i], "no_venta", "1");
+        this.$set(this.items[i], "no_venta", this.numero_cotizacion);
         this.$set(this.items[i], "nombre", this.nombreEmpresa);
         this.$set(this.items[i], "direccion", this.EmpresaDireccion);
         this.$set(this.items[i], "ciudad", this.EmpresaCiudad);
@@ -544,10 +556,11 @@ export default {
 
     exportPDF() {
       if (
-        (this.nombreEmpresa == "" ||
-          this.EmpresaDireccion == "" ||
-          this.EmpresaTelefono == "",
-        this.EmpresaCiudad == "" || this.comprobacion == "")
+        (
+        this.nombreEmpresa == "!" ||
+        this.EmpresaDireccion == "!" ||
+        this.EmpresaTelefono == "!",
+        this.EmpresaCiudad == "!")
       ) {
         window.alert("Los datos no estan completos");
       } else {
@@ -823,7 +836,7 @@ export default {
 
         BuscarVenta() {
       const data = {
-        no_venta: "1",
+        no_venta: this.numero_cotizacion,
       };
       API.post("/buscar-venta", data, {
         headers: {
@@ -850,7 +863,7 @@ export default {
 
 
     UpdatewithFrom(){
-     API.delete('borrar-venta/' + "1",
+     API.delete('borrar-venta/' + this.numero_cotizacion,
       {
         headers: {
           Authorization: "Bearer " + this.token,
@@ -876,9 +889,12 @@ export default {
         },
       })
         .then((res) => {
+          this.exportPDF();
           // eslint-disable-next-line
           console.log(res.data);
-          window.alert("Los datos se han guardado");
+          
+         // window.alert("Los datos se han guardado");
+          
         })
         .catch((error) => {
           // eslint-disable-next-line
