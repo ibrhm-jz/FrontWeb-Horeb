@@ -105,7 +105,7 @@
               </div>
             </div>
           </div>
-
+      <div v-if="boolEncontro">
           <div class="row" style="margin-top: -30px; margin-bottom: -20px">
             <div class="col-sm-6">
               <b-input-group class="mb-2">
@@ -258,6 +258,7 @@
                 >&nbsp;
               </div>
             </div>
+          </div>
           </div>
         </v-card>
 
@@ -419,10 +420,12 @@ export default {
   mounted() {
     
     this.items = [];
+    
   },
   data() {
     return {
       boolcerrado: false,
+      boolEncontro:false,
       numero_cotizacion: 0,
       group: null,
       miUsuario: "",
@@ -834,18 +837,29 @@ export default {
         .then((res) => {
           // eslint-disable-next-line
           console.log(res.data);
+         
           this.items = res.data;
           this.nombreEmpresa = res.data[0].nombre;
           this.EmpresaDireccion = res.data[0].direccion;
           this.EmpresaCiudad = res.data[0].ciudad;
           this.EmpresaTelefono = res.data[0].telefono;
-          this.calcularImporte();
-          //window.alert("Los datos se han guardado");
+           if(this.numero_cotizacion==0){
+
+          }else{
+            this.boolEncontro=true;
+            this.calcularImporte();
+            
+            }
+         
+         
+         
         })
         .catch((error) => {
           // eslint-disable-next-line
           console.error(error);
-          //window.alert(error);
+         //this.boolEncontro=false;
+          //window.alert(error);+
+         
         });
     },
 
@@ -920,6 +934,8 @@ export default {
       }, 0);
     },
   },
+
+
 };
 </script>
 <style scoped>
