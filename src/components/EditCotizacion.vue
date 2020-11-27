@@ -54,7 +54,7 @@
             </li>
           </router-link>
 
-                    <router-link to="/editCotizacion">
+          <router-link to="/editCotizacion">
             <li>
               <a href="#"
                 ><b-icon icon="file-earmark-check-fill"></b-icon
@@ -86,10 +86,20 @@
             <div class="col-sm-6">
               <div align="right">
                 <p>
-                  <span class="titulosecundario" style="color: red !important"
-                    ><b
-                      >No.cotizacion:&nbsp;{{ this.numero_cotizacion }}</b
-                    ></span
+                  <span class="titulosecundario" style="color: red !important">
+                    <b-input-group>
+                      <b-input-group-prepend is-text>
+                        No.de Cotizacion
+                      </b-input-group-prepend>
+                      <b-form-input
+                        type="text"
+                        placeholder="Telefono"
+                         class="titulosecundario" style="color: red !important"
+                        v-model="numero_cotizacion"
+                      ></b-form-input>
+                    </b-input-group>
+
+                  </span
                   >
                 </p>
               </div>
@@ -270,19 +280,16 @@
                     squared
                     variant="success"
                     v-on:click="BuscarProductos"
-                    
                     >Buscar</b-button
                   >
                 </span>
               </div>
               <input
                 class="form-control my-0 py-1 text-mayus"
-               
                 type="text"
                 placeholder="Search"
                 aria-label="Search"
                 v-model="searchnombre"
-                
                 v-on:keyup.enter="BuscarProductos"
               />
             </div>
@@ -293,7 +300,7 @@
                 <thead>
                   <tr>
                     <th class="text-left">Nombre</th>
-                   
+
                     <th class="text-left">Medida</th>
                     <th class="text-left">Precio unitario</th>
                     <th class="text-left">Existencia</th>
@@ -305,7 +312,7 @@
                   <!-- newEntries: {{ newEntries }} -->
                   <tr v-for="products in datosProductos" :key="products.id">
                     <td>{{ products.nombre }}</td>
-                    
+
                     <td>{{ products.medida }}</td>
                     <td>${{ products.precio_unitario }}</td>
                     <td>{{ products.cantidad_existencia }}</td>
@@ -350,7 +357,6 @@
               append-icon="mdi-currency-usd"
               label="Porcentaje de Ganancia"
               v-model="PorcentajeGanancia"
-              
             />
             <br />
             <v-text-field
@@ -400,15 +406,13 @@ import { LOGO, PIE } from "../base64/images";
 import jsPDF from "jspdf";
 export default {
   created() {
-    
     this.token = localStorage.getItem("userToken");
-     this.miUsuario = localStorage.getItem("userId");
+    this.miUsuario = localStorage.getItem("userId");
     if (this.token == null || this.token == "") {
       this.$router.push("/");
     } else {
       this.getCotizacion();
       this.newPorcentaje = [];
-      
     }
   },
   mounted() {
@@ -420,7 +424,7 @@ export default {
       boolcerrado: false,
       numero_cotizacion: 0,
       group: null,
-      miUsuario:"",
+      miUsuario: "",
       nombreEmpresa: "",
       EmpresaDireccion: "",
       EmpresaTelefono: "",
@@ -526,7 +530,7 @@ export default {
           this.$set(this.items[i], "ganancia", this.PorcentajeGanancia);
         }
 
-        this.$set(this.items[i], "user_id",  this.miUsuario );
+        this.$set(this.items[i], "user_id", this.miUsuario);
       }
       // eslint-disable-next-line
       console.log(this.items);
@@ -576,9 +580,8 @@ export default {
         doc.setFontSize(10);
         doc.text("RFC: STH1607128M9", 40, 55);
         doc.setTextColor(255, 0, 0);
-        doc.text("FOLIO: " +vm.numero_cotizacion, 450, 55);
-         
-        
+        doc.text("FOLIO: " + vm.numero_cotizacion, 450, 55);
+
         doc.text(
           "CLABE INTERBANCARIA: 0021-0070-1420-7691-60    SUCURSAL:7014   CUENTA BANAMEX:207616",
           40,
@@ -802,7 +805,6 @@ export default {
       }).then((response) => {
         this.numero_cotizacion = response.data.nocotizacion;
         this.numero_cotizacion = parseInt(this.numero_cotizacion) + 1;
-
       });
     },
 
@@ -884,8 +886,6 @@ export default {
         return subtotal;
       }, 0);
     },
-
-
   },
 };
 </script>

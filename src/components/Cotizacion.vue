@@ -844,21 +844,28 @@ export default {
           this.EmpresaCiudad = res.data[0].ciudad;
           this.EmpresaTelefono = res.data[0].telefono;
            if(this.numero_cotizacion==0){
+            this.boolEncontro=false;
+             
 
           }else{
             this.boolEncontro=true;
             this.calcularImporte();
-            
+
             }
          
          
          
         })
         .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-         //this.boolEncontro=false;
-          //window.alert(error);+
+           if(this.numero_cotizacion==0){
+            this.boolEncontro=false;
+             
+
+          }else{
+            this.boolEncontro=true;
+            this.calcularImporte();
+
+            }
          
         });
     },
@@ -880,7 +887,7 @@ export default {
     GuardaCotizacion() {
       this.LlenarDatos();
       var dataJSON = JSON.stringify(this.items);
-      console.log("EL dATA JSON" + dataJSON);
+      console.log("HOLAAAAA" + dataJSON);
       API.post("update", dataJSON, {
         headers: {
           "Content-Type": "application/json",

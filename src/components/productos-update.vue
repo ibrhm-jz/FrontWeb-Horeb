@@ -85,6 +85,7 @@
           <b-input-group class="mt-3">
             <b-form-input
               placeholder="Buscar"
+              class="text-mayus"
               v-model="searchnombre"
               v-on:keyup.enter="BuscarProductos"
             ></b-form-input>
@@ -113,6 +114,40 @@
               <strong>{{ category }}</strong>
             </div>
           </div>
+
+<v-data-table :headers="headers" :items="datosProductos" class="text-mayus">
+      <template v-slot:item="row">
+          <tr class="text-mayus">
+            <td>{{row.item.nombre}}</td>
+            <td>{{row.item.cantidad_existencia}}</td>
+            <td>{{row.item.categoria}}</td>
+            <td>{{row.item.precio_unitario}}</td>
+             <td>{{row.item.medida }}</td>
+            <td>
+                 <b-button
+                      squared
+                      variant="info"
+                      class="padd-button"
+                      v-b-modal.modal-actualizar-producto
+                      @click="sendProduct(row.item)"
+                    >
+                      <b-icon icon="pencil-square" style="color: #fff"></b-icon
+                    ></b-button>
+
+                    <b-button
+                      squared
+                      variant="danger"
+                      class="padd-button"
+                      v-b-modal.modal-delete
+                    >
+                      <b-icon icon="trash-fill"></b-icon
+                    ></b-button>
+            </td>
+          </tr>
+      </template>
+    </v-data-table>
+
+<!--
           <v-simple-table>
             <template v-slot:default>
               <thead>
@@ -160,6 +195,7 @@
               </tbody>
             </template>
           </v-simple-table>
+          -->
         </v-card>
 
         <div>
@@ -173,7 +209,7 @@
             @ok="RegistrarProducto"
             ok-variant="success"
           >
-            <form ref="form" @submit.stop.prevent="handleSubmit">
+            <form ref="form" @submit.stop.prevent="handleSubmit" >
               <b-form-group :state="nameState" invalid-feedback="*Requerido">
                 <b-form-input
                   id="name-input"
@@ -181,6 +217,7 @@
                   :state="nameState"
                   required
                   placeholder="Nombre"
+                  class="text-mayus"
                 ></b-form-input>
                 <br />
 
@@ -190,6 +227,7 @@
                   :state="nameState"
                   required
                   placeholder="Tipo de Medida"
+                  class="text-mayus"
                   type="text"
                 ></b-form-input>
                 <br />
@@ -199,6 +237,7 @@
                   :state="nameState"
                   required
                   placeholder="$Precio unitario"
+                  class="text-mayus"
                 ></b-form-input>
                 <br />
                 <b-form-input
@@ -207,6 +246,7 @@
                   :state="nameState"
                   required
                   placeholder="Cantidad en Existencia"
+                  class="text-mayus"
                 ></b-form-input>
                 <br />
                 <div>
@@ -221,6 +261,16 @@
                 </div>
               </b-form-group>
             </form>
+
+    <v-snackbar v-model="snackbar">
+      {{ text }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn color="pink" text v-bind="attrs" @click="snackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
           </b-modal>
         </div>
 
@@ -243,6 +293,7 @@
                   :state="nameState"
                   required
                   placeholder="Nombre"
+                  class="text-mayus"
                 ></b-form-input>
                 <br />
 
@@ -252,6 +303,7 @@
                   :state="nameState"
                   required
                   placeholder="Tipo de Medida"
+                  class="text-mayus"
                   type="text"
                 ></b-form-input>
                 <br />
@@ -262,6 +314,7 @@
                   :state="nameState"
                   required
                   placeholder="$Precio unitario"
+                  class="text-mayus"
                 ></b-form-input>
                 <br />
                 <b-form-input
@@ -270,6 +323,7 @@
                   :state="nameState"
                   required
                   placeholder="Cantidad en Existencia"
+                  class="text-mayus"
                 ></b-form-input>
                 <br />
                 <div>
@@ -310,7 +364,7 @@ export default {
   created() {
     this.token = localStorage.getItem("userToken");
     if (this.token == null || this.token == "") {
-      this.$router.push("/login");
+      this.$router.push("/");
     }
   },
   mounted() {
@@ -323,6 +377,8 @@ export default {
       group: null,
       token: "",
       name: "",
+      snackbar: false,
+      text: `Hello, I'm a snackbar`,
       // eslint-disable-next-line
       nameState: null,
       // eslint-disable-next-line
@@ -334,11 +390,25 @@ export default {
       tipo: "",
       medida: "",
       descripcion: "",
-      precio_unitario: 0.0,
+      precio_unitario:"",
       cantidad_existencia: "",
       categoria: "",
       selected: null,
       category: null,
+       headers: [
+        {
+          text: 'Nombre',
+          align: 'start',
+          sortable: false,
+          value: 'nombre',
+        },
+        { text: 'Existencia', value: 'cantidad_existencia' },
+        { text: 'Categoria', value: 'categoria' },
+        { text: 'Precio Unitario', value: 'precio_unitario' },
+        { text: 'UNIDAD DE MEDIDA', value: 'medida' },
+        { text: 'Accion', value: 'iron' },
+       
+      ],
       options: [
         { value: null, text: "Seleccione la categoria" },
         { value: "Tuberia", text: "Tuberia" },
@@ -470,9 +540,17 @@ export default {
         },
       })
         .then((res) => {
+          
           // eslint-disable-next-line
-          console.log(res.data);
-          this.BuscarProductos();
+          //console.log(res.data);
+         window.alert("Los datos se han guardado");
+         this.nombre="";
+         this.tipo="";
+         this.precio_unitario="";
+         this.cantidad_existencia="";
+         
+          this.getProduct()
+          
         })
         .catch((error) => {
           // eslint-disable-next-line
