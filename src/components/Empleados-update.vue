@@ -194,7 +194,7 @@
               :state="nameState"
               required
               placeholder="Contraseña"
-               type="password"
+              type="password"
             ></b-form-input>
             <br />
               <b-form-input

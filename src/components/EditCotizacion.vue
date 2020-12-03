@@ -308,7 +308,7 @@
                     <th class="text-left">Accion</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody  class="text-mayus">
                   <!-- newEntries: {{ newEntries }} -->
                   <tr v-for="products in datosProductos" :key="products.id">
                     <td>{{ products.nombre }}</td>

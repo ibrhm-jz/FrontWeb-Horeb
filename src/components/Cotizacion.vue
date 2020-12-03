@@ -84,6 +84,7 @@
             <b-form-input
               placeholder="Introduce tu numero de cotizacion"
               v-model="numero_cotizacion"
+               v-on:keyup.enter="BuscarProductos"
             ></b-form-input>
             <b-input-group-append>
               <b-button squared variant="info" @click="BuscarVenta">
@@ -308,8 +309,8 @@
                     <th class="text-left">Cantidad</th>
                     <th class="text-left">Accion</th>
                   </tr>
-                </thead>
-                <tbody>
+                </thead >
+                <tbody  class="text-mayus">
                   <!-- newEntries: {{ newEntries }} -->
                   <tr v-for="products in datosProductos" :key="products.id">
                     <td>{{ products.nombre }}</td>

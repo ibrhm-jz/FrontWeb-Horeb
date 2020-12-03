@@ -414,12 +414,15 @@ export default {
         { value: "Tuberia", text: "Tuberia" },
         { value: "Mallas", text: "Mallas" },
         { value: "Valvulas", text: "Valvulas" },
+        { value: "Otro", text: "Otro" },
       ],
       optionscategory: [
         { value: null, text: "Todo" },
         { value: "Tuberia", text: "Tuberia" },
         { value: "Mallas", text: "Mallas" },
         { value: "Valvulas", text: "Valvulas" },
+        { value: "Otro", text: "Otro" },
+        
       ],
     };
   },
@@ -525,6 +528,9 @@ export default {
         window.alert("Se elimino");
         this.BuscarProductos();
       });
+    },
+        format(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
     RegistrarProducto() {
       const data = {
