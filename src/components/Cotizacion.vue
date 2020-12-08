@@ -361,11 +361,11 @@
               v-model="PorcentajeGanancia"
             />
             <br />
-            <v-text-field
+           <!-- <v-text-field
               append-icon="mdi-truck"
               label="Gastos en flete"
               v-model="costo_flete"
-            />
+            /> -->
           </b-modal>
         </div>
 

@@ -311,11 +311,11 @@
                 <tbody  class="text-mayus">
                   <!-- newEntries: {{ newEntries }} -->
                   <tr v-for="products in datosProductos" :key="products.id">
-                    <td>{{ products.nombre }}</td>
+                    <td> <font size=1>{{ products.nombre }}</font></td>
 
-                    <td>{{ products.medida }}</td>
-                    <td>${{ products.precio_unitario }}</td>
-                    <td>{{ products.cantidad_existencia }}</td>
+                    <td><font size=1>{{ products.medida }}</font></td>
+                    <td><font size=1><b>${{ products.precio_unitario }}</b></font></td>
+                    <td><font size=1>{{ products.cantidad_existencia }}</font></td>
                     <td>
                       <v-text-field
                         style="width: 50px"
@@ -359,11 +359,11 @@
               v-model="PorcentajeGanancia"
             />
             <br />
-            <v-text-field
+           <!-- <v-text-field
               append-icon="mdi-truck"
               label="Gastos en flete"
               v-model="costo_flete"
-            />
+            /> -->
           </b-modal>
         </div>
 

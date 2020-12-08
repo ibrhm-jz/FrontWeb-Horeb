@@ -114,11 +114,11 @@
               </thead>
               <tbody class="text-mayus">
                 <tr v-for="(Empleados,i) in dataEmpleados" :key="i">
-                  <td>{{ Empleados.nombres }}</td>
-                  <td>{{ Empleados.apellidos }}</td>
-                  <td>{{ Empleados.tipo_usuario }}</td>
-                  <td>{{ Empleados.email }}</td>
-                  <td>{{ Empleados.telefono }}</td>
+                  <td><font size=1><b>{{ Empleados.nombres }}</b></font></td>
+                  <td><font size=1><b>{{ Empleados.apellidos }}</b></font></td>
+                  <td><font size=1>{{ Empleados.tipo_usuario }}</font></td>
+                  <td><font size=1>{{ Empleados.email }}</font></td>
+                  <td><font size=1>{{ Empleados.telefono }}</font></td>
                   <td>
                     <b-button
                       squared
@@ -389,7 +389,11 @@ export default {
     },
 
     RegistrarEmpleado() {
-      const data = {
+     if(this.password!=this.rpassword){
+
+      window.alert("Las contraseñas no coinciden");
+     }else{
+        const data = {
         email:this.correo,
         password:this.password,
         tipo_usuario:this.selected,
@@ -414,6 +418,7 @@ export default {
           console.error(error);
           window.alert(error);
         });
+     }
     },
 
     ActualizarEmpleado() {

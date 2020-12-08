@@ -116,13 +116,15 @@
           </div>
 
 <v-data-table :headers="headers" :items="datosProductos" class="text-mayus">
+
       <template v-slot:item="row">
+      
           <tr class="text-mayus">
-            <td>{{row.item.nombre}}</td>
-            <td>{{row.item.cantidad_existencia}}</td>
-            <td>{{row.item.categoria}}</td>
-            <td>{{row.item.precio_unitario}}</td>
-             <td>{{row.item.medida }}</td>
+            <td><font size=1><b>{{row.item.nombre}}</b></font></td>
+            <td><font size=1>{{row.item.cantidad_existencia}}</font></td>
+            <td><font size=1>{{row.item.categoria}}</font></td>
+            <td><font size=1><b>{{row.item.precio_unitario}}</b></font></td>
+             <td><font size=1>{{row.item.medida }}</font></td>
             <td>
                  <b-button
                       squared
@@ -144,7 +146,9 @@
                     ></b-button>
             </td>
           </tr>
+           
       </template>
+     
     </v-data-table>
 
 <!--
@@ -414,6 +418,7 @@ export default {
         { value: "Tuberia", text: "Tuberia" },
         { value: "Mallas", text: "Mallas" },
         { value: "Valvulas", text: "Valvulas" },
+         { value: "Conexiones", text: "Conexiones" },
         { value: "Otro", text: "Otro" },
       ],
       optionscategory: [
@@ -421,6 +426,7 @@ export default {
         { value: "Tuberia", text: "Tuberia" },
         { value: "Mallas", text: "Mallas" },
         { value: "Valvulas", text: "Valvulas" },
+        { value: "Conexiones", text: "Conexiones" },
         { value: "Otro", text: "Otro" },
         
       ],

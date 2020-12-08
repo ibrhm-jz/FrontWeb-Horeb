@@ -106,6 +106,45 @@
           </b-input-group>
           <br />
 
+<v-data-table :headers="headers" :items="dataClientes" class="text-mayus">
+
+      <template v-slot:item="row">
+      
+          <tr class="text-mayus">
+            <td><font size=1><b>{{row.item.nombres +" "+ row.item.apellidos}}</b></font></td>
+            <td><font size=1>{{row.item.correo}}</font></td>
+            <td><font size=1>{{row.item.empresa}}</font></td>
+            <td><font size=1>{{row.item.direccion}}</font></td>
+             <td><font size=1><b>{{row.item.telefono }}</b></font></td>
+            <td>
+                 <b-button
+                      squared
+                      variant="info"
+                      class="padd-button"
+                     v-b-modal.modal-update
+                      @click="sendUser(row.item)"
+                    >
+                      <b-icon icon="pencil-square" style="color: #fff"></b-icon
+                    ></b-button>
+
+                    <b-button
+                      squared
+                      variant="danger"
+                      class="padd-button"
+                      v-b-modal.modal-delete
+                       @click="deleteClientes(row.item)"
+                    >
+                      <b-icon icon="trash-fill"></b-icon
+                    ></b-button>
+            </td>
+          </tr>
+           
+      </template>
+     
+    </v-data-table>
+
+
+<!--
           <v-simple-table>
             <template v-slot:default>
               <thead>
@@ -151,6 +190,8 @@
               </tbody>
             </template>
           </v-simple-table>
+            -->
+          
         </v-card>
 
         <div>
@@ -359,6 +400,20 @@ export default {
       categoria: "",
       selected: null,
       category: null,
+             headers: [
+        {
+          text: 'Nombre',
+          align: 'start',
+          sortable: false,
+          value: 'nombre',
+        },
+        { text: 'Existencia', value: 'cantidad_existencia' },
+        { text: 'Categoria', value: 'categoria' },
+        { text: 'Precio Unitario', value: 'precio_unitario' },
+        { text: 'UNIDAD DE MEDIDA', value: 'medida' },
+        { text: 'Accion', value: 'iron' },
+       
+      ],
       options: [
         { value: null, text: "Seleccione la categoria" },
         { value: "Tuberia", text: "Tuberia" },
