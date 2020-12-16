@@ -287,8 +287,8 @@
               <input
                 class="form-control my-0 py-1 text-mayus"
                 type="text"
-                placeholder="Search"
-                aria-label="Search"
+                placeholder="BUSCAR"
+                aria-label="BUSCAR"
                 v-model="searchnombre"
                 v-on:keyup.enter="BuscarProductos"
               />

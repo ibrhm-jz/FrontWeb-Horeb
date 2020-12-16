@@ -117,16 +117,23 @@
             <td><font size=1>{{row.item.direccion}}</font></td>
              <td><font size=1><b>{{row.item.telefono }}</b></font></td>
             <td>
+             <div class="h2 mb-0"><b-icon icon="pencil-square" style="color: #fff;"
+              class="rounded-circle bg-success p-2"   v-b-modal.modal-update @click="sendUser(row.item)"></b-icon></div>
+               
+                <div class="h2 mb-0"><b-icon icon="trash-fill" style="color: #fff;"
+              class="rounded-circle bg-danger p-2"   v-b-modal.modal-delete @click="deleteClientes(row.item)"></b-icon></div>
+               
+               <!--
                  <b-button
                       squared
                       variant="info"
                       class="padd-button"
                      v-b-modal.modal-update
                       @click="sendUser(row.item)"
+                   
                     >
-                      <b-icon icon="pencil-square" style="color: #fff"></b-icon
-                    ></b-button>
-
+                    <b-icon icon="pencil-square" style="color: #fff;" ></b-icon>
+                    </b-button>
                     <b-button
                       squared
                       variant="danger"
@@ -136,6 +143,7 @@
                     >
                       <b-icon icon="trash-fill"></b-icon
                     ></b-button>
+                    -->
             </td>
           </tr>
            
@@ -370,6 +378,8 @@ export default {
     this.miUsuario = localStorage.getItem("userId");
     if (this.token == null || this.token == "") {
       this.$router.push("/login");
+    }else{
+      this.getVendedores();
     }
   },
   mounted() {
@@ -407,10 +417,10 @@ export default {
           sortable: false,
           value: 'nombre',
         },
-        { text: 'Existencia', value: 'cantidad_existencia' },
-        { text: 'Categoria', value: 'categoria' },
-        { text: 'Precio Unitario', value: 'precio_unitario' },
-        { text: 'UNIDAD DE MEDIDA', value: 'medida' },
+        { text: 'CORREO', value: 'cantidad_existencia' },
+        { text: 'RAZON', value: 'categoria' },
+        { text: 'DIRECCION', value: 'precio_unitario' },
+        { text: 'TELEFONO', value: 'medida' },
         { text: 'Accion', value: 'iron' },
        
       ],
@@ -438,7 +448,7 @@ export default {
         FiltroProducto() {
           console.log(this.miUsuario)
       if (this.category == null) {
-        this.BuscarClientes();
+        this.getClientes();
       } else {
         const data = {
           user_id: this.miUsuario,
@@ -468,7 +478,53 @@ export default {
         (this.correo = ""),
         (this.empresa = "");
     },
-    BuscarClientes() {
+
+
+    RegistrarCliente() {
+      if(this.nombres==""||this.apellidos==""|| this.direccion==""|| this.telefono==""||this.correo==""||this.empresa==""){
+        window.alert("No se guardo ya que hay campos vacios");
+      }else{
+              const data = {
+        nombres: this.nombres,
+        apellidos: this.apellidos,
+        direccion: this.direccion,
+        telefono: this.telefono,
+        correo: this.correo,
+        empresa: this.empresa,
+        users_id: this.selected,
+      };
+      API.post("registro-cliente", data, {
+        headers: {
+          Authorization: "Bearer " + this.token,
+        },
+      })
+        .then((res) => {
+          // eslint-disable-next-line
+          console.log(res.data);
+          this.Limpiar();
+          this.getClientes();
+          window.alert("Los datos se han guardado");
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+          window.alert(error);
+        });
+      }
+    },
+    deleteClientes(result) {
+      API.delete("borrar-cliente/" + result.id, {
+        headers: {
+          Authorization: "Bearer " + this.token,
+        },
+      }).then((response) => {
+        // eslint-disable-next-line
+        console.log(this.result);
+        window.alert("Los datos se han guardado");
+        this.getClientes();
+      });
+    },
+            getClientes() {
       const data = {
         nombres: this.searchnombres,
       };
@@ -489,49 +545,11 @@ export default {
           window.alert(error);
         });
     },
-
-    RegistrarCliente() {
-      const data = {
-        nombres: this.nombres,
-        apellidos: this.apellidos,
-        direccion: this.direccion,
-        telefono: this.telefono,
-        correo: this.correo,
-        empresa: this.empresa,
-        users_id: this.selected,
-      };
-      API.post("registro-cliente", data, {
-        headers: {
-          Authorization: "Bearer " + this.token,
-        },
-      })
-        .then((res) => {
-          // eslint-disable-next-line
-          console.log(res.data);
-          this.Limpiar();
-          this.BuscarClientes();
-          window.alert("Los datos se han guardado");
-        })
-        .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-          window.alert(error);
-        });
-    },
-    deleteClientes(result) {
-      API.delete("borrar-cliente/" + result.id, {
-        headers: {
-          Authorization: "Bearer " + this.token,
-        },
-      }).then((response) => {
-        // eslint-disable-next-line
-        console.log(this.result);
-        window.alert("Los datos se han guardado");
-        this.BuscarClientes();
-      });
-    },
     ActualizarCliente() {
-      const data = {
+       if(this.nombres==""||this.apellidos==""|| this.direccion==""|| this.telefono==""||this.correo==""||this.empresa==""){
+        window.alert("No se guardo ya que hay campos vacios");
+      }else{
+        const data = {
         nombres: this.selectedUser.nombres,
         apellidos: this.selectedUser.apellidos,
         direccion: this.selectedUser.direccion,
@@ -550,7 +568,7 @@ export default {
           console.log(res.data);
           this.selected = [];
           this.Limpiar();
-          this.BuscarClientes();
+          this.getClientes();
           window.alert("Los datos se han guardado");
         })
         .catch((error) => {
@@ -558,6 +576,8 @@ export default {
           console.error(error);
           window.alert(error);
         });
+      }
+      
     },
     sendUser(item) {
       this.selectedUser = item;
@@ -576,6 +596,29 @@ export default {
       });
     },
   },
+  computed:{
+        BuscarClientes() {
+      const data = {
+        nombres: this.searchnombres,
+      };
+      API.post("buscar-cliente", data, {
+        headers: {
+          Authorization: "Bearer " + this.token,
+        },
+      })
+        .then((res) => {
+          // eslint-disable-next-line
+          console.log(res.data);
+          this.dataClientes = res.data;
+          //window.alert("Los datos se han guardado");
+        })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.error(error);
+          window.alert(error);
+        });
+    },
+  }
 };
 </script>
 <style scoped>
