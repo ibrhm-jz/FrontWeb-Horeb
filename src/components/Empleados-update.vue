@@ -122,10 +122,10 @@
                   <td>
 
                                  <div class="h2 mb-0"><b-icon icon="pencil-square" style="color: #fff;"
-              class="rounded-circle bg-success p-2"  v-b-modal.modal-update @click="sendUser(Empleados)"></b-icon></div>
-               
-                <div class="h2 mb-0"><b-icon icon="trash-fill" style="color: #fff;"
+              class="rounded-circle bg-success p-2"  v-b-modal.modal-update @click="sendUser(Empleados)"></b-icon>&nbsp;<b-icon icon="trash-fill" style="color: #fff;"
               class="rounded-circle bg-danger p-2"   v-b-modal.modal-delete  @click="deleteEmpleados(Empleados)"></b-icon></div>
+               
+              
 
                    <!-- <b-button
                       squared

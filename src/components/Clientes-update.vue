@@ -118,10 +118,10 @@
              <td><font size=1><b>{{row.item.telefono }}</b></font></td>
             <td>
              <div class="h2 mb-0"><b-icon icon="pencil-square" style="color: #fff;"
-              class="rounded-circle bg-success p-2"   v-b-modal.modal-update @click="sendUser(row.item)"></b-icon></div>
-               
-                <div class="h2 mb-0"><b-icon icon="trash-fill" style="color: #fff;"
+              class="rounded-circle bg-success p-2"   v-b-modal.modal-update @click="sendUser(row.item)"></b-icon>
+              &nbsp; <b-icon icon="trash-fill" style="color: #fff;"
               class="rounded-circle bg-danger p-2"   v-b-modal.modal-delete @click="deleteClientes(row.item)"></b-icon></div>
+          
                
                <!--
                  <b-button

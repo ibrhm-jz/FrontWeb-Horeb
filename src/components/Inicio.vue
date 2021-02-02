@@ -2,7 +2,7 @@
   <div width="100%">
     <div class="wrapper">
       <!-- Sidebar  -->
-      <nav id="sidebar">
+      <nav id="sidebar" >
         <div class="sidebar-header">
           <div align="center">
             <img
@@ -57,8 +57,16 @@
           <router-link to="/editCotizacion">
             <li>
               <a href="#"
-                ><b-icon icon="file-earmark-check-fill"></b-icon
+                ><b-icon icon="folder-fill"></b-icon
                 >&nbsp;&nbsp;Editar Cotizacion</a
+              >
+            </li>
+          </router-link>
+                    <router-link to="/editCotizacion">
+            <li>
+              <a href="#"
+                ><b-icon icon="inboxes-fill"></b-icon
+                >&nbsp;&nbsp;Inventario</a
               >
             </li>
           </router-link>
@@ -78,22 +86,26 @@
       <div id="content">
         <h2>Bienvenido a administracion Horeb</h2>
         <div class="line"></div>
-        <p>“El secreto para salir adelante es empezar.”</p>
-        <br />
-        <v-card class="padd-card">
-          <b-input-group class="mt-3">
-            <b-form-input
-              placeholder="Introduce tu numero de cotizacion"
-              v-model="searchnombres"
-              v-on:keyup.enter="BuscarClientes"
-            ></b-form-input>
-            <b-input-group-append>
-              <b-button squared variant="info" @click="BuscarClientes">
-                <b-icon icon="search"></b-icon
-              ></b-button>
-            </b-input-group-append>
-          </b-input-group>
-        </v-card>
+
+       
+       <div align ="left"> 
+               <p>“El secreto para salir adelante es empezar.”</p>
+               
+        <br /> 
+        <div width=60%>
+        <div align="center">
+                <img
+              src="../assets/undrawsorting.png"
+              class="d-inline-block align-top"
+              width="500px"
+            />
+        </div></div>
+        
+        
+        </div>
+        
+       
+      
       </div>
     </div>
   </div>

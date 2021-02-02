@@ -2,8 +2,8 @@
   <div width="100%">
     <div class="wrapper">
       <!-- Sidebar  -->
-      <nav id="sidebar">
-        <div class="sidebar-header">
+      <nav id="sidebar" fixed>
+        <div class="sidebar-header" fixed>
           <div align="center">
             <img
               src="../assets/logo-nuevo.png"
@@ -121,9 +121,9 @@
       
           <tr class="text-mayus">
             <td><font size=1><b>{{row.item.nombre}}</b></font></td>
-            <td><font size=1>{{row.item.cantidad_existencia}}</font></td>
+          
             <td><font size=1>{{row.item.categoria}}</font></td>
-            <td><font size=1><b>{{row.item.precio_unitario}}</b></font></td>
+            <td><font size=1><b>$ {{row.item.precio_unitario}}</b></font></td>
              <td><font size=1>{{row.item.medida }}</font></td>
             <td>
 
@@ -154,11 +154,11 @@
                       <b-icon icon="trash-fill"></b-icon
                     ></b-button>
               -->
-               <div class="h2 mb-0"><b-icon icon="pencil-square" style="color: #fff;"
-              class="rounded-circle bg-success p-2"   v-b-modal.modal-actualizar-producto @click="sendProduct(row.item)"></b-icon></div>
-               
-                <div class="h2 mb-0"><b-icon icon="trash-fill" style="color: #fff;"
-              class="rounded-circle bg-danger p-2"   v-b-modal.modal-delete ></b-icon></div>
+               <div class="h2 mb-1"><b-icon icon="pencil-square" style="color: #fff;"
+              class="rounded-circle bg-success p-2"   v-b-modal.modal-actualizar-producto @click="sendProduct(row.item)"></b-icon>&nbsp;<b-icon icon="trash-fill" style="color: #fff;"
+              class="rounded-circle bg-danger p-2"   v-b-modal.modal-delete ></b-icon>
+              </div>
+     
                
                 
                     
@@ -424,7 +424,7 @@ export default {
           sortable: false,
           value: 'nombre',
         },
-        { text: 'Existencia', value: 'cantidad_existencia' },
+      
         { text: 'Categoria', value: 'categoria' },
         { text: 'Precio Unitario', value: 'precio_unitario' },
         { text: 'UNIDAD DE MEDIDA', value: 'medida' },

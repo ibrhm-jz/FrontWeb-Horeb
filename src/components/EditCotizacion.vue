@@ -184,43 +184,46 @@
                   ></i>
                 </td>
                 <td>
-                  <v-text-field
+                  <b-form-input
                     style="width: 50px"
                     placeholder="%"
                     required
                     v-model="invoice_product.cantidad"
                     @input="calcularImporte()"
-                  ></v-text-field>
+                  ></b-form-input>
                 </td>
                 <td>
-                  <v-text-field
-                    style="width: 50px"
+               
+                  <b-form-input
+                    style="width: 100px"
                     placeholder="%"
                     required
-                    v-model="invoice_product.medida"
-                  ></v-text-field>
+                    v-model="invoice_product.medida.toUpperCase()"
+                  ></b-form-input>
                 </td>
                 <td>
-                  <v-text-field
-                    style="width: 250px"
+                  <b-form-input
+                    style="width: 450px;text-transform: uppercase;"
                     required
-                    v-model="invoice_product.descripcion"
-                  ></v-text-field>
+                    class="text-mayus"
+                    v-model="invoice_product.descripcion.toUpperCase()"
+                  ></b-form-input>
                 </td>
                 <td>
-                  <v-text-field
-                    style="width: 100px"
+                
+                  <b-form-input
+                    style="width: 110px"
                     required
                     v-model="invoice_product.precio_unitario"
                     @input="calcularImporte()"
-                  ></v-text-field>
+                  ></b-form-input>
                 </td>
                 <td>
-                  <v-text-field
-                    style="width: 100px"
+                  <b-form-input
+                    style="width: 110px"
                     required
                     v-model="invoice_product.importe"
-                  ></v-text-field>
+                  ></b-form-input>
                 </td>
               </tr>
             </tbody>
@@ -246,7 +249,8 @@
           <div class="row">
             <div class="col-md-8">
               <div align="left">
-                <b-button squared variant="info" v-b-modal.modal-prevent-closing
+              
+                <b-button squared variant="info" v-b-modal.modal-prevent-closing  
                   ><b-icon icon="plus"></b-icon>Añadir</b-button
                 >&nbsp;
                 <b-button squared variant="success" v-b-modal.modal-porcentaje
@@ -287,8 +291,8 @@
               <input
                 class="form-control my-0 py-1 text-mayus"
                 type="text"
-                placeholder="BUSCAR"
-                aria-label="BUSCAR"
+                placeholder="Buscar"
+                aria-label="Buscar"
                 v-model="searchnombre"
                 v-on:keyup.enter="BuscarProductos"
               />
@@ -402,7 +406,7 @@
 <script>
 import { API } from "../Servicios/axios";
 import "jspdf-autotable";
-import { LOGO, PIE } from "../base64/images";
+import { LOGO } from "../base64/images";
 import jsPDF from "jspdf";
 export default {
   created() {
@@ -417,10 +421,12 @@ export default {
   },
   mounted() {
     this.BuscarProductos();
+    this.getProduct();
     this.items = [];
   },
   data() {
     return {
+ 
       boolcerrado: false,
       numero_cotizacion: 0,
       group: null,
@@ -435,6 +441,7 @@ export default {
       nota: "",
       lugarEntrega: "",
       name: "",
+      loading: false,
       // eslint-disable-next-line
       nameState: null,
       // eslint-disable-next-line
@@ -785,11 +792,13 @@ export default {
     },
 
     getProduct() {
+      this.loading = true;
       API.get("productos", {
         headers: {
           Authorization: "Bearer " + this.token,
         },
       }).then((response) => {
+        this.loading = false;
         this.datosProductos = response.data;
 
         /* eslint-disable */

@@ -45,7 +45,7 @@
                 <v-card-actions>
                   <v-spacer></v-spacer>
                       <b-button class="btn btn-green" type="submit" v-on:click="Login" 
-                       @click="dialog = true">Iniciar Sesion </b-button>
+                       @click="dialog = true" :loading="loading">Iniciar Sesion </b-button>
                   
                 </v-card-actions>
               </v-card>
@@ -60,11 +60,11 @@
       width="300"
     >
       <v-card
-        color="primary"
+        style=" background-color: #00b686 !important;"
         dark
       >
         <v-card-text>
-          Please stand by
+          Espere por favor...
           <v-progress-linear
             indeterminate
             color="white"
@@ -91,7 +91,8 @@ export default {
   data(){
     return{
       email:"",
-      password:""
+      password:"",
+      loading: false,
     }
 
   },
@@ -104,12 +105,14 @@ export default {
     },
   methods:{
     Login() {
+      this.loading = true;
       const data = {
         email: this.email,
         password:this.password
       };
       API.post("login", data)
         .then((res) => {
+          this.loading = false;
          // window.alert("Los datos se han guardado"+res.data);
           localStorage.setItem('userToken', res.data.token)
           localStorage.setItem('userId', res.data.usuario[0].id)
