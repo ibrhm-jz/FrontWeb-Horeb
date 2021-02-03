@@ -60,6 +60,14 @@
               >
             </li>
           </router-link>
+                              <router-link to="/inventario">
+            <li>
+              <a href="#"
+                ><b-icon icon="inboxes-fill"></b-icon
+                >&nbsp;&nbsp;Inventario</a
+              >
+            </li>
+          </router-link>
         </ul>
         <br />
         <br />
@@ -115,7 +123,8 @@
             <td><font size=1>{{row.item.correo}}</font></td>
             <td><font size=1>{{row.item.empresa}}</font></td>
             <td><font size=1>{{row.item.direccion}}</font></td>
-             <td><font size=1><b>{{row.item.telefono }}</b></font></td>
+            <td><font size=1>{{row.item.telefono}}</font></td>
+             <td><font size=1><b>{{row.item.vendedor }}</b></font></td>
             <td>
              <div class="h2 mb-0"><b-icon icon="pencil-square" style="color: #fff;"
               class="rounded-circle bg-success p-2"   v-b-modal.modal-update @click="sendUser(row.item)"></b-icon>
@@ -421,6 +430,7 @@ export default {
         { text: 'RAZON', value: 'categoria' },
         { text: 'DIRECCION', value: 'precio_unitario' },
         { text: 'TELEFONO', value: 'medida' },
+        { text: 'VENDEDOR', value: 'vendedor' },
         { text: 'Accion', value: 'iron' },
        
       ],

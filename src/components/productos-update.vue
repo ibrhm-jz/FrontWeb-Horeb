@@ -62,6 +62,14 @@
               >
             </li>
           </router-link>
+                              <router-link to="/inventario">
+            <li>
+              <a href="#"
+                ><b-icon icon="inboxes-fill"></b-icon
+                >&nbsp;&nbsp;Inventario</a
+              >
+            </li>
+          </router-link>
         </ul>
         <br />
         <br />

@@ -10,7 +10,7 @@ import Empresa from '../components/Empresa.vue';
 import Productos from '../components/productos-update.vue';
 import Cotizacion from '../components/Cotizacion.vue';
 import Clientes from '../components/Clientes-update.vue';
-
+import Inventario from '../components/Inventario-update.vue';
 import EditCotizacion from '../components/EditCotizacion.vue';
 export default new Router({
     mode: 'history',
@@ -60,6 +60,12 @@ export default new Router({
             path: '/editCotizacion',
             name: '/editCotizacion',
             component: Cotizacion
+
+        },
+        {
+            path: '/inventario',
+            name: '/inventario',
+            component: Inventario
 
         },
 

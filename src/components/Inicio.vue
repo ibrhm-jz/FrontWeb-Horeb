@@ -62,7 +62,7 @@
               >
             </li>
           </router-link>
-                    <router-link to="/editCotizacion">
+                              <router-link to="/inventario">
             <li>
               <a href="#"
                 ><b-icon icon="inboxes-fill"></b-icon
