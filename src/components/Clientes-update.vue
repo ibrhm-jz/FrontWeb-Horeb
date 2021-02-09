@@ -281,6 +281,7 @@
                 ></b-form-input>
                 <br />
                 <div>
+                Seleccionar vendedor:
                   <b-form-select
                     v-model="selected"
                     :options="dataVendedores"
@@ -363,6 +364,7 @@
                 ></b-form-input>
                 <br />
                 <div>
+                Seleccionar vendedor:
                   <b-form-select
                     v-model="selected"
                     :options="dataVendedores"

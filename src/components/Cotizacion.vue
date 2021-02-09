@@ -194,47 +194,50 @@
                   ></i>
                 </td>
                 <td>
-                  <v-text-field
+                  <b-form-input
                     style="width: 50px"
                     placeholder="%"
                     required
                     v-model="invoice_product.cantidad"
                     @input="calcularImporte()"
-                  ></v-text-field>
+                  ></b-form-input>
                 </td>
                 <td>
-                  <v-text-field
-                    style="width: 50px"
+               
+                  <b-form-input
+                    style="width: 100px"
                     placeholder="%"
                     required
-                    v-model="invoice_product.medida"
-                  ></v-text-field>
+                    v-model="invoice_product.medida.toUpperCase()"
+                  ></b-form-input>
                 </td>
                 <td>
-                  <v-text-field
-                    style="width: 250px"
+                  <b-form-input
+                    style="width: 450px;text-transform: uppercase;"
                     required
-                    v-model="invoice_product.descripcion"
-                  ></v-text-field>
+                    class="text-mayus"
+                    v-model="invoice_product.descripcion.toUpperCase()"
+                  ></b-form-input>
                 </td>
                 <td>
-                  <v-text-field
-                    style="width: 100px"
+                
+                  <b-form-input
+                    style="width: 110px"
                     required
                     v-model="invoice_product.precio_unitario"
                     @input="calcularImporte()"
-                  ></v-text-field>
+                  ></b-form-input>
                 </td>
                 <td>
-                  <v-text-field
-                    style="width: 100px"
+                  <b-form-input
+                    style="width: 110px"
                     required
                     v-model="invoice_product.importe"
-                  ></v-text-field>
+                  ></b-form-input>
                 </td>
               </tr>
             </tbody>
-          </v-simple-table>
+          </v-simple-table> 
 
           <hr />
           <b>
@@ -306,49 +309,38 @@
             </div>
             <br />
 
-            <v-simple-table height="300px">
-              <template v-slot:default>
-                <thead>
-                  <tr>
-                    <th class="text-left">Nombre</th>
+<v-data-table :headers="headers" :items="datosProductos" class="text-mayus">
 
-                    <th class="text-left">Medida</th>
-                    <th class="text-left">Precio unitario</th>
-                    <th class="text-left">Existencia</th>
-                    <th class="text-left">Cantidad</th>
-                    <th class="text-left">Accion</th>
-                  </tr>
-                </thead >
-                <tbody  class="text-mayus">
-                  <!-- newEntries: {{ newEntries }} -->
-                  <tr v-for="products in datosProductos" :key="products.id">
-                    <td>{{ products.nombre }}</td>
-
-                    <td>{{ products.medida }}</td>
-                    <td>${{ products.precio_unitario }}</td>
-                    <td>{{ products.cantidad_existencia }}</td>
-                    <td>
+      <template v-slot:item="row">
+      
+          <tr class="text-mayus">
+            <td><font size=1><b>{{row.item.nombre}}</b></font></td>
+          
+            <td><font size=1>{{row.item.categoria}}</font></td>
+            <td><font size=1><b>$ {{row.item.precio_unitario}}</b></font></td>
+             <td><font size=1>{{row.item.medida }}</font></td>
+ <td>
                       <v-text-field
                         style="width: 50px"
-                        v-model="newEntries[products.id]"
+                        v-model="newEntries[row.item.id]"
                         placeholder="Cant"
                         required
                       ></v-text-field>
                     </td>
-
                     <td>
                       <b-button
                         variant="success"
                         class="btn-circle.btn-xl"
-                        @click="addNewRow(products, newEntries[products.id])"
+                        @click="addNewRow(row.item, newEntries[row.item.id])"
                       >
                         <b-icon icon="cart2" aria-label="Añadir"></b-icon>
                       </b-button>
                     </td>
-                  </tr>
-                </tbody>
-              </template>
-            </v-simple-table>
+          </tr>
+           
+      </template>
+     
+    </v-data-table>
           </b-modal>
         </div>
         <!-- Modales -->
@@ -480,6 +472,20 @@ export default {
           precio_unitario: "",
         },
       ],
+                   headers: [
+        {
+          text: 'Nombre',
+          align: 'start',
+          sortable: false,
+          value: 'nombre',
+        },
+      
+        { text: 'Categoria', value: 'categoria' },
+        { text: 'Precio Unitario', value: 'precio_unitario' },
+        { text: 'UNIDAD DE MEDIDA', value: 'medida' },
+        { text: 'Accion', value: 'iron' },
+       
+      ],
     };
   },
   methods: {
@@ -594,14 +600,16 @@ export default {
         doc.setTextColor(0, 0, 0);
         doc.setFontSize(10);
         doc.text("RFC: STH1607128M9", 40, 55);
+        
+        doc.setTextColor(0, 0, 0);
+        doc.text("FOLIO: " + vm.numero_cotizacion, 460, 55);
         doc.setTextColor(255, 0, 0);
-        doc.text("FOLIO: " + vm.numero_cotizacion, 450, 55);
-
         doc.text(
           "CLABE INTERBANCARIA: 0021-0070-1420-7691-60    SUCURSAL:7014   CUENTA BANAMEX:207616",
           40,
           70
         );
+        doc.setTextColor(0, 0, 0);
         doc.setLineWidth(0.2);
         doc.line(40, 80, width - 40, 80);
         var img = new Image();
@@ -626,20 +634,22 @@ export default {
         if (finalY + 100 > height - 45) {
           doc.addPage();
           var textWidth =
-            (doc.getStringUnitWidth("SUBTOTAL : " + vm.invoice_subtotal) *
+            (
+              doc.getStringUnitWidth("SUBTOTAL : " + vm.invoice_subtotal) *
               doc.internal.getFontSize()) /
             doc.internal.scaleFactor;
           var columns_price = ["Conceptos", "Total"];
           var data_price = [
-            ["SUBTOTAL:", "$" + this.format(vm.invoice_subtotal)],
-            ["IVA 16%:", "$" + this.format(vm.invoice_iva)],
-            ["TOTAL:", "$" + this.format(vm.invoice_total)],
+            ["Subtotal:", "$" + this.format(vm.invoice_subtotal)],
+            ["Iva 16%:", "$" + this.format(vm.invoice_iva)],
+            ["Total:", "$" + this.format(vm.invoice_total)],
           ];
+          
           doc.autoTable(columns_price, data_price, {
             showHead: "never",
             startY: 40,
             theme: "plain",
-            margin: { top: 0, left: width / 2 + 80 },
+            margin: { top: 0, left: width / 2 + 100 },
             styles: {
               halign: "left",
               fontSize: 9,
@@ -648,11 +658,14 @@ export default {
           doc.setFontSize(9);
           doc.text(40, 55, "CANTIDAD EN LETRAS : ");
           doc.setFontSize(7);
+            doc.setTextColor(255, 0, 0);
           doc.text(40, 70, vm.cant_letra.toUpperCase());
-          doc.text(40, 100, "CONDICIONES");
-          doc.text(40, 110, "PRECIOS SUJETOS A CAMBIO SIN PREVIO AVISO");
-          doc.text(40, 120, "FORMA DE PAGO: CONTADO ANTICIPADO");
-          doc.text(40, 130, "TIEMPO DE ENTREGRA :" + vm.nota.toUpperCase());
+          doc.setTextColor(0, 0, 0);
+          doc.setFontSize(7);
+          doc.text(40, 130, "CONDICIONES");
+          doc.text(40, 140, "PRECIOS SUJETOS A CAMBIO SIN PREVIO AVISO");
+          doc.text(40, 150, "FORMA DE PAGO: CONTADO ANTICIPADO");
+          doc.text(40, 160, "TIEMPO DE ENTREGRA :" + vm.nota.toUpperCase());
           doc.text(
             40,
             140,
@@ -683,15 +696,15 @@ export default {
             doc.internal.scaleFactor;
           var columns_price = ["Conceptos", "Total"];
           var data_price = [
-            ["SUBTOTAL:", "$" + this.format(vm.invoice_subtotal)],
-            ["IVA 16%:", "$" + this.format(vm.invoice_iva)],
-            ["TOTAL:", "$" + this.format(vm.invoice_total)],
+            ["Subtotal:", "$" + this.format(vm.invoice_subtotal)],
+            ["Iva 16%:", "$" + this.format(vm.invoice_iva)],
+            ["Total:", "$" + this.format(vm.invoice_total)],
           ];
           doc.autoTable(columns_price, data_price, {
             showHead: "never",
             startY: finalY,
             theme: "plain",
-            margin: { top: 0, left: width / 2 + 80 },
+            margin: { top: 0, left: width / 2 + 110 },
             styles: {
               halign: "left",
               fontSize: 9,
@@ -700,37 +713,40 @@ export default {
           doc.setFontSize(9);
           doc.text(40, finalY + 55, "CANTIDAD EN LETRAS : ");
           doc.setFontSize(7);
+          doc.setTextColor(255, 0, 0);
           doc.text(40, finalY + 70, vm.cant_letra.toUpperCase());
-          doc.text(40, finalY + 100, "CONDICIONES");
-          doc.text(
-            40,
-            finalY + 110,
-            "PRECIOS SUJETOS A CAMBIO SIN PREVIO AVISO"
-          );
-          doc.text(40, finalY + 120, "FORMA DE PAGO: CONTADO ANTICIPADO");
+           doc.setTextColor(0, 0, 0);
+          doc.setFontSize(7);
+          doc.text(40, finalY + 120, "CONDICIONES");
           doc.text(
             40,
             finalY + 130,
+            "PRECIOS SUJETOS A CAMBIO SIN PREVIO AVISO"
+          );
+          doc.text(40, finalY + 140, "FORMA DE PAGO: CONTADO ANTICIPADO");
+          doc.text(
+            40,
+            finalY + 150,
             "TIEMPO DE ENTREGRA :" + vm.nota.toUpperCase()
           );
           doc.text(
             40,
-            finalY + 140,
+            finalY + 160,
             "LUGAR DE ENTREGA: :" + vm.lugarEntrega.toUpperCase()
           );
           doc.text(
             40,
-            finalY + 150,
+            finalY + 170,
             "MANIOBRAS DE DESCARGA Y RIESGO A CUENTA DEL CLIENTE"
           );
           doc.text(
             40,
-            finalY + 160,
+            finalY + 180,
             "NO TRANSITAMOS EN LUGARES O CARRETERAS ACCIDENTADAS, UNICAMENTE LLEGAMOS HASTA DONDE LA UNIDAD TENGA ACCESO."
           );
           doc.text(
             40,
-            finalY + 170,
+            finalY + 190,
             "UNA VEZ ENTREGADO EL MATERIAL NO SE HACEN DEVOLUCIONES."
           );
           doc.save("Cotizacion_" + this.numero_cotizacion + ".pdf");

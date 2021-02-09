@@ -65,7 +65,8 @@ export default new Router({
         {
             path: '/inventario',
             name: '/inventario',
-            component: Inventario
+            component: Inventario,
+            meta: { title: 'Skills - MyApp' } // <- I would to use this on
 
         },
 

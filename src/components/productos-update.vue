@@ -131,7 +131,8 @@
             <td><font size=1><b>{{row.item.nombre}}</b></font></td>
           
             <td><font size=1>{{row.item.categoria}}</font></td>
-            <td><font size=1><b>$ {{row.item.precio_unitario}}</b></font></td>
+            <td>  <b-badge variant="primary"><font size=2><b>$ {{row.item.precio_unitario}}</b></font></b-badge></td>
+            
              <td><font size=1>{{row.item.medida }}</font></td>
             <td>
 

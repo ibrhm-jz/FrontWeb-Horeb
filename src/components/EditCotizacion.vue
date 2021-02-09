@@ -307,6 +307,42 @@
             </div>
             <br />
 
+
+
+<v-data-table :headers="headers" :items="datosProductos" class="text-mayus">
+
+      <template v-slot:item="row">
+      
+          <tr class="text-mayus">
+            <td><font size=1><b>{{row.item.nombre}}</b></font></td>
+          
+            <td><font size=1>{{row.item.categoria}}</font></td>
+            <td><font size=1><b>$ {{row.item.precio_unitario}}</b></font></td>
+             <td><font size=1>{{row.item.medida }}</font></td>
+ <td>
+                      <v-text-field
+                        style="width: 50px"
+                        v-model="newEntries[row.item.id]"
+                        placeholder="Cant"
+                        required
+                      ></v-text-field>
+                    </td>
+                    <td>
+                      <b-button
+                        variant="success"
+                        class="btn-circle.btn-xl"
+                        @click="addNewRow(row.item, newEntries[row.item.id])"
+                      >
+                        <b-icon icon="cart2" aria-label="Añadir"></b-icon>
+                      </b-button>
+                    </td>
+          </tr>
+           
+      </template>
+     
+    </v-data-table>
+
+<!--
             <v-simple-table height="300px">
               <template v-slot:default>
                 <thead>
@@ -321,7 +357,7 @@
                   </tr>
                 </thead>
                 <tbody  class="text-mayus">
-                  <!-- newEntries: {{ newEntries }} -->
+                  <!-- newEntries: {{ newEntries }} //Aqui cierra esta cosa pero se flipaba el coment
                   <tr v-for="products in datosProductos" :key="products.id">
                     <td> <font size=1>{{ products.nombre }}</font></td>
 
@@ -350,6 +386,7 @@
                 </tbody>
               </template>
             </v-simple-table>
+            -->
           </b-modal>
         </div>
         <!-- Modales -->
@@ -480,6 +517,20 @@ export default {
           importe: "",
           precio_unitario: "",
         },
+      ],
+             headers: [
+        {
+          text: 'Nombre',
+          align: 'start',
+          sortable: false,
+          value: 'nombre',
+        },
+      
+        { text: 'Categoria', value: 'categoria' },
+        { text: 'Precio Unitario', value: 'precio_unitario' },
+        { text: 'UNIDAD DE MEDIDA', value: 'medida' },
+        { text: 'Accion', value: 'iron' },
+       
       ],
     };
   },
