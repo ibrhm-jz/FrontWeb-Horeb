@@ -426,16 +426,22 @@ export default {
 
 
     deleteEmpleados(result) {
-      API.delete("borrar-inventario/" + result.id, {
+      var con;
+      con=confirm("¿Esta seguro de eliminar?");
+    if(con==true){
+        API.delete("borrar-inventario/" + result.id, {
         headers: {
           Authorization: "Bearer " + this.token,
         },
       }).then((response) => {
         // eslint-disable-next-line
         console.log(this.result);
-        window.alert("Los datos se han guardado");
+        window.alert("Se elimino!");
         this.getEmpleados();
       });
+    }else{
+    
+    }
     },
 
 BuscarEmpleado() {

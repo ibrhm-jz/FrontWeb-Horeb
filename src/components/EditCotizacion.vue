@@ -62,11 +62,10 @@
               >
             </li>
           </router-link>
-                              <router-link to="/inventario">
+          <router-link to="/inventario">
             <li>
               <a href="#"
-                ><b-icon icon="inboxes-fill"></b-icon
-                >&nbsp;&nbsp;Inventario</a
+                ><b-icon icon="inboxes-fill"></b-icon>&nbsp;&nbsp;Inventario</a
               >
             </li>
           </router-link>
@@ -84,195 +83,214 @@
 
       <!-- Page Content  -->
       <div id="content">
-        <h2>Cotizaciones</h2>
-        <div class="line"></div>
-        <v-card class="padd-card">
-          <div class="row">
-            <div class="col-sm-6">
-              <p>Realiza tus cotizaciones</p>
-            </div>
-            <div class="col-sm-6">
-              <div align="right">
+        <b-container fluid="xl">
+          <h2>Cotizaciones</h2>
+          <div class="line"></div>
+          <v-card class="padd-card" max-width="100%">
+            <div class="row">
+              <div class="col-sm-6">
                 <p>
-                  <span class="titulosecundario" style="color: red !important">
-                    <b-input-group>
-                      <b-input-group-prepend is-text>
-                        No.de Cotizacion
-                      </b-input-group-prepend>
-                      <b-form-input
-                        type="text"
-                        placeholder="Telefono"
-                         class="titulosecundario" style="color: red !important"
-                        v-model="numero_cotizacion"
-                      ></b-form-input>
-                    </b-input-group>
-
-                  </span
-                  >
+                  {{
+                    "Vendedor : " +
+                    this.datosVendedor.nombres +
+                    " " +
+                    this.datosVendedor.apellidos
+                  }}
                 </p>
               </div>
-            </div>
-          </div>
-
-          <div class="row" style="margin-top: -30px; margin-bottom: -20px">
-            <div class="col-sm-6">
-              <b-input-group class="mb-2">
-                <b-input-group-prepend is-text>
-                  <b-icon icon="person-fill"></b-icon>
-                </b-input-group-prepend>
-                <b-form-input
-                  type="text"
-                  placeholder="Nombre"
-                  class="text-mayus"
-                  v-model="nombreEmpresa"
-                ></b-form-input>
-              </b-input-group>
-            </div>
-            <div class="col-sm-6">
-              <b-input-group class="mb-2">
-                <b-input-group-prepend is-text>
-                  <b-icon icon="cursor-fill"></b-icon>
-                </b-input-group-prepend>
-                <b-form-input
-                  type="text"
-                  placeholder="Direccion"
-                  class="text-mayus"
-                  v-model="EmpresaDireccion"
-                ></b-form-input>
-              </b-input-group>
-            </div>
-          </div>
-
-          <div class="row" style="margin-top: -10px">
-            <div class="col-sm-6">
-              <b-input-group class="mb-2">
-                <b-input-group-prepend is-text>
-                  <b-icon icon="telephone-fill"></b-icon>
-                </b-input-group-prepend>
-                <b-form-input
-                  type="text"
-                  placeholder="Telefono"
-                  class="text-mayus"
-                  v-model="EmpresaTelefono"
-                ></b-form-input>
-              </b-input-group>
-            </div>
-            <div class="col-sm-6">
-              <b-input-group class="mb-2">
-                <b-input-group-prepend is-text>
-                  <b-icon icon="flag-fill"></b-icon>
-                </b-input-group-prepend>
-                <b-form-input
-                  type="text"
-                  class="text-mayus"
-                  placeholder="Ciudad"
-                  v-model="EmpresaCiudad"
-                ></b-form-input>
-              </b-input-group>
-            </div>
-          </div>
-
-          <v-simple-table>
-            <thead>
-              <tr>
-                <th>Accion</th>
-                <th>Cantidad</th>
-                <th>Medida</th>
-                <th>Descripcion</th>
-                <th>Precio Unitario</th>
-                <th>Importe</th>
-              </tr>
-            </thead>
-            <tbody class="text-mayus">
-              <tr v-for="(invoice_product, k) in items" :key="k.id">
-                <td scope="row" class="trashIconContainer" width="10px">
-                  <i
-                    class="far fa-trash-alt"
-                    @click="deleteRow(k, invoice_product)"
-                  ></i>
-                </td>
-                <td>
-                  <b-form-input
-                    style="width: 50px"
-                    placeholder="%"
-                    required
-                    v-model="invoice_product.cantidad"
-                    @input="calcularImporte()"
-                  ></b-form-input>
-                </td>
-                <td>
-               
-                  <b-form-input
-                    style="width: 100px"
-                    placeholder="%"
-                    required
-                    v-model="invoice_product.medida.toUpperCase()"
-                  ></b-form-input>
-                </td>
-                <td>
-                  <b-form-input
-                    style="width: 450px;text-transform: uppercase;"
-                    required
-                    class="text-mayus"
-                    v-model="invoice_product.descripcion.toUpperCase()"
-                  ></b-form-input>
-                </td>
-                <td>
-                
-                  <b-form-input
-                    style="width: 110px"
-                    required
-                    v-model="invoice_product.precio_unitario"
-                    @input="calcularImporte()"
-                  ></b-form-input>
-                </td>
-                <td>
-                  <b-form-input
-                    style="width: 110px"
-                    required
-                    v-model="invoice_product.importe"
-                  ></b-form-input>
-                </td>
-              </tr>
-            </tbody>
-          </v-simple-table>
-
-          <hr />
-          <b>
-            <p>
-              <font size="4">
-                <span>Subtotal : {{ total }}</span>
-                <div>IVA 16% : {{ invoice_iva }}</div>
-                <div>Total : {{ invoice_total }}</div>
-                <span>Cantidad en Letras : {{ cantletra }}</span>
-              </font>
-            </p>
-          </b>
-
-          <div id="example">
-            <h6 v-if="boolcerrado">
-              <font color="red">*La venta se cerró y se guardo.</font>
-            </h6>
-          </div>
-          <div class="row">
-            <div class="col-md-8">
-              <div align="left">
-              
-                <b-button squared variant="info" v-b-modal.modal-prevent-closing  
-                  ><b-icon icon="plus"></b-icon>Añadir</b-button
-                >&nbsp;
-                <b-button squared variant="success" v-b-modal.modal-porcentaje
-                  ><b-icon icon="paperclip"></b-icon>Añadir un
-                  porcentaje</b-button
-                >&nbsp;
-                <b-button squared variant="danger" v-b-modal.modal-cerrar
-                  ><b-icon icon="download"></b-icon>Cerrar Cotizacion</b-button
-                >&nbsp;
+              <div class="col-sm-6">
+                <div align="right">
+                  <p>
+                    <span
+                      class="titulosecundario"
+                      style="color: red !important"
+                    >
+                      <b-input-group>
+                        <b-input-group-prepend is-text>
+                          No.de Cotizacion
+                        </b-input-group-prepend>
+                        <b-form-input
+                          type="text"
+                          placeholder="Telefono"
+                          class="titulosecundario"
+                          style="color: red !important"
+                          v-model="numero_cotizacion"
+                        ></b-form-input>
+                      </b-input-group>
+                    </span>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        </v-card>
 
+            <div class="row" style="margin-top: -30px; margin-bottom: -20px">
+              <div class="col-sm-6">
+                <b-input-group class="mb-2">
+                  <b-input-group-prepend is-text>
+                    <b-icon icon="person-fill"></b-icon>
+                  </b-input-group-prepend>
+                  <b-form-input
+                    type="text"
+                    placeholder="Nombre"
+                    class="text-mayus"
+                    v-model="nombreEmpresa"
+                  ></b-form-input>
+                </b-input-group>
+              </div>
+              <div class="col-sm-6">
+                <b-input-group class="mb-2">
+                  <b-input-group-prepend is-text>
+                    <b-icon icon="cursor-fill"></b-icon>
+                  </b-input-group-prepend>
+                  <b-form-input
+                    type="text"
+                    placeholder="Direccion"
+                    class="text-mayus"
+                    v-model="EmpresaDireccion"
+                  ></b-form-input>
+                </b-input-group>
+              </div>
+            </div>
+
+            <div class="row" style="margin-top: -10px">
+              <div class="col-sm-6">
+                <b-input-group class="mb-2">
+                  <b-input-group-prepend is-text>
+                    <b-icon icon="telephone-fill"></b-icon>
+                  </b-input-group-prepend>
+                  <b-form-input
+                    type="text"
+                    placeholder="Telefono"
+                    class="text-mayus"
+                    v-model="EmpresaTelefono"
+                  ></b-form-input>
+                </b-input-group>
+              </div>
+              <div class="col-sm-6">
+                <b-input-group class="mb-2">
+                  <b-input-group-prepend is-text>
+                    <b-icon icon="flag-fill"></b-icon>
+                  </b-input-group-prepend>
+                  <b-form-input
+                    type="text"
+                    class="text-mayus"
+                    placeholder="Ciudad"
+                    v-model="EmpresaCiudad"
+                  ></b-form-input>
+                </b-input-group>
+              </div>
+            </div>
+
+            <v-simple-table width="80%">
+              <thead>
+                <tr>
+                  <th>Accion</th>
+                  <th>Cantidad</th>
+                  <th>Medida</th>
+                  <th>Descripcion</th>
+                  <th>Precio Unitario</th>
+                  <th>Importe</th>
+                </tr>
+              </thead>
+              <tbody class="text-mayus">
+                <tr v-for="(invoice_product, k) in items" :key="k.id">
+                  <td scope="row" class="trashIconContainer" width="10px">
+                    <i
+                      class="far fa-trash-alt"
+                      @click="deleteRow(k, invoice_product)"
+                    ></i>
+                  </td>
+                  <td>
+                    <b-form-input
+                      style="width: 50px"
+                      placeholder="%"
+                      required
+                      v-model="invoice_product.cantidad"
+                      @input="calcularImporte()"
+                    ></b-form-input>
+                  </td>
+                  <td>
+                    <b-form-input
+                      style="width: 100px"
+                      placeholder="%"
+                      required
+                      v-model="invoice_product.medida.toUpperCase()"
+                    ></b-form-input>
+                  </td>
+                  <td>
+                    <b-form-input
+                      style="width: 450px; text-transform: uppercase"
+                      required
+                      class="text-mayus"
+                      v-model="invoice_product.descripcion.toUpperCase()"
+                    ></b-form-input>
+                  </td>
+                  <td>
+                    <b-form-input
+                      style="width: 110px"
+                      required
+                      v-model="invoice_product.precio_unitario"
+                      @input="calcularImporte()"
+                    ></b-form-input>
+                  </td>
+                  <td>
+                    <b-form-input
+                      style="width: 110px"
+                      required
+                      v-model="invoice_product.importe"
+                    ></b-form-input>
+                  </td>
+                </tr>
+              </tbody>
+            </v-simple-table>
+
+            <hr />
+            <b>
+              <p>
+                <font size="4">
+                  <span>Subtotal : {{ total }}</span>
+                  <div>IVA 16% : {{ invoice_iva }}</div>
+                  <div>Total : {{ invoice_total }}</div>
+                  <span>Cantidad en Letras : {{ cantletra }}</span>
+                </font>
+              </p>
+            </b>
+
+            <div id="example">
+              <h6 v-if="boolcerrado">
+                <font color="red">*La venta se cerró y se guardo.</font>
+              </h6>
+            </div>
+            <div class="row">
+              <div class="col-md-8">
+                <div align="left">
+                  <b-button
+                    squared
+                    variant="info"
+                    v-b-modal.modal-prevent-closing
+                    ><b-icon icon="plus"></b-icon>Añadir</b-button
+                  >&nbsp; &nbsp;
+                  <b-button squared variant="success" v-b-modal.modal-porcentaje
+                    ><b-icon icon="paperclip"></b-icon>Añadir un
+                    porcentaje</b-button
+                  >&nbsp;&nbsp;
+                  <b-button
+                    squared
+                    variant="danger"
+                    v-b-modal.modal-cerrar
+                    v-if="boolGuardar"
+                    ><b-icon icon="download"></b-icon>Guardar
+                    Cotizacion</b-button
+                  >&nbsp;
+
+                  <b-button squared variant="danger" @click="exportPDF()"
+                    ><b-icon icon="download"></b-icon>Imprimir</b-button
+                  >
+                </div>
+              </div>
+            </div>
+          </v-card>
+        </b-container>
         <div>
           <b-modal
             id="modal-prevent-closing"
@@ -307,42 +325,53 @@
             </div>
             <br />
 
+            <v-data-table
+              :headers="headers"
+              :items="datosProductos"
+              class="text-mayus"
+            >
+              <template v-slot:item="row">
+                <tr class="text-mayus">
+                  <td>
+                    <font size="1"
+                      ><b>{{ row.item.nombre }}</b></font
+                    >
+                  </td>
 
+                  <td>
+                    <font size="1">{{ row.item.categoria }}</font>
+                  </td>
+                  <td>
+                    <font size="1"
+                      ><b>$ {{ row.item.precio_unitario }}</b></font
+                    >
+                  </td>
+                  <td>
+                    <font size="1">{{ row.item.medida }}</font>
+                  </td>
+                  <td>
+                    <v-text-field
+                      style="width: 50px"
+                      v-model="newEntries[row.item.id]"
+                      placeholder="Cant"
+                      required
+                      onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                    ></v-text-field>
+                  </td>
+                  <td>
+                    <b-button
+                      variant="success"
+                      class="btn-circle.btn-xl"
+                      @click="addNewRow(row.item, newEntries[row.item.id])"
+                    >
+                      <b-icon icon="cart2" aria-label="Añadir"></b-icon>
+                    </b-button>
+                  </td>
+                </tr>
+              </template>
+            </v-data-table>
 
-<v-data-table :headers="headers" :items="datosProductos" class="text-mayus">
-
-      <template v-slot:item="row">
-      
-          <tr class="text-mayus">
-            <td><font size=1><b>{{row.item.nombre}}</b></font></td>
-          
-            <td><font size=1>{{row.item.categoria}}</font></td>
-            <td><font size=1><b>$ {{row.item.precio_unitario}}</b></font></td>
-             <td><font size=1>{{row.item.medida }}</font></td>
- <td>
-                      <v-text-field
-                        style="width: 50px"
-                        v-model="newEntries[row.item.id]"
-                        placeholder="Cant"
-                        required
-                      ></v-text-field>
-                    </td>
-                    <td>
-                      <b-button
-                        variant="success"
-                        class="btn-circle.btn-xl"
-                        @click="addNewRow(row.item, newEntries[row.item.id])"
-                      >
-                        <b-icon icon="cart2" aria-label="Añadir"></b-icon>
-                      </b-button>
-                    </td>
-          </tr>
-           
-      </template>
-     
-    </v-data-table>
-
-<!--
+            <!--
             <v-simple-table height="300px">
               <template v-slot:default>
                 <thead>
@@ -408,7 +437,7 @@
               v-model="PorcentajeGanancia"
             />
             <br />
-           <!-- <v-text-field
+            <!-- <v-text-field
               append-icon="mdi-truck"
               label="Gastos en flete"
               v-model="costo_flete"
@@ -428,20 +457,47 @@
             @ok="GuardaCotizacion"
             ok-variant="success"
           >
-            <v-text-field
-              append-icon="mdi-map"
-              label="Lugar de Entrega"
-              v-model="lugarEntrega"
-              class="text-mayus"
-            />
+            <b-input-group class="mb-2">
+              <b-input-group-prepend is-text>
+                <b-icon icon="map"></b-icon>
+              </b-input-group-prepend>
+              <b-form-input
+                type="text"
+                placeholder="Lugar de entrega"
+                class="text-mayus"
+                v-model="lugarEntrega"
+              ></b-form-input>
+            </b-input-group>
 
             <br />
-            <v-text-field
-              append-icon="mdi-note-plus"
-              label="Tiempo de Entrega"
-              v-model="nota"
-              class="text-mayus"
-            />
+
+            <b-input-group class="mb-2">
+              <b-input-group-prepend is-text>
+                <b-icon icon="clock-fill"></b-icon>
+              </b-input-group-prepend>
+              <b-form-input
+                type="text"
+                placeholder="Tiempo de entrega"
+                class="text-mayus"
+                v-model="nota"
+              ></b-form-input>
+            </b-input-group>
+            <br />
+
+            <b-input-group class="mb-2">
+              <b-input-group-prepend is-text>
+                <b-icon
+                  icon="clock-history
+"
+                ></b-icon>
+              </b-input-group-prepend>
+              <b-form-input
+                type="text"
+                placeholder="Vigencia"
+                class="text-mayus"
+                v-model="vigencia"
+              ></b-form-input>
+            </b-input-group>
           </b-modal>
         </div>
       </div>
@@ -467,15 +523,26 @@ export default {
   mounted() {
     this.BuscarProductos();
     this.getProduct();
+    this.getVendedor();
     this.items = [];
+    var event = new Date();
+    var options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    this.fecha = event.toLocaleDateString("es-ES", options);
   },
   data() {
     return {
- 
       boolcerrado: false,
+      boolGuardar: true,
       numero_cotizacion: 0,
       group: null,
       miUsuario: "",
+      datosVendedor: "",
+      vigencia: "",
       nombreEmpresa: "",
       EmpresaDireccion: "",
       EmpresaTelefono: "",
@@ -487,6 +554,7 @@ export default {
       lugarEntrega: "",
       name: "",
       loading: false,
+      fecha: "",
       // eslint-disable-next-line
       nameState: null,
       // eslint-disable-next-line
@@ -518,19 +586,18 @@ export default {
           precio_unitario: "",
         },
       ],
-             headers: [
+      headers: [
         {
-          text: 'Nombre',
-          align: 'start',
+          text: "Nombre",
+          align: "start",
           sortable: false,
-          value: 'nombre',
+          value: "nombre",
         },
-      
-        { text: 'Categoria', value: 'categoria' },
-        { text: 'Precio Unitario', value: 'precio_unitario' },
-        { text: 'UNIDAD DE MEDIDA', value: 'medida' },
-        { text: 'Accion', value: 'iron' },
-       
+
+        { text: "Categoria", value: "categoria" },
+        { text: "Precio Unitario", value: "precio_unitario" },
+        { text: "UNIDAD DE MEDIDA", value: "medida" },
+        { text: "Accion", value: "iron" },
       ],
     };
   },
@@ -580,6 +647,7 @@ export default {
 
     LlenarDatos() {
       for (var i in this.items) {
+        this.$set(this.items[i], "no_venta", this.numero_cotizacion);
         this.$set(this.items[i], "nombre", this.nombreEmpresa);
         this.$set(this.items[i], "direccion", this.EmpresaDireccion);
         this.$set(this.items[i], "ciudad", this.EmpresaCiudad);
@@ -641,18 +709,15 @@ export default {
         var height = doc.internal.pageSize.getHeight();
         doc.setFontSize(16);
         doc.setTextColor(0, 182, 134);
-        doc.text("Suministros en Tuberia Horeb S.A de C.V ", 40, 40);
+        doc.text("SUMINISTROS EN TUBERIA HOREB S.A. DE C.V.", 40, 40);
         doc.setTextColor(0, 0, 0);
         doc.setFontSize(10);
         doc.text("RFC: STH1607128M9", 40, 55);
         doc.setTextColor(255, 0, 0);
-        doc.text("FOLIO: " + vm.numero_cotizacion, 450, 55);
-
-        doc.text(
-          "CLABE INTERBANCARIA: 0021-0070-1420-7691-60    SUCURSAL:7014   CUENTA BANAMEX:207616",
-          40,
-          70
-        );
+        doc.text("FOLIO: " + vm.numero_cotizacion, 400, 55);
+        doc.setTextColor(0, 0, 0);
+        doc.text("FECHA: " + vm.fecha.toUpperCase(), 40, 70);
+        doc.text("VIGENCIA: " + vm.vigencia, 400, 70);
         doc.setLineWidth(0.2);
         doc.line(40, 80, width - 40, 80);
         var img = new Image();
@@ -697,17 +762,30 @@ export default {
             },
           });
           doc.setFontSize(9);
-          doc.text(40, 55, "CANTIDAD EN LETRAS : ");
+          doc.text(40, 20, "CANTIDAD EN LETRAS : ");
           doc.setFontSize(7);
-          doc.text(40, 70, vm.cant_letra.toUpperCase());
+          doc.text(40, 30, vm.cant_letra.toUpperCase());
           doc.text(40, 100, "CONDICIONES");
           doc.text(40, 110, "PRECIOS SUJETOS A CAMBIO SIN PREVIO AVISO");
           doc.text(40, 120, "FORMA DE PAGO: CONTADO ANTICIPADO");
           doc.text(40, 130, "TIEMPO DE ENTREGRA :" + vm.nota.toUpperCase());
           doc.text(
+            400,
+            130,
+            "VENDEDOR: " +
+              vm.datosVendedor.nombres.toUpperCase() +
+              " " +
+              vm.datosVendedor.apellidos.toUpperCase()
+          );
+          doc.text(
             40,
             140,
             "LUGAR DE ENTREGA: :" + vm.lugarEntrega.toUpperCase()
+          );
+          doc.text(
+            400,
+            140,
+            "TELEFONO: " + vm.datosVendedor.telefono.toUpperCase()
           );
           doc.text(
             40,
@@ -723,6 +801,13 @@ export default {
             40,
             170,
             "UNA VEZ ENTREGADO EL MATERIAL NO SE HACEN DEVOLUCIONES."
+          );
+          doc.setFontSize(10);
+          doc.setTextColor(255, 0, 0);
+          doc.text(
+            40,
+            200,
+            "CLABE INTERBANCARIA: 0021-0070-1420-7691-60    SUCURSAL:7014   CUENTA BANAMEX:2076916."
           );
           doc.save("Cotizacion_" + this.numero_cotizacion + ".pdf");
         } else {
@@ -742,16 +827,16 @@ export default {
             showHead: "never",
             startY: finalY,
             theme: "plain",
-            margin: { top: 0, left: width / 2 + 80 },
+            margin: { top: 0, left: width / 2 + 100 },
             styles: {
               halign: "left",
               fontSize: 9,
             },
           });
           doc.setFontSize(9);
-          doc.text(40, finalY + 55, "CANTIDAD EN LETRAS : ");
+          doc.text(40, finalY + 20, "CANTIDAD EN LETRAS : ");
           doc.setFontSize(7);
-          doc.text(40, finalY + 70, vm.cant_letra.toUpperCase());
+          doc.text(40, finalY + 30, vm.cant_letra.toUpperCase());
           doc.text(40, finalY + 100, "CONDICIONES");
           doc.text(
             40,
@@ -762,12 +847,25 @@ export default {
           doc.text(
             40,
             finalY + 130,
-            "TIEMPO DE ENTREGRA :" + vm.nota.toUpperCase()
+            "TIEMPO DE ENTREGA: " + vm.nota.toUpperCase()
+          );
+          doc.text(
+            400,
+            finalY + 130,
+            "VENDEDOR: " +
+              vm.datosVendedor.nombres.toUpperCase() +
+              " " +
+              vm.datosVendedor.apellidos.toUpperCase()
           );
           doc.text(
             40,
             finalY + 140,
-            "LUGAR DE ENTREGA: :" + vm.lugarEntrega.toUpperCase()
+            "LUGAR DE ENTREGA: " + vm.lugarEntrega.toUpperCase()
+          );
+          doc.text(
+            400,
+            finalY + 140,
+            "TELEFONO: " + vm.datosVendedor.telefono.toUpperCase()
           );
           doc.text(
             40,
@@ -783,6 +881,13 @@ export default {
             40,
             finalY + 170,
             "UNA VEZ ENTREGADO EL MATERIAL NO SE HACEN DEVOLUCIONES."
+          );
+          doc.setFontSize(10);
+          doc.setTextColor(255, 0, 0);
+          doc.text(
+            40,
+            finalY + 200,
+            "CLABE INTERBANCARIA: 0021-0070-1420-7691-60    SUCURSAL:7014   CUENTA BANAMEX:2076916."
           );
           doc.save("Cotizacion_" + this.numero_cotizacion + ".pdf");
         }
@@ -865,6 +970,19 @@ export default {
         // eslint-disable-next-line no-console
       });
     },
+    getVendedor() {
+      API.get("user/" + this.miUsuario, {
+        headers: {
+          Authorization: "Bearer " + this.token,
+        },
+      }).then((response) => {
+        this.datosVendedor = response.data;
+
+        /* eslint-disable */
+        console.log("DATOSSSSSSSSSSSS" + this.datosVendedor);
+        // eslint-disable-next-line no-console
+      });
+    },
     getCotizacion() {
       API.get("no-cotizacion", {
         headers: {
@@ -872,7 +990,13 @@ export default {
         },
       }).then((response) => {
         this.numero_cotizacion = response.data.nocotizacion;
-        this.numero_cotizacion = parseInt(this.numero_cotizacion) + 1;
+        console.log("cotizacionOOOOOOOOOO" + this.numero_cotizacion);
+        if (this.numero_cotizacion == null) {
+          this.numero_cotizacion = 0;
+          this.numero_cotizacion = parseInt(this.numero_cotizacion) + 1;
+        } else {
+          this.numero_cotizacion = parseInt(this.numero_cotizacion) + 1;
+        }
       });
     },
 
@@ -913,7 +1037,8 @@ export default {
           console.log(res.data);
 
           this.boolcerrado = true;
-          this.exportPDF();
+          this.boolGuardar = false;
+          //this.exportPDF(); AÑadir BOTON
         })
         .catch((error) => {
           // eslint-disable-next-line
@@ -1108,7 +1233,7 @@ a.article:hover {
   margin-right: 2px;
 }
 .text-mayus {
-  text-transform: uppercase;
+  text-transform: uppercase !important;
 }
 
 /* ---------------------------------------------------

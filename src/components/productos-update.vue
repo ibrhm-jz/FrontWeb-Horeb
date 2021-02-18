@@ -165,8 +165,8 @@
               -->
                <div class="h2 mb-1"><b-icon icon="pencil-square" style="color: #fff;"
               class="rounded-circle bg-success p-2"   v-b-modal.modal-actualizar-producto @click="sendProduct(row.item)"></b-icon>&nbsp;<b-icon icon="trash-fill" style="color: #fff;"
-              class="rounded-circle bg-danger p-2"   v-b-modal.modal-delete ></b-icon>
-              </div>
+              class="rounded-circle bg-danger p-2"   @click="delectProducto(row.item)" ></b-icon>
+              </div> 
      
                
                 
@@ -443,17 +443,31 @@ export default {
       options: [
         { value: null, text: "Seleccione la categoria" },
         { value: "Tuberia", text: "Tuberia" },
-        { value: "Mallas", text: "Mallas" },
         { value: "Valvulas", text: "Valvulas" },
-         { value: "Conexiones", text: "Conexiones" },
+        { value: "Conexiones", text: "Conexiones" },
+        { value: "Gaviones", text: "Gaviones" },
+        { value: "Acero", text: "Acero" },
+        { value: "Brocales", text: "Brocales" },
+        { value: "Herreria", text: "Herreria" },
+        { value: "Aditamentos", text: "Aditamentos" },
+        { value: "Tornilleria", text: "Tornilleria" },
+        { value: "Pegamentos", text: "Pegamentos" },
+        { value: "Tinacos", text: "Tinacos" },
         { value: "Otro", text: "Otro" },
       ],
       optionscategory: [
         { value: null, text: "Todo" },
         { value: "Tuberia", text: "Tuberia" },
-        { value: "Mallas", text: "Mallas" },
         { value: "Valvulas", text: "Valvulas" },
         { value: "Conexiones", text: "Conexiones" },
+        { value: "Acero", text: "Acero" },
+        { value: "Brocales", text: "Brocales" },
+        { value: "Herreria", text: "Herreria" },
+        { value: "Gaviones", text: "Gaviones" },
+         { value: "Aditamentos", text: "Aditamentos" },
+        { value: "Tornilleria", text: "Tornilleria" },
+        { value: "Pegamentos", text: "Pegamentos" },
+        { value: "Tinacos", text: "Tinacos" },
         { value: "Otro", text: "Otro" },
         
       ],
@@ -528,7 +542,7 @@ export default {
           // eslint-disable-next-line
           console.log(res.data);
           this.selected = [],
-          this.getProduct();
+          //this.getProduct();
           window.alert("Los datos se han guardado");
         })
         .catch((error) => {
@@ -551,16 +565,22 @@ export default {
       });
     },
     delectProducto(result) {
-      API.delete("borrar-producto/" + result.id, {
+       var con;
+      con=confirm("¿Esta seguro de eliminar?");
+      if(con==true){
+         API.delete("borrar-producto/" + result.id, {
         headers: {
           Authorization: "Bearer " + this.token,
         },
       }).then((response) => {
         // eslint-disable-next-line
-        console.log(this.result);
         window.alert("Se elimino");
-        this.BuscarProductos();
+       
       });
+      }else{
+        
+      }
+     
     },
         format(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

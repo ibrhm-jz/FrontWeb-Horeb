@@ -2,7 +2,7 @@
   <div width="100%">
     <div class="wrapper">
       <!-- Sidebar  -->
-            <nav id="sidebar">
+      <nav id="sidebar">
         <div class="sidebar-header">
           <div align="center">
             <img
@@ -15,12 +15,12 @@
 
         <ul class="list-unstyled components">
           <p>Administracion Horeb</p>
-                   <router-link to="/Inicio">
-          <li>
-            <a href="#">
-              <b-icon icon="house-door-fill"></b-icon>&nbsp;&nbsp;Inicio</a
-            >
-          </li>
+          <router-link to="/Inicio">
+            <li>
+              <a href="#">
+                <b-icon icon="house-door-fill"></b-icon>&nbsp;&nbsp;Inicio</a
+              >
+            </li>
           </router-link>
           <router-link to="/Clientes">
             <li>
@@ -30,29 +30,30 @@
               >
             </li>
           </router-link>
-           <router-link to="/Empleados">
-          <li>
-            <a href="#"
-              ><b-icon icon="file-person-fill"></b-icon>&nbsp;&nbsp;Empleados</a
-            >
-          </li>
+          <router-link to="/Empleados">
+            <li>
+              <a href="#"
+                ><b-icon icon="file-person-fill"></b-icon
+                >&nbsp;&nbsp;Empleados</a
+              >
+            </li>
           </router-link>
           <router-link to="/Productos">
-          <li>
-            <a href="#"
-              ><b-icon icon="cart-fill"></b-icon>&nbsp;&nbsp;Productos</a
-            >
-          </li>
+            <li>
+              <a href="#"
+                ><b-icon icon="cart-fill"></b-icon>&nbsp;&nbsp;Productos</a
+              >
+            </li>
           </router-link>
           <router-link to="/Cotizacion">
-          <li>
-            <a href="#"
-              ><b-icon icon="file-earmark-check-fill"></b-icon
-              >&nbsp;&nbsp;Cotizacion</a
-            >
-          </li>
+            <li>
+              <a href="#"
+                ><b-icon icon="file-earmark-check-fill"></b-icon
+                >&nbsp;&nbsp;Cotizacion</a
+              >
+            </li>
           </router-link>
-                    <router-link to="/editCotizacion">
+          <router-link to="/editCotizacion">
             <li>
               <a href="#"
                 ><b-icon icon="file-earmark-check-fill"></b-icon
@@ -60,11 +61,10 @@
               >
             </li>
           </router-link>
-                              <router-link to="/inventario">
+          <router-link to="/inventario">
             <li>
               <a href="#"
-                ><b-icon icon="inboxes-fill"></b-icon
-                >&nbsp;&nbsp;Inventario</a
+                ><b-icon icon="inboxes-fill"></b-icon>&nbsp;&nbsp;Inventario</a
               >
             </li>
           </router-link>
@@ -73,16 +73,12 @@
         <br />
         <ul class="list-unstyled CTAs">
           <li>
-            <a
-             @click="logout"
-              href=""
-            >
+            <a @click="logout" href="">
               <b-icon icon="door-open-fill"></b-icon>&nbsp;&nbsp;¿Salir?</a
             >
           </li>
         </ul>
       </nav>
-
 
       <!-- Page Content  -->
       <div id="content">
@@ -90,17 +86,21 @@
         <div class="line"></div>
         <v-card elevation="2" tile class="padd-card">
           <b-input-group class="mt-3">
-            <b-form-input placeholder="Buscar" v-model="searchnombres" v-on:keyup.enter="BuscarClientes"></b-form-input>
+            <b-form-input
+              placeholder="Buscar"
+              v-model="searchnombres"
+              v-on:keyup.enter="BuscarClientes"
+            ></b-form-input>
             <b-input-group-append>
-              <b-button squared variant="info"  @click="BuscarClientes">
+              <b-button squared variant="info" @click="BuscarClientes">
                 <b-icon icon="search"></b-icon
               ></b-button>
             </b-input-group-append>
-                                                            <b-form-select
+            <b-form-select
               v-model="category"
               :options="optionscategory"
               @change="FiltroProducto()"
-               style="margin-left: 50px"
+              style="margin-left: 50px"
             ></b-form-select>
 
             <b-button
@@ -114,25 +114,57 @@
           </b-input-group>
           <br />
 
-<v-data-table :headers="headers" :items="dataClientes" class="text-mayus">
+          <v-data-table
+            :headers="headers"
+            :items="dataClientes"
+            class="text-mayus"
+          >
+            <template v-slot:item="row">
+              <tr class="text-mayus">
+                <td>
+                  <font size="1"
+                    ><b>{{
+                      row.item.nombres + " " + row.item.apellidos
+                    }}</b></font
+                  >
+                </td>
+                <td>
+                  <font size="1">{{ row.item.correo }}</font>
+                </td>
+                <td>
+                  <font size="1">{{ row.item.empresa }}</font>
+                </td>
+                <td>
+                  <font size="1">{{ row.item.direccion }}</font>
+                </td>
+                <td>
+                  <font size="1">{{ row.item.telefono }}</font>
+                </td>
+                <td>
+                  <font size="1"
+                    ><b>{{ row.item.vendedor }}</b></font
+                  >
+                </td>
+                <td>
+                  <div class="h2 mb-0">
+                    <b-icon
+                      icon="pencil-square"
+                      style="color: #fff;"
+                      class="rounded-circle bg-success p-2"
+                      v-b-modal.modal-update
+                      @click="sendUser(row.item)"
+                    ></b-icon>
+                    &nbsp;
+                    <b-icon
+                      icon="trash-fill"
+                      style="color: #fff;"
+                      class="rounded-circle bg-danger p-2"
+                      v-b-modal.modal-delete
+                      @click="deleteClientes(row.item)"
+                    ></b-icon>
+                  </div>
 
-      <template v-slot:item="row">
-      
-          <tr class="text-mayus">
-            <td><font size=1><b>{{row.item.nombres +" "+ row.item.apellidos}}</b></font></td>
-            <td><font size=1>{{row.item.correo}}</font></td>
-            <td><font size=1>{{row.item.empresa}}</font></td>
-            <td><font size=1>{{row.item.direccion}}</font></td>
-            <td><font size=1>{{row.item.telefono}}</font></td>
-             <td><font size=1><b>{{row.item.vendedor }}</b></font></td>
-            <td>
-             <div class="h2 mb-0"><b-icon icon="pencil-square" style="color: #fff;"
-              class="rounded-circle bg-success p-2"   v-b-modal.modal-update @click="sendUser(row.item)"></b-icon>
-              &nbsp; <b-icon icon="trash-fill" style="color: #fff;"
-              class="rounded-circle bg-danger p-2"   v-b-modal.modal-delete @click="deleteClientes(row.item)"></b-icon></div>
-          
-               
-               <!--
+                  <!--
                  <b-button
                       squared
                       variant="info"
@@ -153,15 +185,12 @@
                       <b-icon icon="trash-fill"></b-icon
                     ></b-button>
                     -->
-            </td>
-          </tr>
-           
-      </template>
-     
-    </v-data-table>
+                </td>
+              </tr>
+            </template>
+          </v-data-table>
 
-
-<!--
+          <!--
           <v-simple-table>
             <template v-slot:default>
               <thead>
@@ -208,7 +237,6 @@
             </template>
           </v-simple-table>
             -->
-          
         </v-card>
 
         <div>
@@ -281,7 +309,7 @@
                 ></b-form-input>
                 <br />
                 <div>
-                Seleccionar vendedor:
+                  Seleccionar vendedor:
                   <b-form-select
                     v-model="selected"
                     :options="dataVendedores"
@@ -364,7 +392,7 @@
                 ></b-form-input>
                 <br />
                 <div>
-                Seleccionar vendedor:
+                  Seleccionar vendedor:
                   <b-form-select
                     v-model="selected"
                     :options="dataVendedores"
@@ -389,7 +417,7 @@ export default {
     this.miUsuario = localStorage.getItem("userId");
     if (this.token == null || this.token == "") {
       this.$router.push("/login");
-    }else{
+    } else {
       this.getVendedores();
     }
   },
@@ -401,14 +429,14 @@ export default {
     return {
       drawer: false,
       group: null,
-      miUsuario:"",
+      miUsuario: "",
       name: "",
       token: "",
       nameState: null,
       submittedNames: [],
       dataClientes: [],
       dataUsuario: [],
-      
+
       // eslint-disable-next-line
       nombres: "",
       searchnombres: "",
@@ -421,20 +449,19 @@ export default {
       categoria: "",
       selected: null,
       category: null,
-             headers: [
+      headers: [
         {
-          text: 'Nombre',
-          align: 'start',
+          text: "Nombre",
+          align: "start",
           sortable: false,
-          value: 'nombre',
+          value: "nombre",
         },
-        { text: 'CORREO', value: 'cantidad_existencia' },
-        { text: 'RAZON', value: 'categoria' },
-        { text: 'DIRECCION', value: 'precio_unitario' },
-        { text: 'TELEFONO', value: 'medida' },
-        { text: 'VENDEDOR', value: 'vendedor' },
-        { text: 'Accion', value: 'iron' },
-       
+        { text: "CORREO", value: "cantidad_existencia" },
+        { text: "RAZON", value: "categoria" },
+        { text: "DIRECCION", value: "precio_unitario" },
+        { text: "TELEFONO", value: "medida" },
+        { text: "VENDEDOR", value: "vendedor" },
+        { text: "Accion", value: "iron" },
       ],
       options: [
         { value: null, text: "Seleccione la categoria" },
@@ -442,23 +469,21 @@ export default {
         { value: "Mallas", text: "Mallas" },
         { value: "Valvulas", text: "Valvulas" },
       ],
-        optionscategory: [
+      optionscategory: [
         { value: null, text: "Todo" },
         { value: "1", text: "Mis clientes" },
-     
-      
       ],
       dataVendedores: [],
       selectedUser: [],
     };
   },
   methods: {
-            logout(){
-      localStorage.removeItem('userToken')
-      this.$router.push("/")
+    logout() {
+      localStorage.removeItem("userToken");
+      this.$router.push("/");
     },
-        FiltroProducto() {
-          console.log(this.miUsuario)
+    FiltroProducto() {
+      console.log(this.miUsuario);
       if (this.category == null) {
         this.getClientes();
       } else {
@@ -482,8 +507,8 @@ export default {
           });
       }
     },
-    Limpiar: function () {
-      (this.nombres = ""),
+    Limpiar: function() {
+        (this.nombres = ""),
         (this.apellidos = ""),
         (this.direccion = ""),
         (this.telefono = ""),
@@ -491,52 +516,63 @@ export default {
         (this.empresa = "");
     },
 
-
     RegistrarCliente() {
-      if(this.nombres==""||this.apellidos==""|| this.direccion==""|| this.telefono==""||this.correo==""||this.empresa==""){
+      if (
+        this.nombres == "" ||
+        this.apellidos == "" ||
+        this.direccion == "" ||
+        this.telefono == "" ||
+        this.correo == "" ||
+        this.empresa == ""
+      ) {
         window.alert("No se guardo ya que hay campos vacios");
-      }else{
-              const data = {
-        nombres: this.nombres,
-        apellidos: this.apellidos,
-        direccion: this.direccion,
-        telefono: this.telefono,
-        correo: this.correo,
-        empresa: this.empresa,
-        users_id: this.selected,
-      };
-      API.post("registro-cliente", data, {
-        headers: {
-          Authorization: "Bearer " + this.token,
-        },
-      })
-        .then((res) => {
-          // eslint-disable-next-line
-          console.log(res.data);
-          this.Limpiar();
-          this.getClientes();
-          window.alert("Los datos se han guardado");
+      } else {
+        const data = {
+          nombres: this.nombres,
+          apellidos: this.apellidos,
+          direccion: this.direccion,
+          telefono: this.telefono,
+          correo: this.correo,
+          empresa: this.empresa,
+          users_id: this.selected,
+        };
+        API.post("registro-cliente", data, {
+          headers: {
+            Authorization: "Bearer " + this.token,
+          },
         })
-        .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-          window.alert(error);
-        });
+          .then((res) => {
+            // eslint-disable-next-line
+            console.log(res.data);
+            this.Limpiar();
+            this.getClientes();
+            window.alert("Los datos se han guardado");
+          })
+          .catch((error) => {
+            // eslint-disable-next-line
+            console.error(error);
+            window.alert(error);
+          });
       }
     },
     deleteClientes(result) {
-      API.delete("borrar-cliente/" + result.id, {
-        headers: {
-          Authorization: "Bearer " + this.token,
-        },
-      }).then((response) => {
-        // eslint-disable-next-line
-        console.log(this.result);
-        window.alert("Los datos se han guardado");
-        this.getClientes();
-      });
+      var con;
+      con = confirm("¿Esta seguro de eliminar?");
+      if (con == true) {
+        API.delete("borrar-cliente/" + result.id, {
+          headers: {
+            Authorization: "Bearer " + this.token,
+          },
+        }).then((response) => {
+          // eslint-disable-next-line
+          console.log(this.result);
+          window.alert("Se elimino");
+          this.getClientes();
+        });
+      } else {
+      }
     },
-            getClientes() {
+    getClientes() {
       const data = {
         nombres: this.searchnombres,
       };
@@ -558,41 +594,41 @@ export default {
         });
     },
     ActualizarCliente() {
-       if(this.nombres==""||this.apellidos==""|| this.direccion==""|| this.telefono==""||this.correo==""||this.empresa==""){
-        window.alert("No se guardo ya que hay campos vacios");
-      }else{
+      if (this.selected == null) {
+        window.alert("Datos incompletos,selecciona un vendedor");
+      } else {
         const data = {
-        nombres: this.selectedUser.nombres,
-        apellidos: this.selectedUser.apellidos,
-        direccion: this.selectedUser.direccion,
-        telefono: this.selectedUser.telefono,
-        correo: this.selectedUser.correo,
-        empresa: this.selectedUser.empresa,
-        users_id: this.selected,
-      };
-      API.put("actualizar-cliente/" + this.selectedUser.id, data, {
-        headers: {
-          Authorization: "Bearer " + this.token,
-        },
-      })
-        .then((res) => {
-          // eslint-disable-next-line
-          console.log(res.data);
-          this.selected = [];
-          this.Limpiar();
-          this.getClientes();
-          window.alert("Los datos se han guardado");
+          nombres: this.selectedUser.nombres,
+          apellidos: this.selectedUser.apellidos,
+          direccion: this.selectedUser.direccion,
+          telefono: this.selectedUser.telefono,
+          correo: this.selectedUser.correo,
+          empresa: this.selectedUser.empresa,
+          users_id: this.selected,
+        };
+        API.put("actualizar-cliente/" + this.selectedUser.id, data, {
+          headers: {
+            Authorization: "Bearer " + this.token,
+          },
         })
-        .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-          window.alert(error);
-        });
+          .then((res) => {
+            // eslint-disable-next-line
+            console.log(res.data);
+            this.selected = [];
+            this.Limpiar();
+            //this.getClientes();
+            window.alert("Los datos se han guardado");
+          })
+          .catch((error) => {
+            // eslint-disable-next-line
+            console.error(error);
+            window.alert(error);
+          });
       }
-      
     },
-    sendUser(item) {
-      this.selectedUser = item;
+    sendUser(row) {
+      this.selectedUser = row;
+      console.log;
     },
     getVendedores() {
       API.get("user", {
@@ -608,8 +644,8 @@ export default {
       });
     },
   },
-  computed:{
-        BuscarClientes() {
+  computed: {
+    BuscarClientes() {
       const data = {
         nombres: this.searchnombres,
       };
@@ -630,7 +666,7 @@ export default {
           window.alert(error);
         });
     },
-  }
+  },
 };
 </script>
 <style scoped>
@@ -771,7 +807,7 @@ a.article:hover {
   padding: 20px;
   min-height: 100vh;
   transition: all 0.3s;
-  background:  #fff;
+  background: #fff;
 }
 .padd-card {
   padding-left: 20px;
@@ -803,4 +839,3 @@ a.article:hover {
   }
 }
 </style>
-
