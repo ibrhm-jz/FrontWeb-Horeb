@@ -427,23 +427,41 @@ export default {
       }
     },
     deleteClientes(result) {
-      var con;
-      con = confirm("¿Esta seguro de eliminar?");
-      if (con == true) {
-        API.delete("borrar-cliente/" + result.id, {
-          headers: {
-            Authorization: "Bearer " + this.token,
-          },
-        }).then(() => {
-          this.$swal({
-            title: 'Informacion',
-            text: 'Se elimino con éxito',
-            icon: 'success',
+      console.log(result)
+      this.$swal({
+        title: 'Eliminar',
+        text: '¿Realamente desea eliminar?',
+        icon: 'question',
+        confirmButtonText: 'Si,eliminar',
+        showCancelButton: true,
+        confirmButtonColor: 'red',
+      }).then((res) => {
+        if (res.isConfirmed) {
+          API.delete("borrar-cliente/" + result.id, {
+            headers: {
+              Authorization: "Bearer " + this.token,
+            },
+          }).then(() => {
+            this.$swal({
+              title: 'Información',
+              text: 'Se elimino con éxito',
+              icon: 'success',
+              confirmButtonText: 'Continuar'
+            });
+            this.getClientes();
+          }).catch((error)=>{
+            console.log(error)
+            this.$swal({
+            title: 'Error',
+            text: 'Lo sentimos, ocurrió un error ' + error,
+            icon: 'error',
             confirmButtonText: 'Continuar'
           });
-          this.getClientes();
-        });
-      }
+          });
+        }
+
+      });
+
     },
     getClientes() {
       const data = {
@@ -455,12 +473,7 @@ export default {
         },
       })
         .then((res) => {
-          this.$swal({
-            title: 'Informacion',
-            text: 'Los datos se han guardado',
-            icon: 'success',
-            confirmButtonText: 'Continuar'
-          });
+          this.dataClientes = res.data;
         })
         .catch((error) => {
           this.$swal({
@@ -536,20 +549,15 @@ export default {
       })
         .then((res) => {
           this.dataClientes = res.data;
-          this.$swal({
-              title: 'Informacion',
-              text: 'Los datos se han guardado',
-              icon: 'success',
-              confirmButtonText: 'Continuar'
-            });
+         
         })
         .catch((error) => {
           this.$swal({
-              title: 'Error',
-              text: 'Lo sentimos, ocurrió un error ' + error,
-              icon: 'error',
-              confirmButtonText: 'Continuar'
-            });
+            title: 'Error',
+            text: 'Lo sentimos, ocurrió un error ' + error,
+            icon: 'error',
+            confirmButtonText: 'Continuar'
+          });
         });
     },
   },

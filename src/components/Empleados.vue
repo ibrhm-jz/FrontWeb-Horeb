@@ -516,12 +516,6 @@ BuscarEmpleado() {
       })
         .then((res) => {
          this.dataEmpleados = res.data;
-         this.$swal({
-            title: 'Informacion',
-            text: 'Los datos se han guardado',
-            icon: 'success',
-            confirmButtonText: 'Continuar'
-          });
         })
         .catch((error) => {
           this.$swal({
