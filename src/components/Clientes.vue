@@ -5,11 +5,7 @@
       <nav id="sidebar">
         <div class="sidebar-header">
           <div align="center">
-            <img
-              src="../assets/logo-nuevo.png"
-              class="d-inline-block align-top"
-              width="150px"
-            />
+            <img src="../assets/logo-nuevo.png" class="d-inline-block align-top" width="150px" />
           </div>
         </div>
 
@@ -18,54 +14,50 @@
           <router-link to="/Inicio">
             <li>
               <a href="#">
-                <b-icon icon="house-door-fill"></b-icon>&nbsp;&nbsp;Inicio</a
-              >
+                <b-icon icon="house-door-fill"></b-icon>&nbsp;&nbsp;Inicio
+              </a>
             </li>
           </router-link>
           <router-link to="/Clientes">
             <li>
-              <a href="#"
-                ><b-icon icon="person-lines-fill"></b-icon
-                >&nbsp;&nbsp;Clientes</a
-              >
+              <a href="#">
+                <b-icon icon="person-lines-fill"></b-icon>&nbsp;&nbsp;Clientes
+              </a>
             </li>
           </router-link>
           <router-link to="/Empleados">
             <li>
-              <a href="#"
-                ><b-icon icon="file-person-fill"></b-icon
-                >&nbsp;&nbsp;Empleados</a
-              >
+              <a href="#">
+                <b-icon icon="file-person-fill"></b-icon>&nbsp;&nbsp;Empleados
+              </a>
             </li>
           </router-link>
           <router-link to="/Productos">
             <li>
-              <a href="#"
-                ><b-icon icon="cart-fill"></b-icon>&nbsp;&nbsp;Productos</a
-              >
+              <a href="#">
+                <b-icon icon="cart-fill"></b-icon>&nbsp;&nbsp;Productos
+              </a>
             </li>
           </router-link>
           <router-link to="/Cotizacion">
             <li>
-              <a href="#"
-                ><b-icon icon="file-earmark-check-fill"></b-icon
-                >&nbsp;&nbsp;Cotizacion</a
-              >
+              <a href="#">
+                <b-icon icon="file-earmark-check-fill"></b-icon>&nbsp;&nbsp;Cotizacion
+              </a>
             </li>
           </router-link>
           <router-link to="/editCotizacion">
             <li>
-              <a href="#"
-                ><b-icon icon="file-earmark-check-fill"></b-icon
-                >&nbsp;&nbsp;Editar Cotizacion</a
-              >
+              <a href="#">
+                <b-icon icon="file-earmark-check-fill"></b-icon>&nbsp;&nbsp;Editar Cotizacion
+              </a>
             </li>
           </router-link>
           <router-link to="/inventario">
             <li>
-              <a href="#"
-                ><b-icon icon="inboxes-fill"></b-icon>&nbsp;&nbsp;Inventario</a
-              >
+              <a href="#">
+                <b-icon icon="inboxes-fill"></b-icon>&nbsp;&nbsp;Inventario
+              </a>
             </li>
           </router-link>
         </ul>
@@ -74,8 +66,8 @@
         <ul class="list-unstyled CTAs">
           <li>
             <a @click="logout" href="">
-              <b-icon icon="door-open-fill"></b-icon>&nbsp;&nbsp;¿Salir?</a
-            >
+              <b-icon icon="door-open-fill"></b-icon>&nbsp;&nbsp;¿Salir?
+            </a>
           </li>
         </ul>
       </nav>
@@ -86,47 +78,28 @@
         <div class="line"></div>
         <v-card elevation="2" tile class="padd-card">
           <b-input-group class="mt-3">
-            <b-form-input
-              placeholder="Buscar"
-              v-model="searchnombres"
-              v-on:keyup.enter="BuscarClientes"
-            ></b-form-input>
+            <b-form-input placeholder="Buscar" v-model="searchnombres" v-on:keyup.enter="BuscarClientes"></b-form-input>
             <b-input-group-append>
               <b-button squared variant="info" @click="BuscarClientes">
-                <b-icon icon="search"></b-icon
-              ></b-button>
+                <b-icon icon="search"></b-icon>
+              </b-button>
             </b-input-group-append>
-            <b-form-select
-              v-model="category"
-              :options="optionscategory"
-              @change="FiltroProducto()"
-              style="margin-left: 50px"
-            ></b-form-select>
+            <b-form-select v-model="category" :options="optionscategory" @change="FiltroProducto()"
+              style="margin-left: 50px"></b-form-select>
 
-            <b-button
-              squared
-              variant="success"
-              style="margin-left: 50px"
-              v-b-modal.modal-prevent-closing
-            >
-              <b-icon icon="plus"></b-icon>Nuevo Registro</b-button
-            >
+            <b-button squared variant="success" style="margin-left: 50px" v-b-modal.modal-prevent-closing>
+              <b-icon icon="plus"></b-icon>Nuevo Registro
+            </b-button>
           </b-input-group>
           <br />
 
-          <v-data-table
-            :headers="headers"
-            :items="dataClientes"
-            class="text-mayus"
-          >
+          <v-data-table :headers="headers" :items="dataClientes" class="text-mayus">
             <template v-slot:item="row">
               <tr class="text-mayus">
                 <td>
-                  <font size="1"
-                    ><b>{{
+                  <font size="1"><b>{{
                       row.item.nombres + " " + row.item.apellidos
-                    }}</b></font
-                  >
+                  }}</b></font>
                 </td>
                 <td>
                   <font size="1">{{ row.item.correo }}</font>
@@ -141,27 +114,15 @@
                   <font size="1">{{ row.item.telefono }}</font>
                 </td>
                 <td>
-                  <font size="1"
-                    ><b>{{ row.item.vendedor }}</b></font
-                  >
+                  <font size="1"><b>{{ row.item.vendedor }}</b></font>
                 </td>
                 <td>
                   <div class="h2 mb-0">
-                    <b-icon
-                      icon="pencil-square"
-                      style="color: #fff;"
-                      class="rounded-circle bg-success p-2"
-                      v-b-modal.modal-update
-                      @click="sendUser(row.item)"
-                    ></b-icon>
+                    <b-icon icon="pencil-square" style="color: #fff;" class="rounded-circle bg-success p-2"
+                      v-b-modal.modal-update @click="sendUser(row.item)"></b-icon>
                     &nbsp;
-                    <b-icon
-                      icon="trash-fill"
-                      style="color: #fff;"
-                      class="rounded-circle bg-danger p-2"
-                      v-b-modal.modal-delete
-                      @click="deleteClientes(row.item)"
-                    ></b-icon>
+                    <b-icon icon="trash-fill" style="color: #fff;" class="rounded-circle bg-danger p-2"
+                      v-b-modal.modal-delete @click="deleteClientes(row.item)"></b-icon>
                   </div>
 
                   <!--
@@ -240,83 +201,32 @@
         </v-card>
 
         <div>
-          <b-modal
-            id="modal-prevent-closing"
-            ref="modal"
-            title="Registrar Cliente"
-            centered
-            @show="resetModal"
-            @hidden="resetModal"
-            @ok="RegistrarCliente"
-            ok-variant="success"
-          >
+          <b-modal id="modal-prevent-closing" ref="modal" title="Registrar Cliente" centered @show="resetModal"
+            @hidden="resetModal" @ok="RegistrarCliente" ok-variant="success">
             <form ref="form" @submit.stop.prevent="handleSubmit">
               <b-form-group :state="nameState" invalid-feedback="*Requerido">
-                <b-form-input
-                  id="nombres"
-                  v-model="nombres"
-                  :state="nameState"
-                  required
-                  placeholder="Nombres"
-                  class="text-mayus"
-                ></b-form-input>
+                <b-form-input id="nombres" v-model="nombres" :state="nameState" required placeholder="Nombres"
+                  class="text-mayus"></b-form-input>
                 <br />
-                <b-form-input
-                  id="apellidos"
-                  v-model="apellidos"
-                  :state="nameState"
-                  required
-                  placeholder="Apellidos"
-                  type="text"
-                  class="text-mayus"
-                ></b-form-input>
+                <b-form-input id="apellidos" v-model="apellidos" :state="nameState" required placeholder="Apellidos"
+                  type="text" class="text-mayus"></b-form-input>
                 <br />
-                <b-form-input
-                  id="direccion"
-                  v-model="direccion"
-                  :state="nameState"
-                  required
-                  placeholder="Direccion"
-                  type="text"
-                  class="text-mayus"
-                ></b-form-input>
+                <b-form-input id="direccion" v-model="direccion" :state="nameState" required placeholder="Direccion"
+                  type="text" class="text-mayus"></b-form-input>
                 <br />
-                <b-form-input
-                  id="correo"
-                  v-model="correo"
-                  :state="nameState"
-                  required
-                  placeholder="Correo"
-                  class="text-mayus"
-                ></b-form-input>
+                <b-form-input id="correo" v-model="correo" :state="nameState" required placeholder="Correo"
+                  class="text-mayus"></b-form-input>
                 <br />
-                <b-form-input
-                  id="correo"
-                  v-model="telefono"
-                  :state="nameState"
-                  required
-                  placeholder="Telefono"
-                  class="text-mayus"
-                ></b-form-input>
+                <b-form-input id="correo" v-model="telefono" :state="nameState" required placeholder="Telefono"
+                  class="text-mayus"></b-form-input>
                 <br />
-                <b-form-input
-                  id="empresa"
-                  v-model="empresa"
-                  :state="nameState"
-                  required
-                  placeholder="Razon Social"
-                  class="text-mayus"
-                ></b-form-input>
+                <b-form-input id="empresa" v-model="empresa" :state="nameState" required placeholder="Razon Social"
+                  class="text-mayus"></b-form-input>
                 <br />
                 <div>
                   Seleccionar vendedor:
-                  <b-form-select
-                    v-model="selected"
-                    :options="dataVendedores"
-                    value-field="id"
-                    text-field="nombres"
-                    class="text-mayus"
-                  ></b-form-select>
+                  <b-form-select v-model="selected" :options="dataVendedores" value-field="id" text-field="nombres"
+                    class="text-mayus"></b-form-select>
                 </div>
               </b-form-group>
             </form>
@@ -324,82 +234,32 @@
         </div>
 
         <div>
-          <b-modal
-            id="modal-update"
-            ref="modal"
-            title="Registrar Cliente"
-            centered
-            @show="resetModal"
-            @hidden="resetModal"
-            @ok="ActualizarCliente"
-            ok-variant="success"
-          >
+          <b-modal id="modal-update" ref="modal" title="Registrar Cliente" centered @show="resetModal"
+            @hidden="resetModal" @ok="ActualizarCliente" ok-variant="success">
             <form ref="form" @submit.stop.prevent="handleSubmit">
               <b-form-group :state="nameState" invalid-feedback="*Requerido">
-                <b-form-input
-                  id="nombres"
-                  v-model="selectedUser.nombres"
-                  :state="nameState"
-                  required
-                  placeholder="Nombres"
-                  class="text-mayus"
-                ></b-form-input>
+                <b-form-input id="nombres" v-model="selectedUser.nombres" :state="nameState" required
+                  placeholder="Nombres" class="text-mayus"></b-form-input>
                 <br />
-                <b-form-input
-                  id="apellidos"
-                  v-model="selectedUser.apellidos"
-                  :state="nameState"
-                  required
-                  placeholder="Apellidos"
-                  class="text-mayus"
-                  type="text"
-                ></b-form-input>
+                <b-form-input id="apellidos" v-model="selectedUser.apellidos" :state="nameState" required
+                  placeholder="Apellidos" class="text-mayus" type="text"></b-form-input>
                 <br />
-                <b-form-input
-                  id="direccion"
-                  v-model="selectedUser.direccion"
-                  :state="nameState"
-                  required
-                  placeholder="Direccion"
-                  class="text-mayus"
-                  type="text"
-                ></b-form-input>
+                <b-form-input id="direccion" v-model="selectedUser.direccion" :state="nameState" required
+                  placeholder="Direccion" class="text-mayus" type="text"></b-form-input>
                 <br />
-                <b-form-input
-                  id="correo"
-                  v-model="selectedUser.correo"
-                  :state="nameState"
-                  required
-                  placeholder="Correo"
-                  class="text-mayus"
-                ></b-form-input>
+                <b-form-input id="correo" v-model="selectedUser.correo" :state="nameState" required placeholder="Correo"
+                  class="text-mayus"></b-form-input>
                 <br />
-                <b-form-input
-                  id="correo"
-                  v-model="selectedUser.telefono"
-                  :state="nameState"
-                  required
-                  placeholder="Telefono"
-                  class="text-mayus"
-                ></b-form-input>
+                <b-form-input id="correo" v-model="selectedUser.telefono" :state="nameState" required
+                  placeholder="Telefono" class="text-mayus"></b-form-input>
                 <br />
-                <b-form-input
-                  id="empresa"
-                  v-model="selectedUser.empresa"
-                  :state="nameState"
-                  required
-                  placeholder="Razon Social"
-                ></b-form-input>
+                <b-form-input id="empresa" v-model="selectedUser.empresa" :state="nameState" required
+                  placeholder="Razon Social"></b-form-input>
                 <br />
                 <div>
                   Seleccionar vendedor:
-                  <b-form-select
-                    v-model="selected"
-                    :options="dataVendedores"
-                    value-field="id"
-                    text-field="nombres"
-                    class="text-mayus"
-                  ></b-form-select>
+                  <b-form-select v-model="selected" :options="dataVendedores" value-field="id" text-field="nombres"
+                    class="text-mayus"></b-form-select>
                 </div>
               </b-form-group>
             </form>
@@ -483,7 +343,7 @@ export default {
       this.$router.push("/");
     },
     FiltroProducto() {
-      console.log(this.miUsuario);
+
       if (this.category == null) {
         this.getClientes();
       } else {
@@ -496,19 +356,15 @@ export default {
           },
         })
           .then((res) => {
-            // eslint-disable-next-line
-            console.log(res.data);
             this.dataClientes = res.data;
-            //this.getProduct();
           })
           .catch((error) => {
-            // eslint-disable-next-line
-            console.error(error);
+
           });
       }
     },
-    Limpiar: function() {
-        (this.nombres = ""),
+    Limpiar: function () {
+      (this.nombres = ""),
         (this.apellidos = ""),
         (this.direccion = ""),
         (this.telefono = ""),
@@ -525,7 +381,14 @@ export default {
         this.correo == "" ||
         this.empresa == ""
       ) {
-        window.alert("No se guardo ya que hay campos vacios");
+
+        this.$swal({
+          title: 'Atencion',
+          text: 'No se guardo ya que hay campos vacios',
+          icon: 'warning',
+          confirmButtonText: 'Continuar'
+        });
+
       } else {
         const data = {
           nombres: this.nombres,
@@ -542,16 +405,24 @@ export default {
           },
         })
           .then((res) => {
-            // eslint-disable-next-line
-            console.log(res.data);
             this.Limpiar();
             this.getClientes();
-            window.alert("Los datos se han guardado");
+            this.$swal({
+              title: 'Informacion',
+              text: 'Los datos se han guardado con éxito',
+              icon: 'success',
+              confirmButtonText: 'Continuar'
+            });
+
           })
           .catch((error) => {
-            // eslint-disable-next-line
-            console.error(error);
-            window.alert(error);
+            this.$swal({
+              title: 'Error',
+              text: 'Lo sentimos, ocurrió un error ' + error,
+              icon: 'error',
+              confirmButtonText: 'Continuar'
+            });
+
           });
       }
     },
@@ -563,13 +434,15 @@ export default {
           headers: {
             Authorization: "Bearer " + this.token,
           },
-        }).then((response) => {
-          // eslint-disable-next-line
-          console.log(this.result);
-          window.alert("Se elimino");
+        }).then(() => {
+          this.$swal({
+            title: 'Informacion',
+            text: 'Se elimino con éxito',
+            icon: 'success',
+            confirmButtonText: 'Continuar'
+          });
           this.getClientes();
         });
-      } else {
       }
     },
     getClientes() {
@@ -582,15 +455,20 @@ export default {
         },
       })
         .then((res) => {
-          // eslint-disable-next-line
-          console.log(res.data);
-          this.dataClientes = res.data;
-          //window.alert("Los datos se han guardado");
+          this.$swal({
+            title: 'Informacion',
+            text: 'Los datos se han guardado',
+            icon: 'success',
+            confirmButtonText: 'Continuar'
+          });
         })
         .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-          window.alert(error);
+          this.$swal({
+            title: 'Error',
+            text: 'Lo sentimos, ocurrió un error ' + error,
+            icon: 'error',
+            confirmButtonText: 'Continuar'
+          });
         });
     },
     ActualizarCliente() {
@@ -612,23 +490,29 @@ export default {
           },
         })
           .then((res) => {
-            // eslint-disable-next-line
-            console.log(res.data);
             this.selected = [];
             this.Limpiar();
             //this.getClientes();
-            window.alert("Los datos se han guardado");
+            this.$swal({
+              title: 'Informacion',
+              text: 'Los datos se han guardado',
+              icon: 'success',
+              confirmButtonText: 'Continuar'
+            });
           })
           .catch((error) => {
-            // eslint-disable-next-line
-            console.error(error);
-            window.alert(error);
+            this.$swal({
+              title: 'Error',
+              text: 'Lo sentimos, ocurrió un error ' + error,
+              icon: 'error',
+              confirmButtonText: 'Continuar'
+            });
           });
       }
     },
     sendUser(row) {
       this.selectedUser = row;
-      console.log;
+
     },
     getVendedores() {
       API.get("user", {
@@ -637,10 +521,6 @@ export default {
         },
       }).then((response) => {
         this.dataVendedores = response.data;
-
-        /* eslint-disable */
-        //console.log(response.data);
-        // eslint-disable-next-line no-console
       });
     },
   },
@@ -655,15 +535,21 @@ export default {
         },
       })
         .then((res) => {
-          // eslint-disable-next-line
-          console.log(res.data);
           this.dataClientes = res.data;
-          //window.alert("Los datos se han guardado");
+          this.$swal({
+              title: 'Informacion',
+              text: 'Los datos se han guardado',
+              icon: 'success',
+              confirmButtonText: 'Continuar'
+            });
         })
         .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-          window.alert(error);
+          this.$swal({
+              title: 'Error',
+              text: 'Lo sentimos, ocurrió un error ' + error,
+              icon: 'error',
+              confirmButtonText: 'Continuar'
+            });
         });
     },
   },
@@ -675,6 +561,7 @@ export default {
 */
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
 body {
   font-family: "Poppins", sans-serif;
   background: #fafafa;
@@ -751,7 +638,7 @@ a:focus {
   background: #fff;
 }
 
-#sidebar ul li.active > a,
+#sidebar ul li.active>a,
 a[aria-expanded="true"] {
   color: #fff;
   background: #6d7fcc;
@@ -809,16 +696,19 @@ a.article:hover {
   transition: all 0.3s;
   background: #fff;
 }
+
 .padd-card {
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
 .padd-button {
   margin-left: 2px;
   margin-right: 2px;
 }
+
 .text-mayus {
   text-transform: uppercase;
 }
@@ -831,9 +721,11 @@ a.article:hover {
   #sidebar {
     margin-left: -250px;
   }
+
   #sidebar.active {
     margin-left: 0;
   }
+
   #sidebarCollapse span {
     display: none;
   }

@@ -370,52 +370,6 @@
                 </tr>
               </template>
             </v-data-table>
-
-            <!--
-            <v-simple-table height="300px">
-              <template v-slot:default>
-                <thead>
-                  <tr>
-                    <th class="text-left">Nombre</th>
-
-                    <th class="text-left">Medida</th>
-                    <th class="text-left">Precio unitario</th>
-                    <th class="text-left">Existencia</th>
-                    <th class="text-left">Cantidad</th>
-                    <th class="text-left">Accion</th>
-                  </tr>
-                </thead>
-                <tbody  class="text-mayus">
-                  <!-- newEntries: {{ newEntries }} //Aqui cierra esta cosa pero se flipaba el coment
-                  <tr v-for="products in datosProductos" :key="products.id">
-                    <td> <font size=1>{{ products.nombre }}</font></td>
-
-                    <td><font size=1>{{ products.medida }}</font></td>
-                    <td><font size=1><b>${{ products.precio_unitario }}</b></font></td>
-                    <td><font size=1>{{ products.cantidad_existencia }}</font></td>
-                    <td>
-                      <v-text-field
-                        style="width: 50px"
-                        v-model="newEntries[products.id]"
-                        placeholder="Cant"
-                        required
-                      ></v-text-field>
-                    </td>
-
-                    <td>
-                      <b-button
-                        variant="success"
-                        class="btn-circle.btn-xl"
-                        @click="addNewRow(products, newEntries[products.id])"
-                      >
-                        <b-icon icon="cart2" aria-label="Añadir"></b-icon>
-                      </b-button>
-                    </td>
-                  </tr>
-                </tbody>
-              </template>
-            </v-simple-table>
-            -->
           </b-modal>
         </div>
         <!-- Modales -->
@@ -666,8 +620,6 @@ export default {
 
         this.$set(this.items[i], "user_id", this.miUsuario);
       }
-      // eslint-disable-next-line
-      console.log(this.items);
     },
     resetModal() {
       this.name = "";
@@ -678,8 +630,6 @@ export default {
     },
     deleteRow(index, invoice_product) {
       var idx = this.items.indexOf(invoice_product);
-      /* eslint-disable */
-      console.log(idx, index);
       if (idx > -1) {
         this.items.splice(idx, 1);
         this.invoice_total = "0.00";
@@ -926,10 +876,6 @@ export default {
             costo_flete: "",
             ganancia: "",
           });
-
-          /* eslint-disable */
-          console.log(response.data.nombre);
-          // eslint-disable-next-line no-console
         });
       }
       this.items = [];
@@ -964,10 +910,6 @@ export default {
       }).then((response) => {
         this.loading = false;
         this.datosProductos = response.data;
-
-        /* eslint-disable */
-        console.log(this.datosProductos);
-        // eslint-disable-next-line no-console
       });
     },
     getVendedor() {
@@ -977,10 +919,6 @@ export default {
         },
       }).then((response) => {
         this.datosVendedor = response.data;
-
-        /* eslint-disable */
-        console.log("DATOSSSSSSSSSSSS" + this.datosVendedor);
-        // eslint-disable-next-line no-console
       });
     },
     getCotizacion() {
@@ -990,7 +928,6 @@ export default {
         },
       }).then((response) => {
         this.numero_cotizacion = response.data.nocotizacion;
-        console.log("cotizacionOOOOOOOOOO" + this.numero_cotizacion);
         if (this.numero_cotizacion == null) {
           this.numero_cotizacion = 0;
           this.numero_cotizacion = parseInt(this.numero_cotizacion) + 1;
@@ -1010,22 +947,27 @@ export default {
         },
       })
         .then((res) => {
-          // eslint-disable-next-line
-          console.log(res.data);
           this.datosProductos = res.data;
-          //window.alert("Los datos se han guardado");
+          this.$swal({
+            title: 'Informacion',
+            text: 'Los datos se han guardado',
+            icon: 'success',
+            confirmButtonText: 'Continuar'
+          });
         })
         .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-          window.alert(error);
+          this.$swal({
+            title: 'Error',
+            text: 'Lo sentimos, ocurrió un error ' + error,
+            icon: 'error',
+            confirmButtonText: 'Continuar'
+          });
         });
     },
 
     GuardaCotizacion() {
       this.LlenarDatos();
       var dataJSON = JSON.stringify(this.items);
-      console.log("EL dATA JSON" + dataJSON);
       API.post("registro-ventas", dataJSON, {
         headers: {
           "Content-Type": "application/json",
@@ -1033,17 +975,17 @@ export default {
         },
       })
         .then((res) => {
-          // eslint-disable-next-line
-          console.log(res.data);
-
           this.boolcerrado = true;
           this.boolGuardar = false;
           //this.exportPDF(); AÑadir BOTON
         })
         .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-          window.alert(error);
+          this.$swal({
+            title: 'Error',
+            text: 'Lo sentimos, ocurrió un error ' + error,
+            icon: 'error',
+            confirmButtonText: 'Continuar'
+          });
         });
     },
   },

@@ -208,15 +208,21 @@ export default {
           Authorization: "Bearer " + this.token,
         },
       })
-        .then((res) => {
-          // eslint-disable-next-line
-          console.log(res.data);        
-          window.alert("Los datos se han guardado");
+        .then((res) => {  
+          this.$swal({
+            title: 'Informacion',
+            text: 'Los datos se han guardado',
+            icon: 'success',
+            confirmButtonText: 'Continuar'
+          });
         })
         .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-          window.alert(error);
+          this.$swal({
+            title: 'Error',
+            text: 'Lo sentimos, ocurrió un error ' + error,
+            icon: 'error',
+            confirmButtonText: 'Continuar'
+          });
         });
     },
   },
@@ -229,13 +235,13 @@ export default {
           },
     }).then((response) => {
       this.datosEmpresa = response.data;
-      /* eslint-disable */
-      console.log(this.datas);
-      // eslint-disable-next-line no-console
     }) .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-          window.alert(error);
+      this.$swal({
+            title: 'Error',
+            text: 'Lo sentimos, ocurrió un error ' + error,
+            icon: 'error',
+            confirmButtonText: 'Continuar'
+          });
         });
   },
 

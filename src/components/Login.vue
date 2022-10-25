@@ -113,20 +113,26 @@ export default {
       API.post("login", data)
         .then((res) => {
           this.loading = false;
-         // window.alert("Los datos se han guardado"+res.data);
+          this.$swal({
+              title: 'Informacion',
+              text: 'Los datos se han guardado con éxito',
+              icon: 'success',
+              confirmButtonText: 'Continuar'
+            });
           localStorage.setItem('userToken', res.data.token)
           localStorage.setItem('userId', res.data.usuario[0].id)
           this.dialog = false;
           router.push({ name: 'Inicio' })
-           // eslint-disable-next-line
-          console.log(res.data.usuario[0].id);
         })  
         .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
             this.dialog = false;
             this.loading = false;
-        window.alert(error);
+            this.$swal({
+              title: 'Error',
+              text: 'Lo sentimos, ocurrió un error ' + error,
+              icon: 'error',
+              confirmButtonText: 'Continuar'
+            });
         });
     },
   }

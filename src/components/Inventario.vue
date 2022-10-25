@@ -327,10 +327,6 @@ export default {
         },
       }).then((response) => {
         this.dataEmpleados = response.data;
-
-        /* eslint-disable */
-        //  console.log(this.dataEmpleados);
-        // eslint-disable-next-line no-console
       });
     },
     Limpiar: function () {
@@ -343,7 +339,12 @@ export default {
 
     RegistrarEmpleado() {
       if(this.concepto=="" || this.entradas=="" || this.existencia==""  || this.salidas==""){
-      window.alert("Rellena los campos");
+        this.$swal({
+          title: 'Atencion',
+          text: 'Rellena los campos',
+          icon: 'warning',
+          confirmButtonText: 'Continuar'
+        });
       }else{
                   const data = {
         salidas:this.salidas,
@@ -357,16 +358,22 @@ export default {
         },
       })
         .then((res) => {
-          // eslint-disable-next-line
-          console.log(res.data);
           this.Limpiar();
           this.getEmpleados();
-          window.alert("Los datos se han guardado");
+          this.$swal({
+              title: 'Informacion',
+              text: 'Los datos se han guardado con éxito',
+              icon: 'success',
+              confirmButtonText: 'Continuar'
+            });
         })
         .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-          window.alert(error);
+          this.$swal({
+              title: 'Error',
+              text: 'Lo sentimos, ocurrió un error ' + error,
+              icon: 'error',
+              confirmButtonText: 'Continuar'
+            });
         });
      
       }
@@ -375,7 +382,12 @@ export default {
 
     ActualizarEmpleado() {
  if(this.selectedUser.concepto=="" || this.selectedUser.entradas=="" || this.selectedUser.existencia==""  || this.selectedUser.salidas==""){
-      window.alert("Rellena los campos");
+  this.$swal({
+          title: 'Atencion',
+          text: 'Rellena los campos',
+          icon: 'warning',
+          confirmButtonText: 'Continuar'
+        });    
       }else{
 
       const data = {
@@ -390,17 +402,23 @@ export default {
         },
       })
         .then((res) => {
-          // eslint-disable-next-line
-          console.log(res.data);
           this.selected = [];
           this.Limpiar();
-          window.alert("Los datos se han guardado");
+          this.$swal({
+              title: 'Informacion',
+              text: 'Los datos se han guardado con éxito',
+              icon: 'success',
+              confirmButtonText: 'Continuar'
+            });
         
         })
         .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-          window.alert(error);
+          this.$swal({
+              title: 'Error',
+              text: 'Lo sentimos, ocurrió un error ' + error,
+              icon: 'error',
+              confirmButtonText: 'Continuar'
+            });
         });
 
     }
@@ -413,15 +431,10 @@ export default {
         },
       }).then((response) => {
         this.dataUsuario = response.data;
-
-        /* eslint-disable */
-        console.log(this.dataUsuario);
-        // eslint-disable-next-line no-console
       });
     },
     sendUser(item) {
       this.selectedUser = item;
-      console.log(this.selectedUser)
     },
 
 
@@ -434,9 +447,12 @@ export default {
           Authorization: "Bearer " + this.token,
         },
       }).then((response) => {
-        // eslint-disable-next-line
-        console.log(this.result);
-        window.alert("Se elimino!");
+        this.$swal({
+              title: 'Informacion',
+              text: 'Se elimino',
+              icon: 'success',
+              confirmButtonText: 'Continuar'
+            });
         this.getEmpleados();
       });
     }else{
@@ -454,15 +470,21 @@ BuscarEmpleado() {
         },
       })
         .then((res) => {
-          // eslint-disable-next-line
-          console.log(res.data);
          this.dataEmpleados = res.data;
-          //window.alert("Los datos se han guardado");
+         this.$swal({
+              title: 'Informacion',
+              text: 'Los datos se han guardado con éxito',
+              icon: 'success',
+              confirmButtonText: 'Continuar'
+            });
         })
         .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-          window.alert(error);
+          this.$swal({
+              title: 'Error',
+              text: 'Lo sentimos, ocurrió un error ' + error,
+              icon: 'error',
+              confirmButtonText: 'Continuar'
+            });
         });
     },
 
@@ -478,15 +500,21 @@ BuscarEmpleado() {
         },
       })
         .then((res) => {
-          // eslint-disable-next-line
-          console.log(res.data);
          this.dataEmpleados = res.data;
-          //window.alert("Los datos se han guardado");
+         this.$swal({
+              title: 'Informacion',
+              text: 'Los datos se han guardado con éxito',
+              icon: 'success',
+              confirmButtonText: 'Continuar'
+            });
         })
         .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-          window.alert(error);
+          this.$swal({
+              title: 'Error',
+              text: 'Lo sentimos, ocurrió un error ' + error,
+              icon: 'error',
+              confirmButtonText: 'Continuar'
+            });
         });
     },
 

@@ -2,8 +2,8 @@ import axios from 'axios';
 
 export const API = axios.create({
 
-    baseURL: `https://radiant-fjord-25412.herokuapp.com/api/`
-   // baseURL: `http://127.0.0.1:8000/api/`
+    // baseURL: `https://radiant-fjord-25412.herokuapp.com/api/`
+   baseURL: `http://127.0.0.1:8000/api/`
 
 
 })

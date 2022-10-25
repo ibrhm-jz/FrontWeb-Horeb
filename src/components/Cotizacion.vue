@@ -5,11 +5,7 @@
       <nav id="sidebar">
         <div class="sidebar-header">
           <div align="center">
-            <img
-              src="../assets/logo-nuevo.png"
-              class="d-inline-block align-top"
-              width="150px"
-            />
+            <img src="../assets/logo-nuevo.png" class="d-inline-block align-top" width="150px" />
           </div>
         </div>
 
@@ -18,55 +14,51 @@
           <router-link to="/Inicio">
             <li>
               <a href="#">
-                <b-icon icon="house-door-fill"></b-icon>&nbsp;&nbsp;Inicio</a
-              >
+                <b-icon icon="house-door-fill"></b-icon>&nbsp;&nbsp;Inicio
+              </a>
             </li>
           </router-link>
           <router-link to="/Clientes">
             <li>
-              <a href="#"
-                ><b-icon icon="person-lines-fill"></b-icon
-                >&nbsp;&nbsp;Clientes</a
-              >
+              <a href="#">
+                <b-icon icon="person-lines-fill"></b-icon>&nbsp;&nbsp;Clientes
+              </a>
             </li>
           </router-link>
           <router-link to="/Empleados">
             <li>
-              <a href="#"
-                ><b-icon icon="file-person-fill"></b-icon
-                >&nbsp;&nbsp;Empleados</a
-              >
+              <a href="#">
+                <b-icon icon="file-person-fill"></b-icon>&nbsp;&nbsp;Empleados
+              </a>
             </li>
           </router-link>
           <router-link to="/Productos">
             <li>
-              <a href="#"
-                ><b-icon icon="cart-fill"></b-icon>&nbsp;&nbsp;Productos</a
-              >
+              <a href="#">
+                <b-icon icon="cart-fill"></b-icon>&nbsp;&nbsp;Productos
+              </a>
             </li>
           </router-link>
           <router-link to="/Cotizacion">
             <li>
-              <a href="#"
-                ><b-icon icon="file-earmark-check-fill"></b-icon
-                >&nbsp;&nbsp;Cotizacion</a
-              >
+              <a href="#">
+                <b-icon icon="file-earmark-check-fill"></b-icon>&nbsp;&nbsp;Cotizacion
+              </a>
             </li>
           </router-link>
 
           <router-link to="/editCotizacion">
             <li>
-              <a href="#"
-                ><b-icon icon="file-earmark-check-fill"></b-icon
-                >&nbsp;&nbsp;Editar Cotizacion</a
-              >
+              <a href="#">
+                <b-icon icon="file-earmark-check-fill"></b-icon>&nbsp;&nbsp;Editar Cotizacion
+              </a>
             </li>
           </router-link>
           <router-link to="/inventario">
             <li>
-              <a href="#"
-                ><b-icon icon="inboxes-fill"></b-icon>&nbsp;&nbsp;Inventario</a
-              >
+              <a href="#">
+                <b-icon icon="inboxes-fill"></b-icon>&nbsp;&nbsp;Inventario
+              </a>
             </li>
           </router-link>
         </ul>
@@ -75,8 +67,8 @@
         <ul class="list-unstyled CTAs">
           <li>
             <a @click="logout" href="">
-              <b-icon icon="door-open-fill"></b-icon>&nbsp;&nbsp;¿Salir?</a
-            >
+              <b-icon icon="door-open-fill"></b-icon>&nbsp;&nbsp;¿Salir?
+            </a>
           </li>
         </ul>
       </nav>
@@ -89,44 +81,35 @@
           <v-card class="padd-card">
             <p>Introduce el folio a buscar :</p>
             <b-input-group class="mt-3">
-              <b-form-input
-                placeholder="Introduce tu numero de cotizacion"
-                v-model="numero_cotizacion"
-                v-on:keyup.enter="BuscarProductos"
-              ></b-form-input>
+              <b-form-input placeholder="Introduce tu numero de cotizacion" v-model="numero_cotizacion"
+                v-on:keyup.enter="BuscarProductos"></b-form-input>
               <b-input-group-append>
                 <b-button squared variant="info" @click="BuscarVenta">
-                  <b-icon icon="search"></b-icon
-                ></b-button>
+                  <b-icon icon="search"></b-icon>
+                </b-button>
               </b-input-group-append>
             </b-input-group>
             <div class="row">
               <div class="col-sm-12">
                 <div align="right">
                   <p>
-                    <span class="titulosecundario" style="color: red !important"
-                      ><b
-                        >No.cotizacion:&nbsp;{{ this.numero_cotizacion }}</b
-                      ></span
-                    >
+                    <span class="titulosecundario" style="color: red !important"><b>No.cotizacion:&nbsp;{{
+                        this.numero_cotizacion
+                    }}</b></span>
                   </p>
                 </div>
               </div>
             </div>
             <div v-if="boolEncontro">
-            <!--  <p>{{"Vendedor : "+this.datosVendedor.nombres +" "+ this.datosVendedor.apellidos}}</p> -->
+              <!--  <p>{{"Vendedor : "+this.datosVendedor.nombres +" "+ this.datosVendedor.apellidos}}</p> -->
               <div class="row" style="margin-top: -30px; margin-bottom: -20px">
                 <div class="col-sm-6">
                   <b-input-group class="mb-2">
                     <b-input-group-prepend is-text>
                       <b-icon icon="person-fill"></b-icon>
                     </b-input-group-prepend>
-                    <b-form-input
-                      type="text"
-                      placeholder="Nombre"
-                      class="text-mayus"
-                      v-model="nombreEmpresa"
-                    ></b-form-input>
+                    <b-form-input type="text" placeholder="Nombre" class="text-mayus" v-model="nombreEmpresa">
+                    </b-form-input>
                   </b-input-group>
                 </div>
                 <div class="col-sm-6">
@@ -134,12 +117,8 @@
                     <b-input-group-prepend is-text>
                       <b-icon icon="cursor-fill"></b-icon>
                     </b-input-group-prepend>
-                    <b-form-input
-                      type="text"
-                      placeholder="Direccion"
-                      class="text-mayus"
-                      v-model="EmpresaDireccion"
-                    ></b-form-input>
+                    <b-form-input type="text" placeholder="Direccion" class="text-mayus" v-model="EmpresaDireccion">
+                    </b-form-input>
                   </b-input-group>
                 </div>
               </div>
@@ -150,12 +129,8 @@
                     <b-input-group-prepend is-text>
                       <b-icon icon="telephone-fill"></b-icon>
                     </b-input-group-prepend>
-                    <b-form-input
-                      type="text"
-                      placeholder="Telefono"
-                      class="text-mayus"
-                      v-model="EmpresaTelefono"
-                    ></b-form-input>
+                    <b-form-input type="text" placeholder="Telefono" class="text-mayus" v-model="EmpresaTelefono">
+                    </b-form-input>
                   </b-input-group>
                 </div>
                 <div class="col-sm-6">
@@ -163,12 +138,8 @@
                     <b-input-group-prepend is-text>
                       <b-icon icon="flag-fill"></b-icon>
                     </b-input-group-prepend>
-                    <b-form-input
-                      type="text"
-                      class="text-mayus"
-                      placeholder="Ciudad"
-                      v-model="EmpresaCiudad"
-                    ></b-form-input>
+                    <b-form-input type="text" class="text-mayus" placeholder="Ciudad" v-model="EmpresaCiudad">
+                    </b-form-input>
                   </b-input-group>
                 </div>
               </div>
@@ -187,50 +158,26 @@
                 <tbody class="text-mayus">
                   <tr v-for="(invoice_product, k) in items" :key="k.id">
                     <td scope="row" class="trashIconContainer" width="10px">
-                      <i
-                        class="far fa-trash-alt"
-                        @click="deleteRow(k, invoice_product)"
-                      ></i>
+                      <i class="far fa-trash-alt" @click="deleteRow(k, invoice_product)"></i>
                     </td>
                     <td>
-                      <b-form-input
-                        style="width: 50px"
-                        placeholder="%"
-                        required
-                        v-model="invoice_product.cantidad"
-                        @input="calcularImporte()"
-                      ></b-form-input>
+                      <b-form-input style="width: 50px" placeholder="%" required v-model="invoice_product.cantidad"
+                        @input="calcularImporte()"></b-form-input>
                     </td>
                     <td>
-                      <b-form-input
-                        style="width: 100px"
-                        placeholder="%"
-                        required
-                        v-model="invoice_product.medida.toUpperCase()"
-                      ></b-form-input>
+                      <b-form-input style="width: 100px" placeholder="%" required
+                        v-model="invoice_product.medida.toUpperCase()"></b-form-input>
                     </td>
                     <td>
-                      <b-form-input
-                        style="width: 450px; text-transform: uppercase"
-                        required
-                        class="text-mayus"
-                        v-model="invoice_product.descripcion.toUpperCase()"
-                      ></b-form-input>
+                      <b-form-input style="width: 450px; text-transform: uppercase" required class="text-mayus"
+                        v-model="invoice_product.descripcion.toUpperCase()"></b-form-input>
                     </td>
                     <td>
-                      <b-form-input
-                        style="width: 110px"
-                        required
-                        v-model="invoice_product.precio_unitario"
-                        @input="calcularImporte()"
-                      ></b-form-input>
+                      <b-form-input style="width: 110px" required v-model="invoice_product.precio_unitario"
+                        @input="calcularImporte()"></b-form-input>
                     </td>
                     <td>
-                      <b-form-input
-                        style="width: 110px"
-                        required
-                        v-model="invoice_product.importe"
-                      ></b-form-input>
+                      <b-form-input style="width: 110px" required v-model="invoice_product.importe"></b-form-input>
                     </td>
                   </tr>
                 </tbody>
@@ -256,31 +203,21 @@
               <div class="row">
                 <div class="col-md-8">
                   <div align="left">
-                    <b-button
-                      squared
-                      variant="info"
-                      v-b-modal.modal-prevent-closing
-                      ><b-icon icon="plus"></b-icon>Añadir</b-button
-                    >&nbsp; &nbsp;
-                    <b-button
-                      squared
-                      variant="success"
-                      v-b-modal.modal-porcentaje
-                      ><b-icon icon="paperclip"></b-icon>Añadir un
-                      porcentaje</b-button
-                    >&nbsp;&nbsp;
-                    <b-button
-                      squared
-                      variant="danger"
-                      v-b-modal.modal-cerrar
-                      v-if="boolGuardar"
-                      ><b-icon icon="download"></b-icon>Actualizar
-                      Cotizacion</b-button
-                    >&nbsp;
+                    <b-button squared variant="info" v-b-modal.modal-prevent-closing>
+                      <b-icon icon="plus"></b-icon>Añadir
+                    </b-button>&nbsp; &nbsp;
+                    <b-button squared variant="success" v-b-modal.modal-porcentaje>
+                      <b-icon icon="paperclip"></b-icon>Añadir un
+                      porcentaje
+                    </b-button>&nbsp;&nbsp;
+                    <b-button squared variant="danger" v-b-modal.modal-cerrar v-if="boolGuardar">
+                      <b-icon icon="download"></b-icon>Actualizar
+                      Cotizacion
+                    </b-button>&nbsp;
 
-                    <b-button squared variant="danger" @click="exportPDF()"
-                      ><b-icon icon="download"></b-icon>Imprimir</b-button
-                    >
+                    <b-button squared variant="danger" @click="exportPDF()">
+                      <b-icon icon="download"></b-icon>Imprimir
+                    </b-button>
                   </div>
                 </div>
               </div>
@@ -288,77 +225,42 @@
           </v-card>
         </b-container>
         <div>
-          <b-modal
-            id="modal-prevent-closing"
-            ref="modal"
-            title="Elije Producto"
-            centered
-            size="lg"
-            @show="resetModal"
-            @hidden="resetModal"
-            @ok="handleOk"
-            ok-variant="success"
-          >
+          <b-modal id="modal-prevent-closing" ref="modal" title="Elije Producto" centered size="lg" @show="resetModal"
+            @hidden="resetModal" @ok="handleOk" ok-variant="success">
             <div class="input-group md-form form-sm form-1 pl-0">
               <div class="input-group-prepend">
                 <span>
-                  <b-button
-                    squared
-                    variant="success"
-                    v-on:click="BuscarProductos"
-                    >Buscar</b-button
-                  >
+                  <b-button squared variant="success" v-on:click="BuscarProductos">Buscar</b-button>
                 </span>
               </div>
-              <input
-                class="form-control my-0 py-1 text-mayus"
-                type="text"
-                placeholder="Search"
-                aria-label="Search"
-                v-model="searchnombre"
-                v-on:keyup.enter="BuscarProductos"
-              />
+              <input class="form-control my-0 py-1 text-mayus" type="text" placeholder="Search" aria-label="Search"
+                v-model="searchnombre" v-on:keyup.enter="BuscarProductos" />
             </div>
             <br />
 
-            <v-data-table
-              :headers="headers"
-              :items="datosProductos"
-              class="text-mayus"
-            >
+            <v-data-table :headers="headers" :items="datosProductos" class="text-mayus">
               <template v-slot:item="row">
                 <tr class="text-mayus">
                   <td>
-                    <font size="1"
-                      ><b>{{ row.item.nombre }}</b></font
-                    >
+                    <font size="1"><b>{{ row.item.nombre }}</b></font>
                   </td>
 
                   <td>
                     <font size="1">{{ row.item.categoria }}</font>
                   </td>
                   <td>
-                    <font size="1"
-                      ><b>$ {{ row.item.precio_unitario }}</b></font
-                    >
+                    <font size="1"><b>$ {{ row.item.precio_unitario }}</b></font>
                   </td>
                   <td>
                     <font size="1">{{ row.item.medida }}</font>
                   </td>
                   <td>
-                    <v-text-field
-                      style="width: 50px"
-                      v-model="newEntries[row.item.id]"
-                      placeholder="Cant"
-                      required
-                    ></v-text-field>
+                    <v-text-field style="width: 50px" v-model="newEntries[row.item.id]" placeholder="Cant" required>
+                    </v-text-field>
                   </td>
                   <td>
-                    <b-button
-                      variant="success"
-                      class="btn-circle.btn-xl"
-                      @click="addNewRow(row.item, newEntries[row.item.id])"
-                    >
+                    <b-button variant="success" class="btn-circle.btn-xl"
+                      @click="addNewRow(row.item, newEntries[row.item.id])">
                       <b-icon icon="cart2" aria-label="Añadir"></b-icon>
                     </b-button>
                   </td>
@@ -369,22 +271,9 @@
         </div>
         <!-- Modales -->
         <div>
-          <b-modal
-            id="modal-porcentaje"
-            ref="modal"
-            title="Datos adicionales"
-            centered
-            size="sm"
-            @show="resetModal"
-            @hidden="resetModal"
-            @ok="calculateGanancia"
-            ok-variant="success"
-          >
-            <v-text-field
-              append-icon="mdi-currency-usd"
-              label="Porcentaje de Ganancia"
-              v-model="PorcentajeGanancia"
-            />
+          <b-modal id="modal-porcentaje" ref="modal" title="Datos adicionales" centered size="sm" @show="resetModal"
+            @hidden="resetModal" @ok="calculateGanancia" ok-variant="success">
+            <v-text-field append-icon="mdi-currency-usd" label="Porcentaje de Ganancia" v-model="PorcentajeGanancia" />
             <br />
             <!-- <v-text-field
               append-icon="mdi-truck"
@@ -395,27 +284,14 @@
         </div>
 
         <div>
-                   <b-modal
-            id="modal-cerrar"
-            ref="modal"
-            title="Datos adicionales"
-            centered
-            size="sm"
-            @show="resetModal"
-            @hidden="resetModal"
-            @ok="GuardaCotizacion"
-            ok-variant="success"
-          >
+          <b-modal id="modal-cerrar" ref="modal" title="Datos adicionales" centered size="sm" @show="resetModal"
+            @hidden="resetModal" @ok="GuardaCotizacion" ok-variant="success">
             <b-input-group class="mb-2">
               <b-input-group-prepend is-text>
                 <b-icon icon="map"></b-icon>
               </b-input-group-prepend>
-              <b-form-input
-                type="text"
-                placeholder="Lugar de entrega"
-                class="text-mayus"
-                v-model="lugarEntrega"
-              ></b-form-input>
+              <b-form-input type="text" placeholder="Lugar de entrega" class="text-mayus" v-model="lugarEntrega">
+              </b-form-input>
             </b-input-group>
 
             <br />
@@ -424,28 +300,17 @@
               <b-input-group-prepend is-text>
                 <b-icon icon="clock-fill"></b-icon>
               </b-input-group-prepend>
-              <b-form-input
-                type="text"
-                placeholder="Tiempo de entrega"
-                class="text-mayus"
-                v-model="nota"
-              ></b-form-input>
+              <b-form-input type="text" placeholder="Tiempo de entrega" class="text-mayus" v-model="nota">
+              </b-form-input>
             </b-input-group>
             <br />
 
             <b-input-group class="mb-2">
               <b-input-group-prepend is-text>
-                <b-icon
-                  icon="clock-history
-"
-                ></b-icon>
+                <b-icon icon="clock-history
+"></b-icon>
               </b-input-group-prepend>
-              <b-form-input
-                type="text"
-                placeholder="Vigencia"
-                class="text-mayus"
-                v-model="vigencia"
-              ></b-form-input>
+              <b-form-input type="text" placeholder="Vigencia" class="text-mayus" v-model="vigencia"></b-form-input>
             </b-input-group>
           </b-modal>
         </div>
@@ -489,8 +354,8 @@ export default {
       comprobacion: "",
       token: "",
       nota: "",
-      vigencia:"",
-       datosVendedor:"",
+      vigencia: "",
+      datosVendedor: "",
       lugarEntrega: "",
       name: "",
       boolGuardar: true,
@@ -603,8 +468,6 @@ export default {
 
         this.$set(this.items[i], "user_id", this.miUsuario);
       }
-      // eslint-disable-next-line
-      console.log(this.items);
     },
     resetModal() {
       this.name = "";
@@ -615,8 +478,6 @@ export default {
     },
     deleteRow(index, invoice_product) {
       var idx = this.items.indexOf(invoice_product);
-      /* eslint-disable */
-      console.log(idx, index);
       if (idx > -1) {
         this.items.splice(idx, 1);
         this.invoice_total = "0.00";
@@ -629,7 +490,7 @@ export default {
         (this.nombreEmpresa == "!" ||
           this.EmpresaDireccion == "!" ||
           this.EmpresaTelefono == "!",
-        this.EmpresaCiudad == "!")
+          this.EmpresaCiudad == "!")
       ) {
         window.alert("Los datos no estan completos");
       } else {
@@ -836,9 +697,7 @@ export default {
             ganancia: "",
           });
 
-          /* eslint-disable */
-          console.log(response.data.nombre);
-          // eslint-disable-next-line no-console
+
         });
       }
       this.items = [];
@@ -852,7 +711,7 @@ export default {
       while (x <= this.items.length) {
         this.items[x].precio_unitario = (
           parseFloat(this.items[x].precio_unitario) *
-            (this.PorcentajeGanancia / 100) +
+          (this.PorcentajeGanancia / 100) +
           parseFloat(this.items[x].precio_unitario)
         ).toFixed(2);
 
@@ -871,24 +730,16 @@ export default {
         },
       }).then((response) => {
         this.datosProductos = response.data;
-
-        /* eslint-disable */
-        console.log(this.datosProductos);
-        // eslint-disable-next-line no-console
       });
     },
 
-            getVendedor() {
-      API.get("user/"+this.miUsuario , {
+    getVendedor() {
+      API.get("user/" + this.miUsuario, {
         headers: {
           Authorization: "Bearer " + this.token,
         },
       }).then((response) => {
         this.datosVendedor = response.data;
-
-        /* eslint-disable */
-        console.log("DATOSSSSSSSSSSSS"+this.datosVendedor);
-        // eslint-disable-next-line no-console
       });
     },
 
@@ -902,15 +753,22 @@ export default {
         },
       })
         .then((res) => {
-          // eslint-disable-next-line
-          console.log(res.data);
+
           this.datosProductos = res.data;
-          //window.alert("Los datos se han guardado");
+          this.$swal({
+            title: 'Informacion',
+            text: 'Los datos se han guardado',
+            icon: 'success',
+            confirmButtonText: 'Continuar'
+          });
         })
         .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-          window.alert(error);
+          this.$swal({
+            title: 'Error',
+            text: 'Lo sentimos, ocurrió un error ' + error,
+            icon: 'error',
+            confirmButtonText: 'Continuar'
+          });
         });
     },
 
@@ -924,8 +782,6 @@ export default {
         },
       })
         .then((res) => {
-          // eslint-disable-next-line
-          console.log(res.data);
 
           this.items = res.data;
           this.nombreEmpresa = res.data[0].nombre;
@@ -955,10 +811,13 @@ export default {
           Authorization: "Bearer " + this.token,
         },
       }).then((response) => {
-        // eslint-disable-next-line
-        console.log(this.result);
         this.GuardaCotizacion();
-        //  window.alert("Se elimino");
+        this.$swal({
+          title: 'Informacion',
+          text: 'Se eslimino con éxito',
+          icon: 'success',
+          confirmButtonText: 'Continuar'
+        });
 
         this.getProduct();
       });
@@ -966,7 +825,6 @@ export default {
     GuardaCotizacion() {
       this.LlenarDatos();
       var dataJSON = JSON.stringify(this.items);
-      console.log("HOLAAAAA" + dataJSON);
       API.post("update", dataJSON, {
         headers: {
           "Content-Type": "application/json",
@@ -975,16 +833,20 @@ export default {
       })
         .then((res) => {
           this.boolGuardar = false;
-
-          // eslint-disable-next-line
-          console.log(res.data);
-
-          // window.alert("Los datos se han guardado");
+          this.$swal({
+            title: 'Informacion',
+            text: 'Los datos se han guardado',
+            icon: 'success',
+            confirmButtonText: 'Continuar'
+          });
         })
         .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-          window.alert(error);
+          this.$swal({
+            title: 'Error',
+            text: 'Lo sentimos, ocurrió un error ' + error,
+            icon: 'error',
+            confirmButtonText: 'Continuar'
+          });
         });
     },
   },
@@ -1029,6 +891,7 @@ export default {
 */
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
 body {
   font-family: "Poppins", sans-serif;
   background: #fafafa;
@@ -1105,7 +968,7 @@ a:focus {
   background: #fff;
 }
 
-#sidebar ul li.active > a,
+#sidebar ul li.active>a,
 a[aria-expanded="true"] {
   color: #fff;
   background: #6d7fcc;
@@ -1163,16 +1026,19 @@ a.article:hover {
   transition: all 0.3s;
   background: #fff;
 }
+
 .padd-card {
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
 .padd-button {
   margin-left: 2px;
   margin-right: 2px;
 }
+
 .text-mayus {
   text-transform: uppercase;
 }
@@ -1185,9 +1051,11 @@ a.article:hover {
   #sidebar {
     margin-left: -250px;
   }
+
   #sidebar.active {
     margin-left: 0;
   }
+
   #sidebarCollapse span {
     display: none;
   }

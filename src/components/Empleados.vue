@@ -1,214 +1,167 @@
 <template>
-  <div>
-    <div>
-      <b-navbar type="light" variant="light" fixed="top">
-        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-
-        <b-navbar-brand href="#">
-          <img src="../assets/logo.png" class="d-inline-block align-top" width="30px" />
-          Inicio
-        </b-navbar-brand>
-        <b-collapse id="nav-text-collapse" is-nav>
-          <b-navbar-nav>
-            <b-nav-text>Empieza a administrar</b-nav-text>
-          </b-navbar-nav>
-        </b-collapse>
-      </b-navbar>
-    </div>
-
-    <b-sidebar v-model="drawer" shadow bg-variant="white">
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="title">Application</v-list-item-title>
-          <v-list-item-subtitle>
-            <em>tuberia_horeb@hotmail.com</em>
-          </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-divider></v-divider>
-
-      <v-list dense nav color="blue">
-        <v-list-item link to="/Home">
-        
-          <v-list-item-icon>
-            <v-icon>mdi-home</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title class="font-drawer"> Home</v-list-item-title>
-          </v-list-item-content>
-        
-        </v-list-item>
-
-        <v-list-item link to="/Clientes">
-          <v-list-item-icon>
-            <v-icon>mdi-account-box</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title class="font-drawer"> Clientes</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item link to="/Productos">
-          <v-list-item-icon>
-            <v-icon>mdi-chart-ppf</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title class="font-drawer">
-            Productos</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item link to="/Cotizacion">
-          <v-list-item-icon>
-            <v-icon>mdi-file-document-multiple</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title class="font-drawer">
-            Cotizacion</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item link to="/Empresa">
-          <v-list-item-icon>
-            <v-icon>mdi-briefcase-edit</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title class="font-drawer">
-              Empresa
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-      <template v-slot:footer="{ hide }">
-        <div class="d-flex bg-dark text-light align-items-center px-3 py-2">
-          <strong class="mr-auto">¿Salir?</strong>
-          <b-button size="sm" @click="hide" v-on:click="logout">Cerar sesion</b-button>
-        </div>
-      </template>
-    </b-sidebar>
-
-
-    <v-container class="contenedor">
-      <span class="titulosecundario" style="color:black !important;">Empleados</span>
-      <v-spacer></v-spacer>
-      <br />
-      <div class="input-group md-form form-sm form-1 pl-0">
-        <div class="input-group-prepend">
-          <span>
-            <!-- <b-button squared variant="success" @click="BuscarEmpleado">Buscar</b-button> -->
-            <v-btn
-              class="ma-2"
-              tile
-              style="background-color:#00b686; color:white;"
-              @click="BuscarEmpleado"
-            >
-              <v-icon left>mdi-magnify</v-icon>Buscar
-            </v-btn>
-          </span>
-        </div>
-        <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search" v-model="searchnombre" v-on:keyup.enter="BuscarEmpleado"/>
-      </div>
-      <br />
-
-      <div class="row">
-        <div class="col-md-8"></div>
-        <div class="col-md-4">
-          <div align="right">
-          <v-btn
-              class="ma-2"
-              tile
-              style="background-color:#00b686; color:white;"
-              v-b-modal.modal-prevent-closing
-            >
-              <v-icon left>mdi-account-multiple-plus</v-icon>Añadir Empleados
-            </v-btn>
-
-            <!-- <b-button squared variant="success" v-b-modal.modal-prevent-closing>Añadir Empleados</b-button> -->
+  <div width="100%">
+    <div class="wrapper">
+      <!-- Sidebar  -->
+           <nav id="sidebar">
+        <div class="sidebar-header">
+          <div align="center">
+            <img
+              src="../assets/logo-nuevo.png"
+              class="d-inline-block align-top"
+              width="150px"
+            />
           </div>
         </div>
-      </div>
 
-      <div>
-        <v-container fluid>
-          <font face="Segoe UI">
-            <v-row justify="center">
-              <v-subheader>Lista de Empleados</v-subheader>
+        <ul class="list-unstyled components">
+          <p>Administracion Horeb</p>
+                 <router-link to="/Inicio">
+          <li>
+            <a href="#">
+              <b-icon icon="house-door-fill"></b-icon>&nbsp;&nbsp;Inicio</a
+            >
+          </li>
+          </router-link>
+          <router-link to="/Clientes">
+            <li>
+              <a href="#"
+                ><b-icon icon="person-lines-fill"></b-icon
+                >&nbsp;&nbsp;Clientes</a
+              >
+            </li>
+          </router-link>
+           <router-link to="/Empleados">
+          <li>
+            <a href="#"
+              ><b-icon icon="file-person-fill"></b-icon>&nbsp;&nbsp;Empleados</a
+            >
+          </li>
+          </router-link>
+          <router-link to="/Productos">
+          <li>
+            <a href="#"
+              ><b-icon icon="cart-fill"></b-icon>&nbsp;&nbsp;Productos</a
+            >
+          </li>
+          </router-link>
+          <router-link to="/Cotizacion">
+          <li>
+            <a href="#"
+              ><b-icon icon="file-earmark-check-fill"></b-icon
+              >&nbsp;&nbsp;Cotizacion</a
+            >
+          </li>
+          </router-link>
 
-              <v-expansion-panels>
-                <v-expansion-panel v-for="(Empleados,i) in dataEmpleados" :key="i" hide-actions>
-                  <v-expansion-panel-header v-on:click="getUser(Empleados)">
-                    <v-row align="center" class="spacer" no-gutters>
-                      <v-col cols="4" sm="2" md="1">
-                        <v-avatar size="36px">
-                          <v-icon>mdi-account-box-multiple</v-icon>
-                        </v-avatar>
-                      </v-col>
+                    <router-link to="/editCotizacion">
+            <li>
+              <a href="#"
+                ><b-icon icon="file-earmark-check-fill"></b-icon
+                >&nbsp;&nbsp;Editar Cotizacion</a
+              >
+            </li>
+          </router-link>
+                              <router-link to="/inventario">
+            <li>
+              <a href="#"
+                ><b-icon icon="inboxes-fill"></b-icon
+                >&nbsp;&nbsp;Inventario</a
+              >
+            </li>
+          </router-link>
+        </ul>
+        <br />
+        <br />
+        <ul class="list-unstyled CTAs">
+          <li>
+            <a
+               @click="logout"
+                href=""
+            >
+              <b-icon icon="door-open-fill"></b-icon>&nbsp;&nbsp;¿Salir?</a
+            >
+          </li>
+        </ul>
+      </nav>
 
-                      <v-col class="hidden-xs-only" sm="5" md="3">
-                        <div align="left">
-                          <strong
-                            style="text-transform: uppercase;"
-                          >{{Empleados.nombres}}&nbsp;{{Empleados.apellidos}}</strong>
-                        </div>
-                      </v-col>
 
-                      <v-col class="text-no-wrap" cols="6" sm="3">
-                        <div align="left">
-                          <v-chip
-                            color="black"
-                            class="ml-0 mr-2 black--text"
-                            label
-                            small
-                          >{{ Empleados.tipo_usuario }}</v-chip>
-                        </div>
-                      </v-col>
+      <!-- Page Content  -->
+      <div id="content">
+        <h2>Administracion de Empleados</h2>
+        <div class="line"></div>
+        <v-card elevation="2" tile class="padd-card">
+          <b-input-group class="mt-3">
+            <b-form-input placeholder="Buscar" v-model="searchnombre" v-on:keyup.enter="BuscarEmpleado"></b-form-input>
+            <b-input-group-append>
+              <b-button squared variant="info"  @click="BuscarEmpleado">
+                <b-icon icon="search"></b-icon
+              ></b-button>
+            </b-input-group-append>
+            <b-button
+              squared
+              variant="success"
+              style="margin-left: 50px"
+              v-b-modal.modal-prevent-closing
+            >
+              <b-icon icon="plus"></b-icon>Nuevo Registro</b-button
+            >
+          </b-input-group>
+          <br />
 
-                      <v-col class="grey--text text-truncate hidden-sm-and-down">
-                        <div align="left">
-                          TEL:
-                          {{ Empleados.telefono }}
-                        </div>
-                      </v-col>
-                    </v-row>
-                  </v-expansion-panel-header>
+          <v-simple-table>
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th class="text-left">Nombres</th>
+                  <th class="text-left">Apellidos</th>
+                  <th class="text-left">Tipo de Usuario</th>
+                  <th class="text-left">E-mail</th>
+                  <th class="text-left">Telefono</th>
+                  <th class="text-left">Accion</th>
+                </tr>
+              </thead>
+              <tbody class="text-mayus">
+                <tr v-for="(Empleados,i) in dataEmpleados" :key="i">
+                  <td><font size=1><b>{{ Empleados.nombres }}</b></font></td>
+                  <td><font size=1><b>{{ Empleados.apellidos }}</b></font></td>
+                  <td><font size=1>{{ Empleados.tipo_usuario }}</font></td>
+                  <td><font size=1>{{ Empleados.email }}</font></td>
+                  <td><font size=1>{{ Empleados.telefono }}</font></td>
+                  <td>
 
-                  <v-expansion-panel-content>
-                    <v-divider></v-divider>
-                    <v-card-text>
-                      <div
-                        style="text-transform: uppercase;"
-                      >Nombres: {{Empleados.nombres}}&nbsp;{{Empleados.apellidos}}</div>
-                      <v-spacer></v-spacer>Rango:
-                      <b>{{Empleados.tipo_usuario}}</b>
-                      <v-spacer></v-spacer>
-                      Telefono: {{Empleados.telefono}} &nbsp;&nbsp;&nbsp;&nbsp; Correo:{{Empleados.email}}
-                      <v-spacer></v-spacer>
+                                 <div class="h2 mb-0"><b-icon icon="pencil-square" style="color: #fff;"
+              class="rounded-circle bg-success p-2"  v-b-modal.modal-update @click="sendUser(Empleados)"></b-icon>&nbsp;<b-icon icon="trash-fill" style="color: #fff;"
+              class="rounded-circle bg-danger p-2"   v-b-modal.modal-delete  @click="deleteEmpleados(Empleados)"></b-icon></div>
+               
+              
 
-                      <v-btn icon color="red">
-                        <v-icon
-                          style="color: #71ccb4;"
-                          v-b-modal.modal-update
-                          @click="sendUser(Empleados)"
-                        >mdi-pencil</v-icon>
-                      </v-btn>&nbsp;&nbsp;&nbsp;&nbsp;
-                      <v-btn icon color="red" @click="deleteEmpleados(Empleados)">
-                        <v-icon style="color: #C64444;">mdi-account-multiple-remove</v-icon>
-                      </v-btn>
-                    </v-card-text>
-                  </v-expansion-panel-content>
-                </v-expansion-panel>
-              </v-expansion-panels>
-            </v-row>
-          </font>
-        </v-container>
-      </div>
-    </v-container>
+                   <!-- <b-button
+                      squared
+                      variant="info"
+                      class="padd-button"
+                      v-b-modal.modal-update
+                      @click="sendUser(Empleados)"
+                    >
+                      <b-icon icon="pencil-square" style="color: #fff"></b-icon
+                    ></b-button>
+
+                    <b-button
+                      squared
+                      variant="danger"
+                      class="padd-button"
+                      @click="deleteEmpleados(Empleados)"
+                    >
+                      <b-icon icon="trash-fill"></b-icon
+                    ></b-button>
+
+                    -->
+                  </td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
+        </v-card>
+
 
     <div>
       <b-modal
@@ -229,6 +182,7 @@
               :state="nameState"
               required
               placeholder="Nombres"
+              class="text-mayus"
             ></b-form-input>
             <br />
             <b-form-input
@@ -237,6 +191,7 @@
               :state="nameState"
               required
               placeholder="Apellidos"
+              class="text-mayus"
               type="text"
             ></b-form-input>
             <br />
@@ -246,7 +201,8 @@
               v-model="correo"
               :state="nameState"
               required
-              placeholder="Correo"
+              placeholder="CORREO"
+             
             ></b-form-input>
             <br />
               <b-form-input
@@ -255,7 +211,7 @@
               :state="nameState"
               required
               placeholder="Contraseña"
-               type="password"
+              type="password"
             ></b-form-input>
             <br />
               <b-form-input
@@ -307,6 +263,7 @@
               :state="nameState"
               required
               placeholder="Nombres"
+               class="text-mayus"
             ></b-form-input>
             <br />
             <b-form-input
@@ -315,6 +272,7 @@
               :state="nameState"
               required
               placeholder="Apellidos"
+               class="text-mayus"
               type="text"
             ></b-form-input>
             <br />
@@ -351,6 +309,7 @@
               :state="nameState"
               required
               placeholder="Telefono"
+               class="text-mayus"
             ></b-form-input>
             <br />
 
@@ -367,29 +326,31 @@
     </div>
 
 
-    
+
+      </div>
+    </div>
   </div>
 </template>
-
-
 <script>
 import { API } from "../Servicios/axios";
 export default {
-      created(){
-        this.token=localStorage.getItem('userToken')
-        if(this.token==null||this.token==""){
-        this.$router.push("/")
-        }
-    },
-  name: "Productos",
+  created() {
+    this.token = localStorage.getItem("userToken");
+    if (this.token == null || this.token == "") {
+      this.$router.push("/");
+    }
+  },
+  mounted() {
+    this.BuscarEmpleado();
+    this.getVendedores();
+  },
   data() {
     return {
-      drawer: false,
+     drawer: false,
       group: null,
       token:"",
       name: "",
-      // eslint-disable-next-line
-      nameState: null,
+    checked: false,     
       // eslint-disable-next-line
       submittedNames: [],
       dataEmpleados: [],
@@ -418,40 +379,9 @@ export default {
     };
   },
   methods: {
-        logout(){
+                  logout(){
       localStorage.removeItem('userToken')
       this.$router.push("/")
-    },
-    checkFormValidity() {
-      const valid = this.$refs.form.checkValidity();
-      this.nameState = valid;
-      return valid;
-    },
-    resetModal() {
-      this.name = "";
-      this.nameState = null;
-    },
-    handleOk(bvModalEvt) {
-      // Prevent modal from closing
-      bvModalEvt.preventDefault();
-      // Trigger submit handler
-      this.handleSubmit();
-    },
-
-    handleSubmit() {
-      // Exit when the form isn't valid
-      if (!this.checkFormValidity()) {
-        return;
-      }
-      // Push the name to submitted names
-      this.submittedNames.push(this.name);
-      // Hide the modal manually
-      this.$nextTick(() => {
-        this.$bvModal.hide("modal-prevent-closing");
-      });
-      this.$nextTick(() => {
-        this.$bvModal.hide("modal-update");
-      });
     },
     getEmpleados() {
       API.get("user", {
@@ -460,10 +390,6 @@ export default {
         },
       }).then((response) => {
         this.dataEmpleados = response.data;
-
-        /* eslint-disable */
-        //  console.log(this.dataEmpleados);
-        // eslint-disable-next-line no-console
       });
     },
     Limpiar: function () {
@@ -476,7 +402,11 @@ export default {
     },
 
     RegistrarEmpleado() {
-      const data = {
+     if(this.password!=this.rpassword){
+
+      window.alert("Las contraseñas no coinciden");
+     }else{
+        const data = {
         email:this.correo,
         password:this.password,
         tipo_usuario:this.selected,
@@ -490,17 +420,24 @@ export default {
         },
       })
         .then((res) => {
-          // eslint-disable-next-line
-          console.log(res.data);
           this.Limpiar();
           this.getEmpleados();
-          window.alert("Los datos se han guardado");
+          this.$swal({
+            title: 'Informacion',
+            text: 'Los datos se han guardado',
+            icon: 'success',
+            confirmButtonText: 'Continuar'
+          });
         })
         .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-          window.alert(error);
+          this.$swal({
+            title: 'Error',
+            text: 'Lo sentimos, ocurrió un error ' + error,
+            icon: 'error',
+            confirmButtonText: 'Continuar'
+          });
         });
+     }
     },
 
     ActualizarEmpleado() {
@@ -518,17 +455,24 @@ export default {
         },
       })
         .then((res) => {
-          // eslint-disable-next-line
-          console.log(res.data);
           this.selected = [];
           this.Limpiar();
           this.getEmpleados();
-          window.alert("Los datos se han guardado");
+          this.$swal({
+            title: 'Informacion',
+            text: 'Los datos se han guardado',
+            icon: 'success',
+            confirmButtonText: 'Continuar'
+          });
         })
         .catch((error) => {
           // eslint-disable-next-line
-          console.error(error);
-          window.alert(error);
+          this.$swal({
+            title: 'Error',
+            text: 'Lo sentimos, ocurrió un error ' + error,
+            icon: 'error',
+            confirmButtonText: 'Continuar'
+          });
         });
     },
 
@@ -539,15 +483,10 @@ export default {
         },
       }).then((response) => {
         this.dataUsuario = response.data;
-
-        /* eslint-disable */
-        console.log(this.dataUsuario);
-        // eslint-disable-next-line no-console
       });
     },
     sendUser(item) {
       this.selectedUser = item;
-      console.log(this.selectedUser)
     },
 
 
@@ -557,10 +496,12 @@ export default {
           Authorization: "Bearer " + this.token,
         },
       }).then((response) => {
-        // eslint-disable-next-line
-        console.log(this.result);
-        window.alert("Los datos se han guardado");
-        this.getEmpleados();
+        this.$swal({
+            title: 'Informacion',
+            text: 'Los datos se han guardado',
+            icon: 'success',
+            confirmButtonText: 'Continuar'
+          });
       });
     },
 
@@ -574,69 +515,195 @@ BuscarEmpleado() {
         },
       })
         .then((res) => {
-          // eslint-disable-next-line
-          console.log(res.data);
          this.dataEmpleados = res.data;
-          //window.alert("Los datos se han guardado");
+         this.$swal({
+            title: 'Informacion',
+            text: 'Los datos se han guardado',
+            icon: 'success',
+            confirmButtonText: 'Continuar'
+          });
         })
         .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-          window.alert(error);
+          this.$swal({
+            title: 'Error',
+            text: 'Lo sentimos, ocurrió un error ' + error,
+            icon: 'error',
+            confirmButtonText: 'Continuar'
+          });
         });
     },
 
   },
-
-  watch: {
-    group() {
-      this.drawer = false;
-    },
-  },
-  mounted() {
-    this.BuscarEmpleado();
-  
-  },
 };
 </script>
-
-
 <style scoped>
-.titulos {
-  font-family: "Segoe UI";
-  font-weight: bold;
-  font-size: 30px;
-  color: black;
+/*
+    DEMO STYLE
+*/
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+body {
+  font-family: "Poppins", sans-serif;
+  background: #fafafa;
 }
 
-.titulosecundario {
-  font-family: "Segoe UI";
-  font-weight: bold;
-  font-size: 25px;
-  color: white;
-  margin-bottom: 10px;
-  margin-top: 10px;
+p {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1em;
+  font-weight: 300;
+  line-height: 1.7em;
+  color: #999;
 }
-.cardet {
-  padding: 20px;
-  width: 400px;
-  height: 100px;
-  margin-left: 0px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  margin-top: 10px;
+
+a,
+a:hover,
+a:focus {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s;
 }
-.cardtrans {
-  background-color: #ffffff !important;
-}
-.contenedor {
-  margin-top: 60px;
+
+.line {
   width: 100%;
+  height: 1px;
+  border-bottom: 1px dashed #ddd;
+  margin: 40px 0;
 }
-.font-drawer {
-  color: black;
-  margin-left: 10px;
-  font-family: "Segoe UI";
-  size: 10px;
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+#sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  background: #fff;
+  color: grey;
+  transition: all 0.3s;
+}
+
+#sidebar.active {
+  margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+  padding: 20px;
+  background: #fff;
+}
+
+#sidebar ul.components {
+  padding: 20px 0;
+  border-bottom: 1px solid #fff;
+}
+
+#sidebar ul p {
+  color: grey;
+  padding: 10px;
+}
+
+#sidebar ul li a {
+  padding: 10px;
+  font-size: 0.9em;
+  display: block;
+}
+
+#sidebar ul li a:hover {
+  color: green;
+  background: #fff;
+}
+
+#sidebar ul li.active > a,
+a[aria-expanded="true"] {
+  color: #fff;
+  background: #6d7fcc;
+}
+
+a[data-toggle="collapse"] {
+  position: relative;
+}
+
+.dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+ul ul a {
+  font-size: 0.9em !important;
+  padding-left: 30px !important;
+  background: green;
+}
+
+ul.CTAs {
+  padding: 20px;
+}
+
+ul.CTAs a {
+  text-align: center;
+  font-size: 0.9em !important;
+  display: block;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+a.download {
+  background: #fff;
+  color: green;
+}
+
+a.article,
+a.article:hover {
+  background: #6d7fcc !important;
+  color: #fff !important;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+  width: 100%;
+  padding: 20px;
+  min-height: 100vh;
+  transition: all 0.3s;
+  background:  #fff;
+}
+.padd-card {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.padd-button {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+.text-mayus {
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 768px) {
+  #sidebar {
+    margin-left: -250px;
+  }
+  #sidebar.active {
+    margin-left: 0;
+  }
+  #sidebarCollapse span {
+    display: none;
+  }
 }
 </style>
+

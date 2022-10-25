@@ -488,15 +488,21 @@ export default {
         },
       })
         .then((res) => {
-          // eslint-disable-next-line
-          console.log(res.data);
           this.datosProductos = res.data;
-          //window.alert("Los datos se han guardado");
+          this.$swal({
+              title: 'Informacion',
+              text: 'Los datos se han guardado con éxito',
+              icon: 'success',
+              confirmButtonText: 'Continuar'
+            });
         })
         .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-          window.alert(error);
+          this.$swal({
+              title: 'Error',
+              text: 'Lo sentimos, ocurrió un error ' + error,
+              icon: 'error',
+              confirmButtonText: 'Continuar'
+            });
         });
     },
 
@@ -513,14 +519,15 @@ export default {
           },
         })
           .then((res) => {
-            // eslint-disable-next-line
-            console.log(res.data);
             this.datosProductos = res.data;
-            //this.getProduct();
           })
           .catch((error) => {
-            // eslint-disable-next-line
-            console.error(error);
+            this.$swal({
+              title: 'Error',
+              text: 'Lo sentimos, ocurrió un error ' + error,
+              icon: 'error',
+              confirmButtonText: 'Continuar'
+            });
           });
       }
     },
@@ -539,16 +546,21 @@ export default {
         },
       })
         .then((res) => {
-          // eslint-disable-next-line
-          console.log(res.data);
           this.selected = [],
-          //this.getProduct();
-          window.alert("Los datos se han guardado");
+          this.$swal({
+              title: 'Informacion',
+              text: 'Los datos se han guardado con éxito',
+              icon: 'success',
+              confirmButtonText: 'Continuar'
+            });
         })
         .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-          window.alert(error);
+          this.$swal({
+              title: 'Error',
+              text: 'Lo sentimos, ocurrió un error ' + error,
+              icon: 'error',
+              confirmButtonText: 'Continuar'
+            });
         });
     },
         getProduct() {
@@ -558,10 +570,6 @@ export default {
         },
       }).then((response) => {
         this.datosProductos = response.data;
-
-        /* eslint-disable */
-        console.log(this.datosProductos);
-        // eslint-disable-next-line no-console
       });
     },
     delectProducto(result) {
@@ -573,8 +581,12 @@ export default {
           Authorization: "Bearer " + this.token,
         },
       }).then((response) => {
-        // eslint-disable-next-line
-        window.alert("Se elimino");
+        this.$swal({
+              title: 'Informacion',
+              text: 'Se elimino',
+              icon: 'success',
+              confirmButtonText: 'Continuar'
+            });
        
       });
       }else{
@@ -599,10 +611,12 @@ export default {
         },
       })
         .then((res) => {
-          
-          // eslint-disable-next-line
-          //console.log(res.data);
-         window.alert("Los datos se han guardado");
+          this.$swal({
+              title: 'Informacion',
+              text: 'Los datos se han guardado con éxito',
+              icon: 'success',
+              confirmButtonText: 'Continuar'
+            });
          this.nombre="";
          this.tipo="";
          this.precio_unitario="";
@@ -612,8 +626,12 @@ export default {
           
         })
         .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
+          this.$swal({
+              title: 'Error',
+              text: 'Lo sentimos, ocurrió un error ' + error,
+              icon: 'error',
+              confirmButtonText: 'Continuar'
+            });
         });
     },
 
@@ -632,15 +650,21 @@ export default {
         },
       })
         .then((res) => {
-          // eslint-disable-next-line
-          console.log(res.data);
           this.datosProductos = res.data;
-          //window.alert("Los datos se han guardado");
+          this.$swal({
+              title: 'Informacion',
+              text: 'Los datos se han guardado con éxito',
+              icon: 'success',
+              confirmButtonText: 'Continuar'
+            });
         })
         .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-          window.alert(error);
+          this.$swal({
+              title: 'Error',
+              text: 'Lo sentimos, ocurrió un error ' + error,
+              icon: 'error',
+              confirmButtonText: 'Continuar'
+            });
         });
     },
   }

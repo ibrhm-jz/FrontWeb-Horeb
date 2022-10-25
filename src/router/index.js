@@ -5,12 +5,12 @@ Vue.use(Router);
 
 import Inicio from '../components/Inicio.vue';
 import Login from '../components/Login.vue';
-import Empleados from '../components/Empleados-update.vue';
+import Empleados from '../components/Empleados.vue';
 import Empresa from '../components/Empresa.vue';
-import Productos from '../components/productos-update.vue';
+import Productos from '../components/Productos.vue';
 import Cotizacion from '../components/Cotizacion.vue';
-import Clientes from '../components/Clientes-update.vue';
-import Inventario from '../components/Inventario-update.vue';
+import Clientes from '../components/Clientes.vue';
+import Inventario from '../components/Inventario.vue';
 import EditCotizacion from '../components/EditCotizacion.vue';
 export default new Router({
     mode: 'history',
