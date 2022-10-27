@@ -5,11 +5,7 @@
       <nav id="sidebar" fixed>
         <div class="sidebar-header" fixed>
           <div align="center">
-            <img
-              src="../assets/logo-nuevo.png"
-              class="d-inline-block align-top"
-              width="150px"
-            />
+            <img src="../assets/logo-nuevo.png" class="d-inline-block align-top" width="150px" />
           </div>
         </div>
 
@@ -18,56 +14,51 @@
           <router-link to="/Inicio">
             <li>
               <a href="#">
-                <b-icon icon="house-door-fill"></b-icon>&nbsp;&nbsp;Inicio</a
-              >
+                <b-icon icon="house-door-fill"></b-icon>&nbsp;&nbsp;Inicio
+              </a>
             </li>
           </router-link>
           <router-link to="/Clientes">
             <li>
-              <a href="#"
-                ><b-icon icon="person-lines-fill"></b-icon
-                >&nbsp;&nbsp;Clientes</a
-              >
+              <a href="#">
+                <b-icon icon="person-lines-fill"></b-icon>&nbsp;&nbsp;Clientes
+              </a>
             </li>
           </router-link>
           <router-link to="/Empleados">
             <li>
-              <a href="#"
-                ><b-icon icon="file-person-fill"></b-icon
-                >&nbsp;&nbsp;Empleados</a
-              >
+              <a href="#">
+                <b-icon icon="file-person-fill"></b-icon>&nbsp;&nbsp;Empleados
+              </a>
             </li>
           </router-link>
           <router-link to="/Productos">
             <li>
-              <a href="#"
-                ><b-icon icon="cart-fill"></b-icon>&nbsp;&nbsp;Productos</a
-              >
+              <a href="#">
+                <b-icon icon="cart-fill"></b-icon>&nbsp;&nbsp;Productos
+              </a>
             </li>
           </router-link>
-            <router-link to="/Cotizacion">
-          <li>
-            <a href="#"
-              ><b-icon icon="file-earmark-check-fill"></b-icon
-              >&nbsp;&nbsp;Cotizacion</a
-            >
-          </li>
+          <router-link to="/Cotizacion">
+            <li>
+              <a href="#">
+                <b-icon icon="file-earmark-check-fill"></b-icon>&nbsp;&nbsp;Cotizacion
+              </a>
+            </li>
           </router-link>
 
-                    <router-link to="/editCotizacion">
+          <router-link to="/editCotizacion">
             <li>
-              <a href="#"
-                ><b-icon icon="file-earmark-check-fill"></b-icon
-                >&nbsp;&nbsp;Editar Cotizacion</a
-              >
+              <a href="#">
+                <b-icon icon="file-earmark-check-fill"></b-icon>&nbsp;&nbsp;Editar Cotizacion
+              </a>
             </li>
           </router-link>
-                              <router-link to="/inventario">
+          <router-link to="/inventario">
             <li>
-              <a href="#"
-                ><b-icon icon="inboxes-fill"></b-icon
-                >&nbsp;&nbsp;Inventario</a
-              >
+              <a href="#">
+                <b-icon icon="inboxes-fill"></b-icon>&nbsp;&nbsp;Inventario
+              </a>
             </li>
           </router-link>
         </ul>
@@ -75,12 +66,9 @@
         <br />
         <ul class="list-unstyled CTAs">
           <li>
-            <a
-               @click="logout"
-               href=""
-            >
-              <b-icon icon="door-open-fill"></b-icon>&nbsp;&nbsp;¿Salir?</a
-            >
+            <a @click="logout" href="">
+              <b-icon icon="door-open-fill"></b-icon>&nbsp;&nbsp;¿Salir?
+            </a>
           </li>
         </ul>
       </nav>
@@ -91,27 +79,22 @@
         <div class="line"></div>
         <v-card elevation="2" tile class="padd-card">
           <b-input-group class="mt-3">
-            <b-form-input
-              placeholder="Buscar"
-              class="text-mayus"
-              v-model="searchnombre"
-              v-on:keyup.enter="BuscarProductos"
-            ></b-form-input>
+            <b-form-input placeholder="Buscar" class="text-mayus" v-model="searchnombre"
+              v-on:keyup.enter="BuscarProductos"></b-form-input>
             <b-input-group-append>
               <b-button squared variant="info" @click="BuscarProductos">
-                <b-icon icon="search"></b-icon
-              ></b-button>
-              
+                <b-icon icon="search"></b-icon>
+              </b-button>
+
             </b-input-group-append>
-                                    <b-form-select
-              v-model="category"
-              :options="optionscategory"
-              @change="FiltroProducto()"
-               style="margin-left: 50px"
-            ></b-form-select>
-            <b-button squared variant="success" style="margin-left: 50px"  v-b-modal.modal-prevent-closing>
-              <b-icon icon="plus"></b-icon>Nuevo Registro</b-button
-            >
+            <b-form-select v-model="category" :options="optionscategory" @change="FiltroProducto()"
+              style="margin-left: 50px"></b-form-select>
+            <b-button squared variant="warning" style="margin-left: 50px" v-b-modal.modal-subir-precio>
+              <b-icon icon="arrow-up"></b-icon>Subir Precios
+            </b-button>
+            <b-button squared variant="success" style="margin-left: 50px" v-b-modal.modal-prevent-closing>
+              <b-icon icon="plus"></b-icon>Nuevo Registro
+            </b-button>
 
           </b-input-group>
           <br />
@@ -123,23 +106,33 @@
             </div>
           </div>
 
-<v-data-table :headers="headers" :items="datosProductos" class="text-mayus">
+          <v-data-table :headers="headers" :items="datosProductos" class="text-mayus">
 
-      <template v-slot:item="row">
-      
-          <tr class="text-mayus">
-            <td><font size=1><b>{{row.item.nombre}}</b></font></td>
-          
-            <td><font size=1>{{row.item.categoria}}</font></td>
-            <td>  <b-badge variant="primary"><font size=2><b>$ {{row.item.precio_unitario}}</b></font></b-badge></td>
-            
-             <td><font size=1>{{row.item.medida }}</font></td>
-            <td>
+            <template v-slot:item="row">
 
-          
- 
-               
-<!--  <div class="h2 mb-0"><b-icon icon="pencil-square" style="color: #fff;"
+              <tr class="text-mayus">
+                <td>
+                  <font size=1><b>{{ row.item.nombre }}</b></font>
+                </td>
+
+                <td>
+                  <font size=1>{{ row.item.categoria }}</font>
+                </td>
+                <td>
+                  <b-badge variant="primary">
+                    <font size=2><b>$ {{ row.item.precio_unitario }}</b></font>
+                  </b-badge>
+                </td>
+
+                <td>
+                  <font size=1>{{ row.item.medida }}</font>
+                </td>
+                <td>
+
+
+
+
+                  <!--  <div class="h2 mb-0"><b-icon icon="pencil-square" style="color: #fff;"
               class="rounded-circle bg-success p-2"  -b-modal.modal-actualizar-producto @click="sendProduct(row.item)"></b-icon></div>
                
                <b-icon icon="trash-fill" style="color: #fff;"
@@ -163,22 +156,24 @@
                       <b-icon icon="trash-fill"></b-icon
                     ></b-button>
               -->
-               <div class="h2 mb-1"><b-icon icon="pencil-square" style="color: #fff;"
-              class="rounded-circle bg-success p-2"   v-b-modal.modal-actualizar-producto @click="sendProduct(row.item)"></b-icon>&nbsp;<b-icon icon="trash-fill" style="color: #fff;"
-              class="rounded-circle bg-danger p-2"   @click="delectProducto(row.item)" ></b-icon>
-              </div> 
-     
-               
-                
-                    
-            </td>
-          </tr>
-           
-      </template>
-     
-    </v-data-table>
+                  <div class="h2 mb-1">
+                    <b-icon icon="pencil-square" style="color: #fff;" class="rounded-circle bg-success p-2"
+                      v-b-modal.modal-actualizar-producto @click="sendProduct(row.item)"></b-icon>&nbsp;<b-icon
+                      icon="trash-fill" style="color: #fff;" class="rounded-circle bg-danger p-2"
+                      @click="delectProducto(row.item)"></b-icon>
+                  </div>
 
-<!--
+
+
+
+                </td>
+              </tr>
+
+            </template>
+
+          </v-data-table>
+
+          <!--
           <v-simple-table>
             <template v-slot:default>
               <thead>
@@ -228,140 +223,125 @@
           </v-simple-table>
           -->
         </v-card>
+        <div md="12">
+          <b-modal id="modal-subir-precio" ref="modal" centered title="Subir Precios" size="lg">
+            <b-container fluid class="p-0">
+              <b-row md="12">
+                <b-col md="6">
+                  <b-form-select v-model="tipoSubida" :options="opcionesSubida" @change=""></b-form-select>
+                </b-col>
+                <b-col md="6">
 
-        <div>
-          <b-modal
-            id="modal-prevent-closing"
-            ref="modal"
-            title="Registrar Producto"
-            centered
-            @show="resetModal"
-            @hidden="resetModal"
-            @ok="RegistrarProducto"
-            ok-variant="success"
-          >
-            <form ref="form" @submit.stop.prevent="handleSubmit" >
-              <b-form-group :state="nameState" invalid-feedback="*Requerido">
-                <b-form-input
-                  id="name-input"
-                  v-model="nombre"
-                  :state="nameState"
-                  required
-                  placeholder="Nombre"
-                  class="text-mayus"
-                ></b-form-input>
-                <br />
-
-                <b-form-input
-                  id="name-input"
-                  v-model="medida"
-                  :state="nameState"
-                  required
-                  placeholder="Tipo de Medida"
-                  class="text-mayus"
-                  type="text"
-                ></b-form-input>
-                <br />
-                <b-form-input
-                  id="name-input"
-                  v-model="precio_unitario"
-                  :state="nameState"
-                  required
-                  placeholder="$Precio unitario"
-                  class="text-mayus"
-                ></b-form-input>
-                <br />
-                <b-form-input
-                  id="name-input"
-                  v-model="cantidad_existencia"
-                  :state="nameState"
-                  required
-                  placeholder="Cantidad en Existencia"
-                  class="text-mayus"
-                ></b-form-input>
-                <br />
-                <div>
-                  <b-form-select
-                    v-model="selected"
-                    :options="options"
-                  ></b-form-select>
-                  <div class="mt-3">
-                    Selected:
-                    <strong>{{ selected }}</strong>
+                  <div v-if="tipoSubida === 1">
+                    <b-form-input v-model="precioASubir" placeholder="Precio a subir" type="text"></b-form-input>
                   </div>
-                </div>
-              </b-form-group>
-            </form>
+                  <div v-if="tipoSubida === 2">
+                    <b-form-input v-model="porcentajeASubir" placeholder="Porcentaje a subir"></b-form-input>
+                  </div>
+                  <div v-if="tipoSubida === 3">
+                    <b-form-select v-model="categoriaSubida" :options="optionscategory" @change=""></b-form-select>
+                  </div>
 
-    <v-snackbar v-model="snackbar">
-      {{ text }}
+                </b-col>
+              </b-row>
 
-      <template v-slot:action="{ attrs }">
-        <v-btn color="pink" text v-bind="attrs" @click="snackbar = false">
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
+              <b-form-checkbox id="checkbox-1" v-model="status" name="checkbox-1" value="accepted"
+                unchecked-value="not_accepted">
+                Subir a todos los productos
+              </b-form-checkbox>
+
+              <v-data-table :headers="headers" :items="datosProductos" class="text-mayus">
+
+                <template v-slot:item="row">
+                  <tr class="text-mayus">
+                    <td>
+                      <font size="1"><b>{{ row.item.nombre }}</b></font>
+                    </td>
+
+                    <td>
+                      <font size="1">{{ row.item.categoria }}</font>
+                    </td>
+
+                    <td>
+                      <font size="1"><b>$ {{ row.item.precio_unitario }}</b></font>
+                    </td>
+
+                    <td>
+                      <font size="1">{{ row.item.medida }}</font>
+                    </td>
+
+                    <td>
+                      <b-form-checkbox id="checkbox-1" v-model="status" name="checkbox-1" value="accepted"
+                        unchecked-value="not_accepted"></b-form-checkbox>
+                    </td>
+                  </tr>
+                </template>
+              </v-data-table>
+            </b-container>
           </b-modal>
         </div>
 
         <div>
-          <b-modal
-            id="modal-actualizar-producto"
-            ref="modal"
-            title="Actualizar Producto"
-            centered
-            @show="resetModal"
-            @hidden="resetModal"
-            @ok="ActualizarProducto"
-            ok-variant="success"
-          >
+          <b-modal id="modal-prevent-closing" ref="modal" title="Registrar Producto" centered @show="resetModal"
+            @hidden="resetModal" @ok="RegistrarProducto" ok-variant="success">
             <form ref="form" @submit.stop.prevent="handleSubmit">
               <b-form-group :state="nameState" invalid-feedback="*Requerido">
-                <b-form-input
-                  id="name-input"
-                  v-model="selectedProduct.nombre"
-                  :state="nameState"
-                  required
-                  placeholder="Nombre"
-                  class="text-mayus"
-                ></b-form-input>
+                <b-form-input id="name-input" v-model="nombre" :state="nameState" required placeholder="Nombre"
+                  class="text-mayus"></b-form-input>
                 <br />
 
-                <b-form-input
-                  id="name-input"
-                  v-model="selectedProduct.medida"
-                  :state="nameState"
-                  required
-                  placeholder="Tipo de Medida"
-                  class="text-mayus"
-                  type="text"
-                ></b-form-input>
+                <b-form-input id="name-input" v-model="medida" :state="nameState" required placeholder="Tipo de Medida"
+                  class="text-mayus" type="text"></b-form-input>
                 <br />
-
-                <b-form-input
-                  id="name-input"
-                  v-model="selectedProduct.precio_unitario"
-                  :state="nameState"
-                  required
-                  placeholder="$Precio unitario"
-                  class="text-mayus"
-                ></b-form-input>
+                <b-form-input id="name-input" v-model="precio_unitario" :state="nameState" required
+                  placeholder="$Precio unitario" class="text-mayus"></b-form-input>
                 <br />
-                <b-form-input
-                  id="name-input"
-                  v-model="selectedProduct.cantidad_existencia"
-                  :state="nameState"
-                  required
-                  placeholder="Cantidad en Existencia"
-                  class="text-mayus"
-                ></b-form-input>
+                <b-form-input id="name-input" v-model="cantidad_existencia" :state="nameState" required
+                  placeholder="Cantidad en Existencia" class="text-mayus"></b-form-input>
                 <br />
                 <div>
-                  <b-form-select
-                    v-model="selectedProduct.categoria"
-                    :options="options"
-                  ></b-form-select>
+                  <b-form-select v-model="selected" :options="options"></b-form-select>
+                  <div class="mt-3">
+                    Selected:
+                    <strong>{{ selected }}</strong>
+                  </div>
+                </div>
+              </b-form-group>
+            </form>
+
+            <v-snackbar v-model="snackbar">
+              {{ text }}
+
+              <template v-slot:action="{ attrs }">
+                <v-btn color="pink" text v-bind="attrs" @click="snackbar = false">
+                  Close
+                </v-btn>
+              </template>
+            </v-snackbar>
+          </b-modal>
+        </div>
+
+        <div>
+          <b-modal id="modal-actualizar-producto" ref="modal" title="Actualizar Producto" centered @show="resetModal"
+            @hidden="resetModal" @ok="ActualizarProducto" ok-variant="success">
+            <form ref="form" @submit.stop.prevent="handleSubmit">
+              <b-form-group :state="nameState" invalid-feedback="*Requerido">
+                <b-form-input id="name-input" v-model="selectedProduct.nombre" :state="nameState" required
+                  placeholder="Nombre" class="text-mayus"></b-form-input>
+                <br />
+
+                <b-form-input id="name-input" v-model="selectedProduct.medida" :state="nameState" required
+                  placeholder="Tipo de Medida" class="text-mayus" type="text"></b-form-input>
+                <br />
+
+                <b-form-input id="name-input" v-model="selectedProduct.precio_unitario" :state="nameState" required
+                  placeholder="$Precio unitario" class="text-mayus"></b-form-input>
+                <br />
+                <b-form-input id="name-input" v-model="selectedProduct.cantidad_existencia" :state="nameState" required
+                  placeholder="Cantidad en Existencia" class="text-mayus"></b-form-input>
+                <br />
+                <div>
+                  <b-form-select v-model="selectedProduct.categoria" :options="options"></b-form-select>
                   <div class="mt-3">
                     Selected:
                     <strong>{{ selected }}</strong>
@@ -370,16 +350,8 @@
               </b-form-group>
             </form>
           </b-modal>
-          <b-modal
-            id="modal-delete"
-            centered
-            size="sm"
-            ok-variant="danger"
-            okTitle="SI"
-            cancelTitle="NO"
-            headerClass="p-2 border-bottom-0"
-            footerClass="p-2 border-top-0"
-          >
+          <b-modal id="modal-delete" centered size="sm" ok-variant="danger" okTitle="SI" cancelTitle="NO"
+            headerClass="p-2 border-bottom-0" footerClass="p-2 border-top-0">
             <div align="center">
               <p class="my-4">¿Deseas continuar?</p>
             </div>
@@ -421,24 +393,26 @@ export default {
       tipo: "",
       medida: "",
       descripcion: "",
-      precio_unitario:"",
+      precio_unitario: "",
       cantidad_existencia: "",
       categoria: "",
       selected: null,
       category: null,
-       headers: [
+      tipoSubida: null,
+      categoriaSubida: null,
+      headers: [
         {
           text: 'Nombre',
           align: 'start',
           sortable: false,
           value: 'nombre',
         },
-      
+
         { text: 'Categoria', value: 'categoria' },
         { text: 'Precio Unitario', value: 'precio_unitario' },
         { text: 'UNIDAD DE MEDIDA', value: 'medida' },
         { text: 'Accion', value: 'iron' },
-       
+
       ],
       options: [
         { value: null, text: "Seleccione la categoria" },
@@ -464,17 +438,23 @@ export default {
         { value: "Brocales", text: "Brocales" },
         { value: "Herreria", text: "Herreria" },
         { value: "Gaviones", text: "Gaviones" },
-         { value: "Aditamentos", text: "Aditamentos" },
+        { value: "Aditamentos", text: "Aditamentos" },
         { value: "Tornilleria", text: "Tornilleria" },
         { value: "Pegamentos", text: "Pegamentos" },
         { value: "Tinacos", text: "Tinacos" },
         { value: "Otro", text: "Otro" },
-        
+
+      ],
+      opcionesSubida: [
+        { value: null, text: "Elegir una opción" },
+        { value: 1, text: "Subir por precio" },
+        { value: 2, text: "Subir por porcentaje" },
+        { value: 3, text: "Subir por categoría" },
       ],
     };
   },
   methods: {
-              logout(){
+    logout() {
       localStorage.removeItem('userToken')
       this.$router.push("/")
     },
@@ -492,11 +472,11 @@ export default {
         })
         .catch((error) => {
           this.$swal({
-              title: 'Error',
-              text: 'Lo sentimos, ocurrió un error ' + error,
-              icon: 'error',
-              confirmButtonText: 'Continuar'
-            });
+            title: 'Error',
+            text: 'Lo sentimos, ocurrió un error ' + error,
+            icon: 'error',
+            confirmButtonText: 'Continuar'
+          });
         });
     },
 
@@ -541,7 +521,7 @@ export default {
       })
         .then((res) => {
           this.selected = [],
-          this.$swal({
+            this.$swal({
               title: 'Informacion',
               text: 'Los datos se han guardado con éxito',
               icon: 'success',
@@ -550,14 +530,14 @@ export default {
         })
         .catch((error) => {
           this.$swal({
-              title: 'Error',
-              text: 'Lo sentimos, ocurrió un error ' + error,
-              icon: 'error',
-              confirmButtonText: 'Continuar'
-            });
+            title: 'Error',
+            text: 'Lo sentimos, ocurrió un error ' + error,
+            icon: 'error',
+            confirmButtonText: 'Continuar'
+          });
         });
     },
-        getProduct() {
+    getProduct() {
       API.get("productos", {
         headers: {
           Authorization: "Bearer " + this.token,
@@ -567,28 +547,28 @@ export default {
       });
     },
     delectProducto(result) {
-       var con;
-      con=confirm("¿Esta seguro de eliminar?");
-      if(con==true){
-         API.delete("borrar-producto/" + result.id, {
-        headers: {
-          Authorization: "Bearer " + this.token,
-        },
-      }).then((response) => {
-        this.$swal({
-              title: 'Informacion',
-              text: 'Se elimino',
-              icon: 'success',
-              confirmButtonText: 'Continuar'
-            });
-       
-      });
-      }else{
-        
+      var con;
+      con = confirm("¿Esta seguro de eliminar?");
+      if (con == true) {
+        API.delete("borrar-producto/" + result.id, {
+          headers: {
+            Authorization: "Bearer " + this.token,
+          },
+        }).then((response) => {
+          this.$swal({
+            title: 'Informacion',
+            text: 'Se elimino',
+            icon: 'success',
+            confirmButtonText: 'Continuar'
+          });
+
+        });
+      } else {
+
       }
-     
+
     },
-        format(x) {
+    format(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
     RegistrarProducto() {
@@ -606,26 +586,26 @@ export default {
       })
         .then((res) => {
           this.$swal({
-              title: 'Informacion',
-              text: 'Los datos se han guardado con éxito',
-              icon: 'success',
-              confirmButtonText: 'Continuar'
-            });
-         this.nombre="";
-         this.tipo="";
-         this.precio_unitario="";
-         this.cantidad_existencia="";
-         
+            title: 'Informacion',
+            text: 'Los datos se han guardado con éxito',
+            icon: 'success',
+            confirmButtonText: 'Continuar'
+          });
+          this.nombre = "";
+          this.tipo = "";
+          this.precio_unitario = "";
+          this.cantidad_existencia = "";
+
           this.getProduct()
-          
+
         })
         .catch((error) => {
           this.$swal({
-              title: 'Error',
-              text: 'Lo sentimos, ocurrió un error ' + error,
-              icon: 'error',
-              confirmButtonText: 'Continuar'
-            });
+            title: 'Error',
+            text: 'Lo sentimos, ocurrió un error ' + error,
+            icon: 'error',
+            confirmButtonText: 'Continuar'
+          });
         });
     },
 
@@ -633,8 +613,8 @@ export default {
       this.selectedProduct = item;
     },
   },
-  computed:{
-        BuscarProductos() {
+  computed: {
+    BuscarProductos() {
       const data = {
         nombre: this.searchnombre,
       };
@@ -645,15 +625,15 @@ export default {
       })
         .then((res) => {
           this.datosProductos = res.data;
-        
+
         })
         .catch((error) => {
           this.$swal({
-              title: 'Error',
-              text: 'Lo sentimos, ocurrió un error ' + error,
-              icon: 'error',
-              confirmButtonText: 'Continuar'
-            });
+            title: 'Error',
+            text: 'Lo sentimos, ocurrió un error ' + error,
+            icon: 'error',
+            confirmButtonText: 'Continuar'
+          });
         });
     },
   }
@@ -665,6 +645,7 @@ export default {
 */
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
 body {
   font-family: "Poppins", sans-serif;
   background: #fafafa;
@@ -741,7 +722,7 @@ a:focus {
   background: #fff;
 }
 
-#sidebar ul li.active > a,
+#sidebar ul li.active>a,
 a[aria-expanded="true"] {
   color: #fff;
   background: #6d7fcc;
@@ -799,16 +780,19 @@ a.article:hover {
   transition: all 0.3s;
   background: #fff;
 }
+
 .padd-card {
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
 .padd-button {
   margin-left: 2px;
   margin-right: 2px;
 }
+
 .text-mayus {
   text-transform: uppercase;
 }
@@ -821,9 +805,11 @@ a.article:hover {
   #sidebar {
     margin-left: -250px;
   }
+
   #sidebar.active {
     margin-left: 0;
   }
+
   #sidebarCollapse span {
     display: none;
   }

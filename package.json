@@ -19,6 +19,7 @@
         "jspdf-autotable": "^3.5.9",
         "numero-a-letras": "^1.0.6",
         "serve-static": "^1.14.1",
+        "v-switch-case": "^1.0.3",
         "vue": "^2.6.12",
         "vue-axios": "^2.1.5",
         "vue-router": "^3.4.3",
