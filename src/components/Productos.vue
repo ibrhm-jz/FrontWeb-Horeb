@@ -489,12 +489,6 @@ export default {
       })
         .then((res) => {
           this.datosProductos = res.data;
-          this.$swal({
-              title: 'Informacion',
-              text: 'Los datos se han guardado con éxito',
-              icon: 'success',
-              confirmButtonText: 'Continuar'
-            });
         })
         .catch((error) => {
           this.$swal({
@@ -651,12 +645,7 @@ export default {
       })
         .then((res) => {
           this.datosProductos = res.data;
-          this.$swal({
-              title: 'Informacion',
-              text: 'Los datos se han guardado con éxito',
-              icon: 'success',
-              confirmButtonText: 'Continuar'
-            });
+        
         })
         .catch((error) => {
           this.$swal({

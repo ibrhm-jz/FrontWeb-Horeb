@@ -113,12 +113,6 @@ export default {
       API.post("login", data)
         .then((res) => {
           this.loading = false;
-          this.$swal({
-              title: 'Informacion',
-              text: 'Los datos se han guardado con éxito',
-              icon: 'success',
-              confirmButtonText: 'Continuar'
-            });
           localStorage.setItem('userToken', res.data.token)
           localStorage.setItem('userId', res.data.usuario[0].id)
           this.dialog = false;

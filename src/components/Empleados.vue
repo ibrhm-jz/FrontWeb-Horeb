@@ -91,7 +91,7 @@
         <div class="line"></div>
         <v-card elevation="2" tile class="padd-card">
           <b-input-group class="mt-3">
-            <b-form-input placeholder="Buscar" v-model="searchnombre" v-on:keyup.enter="BuscarEmpleado"></b-form-input>
+            <b-form-input placeholder="Buscar" v-model="searchnombre" v-on:keyup="BuscarEmpleado"></b-form-input>
             <b-input-group-append>
               <b-button squared variant="info"  @click="BuscarEmpleado">
                 <b-icon icon="search"></b-icon
