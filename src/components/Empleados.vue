@@ -2,71 +2,63 @@
   <div width="100%">
     <div class="wrapper">
       <!-- Sidebar  -->
-           <nav id="sidebar">
+      <nav id="sidebar">
         <div class="sidebar-header">
           <div align="center">
-            <img
-              src="../assets/logo-nuevo.png"
-              class="d-inline-block align-top"
-              width="150px"
-            />
+            <img src="../assets/logo-nuevo.png" class="d-inline-block align-top" width="150px" />
           </div>
         </div>
 
         <ul class="list-unstyled components">
           <p>Administracion Horeb</p>
-                 <router-link to="/Inicio">
-          <li>
-            <a href="#">
-              <b-icon icon="house-door-fill"></b-icon>&nbsp;&nbsp;Inicio</a
-            >
-          </li>
+          <router-link to="/Inicio">
+            <li>
+              <a href="#">
+                <b-icon icon="house-door-fill"></b-icon>&nbsp;&nbsp;Inicio
+              </a>
+            </li>
           </router-link>
           <router-link to="/Clientes">
             <li>
-              <a href="#"
-                ><b-icon icon="person-lines-fill"></b-icon
-                >&nbsp;&nbsp;Clientes</a
-              >
+              <a href="#">
+                <b-icon icon="person-lines-fill"></b-icon>&nbsp;&nbsp;Clientes
+              </a>
             </li>
           </router-link>
-           <router-link to="/Empleados">
-          <li>
-            <a href="#"
-              ><b-icon icon="file-person-fill"></b-icon>&nbsp;&nbsp;Empleados</a
-            >
-          </li>
+          <router-link to="/Empleados">
+            <li>
+              <a href="#">
+                <b-icon icon="file-person-fill"></b-icon>&nbsp;&nbsp;Empleados
+              </a>
+            </li>
           </router-link>
           <router-link to="/Productos">
-          <li>
-            <a href="#"
-              ><b-icon icon="cart-fill"></b-icon>&nbsp;&nbsp;Productos</a
-            >
-          </li>
-          </router-link>
-          <router-link to="/Cotizacion">
-          <li>
-            <a href="#"
-              ><b-icon icon="file-earmark-check-fill"></b-icon
-              >&nbsp;&nbsp;Cotizacion</a
-            >
-          </li>
-          </router-link>
-
-                    <router-link to="/editCotizacion">
             <li>
-              <a href="#"
-                ><b-icon icon="file-earmark-check-fill"></b-icon
-                >&nbsp;&nbsp;Editar Cotizacion</a
-              >
+              <a href="#">
+                <b-icon icon="cart-fill"></b-icon>&nbsp;&nbsp;Productos
+              </a>
             </li>
           </router-link>
-                              <router-link to="/inventario">
+          <router-link to="/Cotizacion">
             <li>
-              <a href="#"
-                ><b-icon icon="inboxes-fill"></b-icon
-                >&nbsp;&nbsp;Inventario</a
-              >
+              <a href="#">
+                <b-icon icon="file-earmark-check-fill"></b-icon>&nbsp;&nbsp;Cotizacion
+              </a>
+            </li>
+          </router-link>
+
+          <router-link to="/editCotizacion">
+            <li>
+              <a href="#">
+                <b-icon icon="file-earmark-check-fill"></b-icon>&nbsp;&nbsp;Editar Cotizacion
+              </a>
+            </li>
+          </router-link>
+          <router-link to="/inventario">
+            <li>
+              <a href="#">
+                <b-icon icon="inboxes-fill"></b-icon>&nbsp;&nbsp;Inventario
+              </a>
             </li>
           </router-link>
         </ul>
@@ -74,12 +66,9 @@
         <br />
         <ul class="list-unstyled CTAs">
           <li>
-            <a
-               @click="logout"
-                href=""
-            >
-              <b-icon icon="door-open-fill"></b-icon>&nbsp;&nbsp;¿Salir?</a
-            >
+            <a @click="logout" href="">
+              <b-icon icon="door-open-fill"></b-icon>&nbsp;&nbsp;¿Salir?
+            </a>
           </li>
         </ul>
       </nav>
@@ -93,18 +82,13 @@
           <b-input-group class="mt-3">
             <b-form-input placeholder="Buscar" v-model="searchnombre" v-on:keyup="BuscarEmpleado"></b-form-input>
             <b-input-group-append>
-              <b-button squared variant="info"  @click="BuscarEmpleado">
-                <b-icon icon="search"></b-icon
-              ></b-button>
+              <b-button squared variant="info" @click="BuscarEmpleado">
+                <b-icon icon="search"></b-icon>
+              </b-button>
             </b-input-group-append>
-            <b-button
-              squared
-              variant="success"
-              style="margin-left: 50px"
-              v-b-modal.modal-prevent-closing
-            >
-              <b-icon icon="plus"></b-icon>Nuevo Registro</b-button
-            >
+            <b-button squared variant="success" style="margin-left: 50px" v-b-modal.modal-prevent-closing>
+              <b-icon icon="plus"></b-icon>Nuevo Registro
+            </b-button>
           </b-input-group>
           <br />
 
@@ -121,21 +105,34 @@
                 </tr>
               </thead>
               <tbody class="text-mayus">
-                <tr v-for="(Empleados,i) in dataEmpleados" :key="i">
-                  <td><font size=1><b>{{ Empleados.nombres }}</b></font></td>
-                  <td><font size=1><b>{{ Empleados.apellidos }}</b></font></td>
-                  <td><font size=1>{{ Empleados.tipo_usuario }}</font></td>
-                  <td><font size=1>{{ Empleados.email }}</font></td>
-                  <td><font size=1>{{ Empleados.telefono }}</font></td>
+                <tr v-for="(Empleados, i) in dataEmpleados" :key="i">
+                  <td>
+                    <font size=1><b>{{ Empleados.nombres }}</b></font>
+                  </td>
+                  <td>
+                    <font size=1><b>{{ Empleados.apellidos }}</b></font>
+                  </td>
+                  <td>
+                    <font size=1>{{ Empleados.tipo_usuario }}</font>
+                  </td>
+                  <td>
+                    <font size=1>{{ Empleados.email }}</font>
+                  </td>
+                  <td>
+                    <font size=1>{{ Empleados.telefono }}</font>
+                  </td>
                   <td>
 
-                                 <div class="h2 mb-0"><b-icon icon="pencil-square" style="color: #fff;"
-              class="rounded-circle bg-success p-2"  v-b-modal.modal-update @click="sendUser(Empleados)"></b-icon>&nbsp;<b-icon icon="trash-fill" style="color: #fff;"
-              class="rounded-circle bg-danger p-2"   v-b-modal.modal-delete  @click="deleteEmpleados(Empleados)"></b-icon></div>
-               
-              
+                    <div class="h2 mb-0">
+                      <b-icon icon="pencil-square" style="color: #fff;" class="rounded-circle bg-success p-2"
+                        v-b-modal.modal-update @click="sendUser(Empleados)"></b-icon>&nbsp;<b-icon icon="trash-fill"
+                        style="color: #fff;" class="rounded-circle bg-danger p-2" v-b-modal.modal-delete
+                        @click="deleteEmpleados(Empleados)"></b-icon>
+                    </div>
 
-                   <!-- <b-button
+
+
+                    <!-- <b-button
                       squared
                       variant="info"
                       class="padd-button"
@@ -163,167 +160,71 @@
         </v-card>
 
 
-    <div>
-      <b-modal
-        id="modal-prevent-closing"
-        ref="modal"
-        title="Registrar Empleados"
-        centered
-        @show="resetModal"
-        @hidden="resetModal"
-        @ok="RegistrarEmpleado"
-        ok-variant="success"
-      >
-        <form ref="form" @submit.stop.prevent="handleSubmit">
-          <b-form-group :state="nameState" invalid-feedback="*Requerido">
-            <b-form-input
-              id="nombres"
-              v-model="nombres"
-              :state="nameState"
-              required
-              placeholder="Nombres"
-              class="text-mayus"
-            ></b-form-input>
-            <br />
-            <b-form-input
-              id="apellidos"
-              v-model="apellidos"
-              :state="nameState"
-              required
-              placeholder="Apellidos"
-              class="text-mayus"
-              type="text"
-            ></b-form-input>
-            <br />
-          
-            <b-form-input
-              id="correo"
-              v-model="correo"
-              :state="nameState"
-              required
-              placeholder="CORREO"
-             
-            ></b-form-input>
-            <br />
-              <b-form-input
-              id="contraseña"
-              v-model="password"
-              :state="nameState"
-              required
-              placeholder="Contraseña"
-              type="password"
-            ></b-form-input>
-            <br />
-              <b-form-input
-              id="rcontraseña"
-              v-model="rpassword"
-              :state="nameState"
-              required
-              placeholder="Repetir contraseña"
-              type="password"
-            ></b-form-input>
-            <br />
-            <b-form-input
-              id="correo"
-              v-model="telefono"
-              :state="nameState"
-              required
-              placeholder="Telefono"
-            ></b-form-input>
-            <br />
+        <div>
+          <b-modal id="modal-prevent-closing" ref="modal" title="Registrar Empleados" centered @show="resetModal"
+            @hidden="resetModal" @ok="RegistrarEmpleado" ok-variant="success">
+            <form ref="form" @submit.stop.prevent="handleSubmit">
+              <b-form-group :state="nameState" invalid-feedback="*Requerido">
+                <b-form-input id="nombres" v-model="nombres" :state="nameState" required placeholder="Nombres"
+                  class="text-mayus"></b-form-input>
+                <br />
+                <b-form-input id="apellidos" v-model="apellidos" :state="nameState" required placeholder="Apellidos"
+                  class="text-mayus" type="text"></b-form-input>
+                <br />
 
-            <div>
-              <b-form-select
-                v-model="selected"
-                :options="options"
-       
-              ></b-form-select>
-            </div>
-          </b-form-group>
-        </form>
-      </b-modal>
-    </div>
+                <b-form-input id="correo" v-model="correo" :state="nameState" required placeholder="CORREO">
+                </b-form-input>
+                <br />
+                <b-form-input id="contraseña" v-model="password" :state="nameState" required placeholder="Contraseña"
+                  type="password"></b-form-input>
+                <br />
+                <b-form-input id="rcontraseña" v-model="rpassword" :state="nameState" required
+                  placeholder="Repetir contraseña" type="password"></b-form-input>
+                <br />
+                <b-form-input id="correo" v-model="telefono" :state="nameState" required placeholder="Telefono">
+                </b-form-input>
+                <br />
 
-    <div>
-      <b-modal
-        id="modal-update"
-        ref="modal"
-        title="Registrar Cliente"
-        centered
-        @show="resetModal"
-        @hidden="resetModal"
-        @ok="ActualizarEmpleado"
-        ok-variant="success"
-      >
-         <form ref="form" @submit.stop.prevent="handleSubmit">
-          <b-form-group :state="nameState" invalid-feedback="*Requerido">
-            <b-form-input
-              id="nombres"
-              v-model="selectedUser.nombres"
-              :state="nameState"
-              required
-              placeholder="Nombres"
-               class="text-mayus"
-            ></b-form-input>
-            <br />
-            <b-form-input
-              id="apellidos"
-              v-model="selectedUser.apellidos"
-              :state="nameState"
-              required
-              placeholder="Apellidos"
-               class="text-mayus"
-              type="text"
-            ></b-form-input>
-            <br />
-          
-            <b-form-input
-              id="correo"
-              v-model="selectedUser.email"
-              :state="nameState"
-              required
-              placeholder="Correo"
-            ></b-form-input>
-            <br />
-              <b-form-input
-              id="contraseña"
-              v-model="selectedUser.password"
-              :state="nameState"
-              required
-              placeholder="Contraseña"
-               type="password"
-            ></b-form-input>
-            <br />
-              <b-form-input
-              id="rcontraseña"
-              v-model="selectedUser.contraseña"
-              :state="nameState"
-              required
-              placeholder="Repetir contraseña"
-              type="password"
-            ></b-form-input>
-            <br />
-            <b-form-input
-              id="correo"
-              v-model="selectedUser.telefono"
-              :state="nameState"
-              required
-              placeholder="Telefono"
-               class="text-mayus"
-            ></b-form-input>
-            <br />
+                <div>
+                  <b-form-select v-model="selected" :options="options"></b-form-select>
+                </div>
+              </b-form-group>
+            </form>
+          </b-modal>
+        </div>
 
-            <div>
-              <b-form-select
-                v-model="selected"
-                :options="options"
-       
-              ></b-form-select>
-            </div>
-          </b-form-group>
-        </form>
-      </b-modal>
-    </div>
+        <div>
+          <b-modal id="modal-update" ref="modal" title="Registrar Cliente" centered @show="resetModal"
+            @hidden="resetModal" @ok="ActualizarEmpleado" ok-variant="success">
+            <form ref="form" @submit.stop.prevent="handleSubmit">
+              <b-form-group :state="nameState" invalid-feedback="*Requerido">
+                <b-form-input id="nombres" v-model="selectedUser.nombres" :state="nameState" required
+                  placeholder="Nombres" class="text-mayus"></b-form-input>
+                <br />
+                <b-form-input id="apellidos" v-model="selectedUser.apellidos" :state="nameState" required
+                  placeholder="Apellidos" class="text-mayus" type="text"></b-form-input>
+                <br />
+
+                <b-form-input id="correo" v-model="selectedUser.email" :state="nameState" required placeholder="Correo">
+                </b-form-input>
+                <br />
+                <b-form-input id="contraseña" v-model="selectedUser.password" :state="nameState" required
+                  placeholder="Contraseña" type="password"></b-form-input>
+                <br />
+                <b-form-input id="rcontraseña" v-model="selectedUser.contraseña" :state="nameState" required
+                  placeholder="Repetir contraseña" type="password"></b-form-input>
+                <br />
+                <b-form-input id="correo" v-model="selectedUser.telefono" :state="nameState" required
+                  placeholder="Telefono" class="text-mayus"></b-form-input>
+                <br />
+
+                <div>
+                  <b-form-select v-model="selected" :options="options"></b-form-select>
+                </div>
+              </b-form-group>
+            </form>
+          </b-modal>
+        </div>
 
 
 
@@ -346,11 +247,11 @@ export default {
   },
   data() {
     return {
-     drawer: false,
+      drawer: false,
       group: null,
-      token:"",
+      token: "",
       name: "",
-    checked: false,     
+      checked: false,
       // eslint-disable-next-line
       submittedNames: [],
       dataEmpleados: [],
@@ -364,7 +265,7 @@ export default {
       password: "",
       rpassword: "",
       users_id: "",
-      searchnombre:"",
+      searchnombre: "",
       categoria: "",
       selected: null,
       category: null,
@@ -372,14 +273,14 @@ export default {
         { value: null, text: "Seleccione el rango." },
         { value: "administrador", text: "Administrador" },
         { value: "empleado", text: "Empleado" },
-    
+
       ],
       dataVendedores: [],
       selectedUser: [],
     };
   },
   methods: {
-                  logout(){
+    logout() {
       localStorage.removeItem('userToken')
       this.$router.push("/")
     },
@@ -398,46 +299,46 @@ export default {
         (this.password = ""),
         (this.telefono = ""),
         (this.correo = "");
-        
+
     },
 
     RegistrarEmpleado() {
-     if(this.password!=this.rpassword){
+      if (this.password != this.rpassword) {
 
-      window.alert("Las contraseñas no coinciden");
-     }else{
+        window.alert("Las contraseñas no coinciden");
+      } else {
         const data = {
-        email:this.correo,
-        password:this.password,
-        tipo_usuario:this.selected,
-        nombres:this.nombres,
-        apellidos:this.apellidos,
-        telefono:this.telefono
-      };
-      API.post("registro", data, {
-        headers: {
-          Authorization: "Bearer " + this.token,
-        },
-      })
-        .then((res) => {
-          this.Limpiar();
-          this.getEmpleados();
-          this.$swal({
-            title: 'Informacion',
-            text: 'Los datos se han guardado',
-            icon: 'success',
-            confirmButtonText: 'Continuar'
-          });
+          email: this.correo,
+          password: this.password,
+          tipo_usuario: this.selected,
+          nombres: this.nombres,
+          apellidos: this.apellidos,
+          telefono: this.telefono
+        };
+        API.post("registro", data, {
+          headers: {
+            Authorization: "Bearer " + this.token,
+          },
         })
-        .catch((error) => {
-          this.$swal({
-            title: 'Error',
-            text: 'Lo sentimos, ocurrió un error ' + error,
-            icon: 'error',
-            confirmButtonText: 'Continuar'
+          .then((res) => {
+            this.Limpiar();
+            this.getEmpleados();
+            this.$swal({
+              title: 'Informacion',
+              text: 'Los datos se han guardado',
+              icon: 'success',
+              confirmButtonText: 'Continuar'
+            });
+          })
+          .catch((error) => {
+            this.$swal({
+              title: 'Error',
+              text: 'Lo sentimos, ocurrió un error ' + error,
+              icon: 'error',
+              confirmButtonText: 'Continuar'
+            });
           });
-        });
-     }
+      }
     },
 
     ActualizarEmpleado() {
@@ -477,7 +378,7 @@ export default {
     },
 
     getUser(Empleados) {
-      API.get("user/" +Empleados.users_id, {
+      API.get("user/" + Empleados.users_id, {
         headers: {
           Authorization: "Bearer " + this.token,
         },
@@ -497,15 +398,15 @@ export default {
         },
       }).then((response) => {
         this.$swal({
-            title: 'Informacion',
-            text: 'Los datos se han guardado',
-            icon: 'success',
-            confirmButtonText: 'Continuar'
-          });
+          title: 'Informacion',
+          text: 'Los datos se han guardado',
+          icon: 'success',
+          confirmButtonText: 'Continuar'
+        });
       });
     },
 
-BuscarEmpleado() {
+    BuscarEmpleado() {
       const data = {
         nombres: this.searchnombre,
       };
@@ -515,7 +416,7 @@ BuscarEmpleado() {
         },
       })
         .then((res) => {
-         this.dataEmpleados = res.data;
+          this.dataEmpleados = res.data;
         })
         .catch((error) => {
           this.$swal({
@@ -536,6 +437,7 @@ BuscarEmpleado() {
 */
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
 body {
   font-family: "Poppins", sans-serif;
   background: #fafafa;
@@ -612,7 +514,7 @@ a:focus {
   background: #fff;
 }
 
-#sidebar ul li.active > a,
+#sidebar ul li.active>a,
 a[aria-expanded="true"] {
   color: #fff;
   background: #6d7fcc;
@@ -668,18 +570,21 @@ a.article:hover {
   padding: 20px;
   min-height: 100vh;
   transition: all 0.3s;
-  background:  #fff;
+  background: #fff;
 }
+
 .padd-card {
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
 .padd-button {
   margin-left: 2px;
   margin-right: 2px;
 }
+
 .text-mayus {
   text-transform: uppercase;
 }
@@ -692,9 +597,11 @@ a.article:hover {
   #sidebar {
     margin-left: -250px;
   }
+
   #sidebar.active {
     margin-left: 0;
   }
+
   #sidebarCollapse span {
     display: none;
   }

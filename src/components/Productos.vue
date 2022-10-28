@@ -245,8 +245,8 @@
                 </b-col>
               </b-row>
 
-              <b-form-checkbox id="checkbox-1" v-model="status" name="checkbox-1" value="accepted"
-                unchecked-value="not_accepted">
+              <b-form-checkbox id="checkbox-1" v-model="checkProductos" name="checkbox-1" value="checkProductos"
+                @change="marcarProductos">
                 Subir a todos los productos
               </b-form-checkbox>
 
@@ -271,8 +271,7 @@
                     </td>
 
                     <td>
-                      <b-form-checkbox id="checkbox-1" v-model="status" name="checkbox-1" value="accepted"
-                        unchecked-value="not_accepted"></b-form-checkbox>
+                      <v-simple-checkbox v-model="row.item.seleccion"></v-simple-checkbox>
                     </td>
                   </tr>
                 </template>
@@ -362,6 +361,7 @@
   </div>
 </template>
 <script>
+import { checkPropertyChange } from "json-schema";
 import { API } from "../Servicios/axios";
 export default {
   created() {
@@ -371,6 +371,7 @@ export default {
     }
   },
   mounted() {
+
     this.BuscarProductos();
   },
   data() {
@@ -400,6 +401,7 @@ export default {
       category: null,
       tipoSubida: null,
       categoriaSubida: null,
+      checkProductos: false,
       headers: [
         {
           text: 'Nombre',
@@ -458,7 +460,16 @@ export default {
       localStorage.removeItem('userToken')
       this.$router.push("/")
     },
+    marcarProductos() {
+      this.datosProductos.forEach(producto => {
+        producto.seleccion = !this.checkProductos;
+
+      });
+
+    },
+
     BuscarProductos() {
+
       const data = {
         nombre: this.searchnombre,
       };
@@ -469,6 +480,8 @@ export default {
       })
         .then((res) => {
           this.datosProductos = res.data;
+
+
         })
         .catch((error) => {
           this.$swal({
@@ -543,6 +556,7 @@ export default {
           Authorization: "Bearer " + this.token,
         },
       }).then((response) => {
+        console.log(response.data)
         this.datosProductos = response.data;
       });
     },
@@ -625,7 +639,7 @@ export default {
       })
         .then((res) => {
           this.datosProductos = res.data;
-
+          console.log(this.datosProductos)
         })
         .catch((error) => {
           this.$swal({

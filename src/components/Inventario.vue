@@ -2,71 +2,63 @@
   <div width="100%">
     <div class="wrapper">
       <!-- Sidebar  -->
-           <nav id="sidebar">
+      <nav id="sidebar">
         <div class="sidebar-header">
           <div align="center">
-            <img
-              src="../assets/logo-nuevo.png"
-              class="d-inline-block align-top"
-              width="150px"
-            />
+            <img src="../assets/logo-nuevo.png" class="d-inline-block align-top" width="150px" />
           </div>
         </div>
 
         <ul class="list-unstyled components">
           <p>Administracion Horeb</p>
-                 <router-link to="/Inicio">
-          <li>
-            <a href="#">
-              <b-icon icon="house-door-fill"></b-icon>&nbsp;&nbsp;Inicio</a
-            >
-          </li>
+          <router-link to="/Inicio">
+            <li>
+              <a href="#">
+                <b-icon icon="house-door-fill"></b-icon>&nbsp;&nbsp;Inicio
+              </a>
+            </li>
           </router-link>
           <router-link to="/Clientes">
             <li>
-              <a href="#"
-                ><b-icon icon="person-lines-fill"></b-icon
-                >&nbsp;&nbsp;Clientes</a
-              >
+              <a href="#">
+                <b-icon icon="person-lines-fill"></b-icon>&nbsp;&nbsp;Clientes
+              </a>
             </li>
           </router-link>
-           <router-link to="/Empleados">
-          <li>
-            <a href="#"
-              ><b-icon icon="file-person-fill"></b-icon>&nbsp;&nbsp;Empleados</a
-            >
-          </li>
+          <router-link to="/Empleados">
+            <li>
+              <a href="#">
+                <b-icon icon="file-person-fill"></b-icon>&nbsp;&nbsp;Empleados
+              </a>
+            </li>
           </router-link>
           <router-link to="/Productos">
-          <li>
-            <a href="#"
-              ><b-icon icon="cart-fill"></b-icon>&nbsp;&nbsp;Productos</a
-            >
-          </li>
-          </router-link>
-          <router-link to="/Cotizacion">
-          <li>
-            <a href="#"
-              ><b-icon icon="file-earmark-check-fill"></b-icon
-              >&nbsp;&nbsp;Cotizacion</a
-            >
-          </li>
-          </router-link>
-
-                    <router-link to="/editCotizacion">
             <li>
-              <a href="#"
-                ><b-icon icon="file-earmark-check-fill"></b-icon
-                >&nbsp;&nbsp;Editar Cotizacion</a
-              >
+              <a href="#">
+                <b-icon icon="cart-fill"></b-icon>&nbsp;&nbsp;Productos
+              </a>
             </li>
           </router-link>
-                              <router-link to="/inventario">
+          <router-link to="/Cotizacion">
             <li>
-              <a href="#"
-                ><b-icon icon="inboxes-fill"></b-icon
-                >&nbsp;&nbsp;Inventario</a
-              >
+              <a href="#">
+                <b-icon icon="file-earmark-check-fill"></b-icon>&nbsp;&nbsp;Cotizacion
+              </a>
+            </li>
+          </router-link>
+
+          <router-link to="/editCotizacion">
+            <li>
+              <a href="#">
+                <b-icon icon="file-earmark-check-fill"></b-icon>&nbsp;&nbsp;Editar Cotizacion
+              </a>
+            </li>
+          </router-link>
+          <router-link to="/inventario">
+            <li>
+              <a href="#">
+                <b-icon icon="inboxes-fill"></b-icon>&nbsp;&nbsp;Inventario
+              </a>
             </li>
           </router-link>
         </ul>
@@ -74,12 +66,9 @@
         <br />
         <ul class="list-unstyled CTAs">
           <li>
-            <a
-               @click="logout"
-                href=""
-            >
-              <b-icon icon="door-open-fill"></b-icon>&nbsp;&nbsp;¿Salir?</a
-            >
+            <a @click="logout" href="">
+              <b-icon icon="door-open-fill"></b-icon>&nbsp;&nbsp;¿Salir?
+            </a>
           </li>
         </ul>
       </nav>
@@ -93,18 +82,13 @@
           <b-input-group class="mt-3">
             <b-form-input placeholder="Buscar" v-model="searchnombre" v-on:keyup.enter="BuscarEmpleado"></b-form-input>
             <b-input-group-append>
-              <b-button squared variant="info"  @click="BuscarEmpleado">
-                <b-icon icon="search"></b-icon
-              ></b-button>
+              <b-button squared variant="info" @click="BuscarEmpleado">
+                <b-icon icon="search"></b-icon>
+              </b-button>
             </b-input-group-append>
-            <b-button
-              squared
-              variant="success"
-              style="margin-left: 50px"
-              v-b-modal.modal-prevent-closing
-            >
-              <b-icon icon="plus"></b-icon>Nuevo Registro</b-button
-            >
+            <b-button squared variant="success" style="margin-left: 50px" v-b-modal.modal-prevent-closing>
+              <b-icon icon="plus"></b-icon>Nuevo Registro
+            </b-button>
           </b-input-group>
           <br />
 
@@ -116,24 +100,37 @@
                   <th class="text-left">Entradas</th>
                   <th class="text-left">Salidas</th>
                   <th class="text-left">Existencia</th>
-                 
+
                 </tr>
               </thead>
               <tbody class="text-mayus">
-                <tr v-for="(Empleados,i) in dataEmpleados" :key="i">
-                  <td><font size=1><b>{{ Empleados.concepto}}</b></font></td>
-                  <td><font size=2><b>{{ Empleados.entradas }}</b></font></td>
-                  <td><font size=2>{{ Empleados.salidas }}</font></td>
-                  <td><font size=3><b>  <b-badge pill variant="primary">{{ Empleados.existencia}}</b-badge></b></font></td>
+                <tr v-for="(Empleados, i) in dataEmpleados" :key="i">
+                  <td>
+                    <font size=1><b>{{ Empleados.concepto }}</b></font>
+                  </td>
+                  <td>
+                    <font size=2><b>{{ Empleados.entradas }}</b></font>
+                  </td>
+                  <td>
+                    <font size=2>{{ Empleados.salidas }}</font>
+                  </td>
+                  <td>
+                    <font size=3><b>
+                        <b-badge pill variant="primary">{{ Empleados.existencia }}</b-badge>
+                      </b></font>
+                  </td>
                   <td>
 
-                                 <div class="h2 mb-0"><b-icon icon="pencil-square" style="color: #fff;"
-              class="rounded-circle bg-success p-2"  v-b-modal.modal-update @click="sendUser(Empleados)"></b-icon>&nbsp;<b-icon icon="trash-fill" style="color: #fff;"
-              class="rounded-circle bg-danger p-2"   v-b-modal.modal-delete  @click="deleteEmpleados(Empleados)"></b-icon></div>
-               
-              
+                    <div class="h2 mb-0">
+                      <b-icon icon="pencil-square" style="color: #fff;" class="rounded-circle bg-success p-2"
+                        v-b-modal.modal-update @click="sendUser(Empleados)"></b-icon>&nbsp;<b-icon icon="trash-fill"
+                        style="color: #fff;" class="rounded-circle bg-danger p-2" v-b-modal.modal-delete
+                        @click="deleteEmpleados(Empleados)"></b-icon>
+                    </div>
 
-                   <!-- <b-button
+
+
+                    <!-- <b-button
                       squared
                       variant="info"
                       class="padd-button"
@@ -161,118 +158,51 @@
         </v-card>
 
 
-    <div>
-      <b-modal
-        id="modal-prevent-closing"
-        ref="modal"
-        title="Registrar Inventario"
-        centered
-        @show="resetModal"
-        @hidden="resetModal"
-        @ok="RegistrarEmpleado"
-        ok-variant="success"
-      >
-        <form ref="form" @submit.stop.prevent="handleSubmit">
-          <b-form-group :state="nameState" invalid-feedback="*Requerido">
-            <b-form-input
-              id="concepto"
-              v-model="concepto"
-              :state="nameState"
-              required
-              placeholder="Concepto"
-              class="text-mayus"
-            ></b-form-input>
-            <br />
-            <b-form-input
-              id="entradas"
-              v-model="entradas"
-              :state="nameState"
-              required
-              placeholder="Entradas"
-              class="text-mayus"
-              type="text"
-            ></b-form-input>
-            <br />
-          
-            <b-form-input
-              id="salidas"
-              v-model="salidas"
-              :state="nameState"
-              required
-              placeholder="Salidas"
-              class="text-mayus"
-             
-            ></b-form-input>
-            <br />
-              <b-form-input
-              v-model="existencia"
-              :state="nameState"
-              required
-              placeholder="Existencia"
-              type="text"
-              class="text-mayus"
-            ></b-form-input>
-            <br />
-          </b-form-group>
-        </form>
-      </b-modal>
-    </div>
+        <div>
+          <b-modal id="modal-prevent-closing" ref="modal" title="Registrar Inventario" centered @show="resetModal"
+            @hidden="resetModal" @ok="RegistrarEmpleado" ok-variant="success">
+            <form ref="form" @submit.stop.prevent="handleSubmit">
+              <b-form-group :state="nameState" invalid-feedback="*Requerido">
+                <b-form-input id="concepto" v-model="concepto" :state="nameState" required placeholder="Concepto"
+                  class="text-mayus"></b-form-input>
+                <br />
+                <b-form-input id="entradas" v-model="entradas" :state="nameState" required placeholder="Entradas"
+                  class="text-mayus" type="text"></b-form-input>
+                <br />
 
-    <div>
-      <b-modal
-        id="modal-update"
-        ref="modal"
-        title="Actualizar Inventario"
-        centered
-        @show="resetModal"
-        @hidden="resetModal"
-        @ok="ActualizarEmpleado"
-        ok-variant="success"
-      >
-         <form ref="form" @submit.stop.prevent="handleSubmit">
-          <b-form-group :state="nameState" invalid-feedback="*Requerido">
-            <b-form-input
-              id="concepto"
-              v-model="selectedUser.concepto"
-              :state="nameState"
-              required
-              placeholder="concepto"
-               class="text-mayus"
-            ></b-form-input>
-            <br />
-            <b-form-input
-              id="entradas"
-              v-model="selectedUser.entradas"
-              :state="nameState"
-              required
-              placeholder="entradas"
-               class="text-mayus"
-              type="text"
-            ></b-form-input>
-            <br />
-              <b-form-input
-              id="contraseña"
-              v-model="selectedUser.salidas"
-              :state="nameState"
-              required
-              placeholder="Contraseña"
-              type="existencia"
-            ></b-form-input>
+                <b-form-input id="salidas" v-model="salidas" :state="nameState" required placeholder="Salidas"
+                  class="text-mayus"></b-form-input>
+                <br />
+                <b-form-input v-model="existencia" :state="nameState" required placeholder="Existencia" type="text"
+                  class="text-mayus"></b-form-input>
+                <br />
+              </b-form-group>
+            </form>
+          </b-modal>
+        </div>
 
-            <br />
-            <b-form-input
-              id="salidas"
-              v-model="selectedUser.existencia"
-              :state="nameState"
-              required
-              placeholder="Telefono"
-               class="text-mayus"
-            ></b-form-input>
-            <br />
-          </b-form-group>
-        </form>
-      </b-modal>
-    </div>
+        <div>
+          <b-modal id="modal-update" ref="modal" title="Actualizar Inventario" centered @show="resetModal"
+            @hidden="resetModal" @ok="ActualizarEmpleado" ok-variant="success">
+            <form ref="form" @submit.stop.prevent="handleSubmit">
+              <b-form-group :state="nameState" invalid-feedback="*Requerido">
+                <b-form-input id="concepto" v-model="selectedUser.concepto" :state="nameState" required
+                  placeholder="concepto" class="text-mayus"></b-form-input>
+                <br />
+                <b-form-input id="entradas" v-model="selectedUser.entradas" :state="nameState" required
+                  placeholder="entradas" class="text-mayus" type="text"></b-form-input>
+                <br />
+                <b-form-input id="contraseña" v-model="selectedUser.salidas" :state="nameState" required
+                  placeholder="Contraseña" type="existencia"></b-form-input>
+
+                <br />
+                <b-form-input id="salidas" v-model="selectedUser.existencia" :state="nameState" required
+                  placeholder="Telefono" class="text-mayus"></b-form-input>
+                <br />
+              </b-form-group>
+            </form>
+          </b-modal>
+        </div>
 
 
 
@@ -295,11 +225,11 @@ export default {
   },
   data() {
     return {
-     drawer: false,
+      drawer: false,
       group: null,
-      token:"",
+      token: "",
       name: "",
-    checked: false,     
+      checked: false,
       // eslint-disable-next-line
       submittedNames: [],
       dataEmpleados: [],
@@ -309,14 +239,14 @@ export default {
       entradas: "",
       salidas: "",
       existencia: "",
-     
-      searchnombre:"",
+
+      searchnombre: "",
       dataVendedores: [],
       selectedUser: [],
     };
   },
   methods: {
-                  logout(){
+    logout() {
       localStorage.removeItem('userToken')
       this.$router.push("/")
     },
@@ -334,98 +264,98 @@ export default {
         (this.entradas = ""),
         (this.existencia = ""),
         (this.salidas = "");
-        
+
     },
 
     RegistrarEmpleado() {
-      if(this.concepto=="" || this.entradas=="" || this.existencia==""  || this.salidas==""){
+      if (this.concepto == "" || this.entradas == "" || this.existencia == "" || this.salidas == "") {
         this.$swal({
           title: 'Atencion',
           text: 'Rellena los campos',
           icon: 'warning',
           confirmButtonText: 'Continuar'
         });
-      }else{
-                  const data = {
-        salidas:this.salidas,
-        existencia:this.existencia,
-        concepto:this.concepto,
-        entradas:this.entradas,
-      };
-      API.post("registro-inventario", data, {
-        headers: {
-          Authorization: "Bearer " + this.token,
-        },
-      })
-        .then((res) => {
-          this.Limpiar();
-          this.getEmpleados();
-          this.$swal({
+      } else {
+        const data = {
+          salidas: this.salidas,
+          existencia: this.existencia,
+          concepto: this.concepto,
+          entradas: this.entradas,
+        };
+        API.post("registro-inventario", data, {
+          headers: {
+            Authorization: "Bearer " + this.token,
+          },
+        })
+          .then((res) => {
+            this.Limpiar();
+            this.getEmpleados();
+            this.$swal({
               title: 'Informacion',
               text: 'Los datos se han guardado con éxito',
               icon: 'success',
               confirmButtonText: 'Continuar'
             });
-        })
-        .catch((error) => {
-          this.$swal({
+          })
+          .catch((error) => {
+            this.$swal({
               title: 'Error',
               text: 'Lo sentimos, ocurrió un error ' + error,
               icon: 'error',
               confirmButtonText: 'Continuar'
             });
-        });
-     
+          });
+
       }
 
     },
 
     ActualizarEmpleado() {
- if(this.selectedUser.concepto=="" || this.selectedUser.entradas=="" || this.selectedUser.existencia==""  || this.selectedUser.salidas==""){
-  this.$swal({
+      if (this.selectedUser.concepto == "" || this.selectedUser.entradas == "" || this.selectedUser.existencia == "" || this.selectedUser.salidas == "") {
+        this.$swal({
           title: 'Atencion',
           text: 'Rellena los campos',
           icon: 'warning',
           confirmButtonText: 'Continuar'
-        });    
-      }else{
+        });
+      } else {
 
-      const data = {
-        concepto: this.selectedUser.concepto,
-        entradas: this.selectedUser.entradas,
-        existencia: this.selectedUser.existencia,
-        salidas: this.selectedUser.salidas,
-      };
-      API.put("actualizar-inventario/" + this.selectedUser.id, data, {
-        headers: {
-          Authorization: "Bearer " + this.token,
-        },
-      })
-        .then((res) => {
-          this.selected = [];
-          this.Limpiar();
-          this.$swal({
+        const data = {
+          concepto: this.selectedUser.concepto,
+          entradas: this.selectedUser.entradas,
+          existencia: this.selectedUser.existencia,
+          salidas: this.selectedUser.salidas,
+        };
+        API.put("actualizar-inventario/" + this.selectedUser.id, data, {
+          headers: {
+            Authorization: "Bearer " + this.token,
+          },
+        })
+          .then((res) => {
+            this.selected = [];
+            this.Limpiar();
+            this.$swal({
               title: 'Informacion',
               text: 'Los datos se han guardado con éxito',
               icon: 'success',
               confirmButtonText: 'Continuar'
             });
-        
-        })
-        .catch((error) => {
-          this.$swal({
+
+          })
+          .catch((error) => {
+            this.$swal({
               title: 'Error',
               text: 'Lo sentimos, ocurrió un error ' + error,
               icon: 'error',
               confirmButtonText: 'Continuar'
             });
-        });
+          });
 
-    }
+      }
     },
 
     getUser(Empleados) {
-      API.get("inventario/" +Empleados.users_id, {
+      API.get("inventario/" + Empleados.users_id, {
         headers: {
           Authorization: "Bearer " + this.token,
         },
@@ -440,50 +370,26 @@ export default {
 
     deleteEmpleados(result) {
       var con;
-      con=confirm("¿Esta seguro de eliminar?");
-    if(con==true){
+      con = confirm("¿Esta seguro de eliminar?");
+      if (con == true) {
         API.delete("borrar-inventario/" + result.id, {
-        headers: {
-          Authorization: "Bearer " + this.token,
-        },
-      }).then((response) => {
-        this.$swal({
-              title: 'Informacion',
-              text: 'Se elimino',
-              icon: 'success',
-              confirmButtonText: 'Continuar'
-            });
-        this.getEmpleados();
-      });
-    }else{
-    
-    }
-    },
-
-BuscarEmpleado() {
-      const data = {
-        concepto: this.searchnombre,
-      };
-      API.post("buscar-inventario", data, {
-        headers: {
-          Authorization: "Bearer " + this.token,
-        },
-      })
-        .then((res) => {
-         this.dataEmpleados = res.data;
-        })
-        .catch((error) => {
+          headers: {
+            Authorization: "Bearer " + this.token,
+          },
+        }).then((response) => {
           this.$swal({
-              title: 'Error',
-              text: 'Lo sentimos, ocurrió un error ' + error,
-              icon: 'error',
-              confirmButtonText: 'Continuar'
-            });
+            title: 'Informacion',
+            text: 'Se elimino',
+            icon: 'success',
+            confirmButtonText: 'Continuar'
+          });
+          this.getEmpleados();
         });
+      } else {
+
+      }
     },
 
-  },
-  computed:{
     BuscarEmpleado() {
       const data = {
         concepto: this.searchnombre,
@@ -494,15 +400,39 @@ BuscarEmpleado() {
         },
       })
         .then((res) => {
-         this.dataEmpleados = res.data;
+          this.dataEmpleados = res.data;
         })
         .catch((error) => {
           this.$swal({
-              title: 'Error',
-              text: 'Lo sentimos, ocurrió un error ' + error,
-              icon: 'error',
-              confirmButtonText: 'Continuar'
-            });
+            title: 'Error',
+            text: 'Lo sentimos, ocurrió un error ' + error,
+            icon: 'error',
+            confirmButtonText: 'Continuar'
+          });
+        });
+    },
+
+  },
+  computed: {
+    BuscarEmpleado() {
+      const data = {
+        concepto: this.searchnombre,
+      };
+      API.post("buscar-inventario", data, {
+        headers: {
+          Authorization: "Bearer " + this.token,
+        },
+      })
+        .then((res) => {
+          this.dataEmpleados = res.data;
+        })
+        .catch((error) => {
+          this.$swal({
+            title: 'Error',
+            text: 'Lo sentimos, ocurrió un error ' + error,
+            icon: 'error',
+            confirmButtonText: 'Continuar'
+          });
         });
     },
 
@@ -515,6 +445,7 @@ BuscarEmpleado() {
 */
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
 body {
   font-family: "Poppins", sans-serif;
   background: #fafafa;
@@ -591,7 +522,7 @@ a:focus {
   background: #fff;
 }
 
-#sidebar ul li.active > a,
+#sidebar ul li.active>a,
 a[aria-expanded="true"] {
   color: #fff;
   background: #6d7fcc;
@@ -647,18 +578,21 @@ a.article:hover {
   padding: 20px;
   min-height: 100vh;
   transition: all 0.3s;
-  background:  #fff;
+  background: #fff;
 }
+
 .padd-card {
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
 .padd-button {
   margin-left: 2px;
   margin-right: 2px;
 }
+
 .text-mayus {
   text-transform: uppercase;
 }
@@ -671,9 +605,11 @@ a.article:hover {
   #sidebar {
     margin-left: -250px;
   }
+
   #sidebar.active {
     margin-left: 0;
   }
+
   #sidebarCollapse span {
     display: none;
   }
