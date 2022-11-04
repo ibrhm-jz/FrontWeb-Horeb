@@ -77,6 +77,7 @@
       <div id="content">
         <h2>Administracion de los Productos</h2>
         <div class="line"></div>
+        <b-overlay :show="cargandoPrecio" rounded="sm">
         <v-card elevation="2" tile class="padd-card">
           <b-input-group class="mt-3">
             <b-form-input placeholder="Buscar" class="text-mayus" v-model="searchnombre"
@@ -89,9 +90,9 @@
             </b-input-group-append>
             <b-form-select v-model="category" :options="optionscategory" @change="FiltroProducto()"
               style="margin-left: 50px"></b-form-select>
-            <b-button squared variant="warning" style="margin-left: 50px" v-b-modal.modal-subir-precio>
-              <b-icon icon="arrow-up"></b-icon>Subir Precios
-            </b-button>
+              <b-button squared variant="warning" style="margin-left: 50px" v-b-modal.modal-subir-precio>
+                <b-icon icon="arrow-up"></b-icon>Subir Precios
+              </b-button>
             <b-button squared variant="success" style="margin-left: 50px" v-b-modal.modal-prevent-closing>
               <b-icon icon="plus"></b-icon>Nuevo Registro
             </b-button>
@@ -120,7 +121,7 @@
                 </td>
                 <td>
                   <b-badge variant="primary">
-                    <font size=2><b>$ {{ row.item.precio_unitario }}</b></font>
+                    <font size=2><b>$ {{ row.item.precio_unitario.toFixed(2) }}</b></font>
                   </b-badge>
                 </td>
 
@@ -132,30 +133,6 @@
 
 
 
-                  <!--  <div class="h2 mb-0"><b-icon icon="pencil-square" style="color: #fff;"
-              class="rounded-circle bg-success p-2"  -b-modal.modal-actualizar-producto @click="sendProduct(row.item)"></b-icon></div>
-               
-               <b-icon icon="trash-fill" style="color: #fff;"
-              class="rounded-circle bg-danger p-2"   v-b-modal.modal-delete ></b-icon>
-               <b-button
-                      squared
-                      variant="info"
-                      class="padd-button"
-                      v-b-modal.modal-actualizar-producto
-                      @click="sendProduct(row.item)"
-                    >
-                      <b-icon icon="pencil-square" style="color: #fff"></b-icon
-                    ></b-button>
-
-                    <b-button
-                      squared
-                      variant="danger"
-                      class="padd-button"
-                      v-b-modal.modal-delete
-                    >
-                      <b-icon icon="trash-fill"></b-icon
-                    ></b-button>
-              -->
                   <div class="h2 mb-1">
                     <b-icon icon="pencil-square" style="color: #fff;" class="rounded-circle bg-success p-2"
                       v-b-modal.modal-actualizar-producto @click="sendProduct(row.item)"></b-icon>&nbsp;<b-icon
@@ -173,58 +150,18 @@
 
           </v-data-table>
 
-          <!--
-          <v-simple-table>
-            <template v-slot:default>
-              <thead>
-                <tr>
-                  <th class="text-left">Nombre</th>
-                  <th class="text-left">Existencia</th>
-                  <th class="text-left">Categoria</th>
-                  <th class="text-left">Precio Unitario</th>
-                  <th class="text-left">Tipo de Medida</th>
-                  <th class="text-left">Accion</th>
-                </tr>
-              </thead>
-              <tbody class="text-mayus">
-                <tr v-for="products in datosProductos" :key="products.id">
-                  <td>{{ products.nombre }}</td>
-                  <td>{{ products.cantidad_existencia }}</td>
-                  <td>{{ products.categoria }}</td>
-                  <td>
-                    <font color="red"
-                      >$ <b>{{ products.precio_unitario }}</b></font
-                    >
-                  </td>
-                  <td>{{ products.medida }}</td>
-                  <td>
-                    <b-button
-                      squared
-                      variant="info"
-                      class="padd-button"
-                      v-b-modal.modal-actualizar-producto
-                      @click="sendProduct(products)"
-                    >
-                      <b-icon icon="pencil-square" style="color: #fff"></b-icon
-                    ></b-button>
-
-                    <b-button
-                      squared
-                      variant="danger"
-                      class="padd-button"
-                      v-b-modal.modal-delete
-                    >
-                      <b-icon icon="trash-fill"></b-icon
-                    ></b-button>
-                  </td>
-                </tr>
-              </tbody>
-            </template>
-          </v-simple-table>
-          -->
         </v-card>
+        <template #overlay>
+          <div class="text-center">
+            <b-icon icon="stopwatch" font-scale="3" animation="cylon"></b-icon>
+            <p id="cancel-label">Espere por favor, no salga de la página...</p>
+         
+          </div>
+        </template>
+      </b-overlay>
         <div md="12">
-          <b-modal id="modal-subir-precio" ref="modal" centered title="Subir Precios" size="lg">
+          <b-modal id="modal-subir-precio" ref="modal" centered title="Subir Precios" size="lg" @ok="subirPrecio"
+            ok-variant="success">
             <b-container fluid class="p-0">
               <b-row md="12">
                 <b-col md="6">
@@ -263,7 +200,7 @@
                     </td>
 
                     <td>
-                      <font size="1"><b>$ {{ row.item.precio_unitario }}</b></font>
+                      <font size="1"><b>$ {{ row.item.precio_unitario.toFixed(2) }}</b></font>
                     </td>
 
                     <td>
@@ -402,6 +339,9 @@ export default {
       tipoSubida: null,
       categoriaSubida: null,
       checkProductos: false,
+      precioASubir: null,
+      porcentajeASubir: null,
+      cargandoPrecio: false,
       headers: [
         {
           text: 'Nombre',
@@ -451,7 +391,7 @@ export default {
         { value: null, text: "Elegir una opción" },
         { value: 1, text: "Subir por precio" },
         { value: 2, text: "Subir por porcentaje" },
-        { value: 3, text: "Subir por categoría" },
+        // { value: 3, text: "Subir por categoría" },
       ],
     };
   },
@@ -460,6 +400,73 @@ export default {
       localStorage.removeItem('userToken')
       this.$router.push("/")
     },
+
+    async subirPrecio() {
+      try {
+        this.cargandoPrecio = true;
+        if (!this.checkProductos) {
+          var listaProductos = [];
+          this.datosProductos.forEach(producto => {
+            if (producto.seleccion) {
+              listaProductos.push(producto.id)
+            }
+          });
+          const data = {
+            lista: listaProductos,
+            precio_unitario: this.precioASubir, porcentaje: this.porcentajeASubir
+
+          }
+          var response = await API.put("/cambiar-precio-por-lista", data, {
+
+          });
+          if (response.status == 200) {
+            this.getProduct();
+            this.cargandoPrecio = false;
+          }
+        } else {
+          const data = {
+            precio_unitario: this.precioASubir,
+            porcentaje: this.porcentajeASubir,
+          }
+          API.put("/cambiar-precio", data, {
+            headers: {
+              Authorization: "Bearer " + this.token,
+            },
+          })
+            .then((res) => {
+              this.getProduct();
+              this.cargandoPrecio = false;
+
+
+            })
+            .catch((error) => {
+              this.cargandoPrecio = false;
+              this.$swal({
+                title: 'Error',
+                text: 'Lo sentimos, ocurrió un error ' + error,
+                icon: 'error',
+                confirmButtonText: 'Continuar'
+              });
+            });
+          // var response = await API.put("/cambiar-precio", data, {
+
+          // });
+          // if (response.status == 200) {
+          //   this.getProduct()
+          // }
+
+        }
+      } catch (error) {
+        this.$swal({
+          title: 'Error',
+          text: 'Lo sentimos, ocurrió un error ' + error,
+          icon: 'error',
+          confirmButtonText: 'Continuar'
+        });
+      }
+
+    },
+
     marcarProductos() {
       this.datosProductos.forEach(producto => {
         producto.seleccion = !this.checkProductos;

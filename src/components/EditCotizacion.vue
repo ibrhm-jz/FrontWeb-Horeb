@@ -214,7 +214,7 @@
                       style="width: 100px"
                       placeholder="%"
                       required
-                      v-model="invoice_product.medida.toUpperCase()"
+                      :v-model="invoice_product.medida.toUpperCase()"
                     ></b-form-input>
                   </td>
                   <td>
@@ -222,7 +222,7 @@
                       style="width: 450px; text-transform: uppercase"
                       required
                       class="text-mayus"
-                      v-model="invoice_product.descripcion.toUpperCase()"
+                      :v-model="invoice_product.descripcion.toUpperCase()"
                     ></b-form-input>
                   </td>
                   <td>
@@ -342,6 +342,7 @@
                     <font size="1">{{ row.item.categoria }}</font>
                   </td>
                   <td>
+                    
                     <font size="1"
                       ><b>$ {{ row.item.precio_unitario }}</b></font
                     >
